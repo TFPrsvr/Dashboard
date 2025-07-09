@@ -1,0 +1,61 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id              String   @id @default(uuid())
+  name            String
+  legalName       String?
+  logoUrl         String?
+  theme           Json     // { primary: string, accent: string, font: string }
+  stripeAccountId String?  // Stripe Connect account ID
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  initiatives     Initiative[]
+  widgets         Widget[]
+  memberships     Membership[]
+}
+
+model Initiative {
+  id          String   @id @default(uuid())
+  orgId       String
+  title       String
+  description String?
+  imageUrl    String?
+  tiers       Json     // [ { amount: number, label?: string } ]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  organization Organization @relation(fields: [orgId], references: [id])
+  widgets      Widget[]     @relation("WidgetInitiatives", references: [id])
+}
+
+model Widget {
+  id          String   @id @default(uuid())
+  orgId       String
+  name        String
+  initiativeIds String[] // list of Initiative.id
+  embedCode   String   // pre-generated `<iframe src="…" />`
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Membership {
+  id             String   @id @default(uuid())
+  orgId          String
+  userId         String
+  role           String   // "owner" | "editor"
+  createdAt      DateTime @default(now())
+
+  organization   Organization @relation(fields: [orgId], references: [id])
+}
