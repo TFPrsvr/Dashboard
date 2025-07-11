@@ -1,6 +1,6 @@
 // app/api/org/[orgId]/route.ts
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAdmin } from "@/lib/supabase/server";
 
 // GET /api/org/:orgId
 export async function GET(
