@@ -14,8 +14,9 @@ import {
   Settings,
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
+import { memo } from "react";
 
-export function Sidebar() {
+export const Sidebar = memo(function Sidebar() {
   const pathname = usePathname();
   const { sessionClaims } = useAuth();
   const role = sessionClaims?.role as string;
@@ -116,4 +117,4 @@ export function Sidebar() {
       </nav>
     </aside>
   );
-}
+});

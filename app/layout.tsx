@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
+        <body suppressHydrationWarning={true}>
           <header className="p-4 border-b">
             <SignedOut>
               <SignInButton mode="modal">

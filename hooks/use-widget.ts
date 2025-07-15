@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Database } from "@/types/database.types";
 
 type Widget = Database["public"]["Tables"]["widgets"]["Row"];
@@ -21,13 +21,12 @@ export function useWidget(organizationId?: string) {
       }
 
       try {
-        const supabase = createClient();
-
+  
         const { data, error } = await supabase
           .from("widgets")
           .select("*")
           .eq("organization_id", organizationId)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
 
@@ -56,7 +55,6 @@ export function useWidget(organizationId?: string) {
     if (!widget) return;
 
     try {
-      const supabase = createClient();
 
       const { data, error } = await supabase
         .from("widgets")

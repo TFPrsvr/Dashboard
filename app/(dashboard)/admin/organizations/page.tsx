@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Building, Search, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 
@@ -14,7 +14,7 @@ export default function AdminOrganizationsPage() {
   const [organizations, setOrganizations] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+  // Using imported supabase client
 
   useEffect(() => {
     fetchOrganizations();

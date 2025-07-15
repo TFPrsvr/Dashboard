@@ -2,7 +2,7 @@
 
 import { useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Database } from "@/types/database.types";
 
 type Organization = Database["public"]["Tables"]["organizations"]["Row"];
@@ -22,34 +22,20 @@ export function useOrganization() {
       }
 
       try {
-        const supabase = createClient();
 
-        const { data: user, error: userError } = await supabase
+        const { data: org, error: orgError } = await supabase
           .from("users")
-          .select("organization_id")
+          .select("organizations(*)")
           .eq("id", userId)
           .single();
 
-        if (userError) {
-          console.error("Error fetching user:", userError);
+        if (orgError) {
+          console.error("Error fetching organization:", orgError);
           return;
         }
 
-        if (user?.organization_id && mounted) {
-          const { data: org, error: orgError } = await supabase
-            .from("organizations")
-            .select("*")
-            .eq("id", user.organization_id)
-            .single();
-
-          if (orgError) {
-            console.error("Error fetching organization:", orgError);
-            return;
-          }
-
-          if (mounted) {
-            setOrganization(org);
-          }
+        if (mounted && org?.organizations) {
+          setOrganization(org.organizations as Organization);
         }
       } catch (error) {
         console.error("Error in useOrganization:", error);

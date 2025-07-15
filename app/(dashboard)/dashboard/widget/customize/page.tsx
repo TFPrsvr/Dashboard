@@ -19,16 +19,27 @@ export default function CustomizeWidgetPage() {
     async function fetchWidget() {
       if (!organization) return;
 
+      console.log("Fetching widget for organization:", organization.id);
+
       try {
-        const { data: widgetData } = await supabase
+        const { data: widgetData, error: fetchError } = await supabase
           .from("widgets")
           .select("*")
           .eq("organization_id", organization.id)
           .single();
 
+        console.log("Widget fetch result:", { widgetData, fetchError });
+
+        if (fetchError && fetchError.code !== 'PGRST116') {
+          // PGRST116 is "not found" error, which is expected for new organizations
+          throw fetchError;
+        }
+
         if (widgetData) {
+          console.log("Found existing widget:", widgetData);
           setWidget(widgetData);
         } else {
+          console.log("No widget found, creating new one...");
           // Create a new widget if none exists
           const { data: newWidget, error } = await supabase
             .from("widgets")
@@ -146,18 +157,48 @@ export default function CustomizeWidgetPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Customize Your Widget</h1>
-        <p className="text-gray-600 mt-1">
-          Design your donation widget to match your brand
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Customize Your Widget</h1>
+            <p className="text-gray-600 mt-1">
+              Design your donation widget to match your brand
+            </p>
+          </div>
+          {organization && (
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Customizing widget for</p>
+              <p className="font-semibold text-lg">{organization.name}</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {widget && (
+      {widget ? (
         <WidgetCustomizer
-          initialConfig={widget.config}
+          initialConfig={widget.config || {
+            theme: {
+              primaryColor: "#3b82f6",
+              secondaryColor: "#64748b", 
+              fontFamily: "inter",
+              borderRadius: "8px"
+            },
+            causes: [],
+            settings: {
+              showProgressBar: true,
+              showDonorList: true,
+              allowRecurring: true,
+              minimumDonation: 5,
+              suggestedAmounts: [10, 25, 50, 100]
+            }
+          }}
           widgetId={widget.id}
+          organizationName={organization?.name}
           onSave={handleSave}
         />
+      ) : (
+        <div className="text-center py-8">
+          <p className="text-gray-500">No widget found. Creating one now...</p>
+        </div>
       )}
     </div>
   );
