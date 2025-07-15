@@ -40,33 +40,50 @@ const PRESET_THEMES = [
 interface WidgetCustomizerProps {
   initialConfig?: WidgetConfig;
   widgetId?: string;
+  organizationName?: string;
   onSave: (config: WidgetConfig) => Promise<void>;
 }
 
 export function WidgetCustomizer({
   initialConfig,
   widgetId,
+  organizationName,
   onSave,
 }: WidgetCustomizerProps) {
-  const [config, setConfig] = useState<WidgetConfig>(
-    initialConfig || {
-      theme: {
-        primaryColor: "#0066cc",
-        secondaryColor: "#e6f2ff",
-        fontFamily: "inter",
-        borderRadius: "8px",
-        customCss: "",
-      },
-      causes: [],
-      settings: {
-        showProgressBar: true,
-        showDonorList: false,
-        allowRecurring: true,
-        minimumDonation: 5,
-        suggestedAmounts: [10, 25, 50, 100],
-      },
+  const getDefaultConfig = (): WidgetConfig => ({
+    theme: {
+      primaryColor: "#0066cc",
+      secondaryColor: "#e6f2ff",
+      fontFamily: "inter",
+      borderRadius: "8px",
+      customCss: "",
+    },
+    causes: [],
+    settings: {
+      showProgressBar: true,
+      showDonorList: false,
+      allowRecurring: true,
+      minimumDonation: 5,
+      suggestedAmounts: [10, 25, 50, 100],
+    },
+  });
+
+  const [config, setConfig] = useState<WidgetConfig>(() => {
+    if (!initialConfig || !initialConfig.theme) {
+      return getDefaultConfig();
     }
-  );
+    return {
+      theme: {
+        ...getDefaultConfig().theme,
+        ...initialConfig.theme,
+      },
+      causes: initialConfig.causes || [],
+      settings: {
+        ...getDefaultConfig().settings,
+        ...initialConfig.settings,
+      },
+    };
+  });
   const [saving, setSaving] = useState(false);
   const [previewMode, setPreviewMode] = useState<"desktop" | "mobile">(
     "desktop"

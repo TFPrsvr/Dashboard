@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useOrganization } from "@/hooks/use-organization";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Download, TrendingUp, DollarSign, Users, Heart } from "lucide-react";
 import {
   LineChart,
@@ -32,7 +32,6 @@ export default function DonationsPage() {
   });
   const [chartData, setChartData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
 
   useEffect(() => {
     async function fetchDonations() {
@@ -148,10 +147,18 @@ export default function DonationsPage() {
             Track and analyze your donation data
           </p>
         </div>
-        <Button onClick={exportDonations} variant="outline">
-          <Download className="w-4 h-4 mr-2" />
-          Export CSV
-        </Button>
+        <div className="flex items-center gap-4">
+          {organization && (
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Donations for</p>
+              <p className="font-semibold text-lg">{organization.display_name || organization.name}</p>
+            </div>
+          )}
+          <Button onClick={exportDonations} variant="outline">
+            <Download className="w-4 h-4 mr-2" />
+            Export CSV
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Database } from "@/types/database.types";
 
 type Donation = Database["public"]["Tables"]["donations"]["Row"];
@@ -34,32 +34,30 @@ export function useDonations(widgetId?: string) {
       }
 
       try {
-        const supabase = createClient();
+        const [donationsResult, statsResult] = await Promise.all([
+          supabase
+            .from("donations")
+            .select("*, causes(name)")
+            .eq("widget_id", widgetId)
+            .eq("status", "succeeded")
+            .order("created_at", { ascending: false })
+            .limit(50),
+          supabase
+            .rpc('get_donation_stats', { widget_id: widgetId })
+        ]);
 
-        const { data, error } = await supabase
-          .from("donations")
-          .select("*, causes(name)")
-          .eq("widget_id", widgetId)
-          .eq("status", "succeeded")
-          .order("created_at", { ascending: false });
-
-        if (error) throw error;
+        if (donationsResult.error) throw donationsResult.error;
 
         if (mounted) {
-          setDonations(data || []);
-
-          // Calculate stats
-          if (data && data.length > 0) {
-            const total = data.reduce((sum, d) => sum + d.amount, 0);
-            const uniqueDonorEmails = new Set(
-              data.map((d) => d.donor_email).filter(Boolean)
-            );
-
+          setDonations(donationsResult.data || []);
+          
+          if (statsResult.data && statsResult.data.length > 0) {
+            const stats = statsResult.data[0];
             setStats({
-              totalRaised: total,
-              totalDonations: data.length,
-              averageDonation: total / data.length,
-              uniqueDonors: uniqueDonorEmails.size,
+              totalRaised: stats.total_raised || 0,
+              totalDonations: stats.total_donations || 0,
+              averageDonation: stats.average_donation || 0,
+              uniqueDonors: stats.unique_donors || 0,
             });
           }
         }
@@ -76,29 +74,33 @@ export function useDonations(widgetId?: string) {
 
     fetchDonations();
 
-    // Set up real-time subscription
-    const supabase = createClient();
-    const subscription = supabase
-      .channel("donations")
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "donations",
-          filter: `widget_id=eq.${widgetId}`,
-        },
-        (payload) => {
-          if (mounted) {
-            setDonations((prev) => [payload.new as Donation, ...prev]);
+    // Set up real-time subscription (only if less than 1000 donations)
+    let subscription: any;
+    if (donations.length < 1000) {
+      subscription = supabase
+        .channel("donations")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "donations",
+            filter: `widget_id=eq.${widgetId}`,
+          },
+          (payload) => {
+            if (mounted) {
+              setDonations((prev) => [payload.new as Donation, ...prev.slice(0, 49)]);
+            }
           }
-        }
-      )
-      .subscribe();
+        )
+        .subscribe();
+    }
 
     return () => {
       mounted = false;
-      subscription.unsubscribe();
+      if (subscription) {
+        subscription.unsubscribe();
+      }
     };
   }, [widgetId]);
 
