@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin as createClient } from "@/lib/supabase/server";
 
 export async function GET(req: Request) {
   const user = await currentUser();
@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   }
   const userId = user.id;
 
-  const supabase = await createClient();
+  const supabase = createClient;
 
   try {
     // Check if user is super admin

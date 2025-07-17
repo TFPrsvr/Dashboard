@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/Label";
 import { Badge } from "@/components/ui/Badge";
 import { supabase } from "@/lib/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
-import { UserPlus, Mail, Shield, User, Trash2 } from "lucide-react";
+import { UserPlus, Mail, Shield, User, Trash2, Users } from "lucide-react";
 
 interface TeamMember {
   id: string;
@@ -18,6 +18,8 @@ interface TeamMember {
   first_name?: string;
   last_name?: string;
   created_at: string;
+  status?: "pending" | "accepted";
+  invited_at?: string;
 }
 
 export default function TeamPage() {
@@ -25,7 +27,7 @@ export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteRole, setInviteRole] = useState("member");
+  const [inviteRole, setInviteRole] = useState("editor");
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
 
@@ -65,30 +67,47 @@ export default function TeamPage() {
 
     setInviting(true);
     try {
-      // For now, just add to users table with pending status
-      // In a real app, you'd send an email invitation
-      const { error } = await supabase.from("users").insert({
-        email: inviteEmail,
-        role: inviteRole,
-        organization_id: organization.id,
-        // Note: id would come from Clerk when they sign up
+      const response = await fetch("/api/team/invite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: inviteEmail,
+          role: inviteRole,
+          organizationId: organization.id,
+          organizationName: organization.display_name || organization.name,
+        }),
       });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send invitation");
+      }
 
       toast({
         title: "Invitation Sent",
-        description: `Invitation sent to ${inviteEmail}`,
+        description: `Invitation email sent to ${inviteEmail}. They will receive an email to accept the invitation.`,
       });
 
       setInviteEmail("");
+      
       // Refresh members list
-      // fetchTeamMembers(); // You'd call this here
+      const { data, error: fetchError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("organization_id", organization.id)
+        .order("created_at", { ascending: false });
+
+      if (!fetchError && data) {
+        setMembers(data);
+      }
     } catch (error) {
       console.error("Error inviting member:", error);
       toast({
         title: "Error",
-        description: "Failed to send invitation",
+        description: error instanceof Error ? error.message : "Failed to send invitation",
         variant: "destructive",
       });
     } finally {
@@ -117,6 +136,28 @@ export default function TeamPage() {
         return <Shield className="w-4 h-4" />;
       default:
         return <User className="w-4 h-4" />;
+    }
+  };
+
+  const getStatusBadgeColor = (status?: string) => {
+    switch (status) {
+      case "pending":
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+      case "accepted":
+        return "bg-green-100 text-green-800 border-green-200";
+      default:
+        return "bg-green-100 text-green-800 border-green-200"; // Default to accepted for existing users
+    }
+  };
+
+  const getStatusIcon = (status?: string) => {
+    switch (status) {
+      case "pending":
+        return <Mail className="w-3 h-3" />;
+      case "accepted":
+        return <User className="w-3 h-3" />;
+      default:
+        return <User className="w-3 h-3" />;
     }
   };
 
@@ -175,8 +216,8 @@ export default function TeamPage() {
                 onChange={(e) => setInviteRole(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="member">Member</option>
-                <option value="admin">Admin</option>
+                <option value="editor">Editor</option>
+                <option value="owner">Owner</option>
               </select>
             </div>
             <div className="flex items-end">
@@ -220,6 +261,12 @@ export default function TeamPage() {
                         <Badge className={getRoleBadgeColor(member.role)}>
                           {getRoleIcon(member.role)}
                           <span className="ml-1 capitalize">{member.role}</span>
+                        </Badge>
+                        <Badge className={`border ${getStatusBadgeColor(member.status)}`}>
+                          {getStatusIcon(member.status)}
+                          <span className="ml-1 capitalize">
+                            {member.status === "pending" ? "Pending" : "Active"}
+                          </span>
                         </Badge>
                       </div>
                       <p className="text-sm text-gray-500">{member.email}</p>
