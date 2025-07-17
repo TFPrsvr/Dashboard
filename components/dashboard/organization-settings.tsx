@@ -266,7 +266,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
                   <h3 className="text-lg font-semibold mb-2">Connect Stripe Account</h3>
                   <p className="text-gray-600 mb-4">
                     Connect your Stripe account to start accepting donations. 
-                    You'll be redirected to Stripe to complete the setup process.
+                    You&apos;ll be redirected to Stripe to complete the setup process.
                   </p>
                   <Button 
                     onClick={handleConnectStripe} 

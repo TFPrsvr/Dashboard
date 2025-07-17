@@ -10,12 +10,13 @@ import { supabase } from "@/lib/supabase/client";
 import { Initiative } from "@/types/initiative.types";
 import { useToast } from "@/components/ui/use-toast";
 
+
 export default function InitiativesPage() {
   const { organization, loading: orgLoading } = useOrganization();
   const { toast } = useToast();
   const [initiatives, setInitiatives] = useState<Initiative[]>([]);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     if (organization) {
       fetchInitiatives();

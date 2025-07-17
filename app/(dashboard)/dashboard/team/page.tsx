@@ -135,7 +135,7 @@ export default function TeamPage() {
           <div>
             <h1 className="text-2xl font-bold">Team Management</h1>
             <p className="text-gray-600 mt-1">
-              Manage your organization's team members and permissions
+              Manage your organization&apos;s team members and permissions
             </p>
           </div>
           {organization && (
@@ -197,7 +197,7 @@ export default function TeamPage() {
           <div className="space-y-4">
             {members.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                <Users className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <User className="w-12 h-12 mx-auto mb-4 opacity-50" />
                 <p>No team members yet. Invite someone to get started!</p>
               </div>
             ) : (

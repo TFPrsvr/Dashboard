@@ -24,7 +24,7 @@ export default function DashboardPage() {
           Welcome back, {organization?.name}!
         </h1>
         <p className="text-gray-600 mt-1">
-          Here's an overview of your donation widget performance
+          Here&apos;s an overview of your donation widget performance
         </p>
       </div>
 

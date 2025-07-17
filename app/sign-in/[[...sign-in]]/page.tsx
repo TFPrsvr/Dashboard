@@ -10,7 +10,7 @@ export default async function SignInPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">You're already signed in!</h2>
+          <h2 className="text-2xl font-bold mb-4">You&apos;re already signed in!</h2>
           <p className="text-gray-600 mb-6">
             You can go to your dashboard or sign out to use a different account.
           </p>

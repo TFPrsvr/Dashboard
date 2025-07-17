@@ -138,7 +138,7 @@ export default function OnboardingPage() {
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-primary mb-2">Welcome to PassItOn</h1>
-          <p className="text-gray-600">Let's set up your organization account</p>
+          <p className="text-gray-600">Let&apos;s set up your organization account</p>
         </div>
 
         {/* Progress Indicator */}
@@ -275,7 +275,7 @@ export default function OnboardingPage() {
                     <div>
                       <h4 className="font-medium">Payment Setup</h4>
                       <p className="text-sm text-gray-600 mt-1">
-                        After creating your account, you'll be able to connect your Stripe account 
+                        After creating your account, you&apos;ll be able to connect your Stripe account 
                         to start accepting donations. You maintain full control of your payments 
                         and donor data.
                       </p>
@@ -285,7 +285,7 @@ export default function OnboardingPage() {
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-sm text-blue-800">
-                    <strong>Next Steps:</strong> Once your account is created, you'll be able to:
+                    <strong>Next Steps:</strong> Once your account is created, you&apos;ll be able to:
                   </p>
                   <ul className="text-sm text-blue-700 mt-2 space-y-1 list-disc list-inside">
                     <li>Connect your Stripe account for payment processing</li>
