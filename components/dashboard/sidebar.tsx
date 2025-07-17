@@ -75,7 +75,8 @@ export const Sidebar = memo(function Sidebar() {
                 href={item.href}
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                  pathname === item.href
+                  // Use startsWith for widget routes to handle nested paths
+                  (item.href.includes("/widget") ? pathname.startsWith(item.href) : pathname === item.href)
                     ? "bg-primary text-white"
                     : "hover:bg-gray-100"
                 )}

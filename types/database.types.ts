@@ -44,6 +44,12 @@ export interface Database {
           role: "super_admin" | "owner" | "editor";
           organization_id: string | null;
           created_at: string;
+          status?: "pending" | "accepted";
+          invited_at?: string;
+          accepted_at?: string;
+          first_name?: string;
+          last_name?: string;
+          invitation_token?: string;
         };
         Insert: {
           id: string;
@@ -51,11 +57,22 @@ export interface Database {
           role: "super_admin" | "owner" | "editor";
           organization_id?: string | null;
           created_at?: string;
+          status?: "pending" | "accepted";
+          invited_at?: string;
+          accepted_at?: string;
+          first_name?: string;
+          last_name?: string;
+          invitation_token?: string;
         };
         Update: {
           email?: string;
           role?: "super_admin" | "owner" | "editor";
           organization_id?: string | null;
+          status?: "pending" | "accepted";
+          accepted_at?: string;
+          first_name?: string;
+          last_name?: string;
+          invitation_token?: string;
         };
       };
       widgets: {
