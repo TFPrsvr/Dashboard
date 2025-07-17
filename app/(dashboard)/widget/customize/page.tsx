@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { WidgetCustomizer } from "@/components/dashboard/widget-customizer";
 import { useOrganization } from "@/hooks/use-organization";
 import { supabase } from "@/lib/supabase/client";
@@ -9,7 +8,6 @@ import { WidgetConfig } from "@/types/widget.types";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function CustomizeWidgetPage() {
-  const router = useRouter();
   const { organization, loading: orgLoading } = useOrganization();
   const [widget, setWidget] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -49,7 +47,10 @@ export default function CustomizeWidgetPage() {
         toast({
           title: "Error",
           description: "Failed to load widget configuration",
+<<<<<<< HEAD
           // variant: "destructive",
+=======
+>>>>>>> 0a46531a5e4f6e7d369bb4b40379f5c31f70ddea
         });
       } finally {
         setLoading(false);
@@ -120,7 +121,10 @@ export default function CustomizeWidgetPage() {
       toast({
         title: "Error",
         description: "Failed to save widget configuration",
+<<<<<<< HEAD
         // variant: "destructive",
+=======
+>>>>>>> 0a46531a5e4f6e7d369bb4b40379f5c31f70ddea
       });
     }
   };
