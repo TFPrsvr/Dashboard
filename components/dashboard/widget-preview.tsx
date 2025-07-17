@@ -167,8 +167,7 @@ export function WidgetPreview({ config, mode }: WidgetPreviewProps) {
             <select
               className="w-full p-3 border border-gray-300 mb-6 focus:outline-none focus:ring-2"
               style={{
-                borderRadius: theme.borderRadius,
-                focusRingColor: theme.secondaryColor + "40"
+                borderRadius: theme.borderRadius
               }}
             >
               {activeCauses.map((cause) => (
