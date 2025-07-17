@@ -47,6 +47,10 @@ export default function CustomizeWidgetPage() {
         toast({
           title: "Error",
           description: "Failed to load widget configuration",
+<<<<<<< HEAD
+          // variant: "destructive",
+=======
+>>>>>>> 0a46531a5e4f6e7d369bb4b40379f5c31f70ddea
         });
       } finally {
         setLoading(false);
@@ -117,6 +121,10 @@ export default function CustomizeWidgetPage() {
       toast({
         title: "Error",
         description: "Failed to save widget configuration",
+<<<<<<< HEAD
+        // variant: "destructive",
+=======
+>>>>>>> 0a46531a5e4f6e7d369bb4b40379f5c31f70ddea
       });
     }
   };

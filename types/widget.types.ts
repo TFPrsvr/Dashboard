@@ -4,6 +4,11 @@ export interface WidgetTheme {
   fontFamily: string;
   borderRadius: string;
   customCss?: string;
+  headerText: string;
+  headerColor: string;
+  headerAlignment: "left" | "center" | "right";
+  buttonTextColor: string;
+  backgroundColor: string;
 }
 
 export interface WidgetConfig {
@@ -15,6 +20,8 @@ export interface WidgetConfig {
     allowRecurring: boolean;
     minimumDonation: number;
     suggestedAmounts: number[];
+    showCoverFees: boolean;
+    defaultFrequency: "one-time" | "monthly";
   };
 }
 
