@@ -359,9 +359,12 @@ export function WidgetCustomizer({
                         <SelectItem 
                           key={font.value} 
                           value={font.value}
+                          className="font-normal"
                           style={{ fontFamily: font.fontFamily }}
                         >
-                          {font.label}
+                          <span style={{ fontFamily: font.fontFamily }}>
+                            {font.label}
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>

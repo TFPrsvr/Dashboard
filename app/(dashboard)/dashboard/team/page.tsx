@@ -30,6 +30,7 @@ export default function TeamPage() {
   const [inviteRole, setInviteRole] = useState("editor");
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
+  const [deletingMember, setDeletingMember] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchTeamMembers() {
@@ -76,7 +77,7 @@ export default function TeamPage() {
           email: inviteEmail,
           role: inviteRole,
           organizationId: organization.id,
-          organizationName: organization.display_name || organization.name,
+          organizationName: (organization as any).display_name || organization.name,
         }),
       });
 
@@ -112,6 +113,47 @@ export default function TeamPage() {
       });
     } finally {
       setInviting(false);
+    }
+  };
+
+  const handleDeleteMember = async (memberId: string, memberEmail: string) => {
+    if (!confirm(`Are you sure you want to remove ${memberEmail} from the team?`)) {
+      return;
+    }
+
+    setDeletingMember(memberId);
+    try {
+      const { error } = await supabase
+        .from("users")
+        .delete()
+        .eq("id", memberId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Member Removed",
+        description: `${memberEmail} has been removed from the team.`,
+      });
+
+      // Refresh members list
+      const { data, error: fetchError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("organization_id", organization?.id)
+        .order("created_at", { ascending: false });
+
+      if (!fetchError && data) {
+        setMembers(data);
+      }
+    } catch (error) {
+      console.error("Error removing member:", error);
+      toast({
+        title: "Error",
+        description: "Failed to remove team member",
+        variant: "destructive",
+      });
+    } finally {
+      setDeletingMember(null);
     }
   };
 
@@ -182,7 +224,7 @@ export default function TeamPage() {
           {organization && (
             <div className="text-right">
               <p className="text-sm text-gray-500">Managing team for</p>
-              <p className="font-semibold text-lg">{organization.display_name || organization.name}</p>
+              <p className="font-semibold text-lg">{(organization as any).display_name || organization.name}</p>
             </div>
           )}
         </div>
@@ -275,8 +317,17 @@ export default function TeamPage() {
                   
                   <div className="flex items-center gap-2">
                     {member.role !== "owner" && (
-                      <Button variant="outline" size="sm">
-                        <Trash2 className="w-4 h-4" />
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDeleteMember(member.id, member.email)}
+                        disabled={deletingMember === member.id}
+                      >
+                        {deletingMember === member.id ? (
+                          <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
                       </Button>
                     )}
                   </div>

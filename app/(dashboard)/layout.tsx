@@ -1,5 +1,6 @@
 import { UserButton } from "@clerk/nextjs";
 import { Sidebar } from "@/components/dashboard/sidebar";
+import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { Toaster } from "@/components/ui/Toaster";
 
 export default function DashboardLayout({
@@ -11,12 +12,7 @@ export default function DashboardLayout({
     <div className="flex h-screen bg-gray-50">
       <Sidebar />
       <div className="flex-1 flex flex-col">
-        <header className="bg-white shadow-sm border-b">
-          <div className="flex items-center justify-between px-6 py-4">
-            <h1 className="text-xl font-semibold">Dashboard</h1>
-            <UserButton fallbackRedirectUrl="/" />
-          </div>
-        </header>
+        <DashboardHeader />
         <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
       <Toaster />

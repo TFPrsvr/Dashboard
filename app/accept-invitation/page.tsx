@@ -130,7 +130,7 @@ export default function AcceptInvitationPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center text-gray-600">
-            <p>You've been invited to join</p>
+            <p>You&apos;ve been invited to join</p>
             <p className="font-semibold text-lg text-blue-600">
               {invitation?.organizations?.display_name || invitation?.organizations?.name}
             </p>
