@@ -170,10 +170,63 @@ npm run db:generate
 ### 2. Database Schema
 
 The application uses the following main tables:
-- `organizations` - Multi-tenant organization data
-- `users` - User accounts linked to Clerk
-- `widgets` - Donation widget configurations
-- `donations` - Donation transaction records
+
+#### Organizations Table
+```sql
+CREATE TABLE organizations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  stripe_customer_id TEXT,
+  subscription_status TEXT DEFAULT 'trial',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+```
+
+#### Users Table  
+```sql
+CREATE TABLE users (
+  id TEXT PRIMARY KEY, -- Clerk user ID
+  email TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'editor' CHECK (role IN ('super_admin', 'owner', 'editor')),
+  organization_id UUID REFERENCES organizations(id),
+  status TEXT DEFAULT 'accepted' CHECK (status IN ('pending', 'accepted')),
+  invited_at TIMESTAMP WITH TIME ZONE,
+  accepted_at TIMESTAMP WITH TIME ZONE,
+  invitation_token TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+```
+
+#### Widgets Table
+```sql
+CREATE TABLE widgets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  organization_id UUID NOT NULL REFERENCES organizations(id),
+  name TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  config JSONB DEFAULT '{}',
+  is_active BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+```
+
+#### Donations Table
+```sql
+CREATE TABLE donations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  widget_id UUID REFERENCES widgets(id),
+  amount DECIMAL(10,2) NOT NULL,
+  currency TEXT DEFAULT 'USD',
+  stripe_payment_intent_id TEXT,
+  donor_email TEXT,
+  donor_name TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+```
 
 ## Development
 
@@ -195,6 +248,56 @@ npm run lint         # Run ESLint
 npm run db:push      # Push database schema
 npm run db:generate  # Generate TypeScript types
 ```
+
+### Development Workflow
+
+1. **Environment Setup**
+   - Copy `.env.example` to `.env.local`
+   - Fill in all required environment variables
+   - Run `npm install` to install dependencies
+
+2. **Database Setup**
+   - Create Supabase project
+   - Run migrations with `supabase db push`
+   - Generate types with `npm run db:generate`
+
+3. **Authentication Setup**
+   - Create Clerk application
+   - Configure redirect URLs
+   - Add API keys to environment
+
+4. **Development Process**
+   - Start dev server: `npm run dev`
+   - Make changes to code
+   - Test in browser (hot reload enabled)
+   - Run linting: `npm run lint`
+   - Test across different user roles
+
+5. **Testing User Roles**
+   - Create test users with different roles in database
+   - Test super admin features at `/admin/*` routes
+   - Test organization owner features at `/dashboard/*`
+   - Test editor permissions and restrictions
+
+### Code Structure Guidelines
+
+#### Components
+- Use TypeScript for all components
+- Follow naming convention: `ComponentName.tsx`
+- Keep components focused and reusable
+- Use proper prop typing
+
+#### API Routes
+- Follow RESTful conventions
+- Use proper HTTP status codes
+- Implement error handling
+- Add request validation
+
+#### Database Operations
+- Use Supabase client for frontend operations
+- Use supabaseAdmin for server-side operations
+- Implement proper error handling
+- Follow Row Level Security (RLS) patterns
 
 ## Architecture Overview
 
@@ -247,10 +350,53 @@ The application supports multiple organizations with role-based access:
 
 ## API Documentation
 
+### Authentication
+All API routes are protected by Clerk middleware. Include authentication headers:
+
+```javascript
+const response = await fetch('/api/endpoint', {
+  headers: {
+    'Authorization': `Bearer ${await getToken()}`,
+    'Content-Type': 'application/json'
+  }
+});
+```
+
 ### Organizations API
 
 #### GET `/api/organizations`
 Get all organizations (Super Admin only)
+
+**Response:**
+```json
+[
+  {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Acme Nonprofit",
+    "email": "contact@acme.org",
+    "subscription_status": "active",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]
+```
+
+#### GET `/api/organizations/[orgId]`
+Get specific organization details
+
+**Response:**
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Acme Nonprofit",
+  "email": "contact@acme.org",
+  "stripe_customer_id": "cus_...",
+  "subscription_status": "active",
+  "created_at": "2024-01-01T00:00:00Z",
+  "updated_at": "2024-01-01T00:00:00Z"
+}
+```
+
+### Team Management API
 
 #### POST `/api/team/invite`
 Send team invitation
@@ -260,10 +406,90 @@ Send team invitation
 {
   "email": "user@example.com",
   "role": "editor",
-  "organizationId": "uuid",
-  "organizationName": "Organization Name"
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "organizationName": "Acme Nonprofit"
 }
 ```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Invitation sent successfully"
+}
+```
+
+**Error Response:**
+```json
+{
+  "error": "User already exists in this organization"
+}
+```
+
+### Widget API
+
+#### GET `/api/widgets`
+Get organization's widgets
+
+**Response:**
+```json
+[
+  {
+    "id": "widget-id",
+    "name": "Main Donation Widget",
+    "slug": "main-widget",
+    "is_active": true,
+    "config": {
+      "theme": "light",
+      "primaryColor": "#3B82F6"
+    },
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]
+```
+
+### Stripe Integration API
+
+#### POST `/api/stripe/connect`
+Initialize Stripe Connect onboarding
+
+**Request Body:**
+```json
+{
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000"
+}
+```
+
+#### GET `/api/stripe/connect/status`
+Check Stripe Connect account status
+
+**Response:**
+```json
+{
+  "connected": true,
+  "account_id": "acct_...",
+  "charges_enabled": true,
+  "payouts_enabled": true
+}
+```
+
+### Webhook Endpoints
+
+#### POST `/api/webhooks/stripe`
+Handle Stripe webhook events
+
+**Events Handled:**
+- `payment_intent.succeeded`
+- `payment_intent.payment_failed`
+- `charge.dispute.created`
+
+#### POST `/api/webhooks/clerk`
+Handle Clerk webhook events
+
+**Events Handled:**
+- `user.created`
+- `user.updated`
+- `user.deleted`
 
 ## Stripe Setup Tutorial
 
@@ -399,27 +625,220 @@ When modifying the Stripe integration:
 ### Common Issues
 
 #### 1. Authentication Issues
-- Check Clerk environment variables
-- Verify redirect URLs in Clerk dashboard
-- Ensure middleware is properly configured
+
+**Problem: "Unauthorized" errors when accessing API routes**
+```bash
+# Check environment variables
+cat .env.local | grep CLERK
+
+# Verify Clerk configuration
+echo $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+echo $CLERK_SECRET_KEY
+```
+
+**Solution:**
+- Ensure all Clerk environment variables are set
+- Check that publishable key starts with `pk_`
+- Verify secret key starts with `sk_`
+- Confirm redirect URLs match in Clerk dashboard
+
+**Problem: Infinite redirect loops on sign-in**
+
+**Solution:**
+```bash
+# Check redirect URLs in .env.local
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+```
 
 #### 2. Database Connection Issues
-- Verify Supabase URL and keys
-- Check network connectivity
-- Run database migrations
 
-#### 3. Team Invitation Errors
-The team invitation system has been simplified:
-- Invitations are logged to console in development
-- Production requires email service integration
-- Database includes invitation token support
+**Problem: "Failed to connect to database" errors**
 
-### Development Issues
+**Solution:**
+```bash
+# Test Supabase connection
+curl -H "apikey: YOUR_ANON_KEY" \
+  "https://YOUR_PROJECT.supabase.co/rest/v1/organizations"
 
-#### Role-Based Access
-- Super admin role is detected via database query
-- Admin sections show for users with `super_admin` role
-- Color-coded headers indicate current dashboard type
+# Check environment variables
+echo $NEXT_PUBLIC_SUPABASE_URL
+echo $NEXT_PUBLIC_SUPABASE_ANON_KEY
+echo $SUPABASE_SERVICE_ROLE_KEY
+```
+
+**Problem: "relation does not exist" errors**
+
+**Solution:**
+```bash
+# Run database migrations
+supabase db push
+
+# Reset database if needed
+supabase db reset
+
+# Generate fresh TypeScript types
+npm run db:generate
+```
+
+#### 3. Team Invitation System
+
+**Problem: Invitations showing "pending" but emails not sent**
+
+**Current Status:** The invitation system creates database records but emails are logged to console in development.
+
+**For Production:** Integrate with email service:
+```typescript
+// In lib/invitations.ts, replace console.log with:
+await sendEmail({
+  to: email,
+  subject: `Invitation to join ${organizationName}`,
+  html: emailContent
+});
+```
+
+**Problem: "invitation_token" column errors**
+
+**Solution:**
+```sql
+-- Run this migration manually if needed
+ALTER TABLE users ADD COLUMN IF NOT EXISTS invitation_token TEXT;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'accepted';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS invited_at TIMESTAMP WITH TIME ZONE;
+```
+
+#### 4. Role-Based Access Issues
+
+**Problem: Admin section not showing in sidebar**
+
+**Solution:**
+```sql
+-- Check user role in database
+SELECT id, email, role, organization_id FROM users WHERE email = 'your-email@example.com';
+
+-- Update user to super_admin if needed
+UPDATE users SET role = 'super_admin', organization_id = NULL WHERE email = 'your-email@example.com';
+```
+
+**Problem: Wrong dashboard showing for user role**
+
+**Debug Steps:**
+1. Check `components/dashboard/dashboard-header.tsx` logs
+2. Verify user role in database matches expected role
+3. Clear browser cache and cookies
+4. Check Clerk user metadata
+
+#### 5. Widget Customization Issues
+
+**Problem: Widget changes not saving**
+
+**Solution:**
+```bash
+# Check API routes are working
+curl -X POST http://localhost:3000/api/widgets \
+  -H "Content-Type: application/json" \
+  -d '{"name":"test","config":{}}'
+
+# Verify database permissions
+# Check RLS policies in Supabase dashboard
+```
+
+#### 6. Stripe Integration Issues
+
+**Problem: "Invalid API key" errors**
+
+**Solution:**
+```bash
+# Verify Stripe keys format
+echo $STRIPE_SECRET_KEY        # Should start with sk_
+echo $NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY  # Should start with pk_
+
+# Test Stripe connection
+curl https://api.stripe.com/v1/payment_intents \
+  -u $STRIPE_SECRET_KEY: \
+  -d amount=1000 \
+  -d currency=usd
+```
+
+**Problem: Webhooks not being received**
+
+**Solution:**
+1. Use ngrok for local testing:
+```bash
+ngrok http 3000
+# Use the https URL for webhook endpoints
+```
+
+2. Verify webhook endpoints in Stripe dashboard:
+   - `/api/webhooks/stripe`
+   - `/api/webhooks/stripe/connect`
+
+#### 7. Build and Deployment Issues
+
+**Problem: TypeScript errors during build**
+
+**Solution:**
+```bash
+# Check for type errors
+npm run lint
+npx tsc --noEmit
+
+# Regenerate types
+npm run db:generate
+
+# Clear Next.js cache
+rm -rf .next
+npm run build
+```
+
+**Problem: Environment variables not loading**
+
+**Solution:**
+- Ensure `.env.local` exists (not `.env.example`)
+- Restart development server after changes
+- Check variable names match exactly (case-sensitive)
+- For production, set variables in deployment platform
+
+### Debug Mode
+
+Enable detailed logging by adding to `.env.local`:
+```env
+# Enable detailed logs
+NODE_ENV=development
+DEBUG=true
+NEXT_PUBLIC_DEBUG=true
+```
+
+### Performance Issues
+
+**Problem: Slow page loads**
+
+**Solution:**
+```bash
+# Analyze bundle size
+npm run build
+npm install -g @next/bundle-analyzer
+ANALYZE=true npm run build
+
+# Check database query performance
+# Enable slow query logging in Supabase
+```
+
+### Getting Help
+
+1. **Check browser console** for JavaScript errors
+2. **Check server logs** in terminal running `npm run dev`
+3. **Verify database state** in Supabase dashboard
+4. **Test API endpoints** with curl or Postman
+5. **Check network tab** in browser dev tools
+
+If issues persist:
+- Search existing GitHub issues
+- Create detailed bug report with:
+  - Environment details
+  - Steps to reproduce
+  - Error messages
+  - Screenshots if applicable
 
 ## Contributing
 
