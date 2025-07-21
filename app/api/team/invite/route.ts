@@ -13,9 +13,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log("INVITE: Fallback to basic schema until cache clears");
+    console.log("ENHANCED INVITE: Using full schema with invitation tracking");
 
-    // Check if user already exists in this organization (basic fields only)
+    // Check if user already exists in this organization
     const { data: existingUser, error: checkError } = await supabaseAdmin
       .from("users")
       .select("*")
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows returned
       console.error("Error checking existing user:", checkError);
       return NextResponse.json(
-        { error: "Database error checking user", details: checkError.message },
+        { error: "Database error checking user" },
         { status: 500 }
       );
     }
@@ -39,33 +39,33 @@ export async function POST(request: NextRequest) {
         );
       } else if (existingUser.status === 'pending') {
         // Resend invitation to existing pending user
-        const invitationToken = createInvitationToken();
+        const newInvitationToken = createInvitationToken();
         
         const { error: updateError } = await supabaseAdmin
           .from("users")
           .update({
             invited_at: new Date().toISOString(),
-            invitation_token: invitationToken
+            invitation_token: newInvitationToken
           })
           .eq("id", existingUser.id);
 
         if (updateError) {
           console.error("Error updating invitation:", updateError);
           return NextResponse.json(
-            { error: "Failed to resend invitation", details: updateError.message },
+            { error: "Failed to resend invitation" },
             { status: 500 }
           );
         }
 
-        // Send email
+        // Send email with new token
         try {
           await sendInvitationEmail({
             email,
             organizationName: organizationName || "PassItOn Organization",
-            invitationToken,
+            invitationToken: newInvitationToken,
             role,
           });
-          console.log("ENHANCED INVITE: Resent invitation email");
+          console.log("ENHANCED INVITE: Resent invitation email with new token");
         } catch (emailError) {
           console.error("Email error:", emailError);
         }
@@ -82,35 +82,25 @@ export async function POST(request: NextRequest) {
     const invitationToken = createInvitationToken();
     const tempId = `invited_${crypto.randomUUID()}`;
 
-    // Create pending user record (fallback to working schema)
-    console.log("Attempting to insert user with data:", {
+    // Create pending user record with enhanced schema
+    const { error: insertError } = await supabaseAdmin.from("users").insert({
       id: tempId,
       email,
       role,
       organization_id: organizationId,
+      status: 'pending',
+      invited_at: new Date().toISOString(),
+      invitation_token: invitationToken,
       created_at: new Date().toISOString()
     });
 
-    const { data: insertedData, error: insertError } = await supabaseAdmin
-      .from("users")
-      .insert({
-        id: tempId,
-        email,
-        role,
-        organization_id: organizationId,
-        created_at: new Date().toISOString()
-      })
-      .select();
-
     if (insertError) {
-      console.error("Database insert error:", insertError);
+      console.error("Database error:", insertError);
       return NextResponse.json(
-        { error: "Failed to create invitation", details: insertError.message },
+        { error: "Failed to create invitation" },
         { status: 500 }
       );
     }
-
-    console.log("Successfully inserted user:", insertedData);
 
     // Send invitation email
     try {
@@ -120,10 +110,11 @@ export async function POST(request: NextRequest) {
         invitationToken,
         role,
       });
+      console.log("ENHANCED INVITE: Created new invitation with token and email sent");
     } catch (emailError) {
       console.error("Email error:", emailError);
       // Don't fail the request if email fails, but log it
-      console.warn("Failed to send invitation email, but user record created");
+      console.warn("Failed to send invitation email, but user record created with enhanced tracking");
     }
 
     return NextResponse.json({
