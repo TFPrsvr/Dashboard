@@ -23,19 +23,16 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body suppressHydrationWarning={true}>
-          <header className="p-4 border-b">
-            <SignedOut>
+          <SignedOut>
+            <header className="p-4 border-b">
               <SignInButton mode="modal">
                 <button className="btn">Sign In</button>
               </SignInButton>
               <SignUpButton mode="modal">
                 <button className="btn ml-2">Sign Up</button>
               </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
+            </header>
+          </SignedOut>
           <main>{children}</main>
         </body>
       </html>

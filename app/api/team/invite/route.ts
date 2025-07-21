@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/server";
 import { createInvitationToken, sendInvitationEmail } from "@/lib/invitations";
 
 export async function POST(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user already exists
-    const { data: existingUser } = await supabase
+    const { data: existingUser } = await supabaseAdmin
       .from("users")
       .select("*")
       .eq("email", email)
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     const tempId = crypto.randomUUID();
 
     // Create pending user record
-    const { error: insertError } = await supabase.from("users").insert({
+    const { error: insertError } = await supabaseAdmin.from("users").insert({
       id: tempId,
       email,
       role,

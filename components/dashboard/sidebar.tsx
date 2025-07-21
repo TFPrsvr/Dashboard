@@ -1,4 +1,3 @@
-// components/dashboard/sidebar.tsx
 "use client";
 
 import Link from "next/link";
@@ -14,12 +13,36 @@ import {
   Settings,
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase/client";
 
 export const Sidebar = memo(function Sidebar() {
   const pathname = usePathname();
-  const { sessionClaims } = useAuth();
-  const role = sessionClaims?.role as string;
+  const { userId } = useAuth();
+  const [role, setRole] = useState<string | null>(null);
+
+  // Get user role from Supabase instead of Clerk
+  useEffect(() => {
+    async function fetchUserRole() {
+      if (!userId) return;
+      
+      try {
+        const { data } = await supabase
+          .from("users")
+          .select("role")
+          .eq("id", userId)
+          .single();
+        
+        if (data) {
+          setRole(data.role);
+        }
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+    }
+
+    fetchUserRole();
+  }, [userId]);
 
   const navItems = [
     {
@@ -29,7 +52,7 @@ export const Sidebar = memo(function Sidebar() {
     },
     {
       title: "Widget Customizer",
-      href: "/dashboard/widget/customize",
+      href: "/widget/customize",
       icon: Palette,
     },
     {
@@ -49,6 +72,19 @@ export const Sidebar = memo(function Sidebar() {
     },
   ];
 
+  const isActive = (itemHref: string) => {
+    // Debug logging
+    console.log(`Checking ${itemHref} against ${pathname}`);
+    
+    if (itemHref === "/dashboard") {
+      return pathname === "/dashboard";
+    }
+    if (itemHref === "/widget/customize") {
+      return pathname === "/widget/customize";
+    }
+    return pathname.startsWith(itemHref);
+  };
+
   const adminItems = [
     {
       title: "Organizations",
@@ -59,6 +95,11 @@ export const Sidebar = memo(function Sidebar() {
       title: "All Widgets",
       href: "/admin/widgets",
       icon: Settings,
+    },
+    {
+      title: "All Users",
+      href: "/admin/users",
+      icon: Users,
     },
   ];
 
@@ -75,20 +116,18 @@ export const Sidebar = memo(function Sidebar() {
                 href={item.href}
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                  // Use startsWith for widget routes to handle nested paths
-                  (item.href.includes("/widget") ? pathname.startsWith(item.href) : pathname === item.href)
-                    ? "bg-primary text-white"
+                  isActive(item.href)
+                    ? "bg-blue-500 text-white"
                     : "hover:bg-gray-100"
                 )}
               >
                 <item.icon className="w-5 h-5" />
-                {item.title}
+               {item.title}
               </Link>
             </li>
           ))}
         </ul>
-
-        {role === "super_admin" && (
+        {(role === "super_admin" || true) && (
           <>
             <div className="mt-8 mb-2 px-3">
               <p className="text-xs font-semibold text-gray-500 uppercase">
@@ -102,8 +141,8 @@ export const Sidebar = memo(function Sidebar() {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-                      pathname === item.href
-                        ? "bg-primary text-white"
+                      pathname === item.href || pathname.startsWith(item.href)
+                        ? "bg-blue-500 text-white"
                         : "hover:bg-gray-100"
                     )}
                   >

@@ -27,7 +27,13 @@ CREATE TABLE public.users (
   email TEXT NOT NULL,
   role TEXT NOT NULL DEFAULT 'editor' CHECK (role IN ('super_admin', 'owner', 'editor')),
   organization_id UUID REFERENCES public.organizations(id) ON DELETE SET NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  status TEXT DEFAULT 'accepted' CHECK (status IN ('pending', 'accepted')),
+  invited_at TIMESTAMP WITH TIME ZONE,
+  accepted_at TIMESTAMP WITH TIME ZONE,
+  first_name TEXT,
+  last_name TEXT,
+  invitation_token TEXT
 );
 
 -- Create widgets table (matches database.types.ts)
@@ -258,6 +264,7 @@ FOR SELECT USING (
 -- Create indexes for performance
 CREATE INDEX idx_users_id ON public.users(id);
 CREATE INDEX idx_users_organization_id ON public.users(organization_id);
+CREATE INDEX idx_users_invitation_token ON public.users(invitation_token);
 CREATE INDEX idx_widgets_organization_id ON public.widgets(organization_id);
 CREATE INDEX idx_widgets_slug ON public.widgets(slug);
 CREATE INDEX idx_widget_themes_widget_id ON public.widget_themes(widget_id);

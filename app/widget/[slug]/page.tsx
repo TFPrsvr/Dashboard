@@ -135,7 +135,7 @@ export default function PublicWidgetPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Widget Not Found</h1>
-          <p className="text-gray-600">The donation widget you're looking for doesn't exist or is no longer active.</p>
+          <p className="text-gray-600">The donation widget you&apos;re looking for doesn&apos;t exist or is no longer active.</p>
         </div>
       </div>
     );
