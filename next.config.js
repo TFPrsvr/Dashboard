@@ -6,15 +6,11 @@ const nextConfig = {
   images: {
     domains: ["localhost"],
   },
-  // For Docker development
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-      };
-    }
-    return config;
+  // Turbo configuration (replaces webpack config)
+  experimental: {
+    turbo: {
+      // Turbo-specific configurations if needed
+    },
   },
 };
 
