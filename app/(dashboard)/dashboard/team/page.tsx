@@ -181,8 +181,15 @@ export default function TeamPage() {
     }
   };
 
-  const getStatusBadgeColor = (status?: string) => {
-    switch (status) {
+  const getStatusBadgeColor = (member: TeamMember) => {
+    // Check if this is an invited user (ID starts with "invited_")
+    const isInvited = member.id.startsWith("invited_");
+    
+    if (isInvited) {
+      return "bg-yellow-100 text-yellow-800 border-yellow-200";
+    }
+    
+    switch (member.status) {
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "accepted":
@@ -192,8 +199,15 @@ export default function TeamPage() {
     }
   };
 
-  const getStatusIcon = (status?: string) => {
-    switch (status) {
+  const getStatusIcon = (member: TeamMember) => {
+    // Check if this is an invited user
+    const isInvited = member.id.startsWith("invited_");
+    
+    if (isInvited) {
+      return <Mail className="w-3 h-3" />;
+    }
+    
+    switch (member.status) {
       case "pending":
         return <Mail className="w-3 h-3" />;
       case "accepted":
@@ -304,10 +318,11 @@ export default function TeamPage() {
                           {getRoleIcon(member.role)}
                           <span className="ml-1 capitalize">{member.role}</span>
                         </Badge>
-                        <Badge className={`border ${getStatusBadgeColor(member.status)}`}>
-                          {getStatusIcon(member.status)}
+                        <Badge className={`border ${getStatusBadgeColor(member)}`}>
+                          {getStatusIcon(member)}
                           <span className="ml-1 capitalize">
-                            {member.status === "pending" ? "Pending" : "Active"}
+                            {member.id.startsWith("invited_") ? "Invited" : 
+                             member.status === "pending" ? "Pending" : "Active"}
                           </span>
                         </Badge>
                       </div>
