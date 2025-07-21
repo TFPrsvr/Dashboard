@@ -94,16 +94,22 @@ export default function TeamPage() {
 
       setInviteEmail("");
       
-      // Refresh members list
-      const { data, error: fetchError } = await supabase
-        .from("users")
-        .select("*")
-        .eq("organization_id", organization.id)
-        .order("created_at", { ascending: false });
+      // Force refresh members list with cache bypass
+      setTimeout(async () => {
+        console.log("Force refreshing team members list...");
+        const { data, error: fetchError } = await supabase
+          .from("users")
+          .select("*")
+          .eq("organization_id", organization.id)
+          .order("created_at", { ascending: false });
 
-      if (!fetchError && data) {
-        setMembers(data);
-      }
+        if (!fetchError && data) {
+          console.log("Refreshed team data:", data.length, "members");
+          setMembers(data);
+        } else {
+          console.error("Failed to refresh team data:", fetchError);
+        }
+      }, 1000); // Wait 1 second for database consistency
     } catch (error) {
       console.error("Error inviting member:", error);
       toast({

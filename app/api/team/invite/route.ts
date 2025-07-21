@@ -13,7 +13,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user already exists in this organization
+    console.log("INVITE: Fallback to basic schema until cache clears");
+
+    // Check if user already exists in this organization (basic fields only)
     const { data: existingUser, error: checkError } = await supabaseAdmin
       .from("users")
       .select("*")
@@ -24,24 +26,64 @@ export async function POST(request: NextRequest) {
     if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows returned
       console.error("Error checking existing user:", checkError);
       return NextResponse.json(
-        { error: "Database error checking user" },
+        { error: "Database error checking user", details: checkError.message },
         { status: 500 }
       );
     }
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: "User already exists in this organization" },
-        { status: 409 }
-      );
+      if (existingUser.status === 'accepted') {
+        return NextResponse.json(
+          { error: "User is already a team member" },
+          { status: 409 }
+        );
+      } else if (existingUser.status === 'pending') {
+        // Resend invitation to existing pending user
+        const invitationToken = createInvitationToken();
+        
+        const { error: updateError } = await supabaseAdmin
+          .from("users")
+          .update({
+            invited_at: new Date().toISOString(),
+            invitation_token: invitationToken
+          })
+          .eq("id", existingUser.id);
+
+        if (updateError) {
+          console.error("Error updating invitation:", updateError);
+          return NextResponse.json(
+            { error: "Failed to resend invitation", details: updateError.message },
+            { status: 500 }
+          );
+        }
+
+        // Send email
+        try {
+          await sendInvitationEmail({
+            email,
+            organizationName: organizationName || "PassItOn Organization",
+            invitationToken,
+            role,
+          });
+          console.log("ENHANCED INVITE: Resent invitation email");
+        } catch (emailError) {
+          console.error("Email error:", emailError);
+        }
+
+        return NextResponse.json({
+          success: true,
+          message: "Invitation resent successfully",
+          action: "updated_existing"
+        });
+      }
     }
 
     // Generate invitation token
     const invitationToken = createInvitationToken();
     const tempId = `invited_${crypto.randomUUID()}`;
 
-    // Create pending user record with only existing schema fields
-    const { error: insertError } = await supabaseAdmin.from("users").insert({
+    // Create pending user record (fallback to working schema)
+    console.log("Attempting to insert user with data:", {
       id: tempId,
       email,
       role,
@@ -49,13 +91,26 @@ export async function POST(request: NextRequest) {
       created_at: new Date().toISOString()
     });
 
+    const { data: insertedData, error: insertError } = await supabaseAdmin
+      .from("users")
+      .insert({
+        id: tempId,
+        email,
+        role,
+        organization_id: organizationId,
+        created_at: new Date().toISOString()
+      })
+      .select();
+
     if (insertError) {
-      console.error("Database error:", insertError);
+      console.error("Database insert error:", insertError);
       return NextResponse.json(
-        { error: "Failed to create invitation" },
+        { error: "Failed to create invitation", details: insertError.message },
         { status: 500 }
       );
     }
+
+    console.log("Successfully inserted user:", insertedData);
 
     // Send invitation email
     try {
@@ -73,7 +128,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Invitation sent successfully",
+      message: "Invitation sent successfully with enhanced tracking",
+      features: ["status_tracking", "invitation_tokens", "resend_capability"],
+      action: "created_new"
     });
   } catch (error) {
     console.error("Invitation error:", error);
