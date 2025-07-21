@@ -5,8 +5,11 @@ import { createInvitationToken, sendInvitationEmail } from "@/lib/invitations";
 export async function POST(request: NextRequest) {
   try {
     const { email, role, organizationId, organizationName } = await request.json();
+    
+    console.log("WORKING API: Received invite request:", { email, role, organizationId, organizationName });
 
     if (!email || !role || !organizationId) {
+      console.log("WORKING API: Missing required fields");
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -22,7 +25,7 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows returned
-      console.error("Error checking existing user:", checkError);
+      console.error("WORKING API: Error checking existing user:", checkError);
       return NextResponse.json(
         { error: "Database error checking user" },
         { status: 500 }
@@ -30,34 +33,41 @@ export async function POST(request: NextRequest) {
     }
 
     if (existingUser) {
+      console.log("WORKING API: User already exists");
       return NextResponse.json(
         { error: "User already exists in this organization" },
         { status: 409 }
       );
     }
 
-    // Generate invitation token
+    // Generate invitation token for the email
     const invitationToken = createInvitationToken();
     const tempId = `invited_${crypto.randomUUID()}`;
+    
+    console.log("WORKING API: Generated temp ID:", tempId);
 
-    // Create pending user record with only existing schema fields
-    const { error: insertError } = await supabaseAdmin.from("users").insert({
-      id: tempId,
-      email,
-      role,
-      organization_id: organizationId,
-      created_at: new Date().toISOString()
-    });
+    // Create a pending user record with only the fields that exist in current schema
+    const { error: insertError } = await supabaseAdmin
+      .from("users")
+      .insert({
+        id: tempId,
+        email,
+        role,
+        organization_id: organizationId,
+        created_at: new Date().toISOString()
+      });
 
     if (insertError) {
-      console.error("Database error:", insertError);
+      console.error("WORKING API: Database insert error:", insertError);
       return NextResponse.json(
-        { error: "Failed to create invitation" },
+        { error: "Failed to create user record", details: insertError.message },
         { status: 500 }
       );
     }
 
-    // Send invitation email
+    console.log("WORKING API: User record created successfully");
+
+    // Send invitation email with token
     try {
       await sendInvitationEmail({
         email,
@@ -65,20 +75,21 @@ export async function POST(request: NextRequest) {
         invitationToken,
         role,
       });
+      console.log("WORKING API: Email sent successfully");
     } catch (emailError) {
-      console.error("Email error:", emailError);
-      // Don't fail the request if email fails, but log it
-      console.warn("Failed to send invitation email, but user record created");
+      console.error("WORKING API: Email error:", emailError);
+      // Don't fail the request if email fails
     }
 
     return NextResponse.json({
       success: true,
       message: "Invitation sent successfully",
+      tempUserId: tempId
     });
   } catch (error) {
-    console.error("Invitation error:", error);
+    console.error("WORKING API: Unhandled error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
