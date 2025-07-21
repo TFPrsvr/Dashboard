@@ -87,9 +87,13 @@ export default function TeamPage() {
         throw new Error(result.error || "Failed to send invitation");
       }
 
+      // Enhanced success message based on API response
+      const isResend = result.action === "updated_existing";
       toast({
-        title: "Invitation Sent",
-        description: `Invitation email sent to ${inviteEmail}. They will receive an email to accept the invitation.`,
+        title: isResend ? "Invitation Resent" : "Invitation Sent",
+        description: isResend 
+          ? `New invitation email sent to ${inviteEmail}. Previous invitation has been updated.`
+          : `Invitation email sent to ${inviteEmail} with enhanced tracking. They will receive an email to accept the invitation.`,
       });
 
       setInviteEmail("");
@@ -239,38 +243,32 @@ export default function TeamPage() {
   };
 
   const getStatusBadgeColor = (member: TeamMember) => {
-    // Check if this is an invited user (ID starts with "invited_")
-    const isInvited = member.id.startsWith("invited_");
-    
-    if (isInvited) {
-      return "bg-yellow-100 text-yellow-800 border-yellow-200";
-    }
-    
+    // Use database status field for accurate status detection
     switch (member.status) {
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "accepted":
         return "bg-green-100 text-green-800 border-green-200";
       default:
-        return "bg-green-100 text-green-800 border-green-200"; // Default to accepted for existing users
+        // Legacy users without status field - check if they have invited_ prefix
+        const isInvited = member.id.startsWith("invited_");
+        return isInvited 
+          ? "bg-yellow-100 text-yellow-800 border-yellow-200"
+          : "bg-green-100 text-green-800 border-green-200";
     }
   };
 
   const getStatusIcon = (member: TeamMember) => {
-    // Check if this is an invited user
-    const isInvited = member.id.startsWith("invited_");
-    
-    if (isInvited) {
-      return <Mail className="w-3 h-3" />;
-    }
-    
+    // Use database status field for accurate icon selection
     switch (member.status) {
       case "pending":
         return <Mail className="w-3 h-3" />;
       case "accepted":
         return <User className="w-3 h-3" />;
       default:
-        return <User className="w-3 h-3" />;
+        // Legacy users without status field - check if they have invited_ prefix
+        const isInvited = member.id.startsWith("invited_");
+        return isInvited ? <Mail className="w-3 h-3" /> : <User className="w-3 h-3" />;
     }
   };
 
@@ -378,8 +376,9 @@ export default function TeamPage() {
                         <Badge className={`border ${getStatusBadgeColor(member)}`}>
                           {getStatusIcon(member)}
                           <span className="ml-1 capitalize">
-                            {member.id.startsWith("invited_") ? "Invited" : 
-                             member.status === "pending" ? "Pending" : "Active"}
+                            {member.status === "pending" ? "Pending" : 
+                             member.status === "accepted" ? "Active" :
+                             member.id.startsWith("invited_") ? "Invited" : "Active"}
                           </span>
                         </Badge>
                       </div>
@@ -399,7 +398,7 @@ export default function TeamPage() {
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    {member.status === "pending" && (
+                    {(member.status === "pending" || member.id.startsWith("invited_")) && (
                       <Button 
                         variant="outline" 
                         size="sm"
