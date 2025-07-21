@@ -116,6 +116,57 @@ export default function TeamPage() {
     }
   };
 
+  const handleResendInvite = async (email: string, role: string) => {
+    if (!organization) return;
+
+    setInviting(true);
+    try {
+      const response = await fetch("/api/team/invite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          role,
+          organizationId: organization.id,
+          organizationName: (organization as any).display_name || organization.name,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to resend invitation");
+      }
+
+      toast({
+        title: "Invitation Resent",
+        description: `A new invitation has been sent to ${email}`,
+      });
+
+      // Refresh members list
+      const { data, error: fetchError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("organization_id", organization.id)
+        .order("created_at", { ascending: false });
+
+      if (!fetchError && data) {
+        setMembers(data);
+      }
+    } catch (error) {
+      console.error("Error resending invitation:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to resend invitation",
+        variant: "destructive",
+      });
+    } finally {
+      setInviting(false);
+    }
+  };
+
   const handleDeleteMember = async (memberId: string, memberEmail: string) => {
     if (!confirm(`Are you sure you want to remove ${memberEmail} from the team?`)) {
       return;
@@ -327,10 +378,36 @@ export default function TeamPage() {
                         </Badge>
                       </div>
                       <p className="text-sm text-gray-500">{member.email}</p>
+                      {member.status === "pending" && member.invited_at && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          Invited {new Date(member.invited_at).toLocaleDateString()} at{' '}
+                          {new Date(member.invited_at).toLocaleTimeString()}
+                        </p>
+                      )}
+                      {member.status === "accepted" && member.accepted_at && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          Joined {new Date(member.accepted_at).toLocaleDateString()}
+                        </p>
+                      )}
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-2">
+                    {member.status === "pending" && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleResendInvite(member.email, member.role)}
+                        disabled={inviting}
+                        title="Resend invitation email"
+                      >
+                        {inviting ? (
+                          <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <Mail className="w-4 h-4" />
+                        )}
+                      </Button>
+                    )}
                     {member.role !== "owner" && (
                       <Button 
                         variant="outline" 
