@@ -11,6 +11,7 @@ import {
   Users,
   Building,
   Settings,
+  Bell,
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { memo, useEffect, useState } from "react";
@@ -69,6 +70,11 @@ export const Sidebar = memo(function Sidebar() {
       title: "Team",
       href: "/dashboard/team",
       icon: Users,
+    },
+    {
+      title: "Notifications",
+      href: "/dashboard/settings/notifications",
+      icon: Bell,
     },
   ];
 
