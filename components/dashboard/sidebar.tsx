@@ -70,6 +70,11 @@ export const Sidebar = memo(function Sidebar() {
       href: "/dashboard/team",
       icon: Users,
     },
+    {
+      title: "Settings",
+      href: "/dashboard/settings",
+      icon: Settings,
+    },
   ];
 
   const isActive = (itemHref: string) => {

@@ -30,6 +30,13 @@ export async function createConnectAccount({
   returnUrl,
 }: CreateConnectAccountParams): Promise<CreateConnectAccountResult> {
   try {
+    console.log("Stripe Connect: Creating account with params:", {
+      email,
+      organizationName,
+      refreshUrl,
+      returnUrl
+    });
+    
     // Create the connect account
     const account = await stripe.accounts.create({
       type: "standard",
@@ -42,6 +49,8 @@ export async function createConnectAccount({
         created_via: "passiton_admin",
       },
     });
+    
+    console.log("Stripe Connect: Account created successfully:", account.id);
 
     // Create account link for onboarding
     const accountLink = await stripe.accountLinks.create({
@@ -57,7 +66,8 @@ export async function createConnectAccount({
     };
   } catch (error) {
     console.error("Error creating Stripe Connect account:", error);
-    throw new Error("Failed to create Stripe Connect account");
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    throw error; // Re-throw the original error so we can see the details
   }
 }
 

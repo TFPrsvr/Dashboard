@@ -55,6 +55,12 @@ export async function POST(req: Request) {
     }
 
     // Create Stripe Connect account
+    console.log("Creating Stripe Connect account for:", {
+      email: organization.email,
+      name: organization.display_name || organization.name,
+      orgId: organizationId
+    });
+    
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     const { accountId, onboardingUrl } = await createConnectAccount({
       email: organization.email,
@@ -62,6 +68,8 @@ export async function POST(req: Request) {
       refreshUrl: `${baseUrl}/dashboard/settings?stripe_refresh=true`,
       returnUrl: `${baseUrl}/dashboard/settings?stripe_success=true`,
     });
+    
+    console.log("Stripe Connect account created:", { accountId });
 
     // Update organization with Stripe account ID
     const { error: updateError } = await supabase

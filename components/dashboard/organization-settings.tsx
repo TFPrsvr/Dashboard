@@ -146,16 +146,8 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
   };
 
   const handleOpenStripeDashboard = async () => {
-    try {
-      await openDashboard(organizationId);
-    } catch (error) {
-      console.error("Error opening Stripe dashboard:", error);
-      toast({
-        title: "Error",
-        description: "Failed to open Stripe dashboard",
-        variant: "destructive",
-      });
-    }
+    // For Standard accounts, just open the main Stripe dashboard
+    window.open("https://dashboard.stripe.com", "_blank");
   };
 
   if (loading) {
