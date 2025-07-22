@@ -72,9 +72,15 @@ export const Sidebar = memo(function Sidebar() {
       icon: Users,
     },
     {
+      title: "Settings",
+      href: "/dashboard/settings",
+      icon: Settings,
+    },
+    {
       title: "Notifications",
       href: "/dashboard/settings/notifications",
       icon: Bell,
+
     },
   ];
 
