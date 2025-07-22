@@ -358,7 +358,7 @@ export default function NotificationSettingsPage() {
             <Monitor className="w-5 h-5 text-green-600" />
             <div>
               <p className="font-medium">In-App Notifications</p>
-              <p className="text-sm text-gray-600">Displayed in your dashboard when you're online</p>
+              <p className="text-sm text-gray-600">Displayed in your dashboard when you&apos;re online</p>
             </div>
           </div>
           <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">

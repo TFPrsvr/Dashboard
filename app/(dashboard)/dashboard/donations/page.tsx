@@ -105,7 +105,7 @@ export default function DonationsPage() {
     if (!orgLoading) {
       fetchDonations();
     }
-  }, [organization, orgLoading, supabase]);
+  }, [organization, orgLoading]);
 
   const exportDonations = () => {
     const csv = [

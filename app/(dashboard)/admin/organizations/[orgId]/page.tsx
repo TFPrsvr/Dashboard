@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -82,13 +82,8 @@ export default function OrganizationDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // This runs when the page loads
-  useEffect(() => {
-    fetchOrganizationData();
-  }, [orgId]);
-
   // Function to get all the organization data
-  async function fetchOrganizationData() {
+  const fetchOrganizationData = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -175,7 +170,12 @@ export default function OrganizationDetailPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [orgId]);
+
+  // This runs when the page loads
+  useEffect(() => {
+    fetchOrganizationData();
+  }, [fetchOrganizationData]);
 
   // Show loading spinner while data loads
   if (loading) {
