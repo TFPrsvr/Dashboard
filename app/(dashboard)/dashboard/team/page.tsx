@@ -87,13 +87,74 @@ export default function TeamPage() {
         throw new Error(result.error || "Failed to send invitation");
       }
 
+      // Enhanced success message based on API response
+      const isResend = result.action === "updated_existing";
       toast({
-        title: "Invitation Sent",
-        description: `Invitation email sent to ${inviteEmail}. They will receive an email to accept the invitation.`,
+        title: isResend ? "Invitation Resent" : "Invitation Sent",
+        description: isResend 
+          ? `New invitation email sent to ${inviteEmail}. Previous invitation has been updated.`
+          : `Invitation email sent to ${inviteEmail} with enhanced tracking. They will receive an email to accept the invitation.`,
       });
 
       setInviteEmail("");
       
+      // Force refresh members list with cache bypass
+      setTimeout(async () => {
+        console.log("Force refreshing team members list...");
+        const { data, error: fetchError } = await supabase
+          .from("users")
+          .select("*")
+          .eq("organization_id", organization.id)
+          .order("created_at", { ascending: false });
+
+        if (!fetchError && data) {
+          console.log("Refreshed team data:", data.length, "members");
+          setMembers(data);
+        } else {
+          console.error("Failed to refresh team data:", fetchError);
+        }
+      }, 1000); // Wait 1 second for database consistency
+    } catch (error) {
+      console.error("Error inviting member:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send invitation",
+        variant: "destructive",
+      });
+    } finally {
+      setInviting(false);
+    }
+  };
+
+  const handleResendInvite = async (email: string, role: string) => {
+    if (!organization) return;
+
+    setInviting(true);
+    try {
+      const response = await fetch("/api/team/invite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          role,
+          organizationId: organization.id,
+          organizationName: (organization as any).display_name || organization.name,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to resend invitation");
+      }
+
+      toast({
+        title: "Invitation Resent",
+        description: `A new invitation has been sent to ${email}`,
+      });
+
       // Refresh members list
       const { data, error: fetchError } = await supabase
         .from("users")
@@ -105,10 +166,10 @@ export default function TeamPage() {
         setMembers(data);
       }
     } catch (error) {
-      console.error("Error inviting member:", error);
+      console.error("Error resending invitation:", error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send invitation",
+        description: error instanceof Error ? error.message : "Failed to resend invitation",
         variant: "destructive",
       });
     } finally {
@@ -181,25 +242,33 @@ export default function TeamPage() {
     }
   };
 
-  const getStatusBadgeColor = (status?: string) => {
-    switch (status) {
+  const getStatusBadgeColor = (member: TeamMember) => {
+    // Use database status field for accurate status detection
+    switch (member.status) {
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "accepted":
         return "bg-green-100 text-green-800 border-green-200";
       default:
-        return "bg-green-100 text-green-800 border-green-200"; // Default to accepted for existing users
+        // Legacy users without status field - check if they have invited_ prefix
+        const isInvited = member.id.startsWith("invited_");
+        return isInvited 
+          ? "bg-yellow-100 text-yellow-800 border-yellow-200"
+          : "bg-green-100 text-green-800 border-green-200";
     }
   };
 
-  const getStatusIcon = (status?: string) => {
-    switch (status) {
+  const getStatusIcon = (member: TeamMember) => {
+    // Use database status field for accurate icon selection
+    switch (member.status) {
       case "pending":
         return <Mail className="w-3 h-3" />;
       case "accepted":
         return <User className="w-3 h-3" />;
       default:
-        return <User className="w-3 h-3" />;
+        // Legacy users without status field - check if they have invited_ prefix
+        const isInvited = member.id.startsWith("invited_");
+        return isInvited ? <Mail className="w-3 h-3" /> : <User className="w-3 h-3" />;
     }
   };
 
@@ -304,18 +373,46 @@ export default function TeamPage() {
                           {getRoleIcon(member.role)}
                           <span className="ml-1 capitalize">{member.role}</span>
                         </Badge>
-                        <Badge className={`border ${getStatusBadgeColor(member.status)}`}>
-                          {getStatusIcon(member.status)}
+                        <Badge className={`border ${getStatusBadgeColor(member)}`}>
+                          {getStatusIcon(member)}
                           <span className="ml-1 capitalize">
-                            {member.status === "pending" ? "Pending" : "Active"}
+                            {member.status === "pending" ? "Pending" : 
+                             member.status === "accepted" ? "Active" :
+                             member.id.startsWith("invited_") ? "Invited" : "Active"}
                           </span>
                         </Badge>
                       </div>
                       <p className="text-sm text-gray-500">{member.email}</p>
+                      {member.status === "pending" && member.invited_at && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          Invited {new Date(member.invited_at).toLocaleDateString()} at{' '}
+                          {new Date(member.invited_at).toLocaleTimeString()}
+                        </p>
+                      )}
+                      {member.status === "accepted" && member.accepted_at && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          Joined {new Date(member.accepted_at).toLocaleDateString()}
+                        </p>
+                      )}
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-2">
+                    {(member.status === "pending" || member.id.startsWith("invited_")) && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleResendInvite(member.email, member.role)}
+                        disabled={inviting}
+                        title="Resend invitation email"
+                      >
+                        {inviting ? (
+                          <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <Mail className="w-4 h-4" />
+                        )}
+                      </Button>
+                    )}
                     {member.role !== "owner" && (
                       <Button 
                         variant="outline" 
