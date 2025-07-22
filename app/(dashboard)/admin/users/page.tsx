@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -78,7 +78,7 @@ export default function AdminUsersPage() {
   // Filter users when search or role filter changes
   useEffect(() => {
     filterUsers();
-  }, [users, searchTerm, roleFilter]);
+  }, [filterUsers]);
 
   // Function to get all users from all organizations
   async function fetchAllUsers() {
@@ -148,7 +148,7 @@ export default function AdminUsersPage() {
   }
 
   // Function to filter users based on search and role
-  function filterUsers() {
+  const filterUsers = useCallback(() => {
     let filtered = users;
 
     // Filter by search term (name, email, or organization)
@@ -169,7 +169,7 @@ export default function AdminUsersPage() {
     }
 
     setFilteredUsers(filtered);
-  }
+  }, [users, searchTerm, roleFilter]);
 
   // Function to get role icon
   function getRoleIcon(role: string) {

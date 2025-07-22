@@ -73,7 +73,7 @@ export default function CustomizeWidgetPage() {
     if (!orgLoading && organization) {
       fetchWidget();
     }
-  }, [organization, orgLoading, supabase, toast]);
+  }, [organization, orgLoading, toast]);
 
   const handleSave = async (config: WidgetConfig) => {
     if (!widget) return;

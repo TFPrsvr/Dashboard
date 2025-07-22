@@ -14,4 +14,4 @@ export const createServerClient = () => {
   );
 };
 
-export { createClient };
+export { createServerClient as createClient };
