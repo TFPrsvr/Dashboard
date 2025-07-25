@@ -45,7 +45,7 @@ export default function PublicWidgetPage() {
     async function fetchWidget() {
       try {
         // Fetch widget with related data
-        const { data: widgetData, error: widgetError } = await supabase
+        const { data: widgetDataArray, error: widgetError } = await supabase
           .from("widgets")
           .select(`
             id,
@@ -59,13 +59,19 @@ export default function PublicWidgetPage() {
             )
           `)
           .eq("slug", slug)
-          .eq("is_active", true)
-          .single();
+          .eq("is_active", true);
 
         if (widgetError) {
-          console.error("Widget not found:", widgetError);
+          console.error("Widget fetch error:", widgetError.message || widgetError);
           return;
         }
+
+        if (!widgetDataArray || widgetDataArray.length === 0) {
+          console.error("No widget found for slug:", slug);
+          return;
+        }
+
+        const widgetData = widgetDataArray[0];
 
         // Fetch causes
         const { data: causesData } = await supabase
