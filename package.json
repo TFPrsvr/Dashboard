@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "supabase db push",
-    "db:generate": "supabase gen types typescript --local > types/database.types.ts"
+    "db:generate": "supabase gen types typescript --local > types/database.types.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:e2e": "playwright test",
+    "test:auth": "node tests/run-tests.js auth",
+    "test:widgets": "node tests/run-tests.js widgets", 
+    "test:priority": "node tests/run-tests.js priority",
+    "test:all": "node tests/run-tests.js all"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.24.0",
@@ -43,12 +50,16 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/jest": "^29.5.8",
     "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.5.3"

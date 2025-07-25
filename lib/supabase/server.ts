@@ -34,3 +34,7 @@ export async function createClient() {
     }
   );
 }
+
+export const createServerClientAdmin = () => {
+  return supabaseAdmin;
+};
