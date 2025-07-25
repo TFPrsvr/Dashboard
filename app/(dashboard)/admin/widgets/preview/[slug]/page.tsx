@@ -50,7 +50,7 @@ export default function AdminWidgetPreviewPage() {
     async function fetchWidget() {
       try {
         // Fetch widget with related data (NO is_active filter for admin preview)
-        const { data: widgetData, error: widgetError } = await supabase
+        const { data: widgetDataArray, error: widgetError } = await supabase
           .from("widgets")
           .select(`
             id,
@@ -65,13 +65,19 @@ export default function AdminWidgetPreviewPage() {
               email
             )
           `)
-          .eq("slug", slug)
-          .single();
+          .eq("slug", slug);
 
         if (widgetError) {
-          console.error("Widget not found:", widgetError);
+          console.error("Widget fetch error:", widgetError.message || widgetError);
           return;
         }
+
+        if (!widgetDataArray || widgetDataArray.length === 0) {
+          console.error("No widget found for slug:", slug);
+          return;
+        }
+
+        const widgetData = widgetDataArray[0];
 
         // Fetch causes (including inactive ones for admin preview)
         const { data: causesData } = await supabase

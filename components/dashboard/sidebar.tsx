@@ -53,7 +53,7 @@ export const Sidebar = memo(function Sidebar() {
     },
     {
       title: "Widget Customizer",
-      href: "/widget/customize",
+      href: "/dashboard/widget/customize",
       icon: Palette,
     },
     {
@@ -91,8 +91,8 @@ export const Sidebar = memo(function Sidebar() {
     if (itemHref === "/dashboard") {
       return pathname === "/dashboard";
     }
-    if (itemHref === "/widget/customize") {
-      return pathname === "/widget/customize";
+    if (itemHref === "/dashboard/widget/customize") {
+      return pathname === "/dashboard/widget/customize";
     }
     return pathname.startsWith(itemHref);
   };
