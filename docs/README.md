@@ -17,8 +17,12 @@ Documentation for non-technical users including organization owners, content man
 Technical documentation for developers, DevOps engineers, and system administrators.
 
 - **[README](./developers/README.md)** - Main technical documentation and setup guide
+- **[API Reference](./developers/api-reference.md)** - Complete API documentation with examples
+- **[Maintenance Guide](./developers/maintenance-guide.md)** - System maintenance and troubleshooting procedures
+- **[Deployment Guide](./developers/deployment-guide.md)** - Production deployment and CI/CD setup
+- **[Troubleshooting Guide](./developers/troubleshooting-guide.md)** - Comprehensive debugging and issue resolution
+- **[Future Roadmap](./developers/future-roadmap.md)** - Platform development roadmap and feature planning
 - **[Test Cases](./developers/test-cases.md)** - Comprehensive testing procedures
-- **[Production Deployment Guide](./developers/production-deployment-guide.md)** - Production deployment instructions
 - **[Compliance & Security](./developers/compliance-security.md)** - Enterprise security and compliance documentation
 - **[Embed Connect Changelog](./developers/embed-connect-changelog.md)** - Feature development changelog
 
