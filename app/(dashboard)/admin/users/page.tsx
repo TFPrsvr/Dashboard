@@ -44,8 +44,8 @@ interface UserWithOrg {
 
 interface UserStats {
   total_users: number;
-  owners: number;
-  editors: number;
+  admins: number;
+  users: number;
   super_admins: number;
   active_users: number;
   recent_signups: number;
@@ -58,13 +58,13 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<UserWithOrg[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<UserWithOrg[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [roleFilter, setRoleFilter] = useState<"all" | "owner" | "editor" | "super_admin">("all");
+  const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user" | "super_admin">("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<UserStats>({
     total_users: 0,
-    owners: 0,
-    editors: 0,
+    admins: 0,
+    users: 0,
     super_admins: 0,
     active_users: 0,
     recent_signups: 0
@@ -78,7 +78,7 @@ export default function AdminUsersPage() {
   // Filter users when search or role filter changes
   useEffect(() => {
     filterUsers();
-  }, [filterUsers]);
+  }, [users, searchTerm, roleFilter]); // Fixed: use the actual dependencies instead of the function
 
   // Function to get all users from all organizations
   async function fetchAllUsers() {
@@ -118,8 +118,8 @@ export default function AdminUsersPage() {
 
       // Calculate stats
       const total = processedUsers.length;
-      const owners = processedUsers.filter(u => u.role === 'owner').length;
-      const editors = processedUsers.filter(u => u.role === 'editor').length;
+      const admins = processedUsers.filter(u => u.role === 'admin').length;
+      const regularUsers = processedUsers.filter(u => u.role === 'user').length;
       const superAdmins = processedUsers.filter(u => u.role === 'super_admin').length;
       const activeUsers = processedUsers.filter(u => u.status !== 'pending').length;
       
@@ -132,8 +132,8 @@ export default function AdminUsersPage() {
 
       setStats({
         total_users: total,
-        owners: owners,
-        editors: editors,
+        admins: admins,
+        users: regularUsers,
         super_admins: superAdmins,
         active_users: activeUsers,
         recent_signups: recentSignups
@@ -176,9 +176,9 @@ export default function AdminUsersPage() {
     switch (role) {
       case 'super_admin':
         return <Crown className="w-4 h-4" />;
-      case 'owner':
+      case 'admin':
         return <Shield className="w-4 h-4" />;
-      case 'editor':
+      case 'user':
         return <User className="w-4 h-4" />;
       default:
         return <User className="w-4 h-4" />;
@@ -190,9 +190,9 @@ export default function AdminUsersPage() {
     switch (role) {
       case 'super_admin':
         return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'owner':
+      case 'admin':
         return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'editor':
+      case 'user':
         return 'bg-green-100 text-green-800 border-green-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
@@ -271,13 +271,13 @@ export default function AdminUsersPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Organization Owners</CardTitle>
+            <CardTitle className="text-sm font-medium">Organization Admins</CardTitle>
             <Shield className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.owners}</div>
+            <div className="text-2xl font-bold">{stats.admins}</div>
             <p className="text-xs text-muted-foreground">
-              {stats.editors} editors
+              {stats.users} regular users
             </p>
           </CardContent>
         </Card>
@@ -329,18 +329,18 @@ export default function AdminUsersPage() {
             All ({users.length})
           </Button>
           <Button
-            variant={roleFilter === "owner" ? "default" : "outline"}
-            onClick={() => setRoleFilter("owner")}
+            variant={roleFilter === "admin" ? "default" : "outline"}
+            onClick={() => setRoleFilter("admin")}
             size="sm"
           >
-            Owners ({stats.owners})
+            Admins ({stats.admins})
           </Button>
           <Button
-            variant={roleFilter === "editor" ? "default" : "outline"}
-            onClick={() => setRoleFilter("editor")}
+            variant={roleFilter === "user" ? "default" : "outline"}
+            onClick={() => setRoleFilter("user")}
             size="sm"
           >
-            Editors ({stats.editors})
+            Users ({stats.users})
           </Button>
           <Button
             variant={roleFilter === "super_admin" ? "default" : "outline"}
@@ -476,18 +476,18 @@ export default function AdminUsersPage() {
             <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Shield className="w-6 h-6 text-blue-600" />
-                <span className="font-semibold text-blue-900">Organization Owners</span>
+                <span className="font-semibold text-blue-900">Organization Admins</span>
               </div>
-              <p className="text-3xl font-bold text-blue-600 mb-1">{stats.owners}</p>
+              <p className="text-3xl font-bold text-blue-600 mb-1">{stats.admins}</p>
               <p className="text-sm text-blue-700">Full organization management access</p>
             </div>
             <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <User className="w-6 h-6 text-green-600" />
-                <span className="font-semibold text-green-900">Editors</span>
+                <span className="font-semibold text-green-900">Users</span>
               </div>
-              <p className="text-3xl font-bold text-green-600 mb-1">{stats.editors}</p>
-              <p className="text-sm text-green-700">Limited organization content access</p>
+              <p className="text-3xl font-bold text-green-600 mb-1">{stats.users}</p>
+              <p className="text-sm text-green-700">Limited organization access</p>
             </div>
           </div>
         </CardContent>

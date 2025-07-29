@@ -35,7 +35,7 @@ export function useOrganization() {
         }
 
         if (mounted && org?.organizations) {
-          setOrganization(org.organizations as Organization);
+          setOrganization(org.organizations as unknown as Organization);
         }
       } catch (error) {
         console.error("Error in useOrganization:", error);
