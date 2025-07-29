@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
+  apiVersion: "2024-06-20",
 });
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -63,14 +63,71 @@ export async function POST(req: Request) {
     case "customer.subscription.created":
     case "customer.subscription.updated":
       const subscription = event.data.object as Stripe.Subscription;
+      
+      // Get the organization ID from the subscription metadata or checkout session
+      const organizationId = subscription.metadata?.organizationId;
+      
+      if (organizationId) {
+        // Determine plan from price ID
+        let plan = 'free';
+        const priceId = subscription.items.data[0]?.price.id;
+        if (priceId === process.env.STRIPE_PROFESSIONAL_PRICE_ID) {
+          plan = 'professional';
+        } else if (priceId === process.env.STRIPE_ENTERPRISE_PRICE_ID) {
+          plan = 'enterprise';
+        }
 
+        // Update or create subscription record
+        await supabase
+          .from("subscriptions")
+          .upsert({
+            organization_id: organizationId,
+            stripe_customer_id: subscription.customer as string,
+            stripe_subscription_id: subscription.id,
+            plan,
+            status: subscription.status,
+            current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
+            current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            cancel_at_period_end: subscription.cancel_at_period_end,
+            updated_at: new Date().toISOString(),
+          }, { 
+            onConflict: 'organization_id' 
+          });
+      }
+      break;
+
+    case "customer.subscription.deleted":
+      const deletedSubscription = event.data.object as Stripe.Subscription;
+      
+      // Update subscription to free plan
       await supabase
-        .from("organizations")
+        .from("subscriptions")
         .update({
-          subscription_status: subscription.status,
+          plan: 'free',
+          status: 'canceled',
+          stripe_subscription_id: null,
+          current_period_start: null,
+          current_period_end: null,
+          cancel_at_period_end: false,
           updated_at: new Date().toISOString(),
         })
-        .eq("stripe_customer_id", subscription.customer);
+        .eq("stripe_subscription_id", deletedSubscription.id);
+      break;
+
+    case "checkout.session.completed":
+      const session = event.data.object as Stripe.Checkout.Session;
+      
+      if (session.mode === 'subscription' && session.client_reference_id) {
+        // Get the subscription
+        const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
+        
+        // Update subscription metadata with organization ID
+        await stripe.subscriptions.update(subscription.id, {
+          metadata: {
+            organizationId: session.client_reference_id,
+          },
+        });
+      }
       break;
 
     case "invoice.payment_succeeded":
