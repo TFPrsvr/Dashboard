@@ -7,7 +7,10 @@ Welcome to the PassItOn documentation hub. All documentation has been organized 
 ### 👩‍💼 [Business Users](./business-users/)
 Documentation for non-technical users including organization owners, content managers, and end users.
 
-- **[Integration Guide](./business-users/integration-guide.md)** - Complete setup and usage guide for business users
+- **[Onboarding Guide](./business-users/onboarding-guide.md)** - Complete setup process from account to going live
+- **[Integration Guide](./business-users/integration-guide.md)** - System overview and usage guide  
+- **[Platform Guides](./business-users/platform-guides/)** - WordPress, Shopify, Wix, Squarespace integration
+- **[Troubleshooting Guide](./business-users/troubleshooting-guide.md)** - Visual problem-solving help
 
 ### 👨‍💻 [Developers](./developers/)
 Technical documentation for developers, DevOps engineers, and system administrators.
@@ -15,6 +18,7 @@ Technical documentation for developers, DevOps engineers, and system administrat
 - **[README](./developers/README.md)** - Main technical documentation and setup guide
 - **[Test Cases](./developers/test-cases.md)** - Comprehensive testing procedures
 - **[Production Deployment Guide](./developers/production-deployment-guide.md)** - Production deployment instructions
+- **[Compliance & Security](./developers/compliance-security.md)** - Enterprise security and compliance documentation
 - **[Embed Connect Changelog](./developers/embed-connect-changelog.md)** - Feature development changelog
 
 ### 🔐 [System Administrators](./admins/)
