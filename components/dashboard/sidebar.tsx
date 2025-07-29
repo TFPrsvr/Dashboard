@@ -12,15 +12,17 @@ import {
   Building,
   Settings,
   Bell,
+  Shield,
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { memo, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import { UserRole, NavigationPermissions } from "@/types/roles.types";
 
 export const Sidebar = memo(function Sidebar() {
   const pathname = usePathname();
   const { userId } = useAuth();
-  const [role, setRole] = useState<string | null>(null);
+  const [role, setRole] = useState<UserRole | null>(null);
 
   // Get user role from Supabase instead of Clerk
   useEffect(() => {
@@ -35,7 +37,7 @@ export const Sidebar = memo(function Sidebar() {
           .single();
         
         if (data) {
-          setRole(data.role);
+          setRole(data.role as UserRole);
         }
       } catch (error) {
         console.error("Error fetching user role:", error);
@@ -45,6 +47,7 @@ export const Sidebar = memo(function Sidebar() {
     fetchUserRole();
   }, [userId]);
 
+  // Original navigation items - keep them all visible, just like before
   const navItems = [
     {
       title: "Dashboard",
@@ -80,7 +83,6 @@ export const Sidebar = memo(function Sidebar() {
       title: "Notifications",
       href: "/dashboard/settings/notifications",
       icon: Bell,
-
     },
   ];
 
@@ -113,6 +115,11 @@ export const Sidebar = memo(function Sidebar() {
       href: "/admin/users",
       icon: Users,
     },
+    {
+      title: "Role Management",
+      href: "/admin/roles",
+      icon: Shield,
+    },
   ];
 
   return (
@@ -139,7 +146,9 @@ export const Sidebar = memo(function Sidebar() {
             </li>
           ))}
         </ul>
-        {(role === "super_admin" || true) && (
+        
+        {/* Admin Section - For Super Admins and Admins */}
+        {role && (role === "super_admin" || role === "admin") && (
           <>
             <div className="mt-8 mb-2 px-3">
               <p className="text-xs font-semibold text-gray-500 uppercase">
