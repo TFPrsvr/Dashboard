@@ -10,13 +10,17 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is admin/super_admin
+    console.log('Checking admin access for userId:', userId);
     const { data: user, error: userError } = await supabase
       .from('users')
       .select('role')
-      .eq('user_id', userId)
+      .eq('id', userId)
       .single();
 
+    console.log('User query result:', { user, userError });
+
     if (userError || !user || !['admin', 'super_admin'].includes(user.role)) {
+      console.log('Access denied - User role:', user?.role, 'Error:', userError);
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 

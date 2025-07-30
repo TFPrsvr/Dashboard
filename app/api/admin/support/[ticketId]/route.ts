@@ -16,7 +16,7 @@ export async function PATCH(
     const { data: user, error: userError } = await supabase
       .from('users')
       .select('role')
-      .eq('user_id', userId)
+      .eq('id', userId)
       .single();
 
     if (userError || !user || !['admin', 'super_admin'].includes(user.role)) {
