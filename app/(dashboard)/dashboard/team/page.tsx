@@ -20,6 +20,7 @@ interface TeamMember {
   created_at: string;
   status?: "pending" | "accepted";
   invited_at?: string;
+  accepted_at?: string;
 }
 
 export default function TeamPage() {
