@@ -20,6 +20,7 @@ interface TeamMember {
   created_at: string;
   status?: "pending" | "accepted";
   invited_at?: string;
+  accepted_at?: string;
 }
 
 export default function TeamPage() {
@@ -27,7 +28,7 @@ export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteRole, setInviteRole] = useState("editor");
+  const [inviteRole, setInviteRole] = useState("user");
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
   const [deletingMember, setDeletingMember] = useState<string | null>(null);
@@ -220,12 +221,12 @@ export default function TeamPage() {
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
-      case "owner":
-        return "bg-purple-100 text-purple-800";
       case "admin":
+        return "bg-purple-100 text-purple-800";
+      case "user":
         return "bg-blue-100 text-blue-800";
-      case "member":
-        return "bg-gray-100 text-gray-800";
+      case "super_admin":
+        return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -233,9 +234,9 @@ export default function TeamPage() {
 
   const getRoleIcon = (role: string) => {
     switch (role) {
-      case "owner":
-        return <Shield className="w-4 h-4" />;
       case "admin":
+        return <Shield className="w-4 h-4" />;
+      case "super_admin":
         return <Shield className="w-4 h-4" />;
       default:
         return <User className="w-4 h-4" />;
@@ -327,8 +328,8 @@ export default function TeamPage() {
                 onChange={(e) => setInviteRole(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="editor">Editor</option>
-                <option value="owner">Owner</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
             <div className="flex items-end">
@@ -413,7 +414,7 @@ export default function TeamPage() {
                         )}
                       </Button>
                     )}
-                    {member.role !== "owner" && (
+                    {member.role !== "admin" && (
                       <Button 
                         variant="outline" 
                         size="sm"
