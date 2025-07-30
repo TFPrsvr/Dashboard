@@ -13,6 +13,7 @@ import {
   Settings,
   Bell,
   Shield,
+  HelpCircle,
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { memo, useEffect, useState } from "react";
@@ -84,6 +85,11 @@ export const Sidebar = memo(function Sidebar() {
       href: "/dashboard/settings/notifications",
       icon: Bell,
     },
+    {
+      title: "Support",
+      href: "/dashboard/support",
+      icon: HelpCircle,
+    },
   ];
 
   const isActive = (itemHref: string) => {
@@ -119,6 +125,11 @@ export const Sidebar = memo(function Sidebar() {
       title: "Role Management",
       href: "/admin/roles",
       icon: Shield,
+    },
+    {
+      title: "Support Tickets",
+      href: "/admin/support",
+      icon: HelpCircle,
     },
   ];
 

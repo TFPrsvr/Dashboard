@@ -1,0 +1,40 @@
+# Learn more about configuring your Shopify app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "PassItOn Donation Widget"
+client_id = "your_shopify_client_id"
+application_url = "https://dashboard.passiton.com"
+embedded = true
+
+[access_scopes]
+# Read access to customer data for donation attribution
+scopes = "read_customers,read_orders,write_script_tags,read_themes,write_themes"
+
+[auth]
+redirect_urls = [
+  "https://dashboard.passiton.com/auth/shopify/callback",
+  "https://dashboard.passiton.com/auth/shopify/install"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[[webhooks.subscriptions]]
+topics = ["app/uninstalled"]
+uri = "https://dashboard.passiton.com/api/webhooks/shopify/uninstall"
+
+[[webhooks.subscriptions]]
+topics = ["orders/paid"]
+uri = "https://dashboard.passiton.com/api/webhooks/shopify/order"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "your-dev-store.myshopify.com"
+include_config_on_deploy = true
+
+[app_proxy]
+url = "https://dashboard.passiton.com/shopify/proxy"
+subpath = "passiton"
+prefix = "apps"
