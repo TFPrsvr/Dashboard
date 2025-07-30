@@ -33,6 +33,9 @@ export default function SupportPage() {
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
+  const [responseText, setResponseText] = useState("");
+  const [responding, setResponding] = useState(false);
 
   const [formData, setFormData] = useState({
     subject: "",
@@ -140,6 +143,47 @@ export default function SupportPage() {
       });
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleCustomerResponse = async (ticketId: string) => {
+    if (!responseText.trim()) return;
+
+    setResponding(true);
+    try {
+      const response = await fetch(`/api/support/${ticketId}/respond`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          response: responseText,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send response');
+      }
+
+      toast({
+        title: "Response Sent",
+        description: "Your response has been sent to support.",
+      });
+
+      setResponseText("");
+      setSelectedTicket(null);
+      fetchTickets();
+    } catch (error) {
+      console.error("Error sending response:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send response",
+        variant: "destructive",
+      });
+    } finally {
+      setResponding(false);
     }
   };
 
@@ -345,7 +389,17 @@ export default function SupportPage() {
 
                   {ticket.admin_response && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-                      <h4 className="font-semibold text-blue-900 mb-2">Response from Support</h4>
+                      <div className="flex items-start justify-between mb-2">
+                        <h4 className="font-semibold text-blue-900">Response from Support</h4>
+                        {ticket.status === 'waiting_response' && (
+                          <Button
+                            size="sm"
+                            onClick={() => setSelectedTicket(ticket)}
+                          >
+                            Reply
+                          </Button>
+                        )}
+                      </div>
                       <p className="text-blue-800">{ticket.admin_response}</p>
                     </div>
                   )}
@@ -355,6 +409,52 @@ export default function SupportPage() {
           </div>
         )}
       </div>
+
+      {/* Customer Response Modal */}
+      {selectedTicket && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <Card className="w-full max-w-2xl mx-4">
+            <CardHeader>
+              <CardTitle>Reply to: {selectedTicket.subject}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <p className="text-sm text-blue-600 mb-2">Support Response:</p>
+                <p className="text-blue-800">{selectedTicket.admin_response}</p>
+              </div>
+              
+              <div>
+                <Label htmlFor="customerResponse">Your Reply</Label>
+                <Textarea
+                  id="customerResponse"
+                  rows={6}
+                  value={responseText}
+                  onChange={(e) => setResponseText(e.target.value)}
+                  placeholder="Type your reply here..."
+                />
+              </div>
+
+              <div className="flex gap-3 justify-end">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedTicket(null);
+                    setResponseText("");
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => handleCustomerResponse(selectedTicket.id)}
+                  disabled={responding || !responseText.trim()}
+                >
+                  {responding ? "Sending..." : "Send Reply"}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
