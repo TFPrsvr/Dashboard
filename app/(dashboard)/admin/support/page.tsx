@@ -15,22 +15,27 @@ import { useToast } from "@/components/ui/use-toast";
 interface SupportTicket {
   id: string;
   user_id: string;
+
   subject: string;
   description: string;
   category: string;
   priority: string;
   status: string;
+
   user_email?: string;
   user_name?: string;
   admin_response?: string;
   admin_id?: string;
+
   created_at: string;
   updated_at: string;
 }
 
 export default function AdminSupportPage() {
   const { userId } = useAuth();
+
   const { user } = useUser();
+
   const { toast } = useToast();
   const [tickets, setTickets] = useState<SupportTicket[]>([]);
   const [loading, setLoading] = useState(true);
@@ -54,17 +59,20 @@ export default function AdminSupportPage() {
       }
 
       setTickets(result.tickets || []);
+
     } catch (error) {
       console.error("Error fetching tickets:", error);
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to load support tickets",
+
         variant: "destructive",
       });
     } finally {
       setLoading(false);
     }
   };
+
 
   const handleRespond = async (ticketId: string) => {
     if (!responseText.trim()) return;
@@ -137,6 +145,7 @@ export default function AdminSupportPage() {
         description: error instanceof Error ? error.message : "Failed to update status",
         variant: "destructive",
       });
+
     }
   };
 
@@ -146,8 +155,10 @@ export default function AdminSupportPage() {
         return <Clock className="w-4 h-4" />;
       case "in_progress":
         return <AlertCircle className="w-4 h-4" />;
+
       case "waiting_response":
         return <Mail className="w-4 h-4" />;
+
       case "resolved":
       case "closed":
         return <CheckCircle className="w-4 h-4" />;
@@ -188,6 +199,23 @@ export default function AdminSupportPage() {
     }
   };
 
+
+  const filteredTickets = tickets.filter(ticket => {
+    if (filter === "all") return true;
+    if (filter === "open") return ticket.status === "open";
+    if (filter === "in_progress") return ticket.status === "in_progress";
+    if (filter === "urgent") return ticket.priority === "urgent";
+    return true;
+  });
+
+  const stats = {
+    total: tickets.length,
+    open: tickets.filter(t => t.status === "open").length,
+    inProgress: tickets.filter(t => t.status === "in_progress").length,
+    resolved: tickets.filter(t => t.status === "resolved").length,
+  };
+
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -201,6 +229,7 @@ export default function AdminSupportPage() {
 
   return (
     <div className="space-y-6">
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Support Management</h1>
@@ -317,6 +346,7 @@ export default function AdminSupportPage() {
                   onClick={() => {
                     setSelectedTicket(null);
                     setResponseText("");
+
                   }}
                 >
                   Cancel
@@ -327,6 +357,7 @@ export default function AdminSupportPage() {
                 >
                   {responding ? "Sending..." : "Send Response"}
                 </Button>
+
               </div>
             </CardContent>
           </Card>
