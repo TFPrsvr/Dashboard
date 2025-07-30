@@ -50,6 +50,11 @@ Think of it like this:
 
 ## For Business Users (Non-Technical)
 
+### Quick Start Resources
+- **[Complete Onboarding Guide](./onboarding-guide.md)** - Step-by-step setup process
+- **[Platform Integration Guides](./platform-guides/)** - WordPress, Shopify, Wix, Squarespace
+- **[Troubleshooting Guide](./troubleshooting-guide.md)** - Visual problem-solving help
+
 ### What You Need to Know
 
 #### 1. **Setting Up Your Organization**
