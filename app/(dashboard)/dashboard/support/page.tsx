@@ -366,7 +366,7 @@ export default function SupportPage() {
               <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Support Tickets</h3>
               <p className="text-gray-600 mb-4">
-                You haven't created any support tickets yet. If you need help, feel free to create one!
+                You haven&apos;t created any support tickets yet. If you need help, feel free to create one!
               </p>
               <Button onClick={() => setShowCreateForm(true)}>
                 Create Your First Ticket

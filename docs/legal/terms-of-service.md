@@ -1,308 +1,206 @@
 # Terms of Service
 
-**Effective Date:** January 29, 2025  
-**Last Updated:** January 29, 2025
+**Effective Date:** January 29, 2025
 
 ## Agreement to Terms
 
-These Terms of Service ("Terms") constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and PassItOn, Inc. ("PassItOn," "we," "us," or "our"), concerning your access to and use of the PassItOn donation platform and services ("Services").
+These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and PassItOn ("Company," "we," "us," or "our") regarding your use of the PassItOn platform and services. By accessing or using our services, you agree to be bound by these Terms.
 
-By accessing or using our Services, you agree that you have read, understood, and agree to be bound by all of these Terms. **If you do not agree with all of these Terms, then you are expressly prohibited from using the Services and you must discontinue use immediately.**
+## Description of Service
 
-## 1. Services Description
+PassItOn provides a donation management platform that enables organizations to create, customize, and deploy donation widgets on their websites and digital properties. Our services include widget customization tools, payment processing integration, analytics and reporting, and related support services.
 
-### 1.1 Platform Overview
-PassItOn provides a comprehensive donation management platform that includes:
-- **Dashboard Application**: Administrative interface for organizations to manage donation campaigns, customize widgets, and track donations
-- **Widget Service**: Embeddable donation forms that can be integrated into websites and applications
-- **Payment Processing**: Secure payment processing through third-party payment processors
-- **Analytics and Reporting**: Tools for tracking donation performance and donor engagement
-- **Customer Support**: Technical and operational support services
+## User Accounts and Registration
 
-### 1.2 Service Availability
-We strive to maintain 99.9% uptime for our Services, but we do not guarantee uninterrupted access. We may temporarily suspend access for maintenance, security updates, or other operational requirements with reasonable notice when possible.
+### Account Creation
+- You must provide accurate, current, and complete information during registration
+- You are responsible for maintaining the confidentiality of your account credentials
+- You must notify us immediately of any unauthorized use of your account
+- You must be at least 18 years old to create an account
 
-### 1.3 Service Modifications
-We reserve the right to modify, suspend, or discontinue any part of our Services at any time, with or without notice. We will provide reasonable advance notice of material changes that affect your use of the Services.
-
-## 2. User Accounts and Registration
-
-### 2.1 Account Creation
-To access certain features of our Services, you must create an account. You agree to:
-- Provide accurate, current, and complete information during registration
-- Maintain the accuracy of your account information
-- Keep your login credentials confidential and secure
-- Accept responsibility for all activities that occur under your account
-- Notify us immediately of any unauthorized use of your account
-
-### 2.2 Account Types
-We offer different account types with varying features and permissions:
+### Account Types
 - **Individual Accounts**: For personal fundraising activities
 - **Organization Accounts**: For registered nonprofits, businesses, and institutions
-- **Enterprise Accounts**: For large organizations with advanced requirements
+- **Team Accounts**: For collaborative fundraising efforts within organizations
 
-### 2.3 Account Verification
-We may require verification of your identity, organization status, or other information before providing access to certain features. You agree to provide requested documentation promptly and accurately.
+### Account Verification
+We may require verification of your identity or organization status before activating certain features or processing payments.
 
-### 2.4 Account Suspension and Termination
-We reserve the right to suspend or terminate your account at any time for:
-- Violation of these Terms
-- Fraudulent or suspicious activity
-- Extended periods of inactivity
-- Legal or regulatory requirements
-- Non-payment of fees
+## Acceptable Use Policy
 
-## 3. Acceptable Use Policy
+### Permitted Uses
+You may use our services for legitimate fundraising activities, including:
+- Charitable donations and fundraising
+- Educational institution fundraising
+- Community and social cause support
+- Business-sponsored charitable initiatives
 
-### 3.1 Permitted Uses
-You may use our Services only for lawful purposes and in accordance with these Terms. Specifically, you agree to:
-- Use the Services for legitimate fundraising activities
-- Comply with all applicable laws and regulations
-- Respect the intellectual property rights of others
-- Provide accurate information about your fundraising campaigns
-- Handle donor data responsibly and in compliance with privacy laws
-
-### 3.2 Prohibited Uses
-You may not use our Services:
-- For any unlawful purpose or to solicit unlawful acts
-- To engage in fraudulent activities or misrepresent your identity or organization
-- To collect donations for illegal activities or prohibited causes
-- To harass, abuse, or harm others
-- To transmit viruses, malware, or other harmful code
-- To interfere with or disrupt the integrity or performance of our Services
-- To attempt to gain unauthorized access to our systems or other users' accounts
-- To scrape, mine, or harvest data from our Services without permission
-- To impersonate PassItOn or our employees, agents, or representatives
-
-### 3.3 Prohibited Fundraising Activities
-You may not use our Services to raise funds for:
-- Illegal activities or purposes
-- Hate speech, discrimination, or harassment
-- Violence, terrorism, or weapons
+### Prohibited Uses
+You may not use our services for:
+- Illegal activities or fraud
+- Political campaign contributions (unless specifically authorized)
+- Personal financial assistance or loans
 - Adult content or services
-- Gambling or gaming activities (where prohibited by law)
-- Pyramid schemes or multi-level marketing
-- Activities that violate intellectual property rights
-- Political campaigns (unless specifically permitted by applicable law)
+- Gambling or gaming activities
+- Hate speech or discriminatory content
+- Harassment or intimidation
+- Violation of intellectual property rights
 
-## 4. Payment Terms and Billing
+## Payment Terms and Processing
 
-### 4.1 Subscription Fees
-Access to our Services may require payment of subscription fees. Fee structures include:
-- **Free Tier**: Limited features with usage restrictions
-- **Professional Tier**: Enhanced features with higher usage limits
-- **Enterprise Tier**: Full feature access with custom pricing
+### Payment Processing
+- All payments are processed through our third-party payment processor (Stripe)
+- We do not store or have access to full credit card information
+- Processing fees apply to all transactions as outlined in our pricing
+- Refunds are subject to our Refund and Cancellation Policy
 
-### 4.2 Payment Processing Fees
-In addition to subscription fees, payment processing fees apply to all transactions:
-- **Standard Rate**: 2.9% + $0.30 per successful transaction
-- **Enterprise Rate**: Custom rates available for high-volume customers
-- **International Fees**: Additional fees may apply for international transactions
+### Transaction Fees
+- Standard processing fee: 2.9% + $0.30 per transaction
+- Additional fees may apply for certain payment methods or international transactions
+- Fee schedules are available in your account dashboard and may be updated with notice
 
-### 4.3 Billing and Payment
-- Subscription fees are billed in advance on a monthly or annual basis
-- Payment processing fees are deducted from each transaction
-- All fees are non-refundable except as explicitly stated in our Refund Policy
-- You authorize us to charge your designated payment method for all applicable fees
-- If payment fails, we may suspend or terminate your access to the Services
+### Disbursements
+- Funds are typically transferred to your designated account within 2-7 business days
+- Disbursement schedules may vary based on your account type and verification status
+- We reserve the right to hold funds for security or compliance review
 
-### 4.4 Fee Changes
-We reserve the right to modify our fee structure with 30 days' advance notice. Continued use of the Services after fee changes constitutes acceptance of the new fees.
+## Subscription and Billing
 
-### 4.5 Taxes
-You are responsible for all taxes, duties, and assessments associated with your use of our Services, except for taxes on our net income.
+### Service Plans
+- **Free Plan**: Basic features with transaction limits
+- **Professional Plans**: Enhanced features and higher transaction volumes
+- **Enterprise Plans**: Custom solutions with dedicated support
 
-## 5. Intellectual Property Rights
+### Billing Cycles
+- Subscription fees are billed monthly or annually as selected
+- Billing occurs on the same date each cycle
+- Failed payments may result in service suspension
 
-### 5.1 PassItOn Intellectual Property
-The Services and all content, features, and functionality are owned by PassItOn and protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. This includes but is not limited to:
-- Software code and applications
-- User interfaces and design elements
-- Trademarks, service marks, and logos
-- Documentation and user guides
-- Proprietary algorithms and processes
+### Price Changes
+We reserve the right to modify pricing with 30 days' written notice to active subscribers.
 
-### 5.2 Limited License
-Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to:
-- Access and use the Services for your internal business purposes
-- Integrate our widgets into your websites and applications
-- Use our APIs in accordance with our API documentation
+## Intellectual Property Rights
 
-### 5.3 User Content
-You retain ownership of content you submit to our Services ("User Content"), including:
-- Fundraising campaign descriptions and materials
-- Organization information and branding
-- Communications with donors
+### Our Intellectual Property
+All content, features, and functionality of the PassItOn platform are owned by us and protected by copyright, trademark, and other intellectual property laws.
 
-By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, display, and distribute such content as necessary to provide the Services.
+### User Content
+- You retain ownership of content you upload or create using our services
+- You grant us a license to use, display, and process your content to provide our services
+- You represent that you have the right to grant this license
 
-### 5.4 Feedback
-Any feedback, suggestions, or improvements you provide regarding our Services become our property and may be used without compensation or attribution.
+### Third-Party Content
+Respect for third-party intellectual property rights is required. We will respond to valid DMCA takedown notices.
 
-## 6. Privacy and Data Protection
+## Privacy and Data Protection
 
-### 6.1 Privacy Policy
-Our collection and use of personal information is governed by our Privacy Policy, which is incorporated into these Terms by reference. By using our Services, you consent to the collection and use of information as described in our Privacy Policy.
+### Data Collection
+We collect and process personal information as described in our Privacy Policy, which is incorporated into these Terms by reference.
 
-### 6.2 Data Security
-We implement appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.
+### Data Security
+We implement appropriate technical and organizational measures to protect your data, including encryption, access controls, and regular security assessments.
 
-### 6.3 Data Processing
-We process personal data as a data processor on behalf of our customers (data controllers) and as a data controller for our own business purposes. Our data processing practices comply with applicable data protection laws, including GDPR and CCPA.
+### International Data Transfers
+Your information may be processed in countries other than your residence, subject to appropriate safeguards.
 
-### 6.4 International Data Transfers
-We may transfer personal data to countries outside your jurisdiction. When we do so, we ensure appropriate safeguards are in place, such as Standard Contractual Clauses approved by the European Commission.
+## Service Availability and Support
 
-## 7. Third-Party Services
+### Service Level
+- We strive to maintain 99.9% uptime for our services
+- Scheduled maintenance will be announced in advance when possible
+- Emergency maintenance may occur without prior notice
 
-### 7.1 Payment Processors
-We use third-party payment processors (including Stripe, Inc.) to handle financial transactions. Your use of payment processing services is subject to the payment processor's terms of service and privacy policy.
+### Support Services
+- Technical support is available through our support ticket system
+- Response times vary based on your service plan and issue priority
+- Support is provided in English during business hours (Monday-Friday, 9 AM-6 PM EST)
 
-### 7.2 Third-Party Integrations
-Our Services may integrate with third-party platforms and services. We are not responsible for the availability, functionality, or security of third-party services.
+## Limitation of Liability
 
-### 7.3 External Links
-Our Services may contain links to external websites or services. We are not responsible for the content, privacy practices, or terms of service of external sites.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW:
+- OUR LIABILITY IS LIMITED TO THE AMOUNT PAID BY YOU IN THE 12 MONTHS PRECEDING THE CLAIM
+- WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES
+- WE DO NOT GUARANTEE UNINTERRUPTED OR ERROR-FREE SERVICE
+- YOU USE OUR SERVICES AT YOUR OWN RISK
 
-## 8. Service Level Agreement
+## Indemnification
 
-### 8.1 Uptime Commitment
-We commit to maintaining 99.9% uptime for our core Services, calculated monthly. Planned maintenance windows are excluded from uptime calculations.
-
-### 8.2 Performance Standards
-We strive to maintain:
-- Page load times under 3 seconds for dashboard operations
-- Widget load times under 2 seconds
-- Payment processing completion within 30 seconds
-- API response times under 500 milliseconds
-
-### 8.3 Support Response Times
-**Professional Tier:**
-- Critical issues: 4 hours during business hours
-- High priority: 24 hours during business hours
-- Standard issues: 72 hours during business hours
-
-**Enterprise Tier:**
-- Critical issues: 1 hour, 24/7
-- High priority: 4 hours, 24/7
-- Standard issues: 24 hours during business hours
-
-## 9. Limitation of Liability
-
-### 9.1 Disclaimer of Warranties
-THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-
-### 9.2 Limitation of Liability
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL PASSITON BE LIABLE FOR ANY INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES, INCLUDING DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES.
-
-### 9.3 Liability Cap
-OUR TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM OR RELATED TO THESE TERMS OR THE SERVICES SHALL NOT EXCEED THE TOTAL AMOUNT PAID BY YOU TO PASSITON IN THE 12 MONTHS PRECEDING THE CLAIM.
-
-### 9.4 Essential Purpose
-THE LIMITATIONS SET FORTH IN THIS SECTION SHALL APPLY EVEN IF YOUR REMEDIES UNDER THESE TERMS FAIL OF THEIR ESSENTIAL PURPOSE.
-
-## 10. Indemnification
-
-You agree to defend, indemnify, and hold harmless PassItOn, its affiliates, officers, directors, employees, agents, and representatives from and against any and all claims, damages, obligations, losses, liabilities, costs, and expenses (including attorney's fees) arising from:
-- Your use of the Services
+You agree to indemnify and hold harmless PassItOn, its officers, directors, employees, and agents from any claims, damages, or expenses arising from:
+- Your use of our services
 - Your violation of these Terms
-- Your violation of any third-party rights, including intellectual property rights
-- Your User Content or fundraising activities
-- Any fraud or misrepresentation by you
+- Your violation of any rights of third parties
+- Your content or fundraising activities
 
-## 11. Dispute Resolution
+## Termination
 
-### 11.1 Governing Law
-These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law provisions.
+### Termination by You
+You may terminate your account at any time by contacting our support team or using account settings.
 
-### 11.2 Jurisdiction
-Any legal action or proceeding arising under these Terms shall be brought exclusively in the federal or state courts located in Delaware, and the parties hereby consent to personal jurisdiction and venue therein.
+### Termination by Us
+We may suspend or terminate your account for:
+- Violation of these Terms
+- Fraudulent or illegal activity
+- Non-payment of fees
+- Extended inactivity
 
-### 11.3 Arbitration
-For disputes involving amounts less than $10,000, either party may elect to resolve the dispute through binding arbitration under the rules of the American Arbitration Association.
-
-### 11.4 Class Action Waiver
-You agree that any dispute resolution proceedings will be conducted only on an individual basis and not in a class, consolidated, or representative action.
-
-## 12. Termination
-
-### 12.1 Termination by You
-You may terminate your account at any time by:
-- Using the account deletion feature in your dashboard
-- Contacting our customer support team
-- Providing written notice to legal@passiton.com
-
-### 12.2 Termination by PassItOn
-We may terminate or suspend your account immediately, without prior notice or liability, for any reason, including:
-- Breach of these Terms
-- Extended non-payment of fees
-- Fraudulent or illegal activities
-- Violation of applicable laws or regulations
-- At our sole discretion
-
-### 12.3 Effect of Termination
+### Effect of Termination
 Upon termination:
-- Your right to access and use the Services will cease immediately
-- We may delete your account and associated data after a reasonable retention period
-- You remain liable for any accrued fees and charges
-- Provisions that by their nature should survive termination shall survive
+- Your access to services will cease
+- Outstanding balances become immediately due
+- We may retain certain information as required by law
+- Data export may be available for a limited time
 
-### 12.4 Data Export
-Prior to account termination, you may export your data using our data export tools. We are not obligated to provide data access after account termination.
+## Dispute Resolution
 
-## 13. General Provisions
+### Governing Law
+These Terms are governed by the laws of [State/Country], without regard to conflict of law principles.
 
-### 13.1 Entire Agreement
-These Terms, together with our Privacy Policy and any other legal notices published by us on the Services, constitute the entire agreement between you and PassItOn regarding the Services.
+### Dispute Process
+1. **Informal Resolution**: Contact our support team first
+2. **Mediation**: Disputes may be submitted to mediation
+3. **Binding Arbitration**: Unresolved disputes will be settled through binding arbitration
+4. **Class Action Waiver**: You waive the right to participate in class action lawsuits
 
-### 13.2 Modifications
-We reserve the right to modify these Terms at any time. We will provide notice of material changes by email or through the Services. Your continued use of the Services after changes become effective constitutes acceptance of the revised Terms.
+## Changes to Terms
 
-### 13.3 Severability
-If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.
+### Modification Process
+- We may update these Terms from time to time
+- Material changes will be communicated via email or platform notification
+- Continued use after changes constitutes acceptance
+- Previous versions will be archived and available upon request
 
-### 13.4 Waiver
-Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
+### Notification Period
+- Minor changes: Effective immediately upon posting
+- Material changes: 30 days' notice before taking effect
 
-### 13.5 Assignment
-You may not assign or transfer these Terms without our prior written consent. We may assign these Terms without restriction.
+## Contact Information
 
-### 13.6 Force Majeure
-We will not be liable for any failure or delay in performance under these Terms due to circumstances beyond our reasonable control, including acts of God, war, terrorism, strikes, or government actions.
+For questions about these Terms of Service, please contact us:
 
-### 13.7 Notices
-Legal notices will be sent to the email address associated with your account or to legal@passiton.com for notices to PassItOn.
-
-### 13.8 Export Controls
-The Services may be subject to export controls under U.S. law. You agree to comply with all applicable export control laws and regulations.
-
-## 14. Contact Information
-
-If you have any questions about these Terms, please contact us:
-
-**PassItOn, Inc.**  
 **Email:** legal@passiton.com  
 **Address:** [Company Address]  
 **Phone:** [Company Phone]
 
-**Customer Support:**  
-**Email:** support@passiton.com  
-**Live Chat:** Available through your dashboard  
-**Hours:** Monday-Friday, 9 AM - 5 PM PST
+## Miscellaneous Provisions
+
+### Severability
+If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full force and effect.
+
+### Entire Agreement
+These Terms, together with our Privacy Policy and other referenced policies, constitute the entire agreement between you and PassItOn.
+
+### Assignment
+You may not assign your rights under these Terms without our prior written consent. We may assign our rights and obligations without restriction.
+
+### Waiver
+Our failure to enforce any provision does not constitute a waiver of that provision or any other provision.
+
+### Force Majeure
+We are not liable for delays or failures due to circumstances beyond our reasonable control, including natural disasters, government actions, or network failures.
 
 ---
 
-**Document Information:**
-- **Version:** 1.0
-- **Effective Date:** January 29, 2025
-- **Last Updated:** January 29, 2025
-- **Review Schedule:** Annually or as needed for legal compliance
-- **Approved By:** Legal Department
-- **Distribution:** Public document available on website
+**Last Updated:** January 29, 2025  
+**Version:** 1.0
 
-**Previous Versions:**
-- Initial version: January 29, 2025
-
----
-
-*These Terms of Service are legally binding. Please read them carefully and contact us if you have any questions before using our Services.*
+For the most current version of these Terms of Service, please visit our website or contact our legal department.

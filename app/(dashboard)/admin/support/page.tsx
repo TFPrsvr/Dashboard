@@ -42,6 +42,7 @@ export default function AdminSupportPage() {
   const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
   const [responseText, setResponseText] = useState("");
   const [responding, setResponding] = useState(false);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     if (userId) {
