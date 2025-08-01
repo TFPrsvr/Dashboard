@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     domains: ["localhost"],
   },
+  // Skip dynamic pages from static export
+  skipTrailingSlashRedirect: true,
+  generateStaticParams: false,
   // Turbo configuration (replaces webpack config)
   experimental: {
     turbo: {

@@ -21,7 +21,7 @@ export default function AnalyticsPage() {
             </h3>
             <div className="mt-2 text-sm text-yellow-700">
               <p>
-                We're building a comprehensive analytics dashboard that will include:
+                We&apos;re building a comprehensive analytics dashboard that will include:
               </p>
               <ul className="list-disc pl-5 mt-2">
                 <li>Real-time donation tracking</li>
