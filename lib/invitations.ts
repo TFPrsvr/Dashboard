@@ -31,7 +31,7 @@ export async function sendInvitationEmail(data: InvitationEmailData) {
       to: email,
       subject: `Invitation to join ${organizationName}`,
       html: emailContent,
-      from: 'PassItOn <noreply@passiton.app>',
+      from: 'PassItOn <onboarding@resend.dev>',
     });
 
     return { success: true };

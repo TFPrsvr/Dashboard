@@ -105,7 +105,7 @@ export default function OnboardingPage() {
         .upsert({
           id: userId,
           email: formData.email,
-          role: "owner",
+          role: "admin",
           organization_id: organization.id,
           created_at: new Date().toISOString(),
         });
