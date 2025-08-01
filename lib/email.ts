@@ -12,8 +12,8 @@ export interface EmailOptions {
 
 export async function sendEmail({ to, subject, html, from }: EmailOptions) {
   try {
-    // In development mode or when no API key is configured, log to console
-    if (!process.env.RESEND_API_KEY || process.env.NODE_ENV === 'development') {
+    // When no API key is configured, log to console instead of sending emails
+    if (!process.env.RESEND_API_KEY) {
       console.log("=== EMAIL SERVICE (DEV MODE) ===");
       console.log("To:", to);
       console.log("Subject:", subject);
@@ -29,14 +29,15 @@ export async function sendEmail({ to, subject, html, from }: EmailOptions) {
     }
 
     const response = await resend.emails.send({
-      from: from || 'PassItOn <noreply@passiton.app>',
+      from: from || 'PassItOn <onboarding@resend.dev>',
       to: [to],
       subject,
       html,
     });
 
     if (response.error) {
-      throw new Error(`Email service error: ${response.error.message}`);
+      console.error("Resend API error details:", response.error);
+      throw new Error(`Email service error: ${response.error.message || JSON.stringify(response.error)}`);
     }
 
     console.log("Email sent successfully:", response.data?.id);

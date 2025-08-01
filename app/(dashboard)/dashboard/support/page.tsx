@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
 import { useAuth, useUser } from "@clerk/nextjs";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -26,8 +28,10 @@ interface SupportTicket {
 }
 
 export default function SupportPage() {
+
   const { userId } = useAuth();
   const { user } = useUser();
+
   const { toast } = useToast();
   const [tickets, setTickets] = useState<SupportTicket[]>([]);
   const [loading, setLoading] = useState(true);
@@ -36,6 +40,7 @@ export default function SupportPage() {
   const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
   const [responseText, setResponseText] = useState("");
   const [responding, setResponding] = useState(false);
+
 
   const [formData, setFormData] = useState({
     subject: "",
@@ -52,6 +57,7 @@ export default function SupportPage() {
 
   const fetchTickets = async () => {
     try {
+
       const response = await fetch('/api/support');
       const result = await response.json();
 
@@ -60,11 +66,14 @@ export default function SupportPage() {
       }
 
       setTickets(result.tickets || []);
+
     } catch (error) {
       console.error("Error fetching tickets:", error);
       toast({
         title: "Error",
+
         description: error instanceof Error ? error.message : "Failed to load support tickets",
+
         variant: "destructive",
       });
     } finally {
@@ -78,12 +87,14 @@ export default function SupportPage() {
 
     setSubmitting(true);
     try {
+
       const response = await fetch('/api/support', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+
           subject: formData.subject,
           description: formData.description,
           category: formData.category,
@@ -100,6 +111,7 @@ export default function SupportPage() {
       }
 
       const ticket = result.ticket;
+
 
       // Send notification emails
       try {
@@ -146,6 +158,7 @@ export default function SupportPage() {
     }
   };
 
+
   const handleCustomerResponse = async (ticketId: string) => {
     if (!responseText.trim()) return;
 
@@ -186,6 +199,7 @@ export default function SupportPage() {
       setResponding(false);
     }
   };
+
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -389,6 +403,7 @@ export default function SupportPage() {
 
                   {ticket.admin_response && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-semibold text-blue-900">Response from Support</h4>
                         {ticket.status === 'waiting_response' && (
@@ -400,6 +415,7 @@ export default function SupportPage() {
                           </Button>
                         )}
                       </div>
+
                       <p className="text-blue-800">{ticket.admin_response}</p>
                     </div>
                   )}
@@ -409,6 +425,7 @@ export default function SupportPage() {
           </div>
         )}
       </div>
+
 
       {/* Customer Response Modal */}
       {selectedTicket && (
@@ -455,6 +472,7 @@ export default function SupportPage() {
           </Card>
         </div>
       )}
+
     </div>
   );
 }

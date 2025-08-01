@@ -14,6 +14,7 @@ import {
   Bell,
   Shield,
   MessageCircle,
+
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { memo, useEffect, useState } from "react";
@@ -88,7 +89,9 @@ export const Sidebar = memo(function Sidebar() {
     {
       title: "Support",
       href: "/dashboard/support",
+
       icon: MessageCircle,
+
     },
   ];
 
@@ -127,9 +130,11 @@ export const Sidebar = memo(function Sidebar() {
       icon: Shield,
     },
     {
+
       title: "Support Management",
       href: "/admin/support",
       icon: MessageCircle,
+
     },
   ];
 
