@@ -13,7 +13,7 @@
     "test:watch": "jest --watch",
     "test:e2e": "playwright test",
     "test:auth": "node tests/run-tests.js auth",
-    "test:widgets": "node tests/run-tests.js widgets", 
+    "test:widgets": "node tests/run-tests.js widgets",
     "test:priority": "node tests/run-tests.js priority",
     "test:all": "node tests/run-tests.js all"
   },
