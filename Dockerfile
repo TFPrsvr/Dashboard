@@ -1,4 +1,7 @@
-# Dockerfile
+# Default Dockerfile (Development Mode)
+# For production, use: docker build -f Dockerfile.multi --target production .
+# For basic mode, use: docker build -f Dockerfile.multi --target basic .
+
 FROM node:20-alpine AS base
 
 # Install dependencies only when needed
@@ -10,8 +13,8 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --legacy-peer-deps
 
-# Rebuild the source code only when needed
-FROM base AS builder
+# Development setup
+FROM base AS development
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -26,7 +29,8 @@ ARG STRIPE_SECRET_KEY
 ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 ARG STRIPE_WEBHOOK_SECRET
 
-# Set environment variables for build
+# Set environment variables
+ENV NODE_ENV=development
 ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 ENV CLERK_SECRET_KEY=$CLERK_SECRET_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
@@ -35,31 +39,7 @@ ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
 ENV STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY
 ENV NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 ENV STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET
-
-# Next.js collects completely anonymous telemetry data about general usage.
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN npm run build
-
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy built files
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+ENV NEXT_TELEMETRY_DISABLED=1
 
 EXPOSE 3000
-
-ENV PORT 3000
-
-CMD ["node", "server.js"]
+CMD ["npm", "run", "dev"]
