@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user is super admin (only super admins can create notifications directly)
-    const { supabaseAdmin } = await import("@/lib/supabase/server");
+    const { supabaseAdmin } = await import("@/lib/supabase/supabase-server");
     const { data: userData } = await supabaseAdmin
       .from("users")
       .select("role")

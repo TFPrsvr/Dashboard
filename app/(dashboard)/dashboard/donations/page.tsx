@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useOrganization } from "@/hooks/use-organization";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { Download, TrendingUp, DollarSign, Users, Heart } from "lucide-react";
 import {
   LineChart,

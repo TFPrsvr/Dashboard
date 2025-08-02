@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabaseAdmin } from '@/lib/supabase/server';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 import { UserRole, ROLES } from '@/types/roles.types';
 
 // GET /api/admin/roles - Get all users with their roles (Super Admin only)

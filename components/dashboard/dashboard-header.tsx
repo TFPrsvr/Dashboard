@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { Badge } from "@/components/ui/Badge";
 import { Crown, Shield, User, Building } from "lucide-react";
 

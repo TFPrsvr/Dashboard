@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/supabase-server";
 
 /**
  * Development utility to verify and test database schema

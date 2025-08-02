@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { 
   Users, 
   Search, 

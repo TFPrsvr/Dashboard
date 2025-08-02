@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { WidgetConfig } from "@/types/widget.types";
 import { Heart, Target, Users } from "lucide-react";
 

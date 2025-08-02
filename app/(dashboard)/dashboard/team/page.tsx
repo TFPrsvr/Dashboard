@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Badge } from "@/components/ui/Badge";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { useToast } from "@/components/ui/use-toast";
 import { UserPlus, Mail, Shield, User, Trash2, Users } from "lucide-react";
 

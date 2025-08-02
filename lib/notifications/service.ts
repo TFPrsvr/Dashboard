@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/supabase-server";
 import { sendEmail, createNotificationEmailTemplate } from "@/lib/email";
 import type {
   CreateNotificationRequest,
