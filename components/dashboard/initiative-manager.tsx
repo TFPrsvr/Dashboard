@@ -36,7 +36,6 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
           : undefined,
         current_amount: 0,
         is_active: true,
-        widget_id: "", // This will be set by the parent component
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       };
