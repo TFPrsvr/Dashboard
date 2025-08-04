@@ -59,16 +59,6 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
     onChange(initiatives.filter((i) => i.id !== id));
   };
 
-  const formatSuggestedAmounts = (amounts: number[]): string => {
-    return amounts.map(amount => (amount / 100).toString()).join(", ");
-  };
-
-  const parseSuggestedAmounts = (value: string): number[] => {
-    return value
-      .split(",")
-      .map(amount => Number(amount.trim()) * 100) // Convert to cents
-      .filter(amount => !isNaN(amount));
-  };
 
   return (
     <div className="space-y-4">
@@ -111,13 +101,12 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
                     placeholder="Goal amount (optional)"
                   />
                   <Input
-                    value={formatSuggestedAmounts(initiative.suggested_amounts)}
-                    onChange={(e) =>
-                      handleUpdate(initiative.id, {
-                        suggested_amounts: parseSuggestedAmounts(e.target.value),
-                      })
-                    }
+                    value=""
+                    onChange={(e) => {
+                      // Note: suggested_amounts not implemented in database yet
+                    }}
                     placeholder="Suggested amounts (e.g., 10, 25, 50, 100)"
+                    disabled
                   />
                 </div>
               ) : (
@@ -131,11 +120,6 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
                   {initiative.goal_amount && (
                     <p className="text-sm text-gray-500 mt-1">
                       Goal: ${initiative.goal_amount.toLocaleString()}
-                    </p>
-                  )}
-                  {initiative.suggested_amounts.length > 0 && (
-                    <p className="text-sm text-gray-500 mt-1">
-                      Suggested: ${formatSuggestedAmounts(initiative.suggested_amounts)}
                     </p>
                   )}
                 </div>
