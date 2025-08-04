@@ -34,7 +34,7 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
         goal_amount: newInitiative.goalAmount
           ? Number(newInitiative.goalAmount)
           : undefined,
-        raised_amount: 0,
+        current_amount: 0,
         suggested_amounts: newInitiative.suggestedAmounts
           .split(",")
           .map(amount => Number(amount.trim()) * 100) // Convert to cents
