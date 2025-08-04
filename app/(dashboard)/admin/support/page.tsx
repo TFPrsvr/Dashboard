@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -44,13 +44,7 @@ export default function AdminSupportPage() {
   const [responding, setResponding] = useState(false);
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    if (userId) {
-      fetchAllTickets();
-    }
-  }, [userId]);
-
-  const fetchAllTickets = async () => {
+  const fetchAllTickets = useCallback(async () => {
     try {
       const response = await fetch('/api/admin/support');
       const result = await response.json();
@@ -72,7 +66,13 @@ export default function AdminSupportPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchAllTickets();
+    }
+  }, [userId, fetchAllTickets]);
 
 
   const handleRespond = async (ticketId: string) => {
