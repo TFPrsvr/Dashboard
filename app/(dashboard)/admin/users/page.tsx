@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { 
   Users, 
@@ -70,18 +69,8 @@ export default function AdminUsersPage() {
     recent_signups: 0
   });
 
-  // This runs when the page loads
-  useEffect(() => {
-    fetchAllUsers();
-  }, []);
-
-  // Filter users when search or role filter changes
-  useEffect(() => {
-    filterUsers();
-  }, [users, searchTerm, roleFilter]); // Fixed: use the actual dependencies instead of the function
-
   // Function to get all users from all organizations
-  async function fetchAllUsers() {
+  const fetchAllUsers = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -145,7 +134,7 @@ export default function AdminUsersPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   // Function to filter users based on search and role
   const filterUsers = useCallback(() => {
@@ -170,6 +159,16 @@ export default function AdminUsersPage() {
 
     setFilteredUsers(filtered);
   }, [users, searchTerm, roleFilter]);
+
+  // This runs when the page loads
+  useEffect(() => {
+    fetchAllUsers();
+  }, [fetchAllUsers]);
+
+  // Filter users when search or role filter changes
+  useEffect(() => {
+    filterUsers();
+  }, [filterUsers]);
 
   // Function to get role icon
   function getRoleIcon(role: string) {

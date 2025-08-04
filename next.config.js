@@ -24,10 +24,6 @@ const nextConfig = {
     },
   } : {},
 
-  // Error handling for production builds
-  onError: (err) => {
-    console.error('Next.js build error:', err);
-  },
 
   // Webpack configuration for better compatibility
   webpack: (config, { dev, isServer }) => {

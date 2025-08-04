@@ -6,20 +6,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { 
   Palette, 
-  Search, 
-  ExternalLink, 
+  Search,
   Eye,
   DollarSign,
   Activity,
   Building,
   Calendar,
   TrendingUp,
-  Users,
-  Globe
+  Users
 } from "lucide-react";
 import { format } from "date-fns";
 
@@ -69,18 +66,8 @@ export default function AdminWidgetsPage() {
     avg_per_widget: 0
   });
 
-  // This runs when the page loads
-  useEffect(() => {
-    fetchAllWidgets();
-  }, []);
-
-  // Filter widgets when search or status filter changes
-  useEffect(() => {
-    filterWidgets();
-  }, [widgets, searchTerm, statusFilter]);
-
   // Function to get all widgets from all organizations
-  async function fetchAllWidgets() {
+  const fetchAllWidgets = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -167,10 +154,10 @@ export default function AdminWidgetsPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   // Function to filter widgets based on search and status
-  function filterWidgets() {
+  const filterWidgets = useCallback(() => {
     let filtered = widgets;
 
     // Filter by search term (widget name, org name, or email)
@@ -193,7 +180,17 @@ export default function AdminWidgetsPage() {
     }
 
     setFilteredWidgets(filtered);
-  }
+  }, [widgets, searchTerm, statusFilter]);
+
+  // This runs when the page loads
+  useEffect(() => {
+    fetchAllWidgets();
+  }, [fetchAllWidgets]);
+
+  // Filter widgets when search or status filter changes
+  useEffect(() => {
+    filterWidgets();
+  }, [filterWidgets]);
 
   // Function to view a widget in admin preview mode
   function viewWidget(slug: string) {
