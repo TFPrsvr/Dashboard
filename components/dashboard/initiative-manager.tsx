@@ -35,10 +35,6 @@ export function InitiativeManager({ initiatives, onChange }: InitiativeManagerPr
           ? Number(newInitiative.goalAmount)
           : undefined,
         current_amount: 0,
-        suggested_amounts: newInitiative.suggestedAmounts
-          .split(",")
-          .map(amount => Number(amount.trim()) * 100) // Convert to cents
-          .filter(amount => !isNaN(amount)),
         is_active: true,
         widget_id: "", // This will be set by the parent component
         created_at: new Date().toISOString(),
