@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -78,7 +78,7 @@ export default function RoleManagementPage() {
   const [organizations, setOrganizations] = useState<{id: string, name: string}[]>([]);
 
   // Fetch users with filters
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -103,10 +103,10 @@ export default function RoleManagementPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, filters]);
 
   // Fetch organizations for filter
-  const fetchOrganizations = async () => {
+  const fetchOrganizations = useCallback(async () => {
     try {
       const response = await fetch('/api/organizations');
       const data = await response.json();
@@ -116,7 +116,7 @@ export default function RoleManagementPage() {
     } catch (error) {
       console.error('Error fetching organizations:', error);
     }
-  };
+  }, []);
 
   // Fetch role history for a user
   const fetchRoleHistory = async (userId: string) => {
@@ -169,7 +169,7 @@ export default function RoleManagementPage() {
   useEffect(() => {
     fetchUsers();
     fetchOrganizations();
-  }, [currentPage, filters]);
+  }, [currentPage, filters, fetchUsers, fetchOrganizations]);
 
   // Filter users based on search
   const filteredUsers = users.filter(user => {

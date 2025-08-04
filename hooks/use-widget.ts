@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { Database } from "@/types/database.types";
 
 type Widget = Database["public"]["Tables"]["widgets"]["Row"];

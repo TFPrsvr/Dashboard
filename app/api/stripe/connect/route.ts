@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/supabase-server";
 import { createConnectAccount } from "@/lib/stripe/connect";
 
 export async function POST(req: Request) {

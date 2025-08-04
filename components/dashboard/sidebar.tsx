@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
 import { memo, useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { UserRole, NavigationPermissions } from "@/types/roles.types";
 
 export const Sidebar = memo(function Sidebar() {

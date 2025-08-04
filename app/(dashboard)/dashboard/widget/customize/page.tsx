@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { WidgetCustomizer } from "@/components/dashboard/widget-customizer";
 import { useOrganization } from "@/hooks/use-organization";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { WidgetConfig } from "@/types/widget.types";
 import { useToast } from "@/components/ui/use-toast";
 

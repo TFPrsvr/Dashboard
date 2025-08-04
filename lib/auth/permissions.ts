@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs/server';
-import { supabaseAdmin } from '@/lib/supabase/server';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 import { UserRole, RolePermissions, canAccessResource } from '@/types/roles.types';
 
 export interface AuthUser {

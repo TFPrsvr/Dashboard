@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/supabase-server";
 import { createInvitationToken, sendInvitationEmail } from "@/lib/invitations";
 
 export async function POST(request: NextRequest) {

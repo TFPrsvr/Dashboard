@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Textarea } from "@/components/ui/Textarea";
 import { Building, CreditCard, CheckCircle, ArrowRight } from "lucide-react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { useToast } from "@/components/ui/use-toast";
 
 interface OnboardingStep {

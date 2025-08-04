@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabaseAdmin } from '@/lib/supabase/server';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 import { UserRole, RolePermissions } from '@/types/roles.types';
 
 // GET /api/users/[userId]/role - Get user's current role

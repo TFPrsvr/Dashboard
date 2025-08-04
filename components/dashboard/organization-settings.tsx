@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { Building, CreditCard, ExternalLink, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabase-client";
 import { useStripeConnect } from "@/hooks/use-stripe-connect";
 import { Organization } from "@/types/organization.types";
 import { useToast } from "@/components/ui/use-toast";
