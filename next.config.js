@@ -3,9 +3,18 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Explicitly disable standalone for Vercel
-  output: undefined,
-  
+  // Disable tracing that causes the manifest file issue
+  experimental: {
+    ...(process.env.NODE_ENV !== 'production' ? {
+      turbo: {
+        // Turbo only in development
+      },
+    } : {}),
+    outputFileTracingExcludes: {
+      '**/*': ['**/.git/**', '**/node_modules/@swc/core-*/**'],
+    },
+  },
+
   // Image configuration
   images: {
     domains: ["localhost", "127.0.0.1"],
@@ -15,15 +24,6 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-  },
-
-  // Minimal experimental config for Vercel
-  experimental: {
-    ...(process.env.NODE_ENV !== 'production' ? {
-      turbo: {
-        // Turbo only in development
-      },
-    } : {}),
   },
 
   // Webpack configuration for better compatibility
