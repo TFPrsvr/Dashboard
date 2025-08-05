@@ -3,16 +3,14 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Disable tracing that causes the manifest file issue
+  // Completely disable output file tracing to prevent manifest errors
   experimental: {
     ...(process.env.NODE_ENV !== 'production' ? {
       turbo: {
         // Turbo only in development
       },
     } : {}),
-    outputFileTracingExcludes: {
-      '**/*': ['**/.git/**', '**/node_modules/@swc/core-*/**'],
-    },
+    outputFileTracing: false,
   },
 
   // Image configuration
