@@ -14,16 +14,14 @@ const nextConfig = {
     ],
   },
 
-  // Environment-specific output configuration
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
-  
-  // Disable turbo in production to avoid clientModules issues
-  experimental: process.env.NODE_ENV !== 'production' ? {
-    turbo: {
-      // Turbo only in development
-    },
-  } : {},
-
+  // Minimal experimental config for Vercel
+  experimental: {
+    ...(process.env.NODE_ENV !== 'production' ? {
+      turbo: {
+        // Turbo only in development
+      },
+    } : {}),
+  },
 
   // Webpack configuration for better compatibility
   webpack: (config, { dev, isServer }) => {
