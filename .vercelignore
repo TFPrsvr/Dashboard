@@ -1,0 +1,3 @@
+.next/standalone
+.next/static
+.next/server/app/**/page_client-reference-manifest.js

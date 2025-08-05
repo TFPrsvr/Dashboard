@@ -3,6 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
   
+  // Explicitly disable standalone for Vercel
+  output: undefined,
+  
   // Image configuration
   images: {
     domains: ["localhost", "127.0.0.1"],
