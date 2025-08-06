@@ -225,34 +225,37 @@ export default function RoleManagementPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {Object.entries(ROLES).map(([roleKey, roleDef]) => (
-              <div key={roleKey} className="border rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge className={getRoleBadgeColor(roleKey as UserRole)}>
-                    {roleDef.name}
-                  </Badge>
-                  <span className="text-sm text-gray-500">({roleDef.scope})</span>
-                </div>
-                <p className="text-sm text-gray-700 mb-3">{roleDef.description}</p>
-                <details className="text-xs">
-                  <summary className="cursor-pointer text-blue-600 hover:text-blue-800">
-                    View Permissions ({roleDef.permissions.length})
-                  </summary>
-                  <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
-                    {roleDef.permissions.slice(0, 10).map((permission, idx) => (
-                      <div key={idx} className="text-gray-600 font-mono text-xs">
-                        {permission}
-                      </div>
-                    ))}
-                    {roleDef.permissions.length > 10 && (
-                      <div className="text-gray-500 text-xs">
-                        +{roleDef.permissions.length - 10} more...
-                      </div>
-                    )}
+            {Object.entries(ROLES).filter(([roleKey]) => roleKey !== 'user').map(([roleKey, roleDef]) => {
+              const displayName = roleKey === 'admin' ? 'Organization Owner' : roleDef.name;
+              return (
+                <div key={roleKey} className="border rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge className={getRoleBadgeColor(roleKey as UserRole)}>
+                      {displayName}
+                    </Badge>
+                    <span className="text-sm text-gray-500">({roleDef.scope})</span>
                   </div>
-                </details>
-              </div>
-            ))}
+                  <p className="text-sm text-gray-700 mb-3">{roleDef.description}</p>
+                  <details className="text-xs">
+                    <summary className="cursor-pointer text-blue-600 hover:text-blue-800">
+                      View Permissions ({roleDef.permissions.length})
+                    </summary>
+                    <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
+                      {roleDef.permissions.slice(0, 10).map((permission, idx) => (
+                        <div key={idx} className="text-gray-600 font-mono text-xs">
+                          {permission}
+                        </div>
+                      ))}
+                      {roleDef.permissions.length > 10 && (
+                        <div className="text-gray-500 text-xs">
+                          +{roleDef.permissions.length - 10} more...
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>
@@ -262,7 +265,7 @@ export default function RoleManagementPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Filter className="w-5 h-5" />
-            Filters & Search
+            Filter & Search
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -282,28 +285,30 @@ export default function RoleManagementPage() {
             
             <div>
               <Label>Filter by Role</Label>
-              <Select
+              <select
                 value={filters.role}
-                onValueChange={(value) => setFilters(prev => ({ ...prev, role: value }))}
+                onChange={(e) => setFilters(prev => ({ ...prev, role: e.target.value }))}
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">All Roles</option>
                 <option value="super_admin">Super Admin</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-              </Select>
+                <option value="admin">Organization Owner</option>
+                <option value="editor">Editor</option>
+              </select>
             </div>
 
             <div>
               <Label>Filter by Organization</Label>
-              <Select
+              <select
                 value={filters.organization}
-                onValueChange={(value) => setFilters(prev => ({ ...prev, organization: value }))}
+                onChange={(e) => setFilters(prev => ({ ...prev, organization: e.target.value }))}
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">All Organizations</option>
                 {organizations.map(org => (
                   <option key={org.id} value={org.id}>{org.name}</option>
                 ))}
-              </Select>
+              </select>
             </div>
 
             <div className="flex items-end">
