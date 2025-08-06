@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/Label";
 import { Badge } from "@/components/ui/Badge";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useToast } from "@/components/ui/use-toast";
-import { UserPlus, Mail, Shield, User, Trash2, Users } from "lucide-react";
+import { UserPlus, Mail, Shield, User, Trash2, Users, Search, Filter } from "lucide-react";
 
 interface TeamMember {
   id: string;
@@ -32,6 +32,11 @@ export default function TeamPage() {
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
   const [deletingMember, setDeletingMember] = useState<string | null>(null);
+  
+  // Filter and search states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "active">("all");
+  const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user" | "super_admin">("all");
 
   useEffect(() => {
     async function fetchTeamMembers() {
@@ -219,6 +224,28 @@ export default function TeamPage() {
     }
   };
 
+  // Filter and search functionality
+  const filteredMembers = members.filter((member) => {
+    // Search filter
+    const searchMatch = searchTerm === "" || 
+      member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      `${member.first_name} ${member.last_name}`.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Status filter
+    let statusMatch = true;
+    if (statusFilter !== "all") {
+      const memberStatus = member.status === "pending" ? "pending" :
+                          member.status === "accepted" ? "active" :
+                          member.id.startsWith("invited_") ? "pending" : "active";
+      statusMatch = memberStatus === statusFilter;
+    }
+    
+    // Role filter
+    const roleMatch = roleFilter === "all" || member.role === roleFilter;
+    
+    return searchMatch && statusMatch && roleMatch;
+  });
+
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case "admin":
@@ -341,10 +368,77 @@ export default function TeamPage() {
         </CardContent>
       </Card>
 
+      {/* Search and Filter Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Filter className="w-5 h-5" />
+            Search & Filter
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-4 items-end">
+            <div className="flex-1">
+              <Label htmlFor="search">Search Members</Label>
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  id="search"
+                  type="text"
+                  placeholder="Search by name or email..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="status">Status</Label>
+              <select
+                id="status"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value as "all" | "pending" | "active")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="roleFilter">Role</Label>
+              <select
+                id="roleFilter"
+                value={roleFilter}
+                onChange={(e) => setRoleFilter(e.target.value as "all" | "admin" | "user" | "super_admin")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Roles</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="super_admin">Super Admin</option>
+              </select>
+            </div>
+            {(searchTerm || statusFilter !== "all" || roleFilter !== "all") && (
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm("");
+                  setStatusFilter("all");
+                  setRoleFilter("all");
+                }}
+              >
+                Clear Filters
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Team Members List */}
       <Card>
         <CardHeader>
-          <CardTitle>Team Members ({members.length})</CardTitle>
+          <CardTitle>Team Members ({filteredMembers.length} of {members.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -353,8 +447,24 @@ export default function TeamPage() {
                 <User className="w-12 h-12 mx-auto mb-4 opacity-50" />
                 <p>No team members yet. Invite someone to get started!</p>
               </div>
+            ) : filteredMembers.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <p>No members match your current filters.</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setSearchTerm("");
+                    setStatusFilter("all");
+                    setRoleFilter("all");
+                  }}
+                  className="mt-2"
+                >
+                  Clear Filters
+                </Button>
+              </div>
             ) : (
-              members.map((member) => (
+              filteredMembers.map((member) => (
                 <div
                   key={member.id}
                   className="flex items-center justify-between p-4 border rounded-lg"

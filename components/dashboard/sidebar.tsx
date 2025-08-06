@@ -105,6 +105,12 @@ export const Sidebar = memo(function Sidebar() {
     if (itemHref === "/dashboard/widget/customize") {
       return pathname === "/dashboard/widget/customize";
     }
+    if (itemHref === "/dashboard/settings") {
+      return pathname === "/dashboard/settings";
+    }
+    if (itemHref === "/dashboard/settings/notifications") {
+      return pathname === "/dashboard/settings/notifications";
+    }
     return pathname.startsWith(itemHref);
   };
 

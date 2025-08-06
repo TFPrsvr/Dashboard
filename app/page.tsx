@@ -10,10 +10,10 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold text-primary">PassItOn</h1>
           <div className="flex gap-4">
             <Link href="/sign-in">
-              <Button variant="outline">Sign In</Button>
+              <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">Sign In</Button>
             </Link>
             <Link href="/sign-up">
-              <Button>Get Started</Button>
+              <Button className="bg-blue-600 text-white hover:bg-blue-700 border-0">Get Started</Button>
             </Link>
           </div>
         </nav>
@@ -30,14 +30,14 @@ export default function HomePage() {
             donations, manage causes, and grow your impact.
           </p>
           <Link href="/sign-up">
-            <Button size="lg" className="text-lg px-8">
-              Start Free Trial
+            <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700 text-lg px-8">
+              Get Started
             </Button>
           </Link>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mt-20">
-          <div className="text-center">
+          <div className="text-center p-6 border border-blue-600 rounded-xl hover:border-blue-700 hover:shadow-md transition-all duration-200">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Palette className="w-8 h-8 text-primary" />
             </div>
@@ -47,7 +47,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="text-center">
+          <div className="text-center p-6 border border-blue-600 rounded-xl hover:border-blue-700 hover:shadow-md transition-all duration-200">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Heart className="w-8 h-8 text-primary" />
             </div>
@@ -57,7 +57,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="text-center">
+          <div className="text-center p-6 border border-blue-600 rounded-xl hover:border-blue-700 hover:shadow-md transition-all duration-200">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Users className="w-8 h-8 text-primary" />
             </div>
