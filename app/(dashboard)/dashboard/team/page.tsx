@@ -28,10 +28,15 @@ export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteRole, setInviteRole] = useState("user");
+  const [inviteRole, setInviteRole] = useState("editor");
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
   const [deletingMember, setDeletingMember] = useState<string | null>(null);
+  
+  // Filter and search states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "active">("all");
+  const [roleFilter, setRoleFilter] = useState<"all" | "owner" | "editor" | "super_admin">("all");
 
   useEffect(() => {
     async function fetchTeamMembers() {
@@ -328,8 +333,8 @@ export default function TeamPage() {
                 onChange={(e) => setInviteRole(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="editor">Editor</option>
+                <option value="owner">Owner</option>
               </select>
             </div>
             <div className="flex items-end">
@@ -341,6 +346,76 @@ export default function TeamPage() {
         </CardContent>
       </Card>
 
+<<<<<<< HEAD
+=======
+      {/* Search and Filter Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Filter className="w-5 h-5" />
+            Search & Filter
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-4 items-end">
+            <div className="flex-1">
+              <Label htmlFor="search">Search Members</Label>
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  id="search"
+                  type="text"
+                  placeholder="Search by name or email..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="status">Status</Label>
+              <select
+                id="status"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value as "all" | "pending" | "active")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="active">Active</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="roleFilter">Role</Label>
+              <select
+                id="roleFilter"
+                value={roleFilter}
+                onChange={(e) => setRoleFilter(e.target.value as "all" | "owner" | "editor" | "super_admin")}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Roles</option>
+                <option value="owner">Owner</option>
+                <option value="editor">Editor</option>
+                <option value="super_admin">Super Admin</option>
+              </select>
+            </div>
+            {(searchTerm || statusFilter !== "all" || roleFilter !== "all") && (
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm("");
+                  setStatusFilter("all");
+                  setRoleFilter("all");
+                }}
+              >
+                Clear Filters
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+>>>>>>> 6bb2def (Update admin dashboard with comprehensive UI/UX improvements)
       {/* Team Members List */}
       <Card>
         <CardHeader>

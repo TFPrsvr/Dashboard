@@ -1,6 +1,6 @@
 // Role definitions and permissions for the PassItOn platform
 
-export type UserRole = 'super_admin' | 'admin' | 'user';
+export type UserRole = 'super_admin' | 'admin' | 'editor' | 'user';
 
 export interface RoleDefinition {
   name: string;
@@ -96,6 +96,43 @@ export const ROLES: Record<UserRole, RoleDefinition> = {
     ]
   },
   
+  editor: {
+    name: 'Editor',
+    description: 'Content editor with permissions to manage widgets and view analytics within their organization',
+    scope: 'organization',
+    permissions: [
+      // Organization Management (Read Only)
+      'organizations:read:own',
+      
+      // Widget Management (Full Access)
+      'widgets:read:org',
+      'widgets:create:org',
+      'widgets:update:org',
+      'widgets:delete:org',
+      'widgets:customize:org',
+      'widgets:preview:org',
+      
+      // Donation Management (View Only)
+      'donations:read:org',
+      'donations:export:org',
+      
+      // Analytics & Reporting
+      'analytics:read:org',
+      'reports:generate:org',
+      
+      // Dashboard Access
+      'dashboard:read:org',
+      
+      // Profile Management
+      'profile:read:own',
+      'profile:update:own',
+      
+      // Notifications
+      'notifications:read:own',
+      'notifications:read:org'
+    ]
+  },
+  
   user: {
     name: 'User',
     description: 'Limited access user who can view dashboards and interact with widgets within their organization',
@@ -170,14 +207,15 @@ export const RolePermissions = {
   
   isSuperAdmin: (role: UserRole) => role === 'super_admin',
   isAdmin: (role: UserRole) => role === 'admin',
+  isEditor: (role: UserRole) => role === 'editor',
   isUser: (role: UserRole) => role === 'user'
 };
 
 // Navigation permissions for UI
 export const NavigationPermissions = {
   showAdminSection: (role: UserRole) => role === 'super_admin',
-  showWidgetCustomizer: (role: UserRole) => role !== 'user',
-  showTeamManagement: (role: UserRole) => role !== 'user',
-  showOrganizationSettings: (role: UserRole) => role !== 'user',
+  showWidgetCustomizer: (role: UserRole) => role === 'admin' || role === 'editor',
+  showTeamManagement: (role: UserRole) => role === 'admin',
+  showOrganizationSettings: (role: UserRole) => role === 'admin',
   showAnalytics: (role: UserRole) => RolePermissions.canViewAnalytics(role)
 };
