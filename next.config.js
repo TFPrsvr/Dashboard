@@ -2,15 +2,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'standalone',
   
-  // Completely disable output file tracing to prevent manifest errors
+  // Experimental features for development only
   experimental: {
     ...(process.env.NODE_ENV !== 'production' ? {
       turbo: {
         // Turbo only in development
       },
     } : {}),
-    outputFileTracing: false,
   },
 
   // Image configuration
