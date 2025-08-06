@@ -186,7 +186,7 @@ export default function SupportPage() {
       });
 
       setResponseText("");
-      setSelectedTicket(null);
+      // Don't clear the selected ticket - keep it visible for user reference
       fetchTickets();
     } catch (error) {
       console.error("Error sending response:", error);
@@ -409,6 +409,7 @@ export default function SupportPage() {
                         {ticket.status === 'waiting_response' && (
                           <Button
                             size="sm"
+                            className="bg-blue-600 text-white hover:bg-blue-700"
                             onClick={() => setSelectedTicket(ticket)}
                           >
                             Reply
@@ -430,30 +431,31 @@ export default function SupportPage() {
       {/* Customer Response Modal */}
       {selectedTicket && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl mx-4">
-            <CardHeader>
+          <Card className="w-full max-w-2xl mx-4 bg-white">
+            <CardHeader className="bg-gray-50">
               <CardTitle>Reply to: {selectedTicket.subject}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-blue-600 mb-2">Support Response:</p>
-                <p className="text-blue-800">{selectedTicket.admin_response}</p>
+            <CardContent className="space-y-4 bg-gray-50">
+              <div className="bg-blue-100 p-4 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-700 font-semibold mb-2">Support Response:</p>
+                <p className="text-blue-900">{selectedTicket.admin_response}</p>
               </div>
               
-              <div>
-                <Label htmlFor="customerResponse">Your Reply</Label>
+              <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <Label htmlFor="customerResponse" className="text-gray-700 font-medium">Your Reply</Label>
                 <Textarea
                   id="customerResponse"
                   rows={6}
                   value={responseText}
                   onChange={(e) => setResponseText(e.target.value)}
                   placeholder="Type your reply here..."
+                  className="mt-2 bg-gray-50 border-gray-300 focus:border-blue-500 focus:ring-blue-200"
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
                 <Button
-                  variant="outline"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => {
                     setSelectedTicket(null);
                     setResponseText("");
@@ -462,6 +464,7 @@ export default function SupportPage() {
                   Cancel
                 </Button>
                 <Button
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => handleCustomerResponse(selectedTicket.id)}
                   disabled={responding || !responseText.trim()}
                 >

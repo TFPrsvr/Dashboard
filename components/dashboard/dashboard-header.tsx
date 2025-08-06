@@ -176,7 +176,12 @@ export function DashboardHeader() {
                 {effectiveRole === 'super_admin' && <Crown className="w-3 h-3 mr-1" />}
                 {effectiveRole === 'owner' && <Shield className="w-3 h-3 mr-1" />}
                 {effectiveRole === 'editor' && <User className="w-3 h-3 mr-1" />}
-                <span className="capitalize">{effectiveRole.replace('_', ' ')}</span>
+                <span className="capitalize">
+                  {effectiveRole === 'super_admin' 
+                    ? effectiveRole.replace('_', ' ')
+                    : organizationName || effectiveRole.replace('_', ' ')
+                  }
+                </span>
               </Badge>
             )}
             <UserButton />

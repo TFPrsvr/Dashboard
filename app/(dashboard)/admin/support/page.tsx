@@ -305,6 +305,7 @@ export default function AdminSupportPage() {
                   </div>
                   
                   <Button
+                    className="bg-blue-600 text-white hover:bg-blue-700"
                     onClick={() => setSelectedTicket(ticket)}
                     disabled={ticket.status === 'closed'}
                   >
@@ -320,45 +321,45 @@ export default function AdminSupportPage() {
       {/* Response Modal */}
       {selectedTicket && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl mx-4">
-            <CardHeader>
+          <Card className="w-full max-w-2xl mx-4 bg-white">
+            <CardHeader className="bg-gray-50">
               <CardTitle>Respond to: {selectedTicket.subject}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-600 mb-2">Original Message:</p>
-                <p>{selectedTicket.description}</p>
+            <CardContent className="space-y-4 bg-gray-50">
+              <div className="bg-blue-100 p-4 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-700 font-semibold mb-2">Original Message:</p>
+                <p className="text-blue-900">{selectedTicket.description}</p>
               </div>
               
-              <div>
-                <Label htmlFor="response">Your Response</Label>
+              <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <Label htmlFor="response" className="text-gray-700 font-medium">Your Response</Label>
                 <Textarea
                   id="response"
                   rows={6}
                   value={responseText}
                   onChange={(e) => setResponseText(e.target.value)}
                   placeholder="Type your response here..."
+                  className="mt-2 bg-gray-50 border-gray-300 focus:border-blue-500 focus:ring-blue-200"
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
                 <Button
-                  variant="outline"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => {
                     setSelectedTicket(null);
                     setResponseText("");
-
                   }}
                 >
                   Cancel
                 </Button>
                 <Button
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => handleRespond(selectedTicket.id)}
                   disabled={responding || !responseText.trim()}
                 >
                   {responding ? "Sending..." : "Send Response"}
                 </Button>
-
               </div>
             </CardContent>
           </Card>

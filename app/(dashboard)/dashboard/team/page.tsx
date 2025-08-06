@@ -28,7 +28,7 @@ export default function TeamPage() {
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteRole, setInviteRole] = useState("user");
+  const [inviteRole, setInviteRole] = useState("editor");
   const [inviting, setInviting] = useState(false);
   const { toast } = useToast();
   const [deletingMember, setDeletingMember] = useState<string | null>(null);
@@ -36,7 +36,7 @@ export default function TeamPage() {
   // Filter and search states
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "pending" | "active">("all");
-  const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user" | "super_admin">("all");
+  const [roleFilter, setRoleFilter] = useState<"all" | "owner" | "editor" | "super_admin">("all");
 
   useEffect(() => {
     async function fetchTeamMembers() {
@@ -355,8 +355,8 @@ export default function TeamPage() {
                 onChange={(e) => setInviteRole(e.target.value)}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="editor">Editor</option>
+                <option value="owner">Owner</option>
               </select>
             </div>
             <div className="flex items-end">
@@ -410,12 +410,12 @@ export default function TeamPage() {
               <select
                 id="roleFilter"
                 value={roleFilter}
-                onChange={(e) => setRoleFilter(e.target.value as "all" | "admin" | "user" | "super_admin")}
+                onChange={(e) => setRoleFilter(e.target.value as "all" | "owner" | "editor" | "super_admin")}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
                 <option value="all">All Roles</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="owner">Owner</option>
+                <option value="editor">Editor</option>
                 <option value="super_admin">Super Admin</option>
               </select>
             </div>
