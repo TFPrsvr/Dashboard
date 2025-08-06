@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build && npm run clean:build",
-    "clean:build": "find .next/server -name '*client-reference-manifest.js' -delete 2>/dev/null || true",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "supabase db push",
@@ -42,7 +41,7 @@
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
     "lucide-react": "^0.314.0",
-    "next": "^14.2.30",
+    "next": "14.2.25",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.49.3",

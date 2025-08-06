@@ -2,22 +2,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
-  // Completely disable experimental features for production
-  experimental: {
-    ...(process.env.NODE_ENV !== 'production' ? {
-      turbo: {
-        // Turbo only in development
-      },
-    } : {}),
-  },
-
-  // Disable output file tracing completely
-  ...(process.env.VERCEL ? {
-    experimental: {
-      outputFileTracing: false,
-    }
-  } : {}),
 
   // Image configuration
   images: {
