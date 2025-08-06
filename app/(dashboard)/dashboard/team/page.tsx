@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/Label";
 import { Badge } from "@/components/ui/Badge";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useToast } from "@/components/ui/use-toast";
-import { UserPlus, Mail, Shield, User, Trash2, Users } from "lucide-react";
+import { UserPlus, Mail, Shield, User, Trash2, Users, Search, Filter } from "lucide-react";
 
 interface TeamMember {
   id: string;
@@ -346,8 +346,6 @@ export default function TeamPage() {
         </CardContent>
       </Card>
 
-<<<<<<< HEAD
-=======
       {/* Search and Filter Section */}
       <Card>
         <CardHeader>
@@ -414,8 +412,6 @@ export default function TeamPage() {
           </div>
         </CardContent>
       </Card>
-
->>>>>>> 6bb2def (Update admin dashboard with comprehensive UI/UX improvements)
       {/* Team Members List */}
       <Card>
         <CardHeader>
