@@ -3,16 +3,21 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Experimental features - disable problematic features in production
+  // Completely disable experimental features for production
   experimental: {
     ...(process.env.NODE_ENV !== 'production' ? {
       turbo: {
         // Turbo only in development
       },
     } : {}),
-    // Disable server components preloading to prevent manifest issues
-    serverComponentsExternalPackages: [],
   },
+
+  // Disable output file tracing completely
+  ...(process.env.VERCEL ? {
+    experimental: {
+      outputFileTracing: false,
+    }
+  } : {}),
 
   // Image configuration
   images: {
