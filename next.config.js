@@ -2,15 +2,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
   
-  // Experimental features for development only
+  // Experimental features - disable problematic features in production
   experimental: {
     ...(process.env.NODE_ENV !== 'production' ? {
       turbo: {
         // Turbo only in development
       },
     } : {}),
+    // Disable server components preloading to prevent manifest issues
+    serverComponentsExternalPackages: [],
   },
 
   // Image configuration

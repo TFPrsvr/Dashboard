@@ -1,5 +1,0 @@
-.next/standalone
-.next/static
-.next/server/app/**/*_client-reference-manifest.js
-.next/server/app/**/*client-reference-manifest.js
-.next/trace
