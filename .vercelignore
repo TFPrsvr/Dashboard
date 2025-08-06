@@ -1,0 +1,5 @@
+.next/server/app/**/*client-reference-manifest.js
+.next/server/app/**/*_client-reference-manifest.js
+.next/standalone
+.next/static
+.next/trace

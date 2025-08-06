@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  output: 'standalone',
   
-  experimental: {
-    serverActions: true,
+  images: {
+    unoptimized: true,
   },
 
-  images: {
-    domains: ["localhost", "127.0.0.1"],
-  },
+  // Disable all experimental features
+  experimental: {},
 };
 
 module.exports = nextConfig;
