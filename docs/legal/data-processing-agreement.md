@@ -346,5 +346,3 @@ This Data Processing Agreement is effective as of the date first signed below an
 
 **Processor (PassItOn):** _____________________ **Date:** __________
 
-**Last Updated:** January 29, 2025  
-**Version:** 1.0

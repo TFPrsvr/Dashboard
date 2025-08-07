@@ -43,8 +43,8 @@ export async function POST(request: NextRequest) {
         organizationId,
         plan,
       },
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/settings?tab=billing&success=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/settings?tab=billing&canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/settings?tab=subscription&success=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/settings?tab=subscription&canceled=true`,
       client_reference_id: organizationId,
     });
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
@@ -15,7 +15,6 @@ function AcceptInvitationContent() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const token = searchParams?.get("token");
-
   const [loading, setLoading] = useState(true);
   const [accepting, setAccepting] = useState(false);
   const [invitation, setInvitation] = useState<any>(null);
@@ -23,17 +22,13 @@ function AcceptInvitationContent() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  useEffect(() => {
+  const validateInvitation = useCallback(async () => {
     if (!token) {
       setError("Invalid invitation link");
       setLoading(false);
       return;
     }
 
-    validateInvitation();
-  }, [token]);
-
-  const validateInvitation = async () => {
     try {
       const { data, error } = await supabase
         .from("users")
@@ -52,7 +47,11 @@ function AcceptInvitationContent() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    validateInvitation();
+  }, [validateInvitation]);
 
   const acceptInvitation = async () => {
     if (!invitation || !firstName.trim() || !lastName.trim()) return;
@@ -132,9 +131,13 @@ function AcceptInvitationContent() {
           <div className="text-center text-gray-600">
             <p>You&apos;ve been invited to join</p>
             <p className="font-semibold text-lg text-blue-600">
-              {invitation?.organizations?.display_name || invitation?.organizations?.name}
+              {invitation?.organizations?.display_name ||
+                invitation?.organizations?.name}
             </p>
-            <p className="text-sm">as a <span className="font-medium capitalize">{invitation?.role}</span></p>
+            <p className="text-sm">
+              as a{" "}
+              <span className="font-medium capitalize">{invitation?.role}</span>
+            </p>
           </div>
 
           <div className="space-y-4">

@@ -862,6 +862,3 @@ When adding new features:
 6. **Update Documentation** - Add to this README
 
 ---
-
-**Last Updated:** January 2025
-**Version:** 1.0.0

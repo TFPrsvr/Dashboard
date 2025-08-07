@@ -218,7 +218,7 @@ export default function OrganizationDetailPage() {
       </div>
 
       {/* Stats Cards - Quick overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Raised</CardTitle>
@@ -256,23 +256,6 @@ export default function OrganizationDetailPage() {
             <div className="text-2xl font-bold">{stats.team_members}</div>
             <p className="text-xs text-muted-foreground">
               Active users
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Status</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              <Badge variant={organization.subscription_status === 'active' ? 'default' : 'secondary'}>
-                {organization.subscription_status}
-              </Badge>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Subscription status
             </p>
           </CardContent>
         </Card>
@@ -498,7 +481,7 @@ export default function OrganizationDetailPage() {
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
                     <p className="font-medium">Subscription Status</p>
-                    <p className="text-sm text-gray-600">Current billing status</p>
+                    <p className="text-sm text-gray-600">Current subscription status</p>
                   </div>
                   <Badge variant={organization.subscription_status === 'active' ? 'default' : 'secondary'}>
                     {organization.subscription_status}

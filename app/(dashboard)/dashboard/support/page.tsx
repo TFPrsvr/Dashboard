@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useCallback } from "react";
 import { useAuth, useUser } from "@clerk/nextjs";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -13,7 +11,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/Badge";
 import { MessageSquare, Plus, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/lib/supabase/supabase-client";
 
 interface SupportTicket {
   id: string;
@@ -28,7 +25,6 @@ interface SupportTicket {
 }
 
 export default function SupportPage() {
-
   const { userId } = useAuth();
   const { user } = useUser();
 
@@ -41,7 +37,6 @@ export default function SupportPage() {
   const [responseText, setResponseText] = useState("");
   const [responding, setResponding] = useState(false);
 
-
   const [formData, setFormData] = useState({
     subject: "",
     description: "",
@@ -49,15 +44,8 @@ export default function SupportPage() {
     priority: "medium",
   });
 
-  useEffect(() => {
-    if (userId) {
-      fetchTickets();
-    }
-  }, [userId]);
-
-  const fetchTickets = async () => {
+  const fetchTickets = useCallback(async () => {
     try {
-
       const response = await fetch('/api/support');
       const result = await response.json();
 
@@ -71,15 +59,19 @@ export default function SupportPage() {
       console.error("Error fetching tickets:", error);
       toast({
         title: "Error",
-
         description: error instanceof Error ? error.message : "Failed to load support tickets",
-
         variant: "destructive",
       });
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchTickets();
+    }
+  }, [userId, fetchTickets]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,14 +79,12 @@ export default function SupportPage() {
 
     setSubmitting(true);
     try {
-
       const response = await fetch('/api/support', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-
           subject: formData.subject,
           description: formData.description,
           category: formData.category,
@@ -111,7 +101,6 @@ export default function SupportPage() {
       }
 
       const ticket = result.ticket;
-
 
       // Send notification emails
       try {
@@ -158,7 +147,6 @@ export default function SupportPage() {
     }
   };
 
-
   const handleCustomerResponse = async (ticketId: string) => {
     if (!responseText.trim()) return;
 
@@ -186,7 +174,7 @@ export default function SupportPage() {
       });
 
       setResponseText("");
-      setSelectedTicket(null);
+      // Don't clear the selected ticket - keep it visible for user reference
       fetchTickets();
     } catch (error) {
       console.error("Error sending response:", error);
@@ -199,7 +187,6 @@ export default function SupportPage() {
       setResponding(false);
     }
   };
-
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -302,7 +289,6 @@ export default function SupportPage() {
                     <SelectContent>
                       <SelectItem value="general">General Question</SelectItem>
                       <SelectItem value="technical">Technical Issue</SelectItem>
-                      <SelectItem value="billing">Billing Question</SelectItem>
                       <SelectItem value="bug_report">Bug Report</SelectItem>
                       <SelectItem value="feature_request">Feature Request</SelectItem>
                     </SelectContent>
@@ -403,19 +389,18 @@ export default function SupportPage() {
 
                   {ticket.admin_response && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="font-semibold text-blue-900">Response from Support</h4>
                         {ticket.status === 'waiting_response' && (
                           <Button
                             size="sm"
+                            className="bg-blue-600 text-white hover:bg-blue-700"
                             onClick={() => setSelectedTicket(ticket)}
                           >
                             Reply
                           </Button>
                         )}
                       </div>
-
                       <p className="text-blue-800">{ticket.admin_response}</p>
                     </div>
                   )}
@@ -426,34 +411,34 @@ export default function SupportPage() {
         )}
       </div>
 
-
       {/* Customer Response Modal */}
       {selectedTicket && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <Card className="w-full max-w-2xl mx-4">
-            <CardHeader>
+          <Card className="w-full max-w-2xl mx-4 bg-white">
+            <CardHeader className="bg-gray-50">
               <CardTitle>Reply to: {selectedTicket.subject}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-blue-600 mb-2">Support Response:</p>
-                <p className="text-blue-800">{selectedTicket.admin_response}</p>
+            <CardContent className="space-y-4 bg-gray-50">
+              <div className="bg-blue-100 p-4 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-700 font-semibold mb-2">Support Response:</p>
+                <p className="text-blue-900">{selectedTicket.admin_response}</p>
               </div>
               
-              <div>
-                <Label htmlFor="customerResponse">Your Reply</Label>
+              <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <Label htmlFor="customerResponse" className="text-gray-700 font-medium">Your Reply</Label>
                 <Textarea
                   id="customerResponse"
                   rows={6}
                   value={responseText}
                   onChange={(e) => setResponseText(e.target.value)}
                   placeholder="Type your reply here..."
+                  className="mt-2 bg-gray-50 border-gray-300 focus:border-blue-500 focus:ring-blue-200"
                 />
               </div>
 
               <div className="flex gap-3 justify-end">
                 <Button
-                  variant="outline"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => {
                     setSelectedTicket(null);
                     setResponseText("");
@@ -462,6 +447,7 @@ export default function SupportPage() {
                   Cancel
                 </Button>
                 <Button
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                   onClick={() => handleCustomerResponse(selectedTicket.id)}
                   disabled={responding || !responseText.trim()}
                 >
@@ -472,7 +458,6 @@ export default function SupportPage() {
           </Card>
         </div>
       )}
-
     </div>
   );
 }

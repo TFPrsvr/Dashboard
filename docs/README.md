@@ -7,9 +7,11 @@ Welcome to the PassItOn documentation hub. All documentation has been organized 
 ### 👩‍💼 [Business Users](./business-users/)
 Documentation for non-technical users including organization owners, content managers, and end users.
 
+- **[Service Setup Guide](./business-users/service-setup-guide.md)** - Step-by-step setup for Stripe, Clerk, and Supabase accounts
 - **[Pricing Plans](./business-users/pricing-plans.md)** - Free, Professional, and Enterprise pricing options
 - **[Onboarding Guide](./business-users/onboarding-guide.md)** - Complete setup process from account to going live
 - **[Integration Guide](./business-users/integration-guide.md)** - System overview and usage guide  
+- **[Live Widget Testing Guide](./business-users/live-widget-testing-guide.md)** - Complete guide to testing donations in real-world scenarios
 - **[Platform Guides](./business-users/platform-guides/)** - WordPress, Shopify, Wix, Squarespace integration
 - **[Troubleshooting Guide](./business-users/troubleshooting-guide.md)** - Visual problem-solving help
 
@@ -17,14 +19,17 @@ Documentation for non-technical users including organization owners, content man
 Technical documentation for developers, DevOps engineers, and system administrators.
 
 - **[README](./developers/README.md)** - Main technical documentation and setup guide
+- **[Environment Variables Setup](./developers/environment-variables-setup.md)** - Complete environment configuration with working keys
+- **[Components Architecture](./developers/components-architecture.md)** - File structure and component relationships
+- **[Enhanced Route Protection Implementation](./developers/enhanced-route-protection-implementation.md)** - Advanced auth with intelligent redirects
+- **[Widget Close Button Issue](./developers/widget-close-button-issue.md)** - Solution for missing close button after payment
+- **[Comprehensive Troubleshooting Guide](./developers/comprehensive-troubleshooting-guide.md)** - All debugging and issue resolution
+- **[Cross-Project Testing Guide](./developers/cross-project-testing-guide.md)** - Testing Admin Dashboard + Donor Widget integration
 - **[API Reference](./developers/api-reference.md)** - Complete API documentation with examples
-- **[Maintenance Guide](./developers/maintenance-guide.md)** - System maintenance and troubleshooting procedures
-- **[Deployment Guide](./developers/deployment-guide.md)** - Production deployment and CI/CD setup
-- **[Troubleshooting Guide](./developers/troubleshooting-guide.md)** - Comprehensive debugging and issue resolution
-- **[Future Roadmap](./developers/future-roadmap.md)** - Platform development roadmap and feature planning
 - **[Test Cases](./developers/test-cases.md)** - Comprehensive testing procedures
+- **[Deployment Guide](./developers/deployment-guide.md)** - Production deployment and CI/CD setup
+- **[Maintenance Guide](./developers/maintenance-guide.md)** - System maintenance procedures
 - **[Compliance & Security](./developers/compliance-security.md)** - Enterprise security and compliance documentation
-- **[Embed Connect Changelog](./developers/embed-connect-changelog.md)** - Feature development changelog
 
 ### 🔐 [System Administrators](./admins/)
 Documentation for platform administrators and super users.

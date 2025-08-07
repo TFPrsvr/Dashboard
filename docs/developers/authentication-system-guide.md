@@ -23,7 +23,7 @@ User Login → Clerk Authentication → Next.js Middleware → Supabase User Loo
 CREATE TABLE users (
   id TEXT PRIMARY KEY,              -- Clerk user ID
   email TEXT NOT NULL,
-  role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('super_admin', 'admin', 'user')),
+  role TEXT NOT NULL DEFAULT 'editor' CHECK (role IN ('super_admin', 'owner', 'editor')),
   organization_id UUID REFERENCES organizations(id),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
   status TEXT DEFAULT 'accepted' CHECK (status IN ('pending', 'accepted')),
@@ -105,13 +105,13 @@ import { auth } from '@clerk/nextjs';
 The platform uses a three-tier role system:
 
 ```typescript
-type UserRole = 'super_admin' | 'admin' | 'user';
+type UserRole = 'super_admin' | 'owner' | 'editor';
 ```
 
 #### **Role Permissions**:
 - **super_admin**: Full platform access, all admin features
-- **admin**: Organization management, user management, support
-- **user**: Basic dashboard access, team member functionality
+- **owner**: Organization management, user management
+- **editor**: Basic dashboard access, content editing functionality
 
 ### Role Checking Implementation:
 
@@ -209,17 +209,148 @@ INSERT INTO users (
 );
 ```
 
+## Super Admin Creation System
+
+### Overview
+The platform provides three secure methods for creating super admin accounts. Choose the method that best fits your security requirements and deployment scenario.
+
+### Method 1: Environment Variable (Recommended)
+
+**Best for**: Production environments, team-based development
+
+**Setup:**
+1. Add authorized emails to your environment variables:
+```env
+SUPER_ADMIN_EMAILS=tfortner@banyanlabs.io,thalsell@banyanlabs.io,scallins@banyanlabs.io
+```
+
+2. The system automatically creates super admin accounts when authorized users sign in:
+```typescript
+// lib/auth/super-admin-creation.ts
+export async function autoCreateSuperAdminIfAuthorized(): Promise<SuperAdminCreationResult | null> {
+  const user = await currentUser();
+  const email = user.emailAddresses[0].emailAddress;
+  
+  if (isAuthorizedForSuperAdmin(email)) {
+    return await createSuperAdminAccount(user.id, email);
+  }
+  
+  return null;
+}
+```
+
+**Implementation Steps:**
+1. Update `.env.local` with `SUPER_ADMIN_EMAILS`
+2. Restart your development server
+3. Have authorized team members sign in - they'll automatically become super admins
+4. Verify in Supabase that their role is set to `super_admin`
+
+### Method 2: First User Super Admin
+
+**Best for**: Initial setup, single-admin scenarios
+
+**Setup:**
+1. Enable in environment variables:
+```env
+ENABLE_FIRST_USER_SUPER_ADMIN=true
+```
+
+2. The system checks if any super admins exist and promotes the first user:
+```typescript
+// Auto-promotes first user if no super admins exist
+if (ENABLE_FIRST_USER_SUPER_ADMIN) {
+  const superAdminExists = await checkSuperAdminExists();
+  if (!superAdminExists) {
+    return await createSuperAdminAccount(user.id, email);
+  }
+}
+```
+
+**Implementation Steps:**
+1. Set `ENABLE_FIRST_USER_SUPER_ADMIN=true` in `.env.local`
+2. Ensure no super admins exist in your database
+3. Sign up/sign in as the first user - you'll become super admin
+4. Disable this setting after initial setup for security
+
+### Method 3: Secret Key Emergency Access
+
+**Best for**: Emergency situations, backup access
+
+**Setup:**
+1. Configure secret key and enable the feature:
+```env
+SUPER_ADMIN_SECRET=your_ultra_secure_secret_key_here
+ENABLE_SECRET_URL_CREATION=true
+```
+
+2. Access the emergency creation page at `/create-super-admin`
+
+**Implementation Steps:**
+1. Set both environment variables in `.env.local`
+2. Navigate to `http://localhost:3000/create-super-admin`
+3. Enter the target email and secret key
+4. Sign in with the target email to complete super admin creation
+5. Disable this feature after use for security
+
+### Security Considerations
+
+**Environment Variable Method (Most Secure):**
+- ✅ No user interface exposure
+- ✅ Controlled by environment configuration
+- ✅ Easy to audit and manage
+- ✅ Works automatically on sign-in
+
+**First User Method (Moderate Security):**
+- ⚠️ Should be disabled after initial setup
+- ⚠️ Could accidentally promote wrong user
+- ✅ Good for initial development setup
+- ✅ No secrets to manage
+
+**Secret Key Method (Emergency Only):**
+- ⚠️ Exposes UI endpoint (can be disabled)
+- ⚠️ Requires secure secret management
+- ✅ Works when other methods fail
+- ✅ Provides audit trail
+
+### Troubleshooting Super Admin Creation
+
+**Common Issues:**
+
+1. **"Email not authorized" error:**
+   - Check `SUPER_ADMIN_EMAILS` spelling and format
+   - Ensure no extra spaces around email addresses
+   - Verify environment variables are loaded (restart dev server)
+
+2. **Auto-creation not working:**
+   - Verify the user signed in with Clerk successfully
+   - Check browser console for errors
+   - Confirm environment variables are set correctly
+
+3. **Secret key method failing:**
+   - Ensure both `SUPER_ADMIN_SECRET` and `ENABLE_SECRET_URL_CREATION=true`
+   - Check the secret key matches exactly (case-sensitive)
+   - Verify the user signed in before accessing the page
+
+**Database Verification:**
+```sql
+-- Check super admin users
+SELECT id, email, role, created_at 
+FROM users 
+WHERE role = 'super_admin';
+
+-- Check user role after sign-in
+SELECT id, email, role, status, organization_id 
+FROM users 
+WHERE email = 'your-email@banyanlabs.io';
+```
+
 ### Role System Updates:
 **Important**: The role system was updated in January 2025:
 
 ```sql
--- Old roles (deprecated)
-'editor' → 'user'
-'owner'  → 'admin'
-
 -- Current roles (active)
-'user'       -- Basic team member
-'admin'      -- Organization administrator  
+'editor'     -- Basic team member, content editing
+'owner'      -- Organization administrator
 'super_admin' -- Platform administrator
 ```
 

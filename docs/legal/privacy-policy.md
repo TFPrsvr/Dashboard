@@ -208,7 +208,5 @@ We comply with applicable privacy laws in all jurisdictions where we operate and
 
 ---
 
-**Last Updated:** January 29, 2025  
-**Version:** 1.0
 
 For the most current version of this Privacy Policy, please visit our website or contact our privacy team.

@@ -196,13 +196,6 @@ Cancel subscription at period end.
 }
 ```
 
-#### GET /api/billing/portal
-Redirect to Stripe billing portal.
-
-**Query Parameters:**
-- `organizationId` (required): Organization ID
-
-**Response:** Redirects to Stripe billing portal
 
 ### Widget Management
 
@@ -426,7 +419,7 @@ interface SupportTicket {
   user_id: string;
   subject: string;
   description: string;
-  category: 'technical' | 'billing' | 'general' | 'bug_report' | 'feature_request';
+  category: 'technical' | 'general' | 'bug_report' | 'feature_request';
   priority: 'low' | 'medium' | 'high' | 'urgent';
   status: 'open' | 'in_progress' | 'waiting_response' | 'resolved' | 'closed';
   user_email: string;

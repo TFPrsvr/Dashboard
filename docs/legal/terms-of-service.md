@@ -200,7 +200,5 @@ We are not liable for delays or failures due to circumstances beyond our reasona
 
 ---
 
-**Last Updated:** January 29, 2025  
-**Version:** 1.0
 
 For the most current version of these Terms of Service, please visit our website or contact our legal department.

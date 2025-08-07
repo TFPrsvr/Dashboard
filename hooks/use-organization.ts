@@ -11,6 +11,8 @@ export function useOrganization() {
   const { userId } = useAuth();
   const [organization, setOrganization] = useState<Organization | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -22,7 +24,6 @@ export function useOrganization() {
       }
 
       try {
-
         const { data: org, error: orgError } = await supabase
           .from("users")
           .select("organizations(*)")
@@ -31,14 +32,29 @@ export function useOrganization() {
 
         if (orgError) {
           console.error("Error fetching organization:", orgError);
+          
+          // If user doesn't exist
+          if (orgError.code === 'PGRST116') {
+            setNotFound(true);
+          } else {
+            setError(orgError.message || "Failed to load organization");
+          }
           return;
         }
 
-        if (mounted && org?.organizations) {
-          setOrganization(org.organizations as unknown as Organization);
+        if (mounted) {
+          if (org?.organizations) {
+            setOrganization(org.organizations as unknown as Organization);
+          } else {
+            // User exists but no organization
+            setNotFound(true);
+          }
         }
       } catch (error) {
         console.error("Error in useOrganization:", error);
+        if (mounted) {
+          setError("Failed to load organization");
+        }
       } finally {
         if (mounted) {
           setLoading(false);
@@ -53,5 +69,5 @@ export function useOrganization() {
     };
   }, [userId]);
 
-  return { organization, loading };
+  return { organization, loading, error, notFound };
 }
