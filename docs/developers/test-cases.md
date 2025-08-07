@@ -302,6 +302,4 @@
 
 ---
 
-*Test Cases Version: 1.0*
-*Last Updated: 2025-07-22*
 *Branch: feat-test-cases*

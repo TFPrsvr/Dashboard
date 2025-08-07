@@ -10,10 +10,10 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold text-primary">PassItOn</h1>
           <div className="flex gap-4">
             <Link href="/sign-in">
-              <Button variant="outline">Sign In</Button>
+              <Button variant="outline" className="bg-blue-600 text-white hover:bg-blue-700 border-blue-600">Sign In</Button>
             </Link>
             <Link href="/sign-up">
-              <Button>Get Started</Button>
+              <Button className="bg-blue-600 text-white hover:bg-blue-700">Get Started</Button>
             </Link>
           </div>
         </nav>
@@ -30,16 +30,16 @@ export default function HomePage() {
             donations, manage causes, and grow your impact.
           </p>
           <Link href="/sign-up">
-            <Button size="lg" className="text-lg px-8">
-              Start Free Trial
+            <Button size="lg" className="text-lg px-8 bg-blue-600 text-white hover:bg-blue-700">
+              Get Started
             </Button>
           </Link>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mt-20">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Palette className="w-8 h-8 text-primary" />
+          <div className="text-center p-6 border-2 border-blue-200 rounded-xl bg-white shadow-sm">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Palette className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Easy Customization</h3>
             <p className="text-gray-600">
@@ -47,9 +47,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-8 h-8 text-primary" />
+          <div className="text-center p-6 border-2 border-blue-200 rounded-xl bg-white shadow-sm">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Heart className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Track Donations</h3>
             <p className="text-gray-600">
@@ -57,9 +57,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-primary" />
+          <div className="text-center p-6 border-2 border-blue-200 rounded-xl bg-white shadow-sm">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Team Collaboration</h3>
             <p className="text-gray-600">

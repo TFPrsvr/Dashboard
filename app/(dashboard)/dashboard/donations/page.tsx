@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useOrganization } from "@/hooks/use-organization";
 import { supabase } from "@/lib/supabase/supabase-client";
-import { Download, TrendingUp, DollarSign, Users, Heart } from "lucide-react";
+import { Download, TrendingUp, DollarSign, Users, Heart, Search, Filter, Target, Calendar, BarChart3 } from "lucide-react";
 import {
   LineChart,
   Line,
@@ -19,7 +19,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { format, subDays, startOfDay } from "date-fns";
+import { format, subDays, startOfDay, subWeeks, subMonths, subYears } from "date-fns";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
 
 export default function DonationsPage() {
   const { organization, loading: orgLoading } = useOrganization();
@@ -32,26 +34,106 @@ export default function DonationsPage() {
   });
   const [chartData, setChartData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [widgetCount, setWidgetCount] = useState(0);
+  const [goalAmount, setGoalAmount] = useState(0);
+  
+  // Filter and search states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [amountFilter, setAmountFilter] = useState<"all" | "under100" | "100to500" | "over500">("all");
+  const [timeFilter, setTimeFilter] = useState<"daily" | "weekly" | "monthly" | "yearly">("monthly");
+  const [chartPeriod, setChartPeriod] = useState<"30" | "60" | "90" | "6months" | "1year">("30");
+
+  // Generate chart data based on selected period
+  const generateChartData = (donationsData: any[], period: string) => {
+    const periodConfig = {
+      "30": { days: 30, format: "MMM dd" },
+      "60": { days: 60, format: "MMM dd" },
+      "90": { days: 90, format: "MMM dd" },
+      "6months": { days: 180, format: "MMM yyyy" },
+      "1year": { days: 365, format: "MMM yyyy" }
+    };
+    
+    const config = periodConfig[period as keyof typeof periodConfig];
+    const newChartData = Array.from({ length: config.days }, (_, i) => {
+      const date = startOfDay(subDays(new Date(), config.days - 1 - i));
+      return {
+        date: format(date, config.format),
+        amount: 0,
+        count: 0,
+      };
+    });
+
+    donationsData.forEach((donation) => {
+      const donationDate = startOfDay(new Date(donation.created_at));
+      const dayIndex = newChartData.findIndex(
+        (day) => day.date === format(donationDate, config.format)
+      );
+      if (dayIndex !== -1) {
+        newChartData[dayIndex].amount += donation.amount;
+        newChartData[dayIndex].count += 1;
+      }
+    });
+
+    setChartData(newChartData);
+  };
+
+  // Filter donations based on search and amount filters
+  const filteredDonations = donations.filter((donation) => {
+    // Search filter
+    const searchMatch = searchTerm === "" || 
+      (donation.donor_name?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (donation.donor_email?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (donation.causes?.name?.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    // Amount filter
+    let amountMatch = true;
+    if (amountFilter !== "all") {
+      switch (amountFilter) {
+        case "under100":
+          amountMatch = donation.amount < 100;
+          break;
+        case "100to500":
+          amountMatch = donation.amount >= 100 && donation.amount <= 500;
+          break;
+        case "over500":
+          amountMatch = donation.amount > 500;
+          break;
+      }
+    }
+    
+    return searchMatch && amountMatch;
+  });
+
+  // Re-generate chart data when period changes
+  useEffect(() => {
+    if (donations.length > 0) {
+      generateChartData(donations, chartPeriod);
+    }
+  }, [chartPeriod, donations]);
 
   useEffect(() => {
     async function fetchDonations() {
       if (!organization) return;
 
       try {
-        // Get widget for this organization
-        const { data: widget } = await supabase
+        // Get all widgets for this organization
+        const { data: widgets } = await supabase
           .from("widgets")
-          .select("id")
-          .eq("organization_id", organization.id)
-          .single();
+          .select("id, goal_amount")
+          .eq("organization_id", organization.id);
 
-        if (!widget) return;
+        if (!widgets || widgets.length === 0) return;
 
-        // Fetch donations
+        setWidgetCount(widgets.length);
+        setGoalAmount(widgets.reduce((sum, w) => sum + (w.goal_amount || 0), 0));
+
+        const widgetIds = widgets.map(w => w.id);
+
+        // Fetch donations for all widgets
         const { data: donationsData } = await supabase
           .from("donations")
           .select("*, causes(name)")
-          .eq("widget_id", widget.id)
+          .in("widget_id", widgetIds)
           .eq("status", "succeeded")
           .order("created_at", { ascending: false });
 
@@ -72,28 +154,8 @@ export default function DonationsPage() {
             uniqueDonors: uniqueDonorEmails.size,
           });
 
-          // Prepare chart data for last 30 days
-          const last30Days = Array.from({ length: 30 }, (_, i) => {
-            const date = startOfDay(subDays(new Date(), 29 - i));
-            return {
-              date: format(date, "MMM dd"),
-              amount: 0,
-              count: 0,
-            };
-          });
-
-          donationsData.forEach((donation) => {
-            const donationDate = startOfDay(new Date(donation.created_at));
-            const dayIndex = last30Days.findIndex(
-              (day) => day.date === format(donationDate, "MMM dd")
-            );
-            if (dayIndex !== -1) {
-              last30Days[dayIndex].amount += donation.amount;
-              last30Days[dayIndex].count += 1;
-            }
-          });
-
-          setChartData(last30Days);
+          // Generate chart data based on selected period
+          generateChartData(donationsData, chartPeriod);
         }
       } catch (error) {
         console.error("Error fetching donations:", error);
@@ -107,27 +169,59 @@ export default function DonationsPage() {
     }
   }, [organization, orgLoading]);
 
+  // Initialize chart data even when no donations exist
+  useEffect(() => {
+    if (chartData.length === 0) {
+      generateChartData([], chartPeriod);
+    }
+  }, []);
+
   const exportDonations = () => {
+    // Use filtered donations for export
+    const dataToExport = filteredDonations.length > 0 ? filteredDonations : donations;
+    
     const csv = [
-      ["Date", "Donor Name", "Donor Email", "Amount", "Cause", "Status"],
-      ...donations.map((d) => [
-        format(new Date(d.created_at), "yyyy-MM-dd HH:mm"),
+      [
+        "Transaction ID", "Date", "Time", "Donor Name", "Donor Email", 
+        "Amount", "Currency", "Cause", "Status", "Payment Method",
+        "Organization", "Widget ID", "Donor Phone", "Donor Address",
+        "Tax Deductible", "Receipt Sent", "Campaign", "Source"
+      ],
+      ...dataToExport.map((d) => [
+        d.id,
+        format(new Date(d.created_at), "yyyy-MM-dd"),
+        format(new Date(d.created_at), "HH:mm:ss"),
         d.donor_name || "Anonymous",
         d.donor_email || "",
         d.amount,
+        "USD", // Assuming USD, could be dynamic
         d.causes?.name || "General",
         d.status,
+        d.payment_method || "Online",
+        organization?.display_name || organization?.name || "",
+        d.widget_id,
+        d.donor_phone || "",
+        d.donor_address || "",
+        "Yes", // Assuming tax deductible
+        d.receipt_sent ? "Yes" : "No",
+        d.campaign || "",
+        d.source || "Widget"
       ]),
     ]
-      .map((row) => row.join(","))
+      .map((row) => row.map(field => 
+        typeof field === 'string' && field.includes(',') 
+          ? `"${field.replace(/"/g, '""')}"` 
+          : field
+      ).join(","))
       .join("\n");
 
-    const blob = new Blob([csv], { type: "text/csv" });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `donations-${format(new Date(), "yyyy-MM-dd")}.csv`;
+    a.download = `donations-${organization?.name || 'organization'}-${format(new Date(), "yyyy-MM-dd")}.csv`;
     a.click();
+    window.URL.revokeObjectURL(url);
   };
 
   if (loading || orgLoading) {
@@ -192,76 +286,109 @@ export default function DonationsPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Average Donation
-            </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Goal (To Be Raised)</CardTitle>
+            <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${stats.averageDonation.toFixed(2)}
+              ${goalAmount.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+              })}
             </div>
+            <p className="text-xs text-muted-foreground">
+              Fundraising target amount
+            </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Unique Donors</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Connected Widgets</CardTitle>
+            <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.uniqueDonors}</div>
+            <div className="text-2xl font-bold">{widgetCount}</div>
+            <p className="text-xs text-muted-foreground">
+              Active donation widgets
+            </p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Donation Trends (Last 30 Days)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <AreaChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="amount"
-                  stroke="#0066cc"
-                  fill="#0066cc"
-                  fillOpacity={0.3}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Donation Count (Last 30 Days)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="count" fill="#0066cc" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Donations Table */}
+      {/* Search and Filter Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Donations</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Filter className="w-5 h-5" />
+            Search & Filter
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-4 items-end">
+            <div className="flex-1">
+              <Label htmlFor="search">Search Donations</Label>
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  id="search"
+                  type="text"
+                  placeholder="Search by donor name, email, or cause..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="amount">Amount Range</Label>
+              <select
+                id="amount"
+                value={amountFilter}
+                onChange={(e) => setAmountFilter(e.target.value as typeof amountFilter)}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Amounts</option>
+                <option value="under100">Under $100</option>
+                <option value="100to500">$100 - $500</option>
+                <option value="over500">Over $500</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="time">Time Period</Label>
+              <select
+                id="time"
+                value={timeFilter}
+                onChange={(e) => setTimeFilter(e.target.value as typeof timeFilter)}
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+            {(searchTerm || amountFilter !== "all") && (
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm("");
+                  setAmountFilter("all");
+                }}
+              >
+                Clear Filters
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Donations Table */}
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            Donations ({filteredDonations.length} 
+            {filteredDonations.length !== donations.length && ` of ${donations.length}`})
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -276,7 +403,27 @@ export default function DonationsPage() {
                 </tr>
               </thead>
               <tbody>
-                {donations.slice(0, 10).map((donation) => (
+                {filteredDonations.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-8 text-gray-500">
+                      <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                      <p>No donations match your current filters.</p>
+                      {(searchTerm || amountFilter !== "all") && (
+                        <Button 
+                          variant="outline" 
+                          onClick={() => {
+                            setSearchTerm("");
+                            setAmountFilter("all");
+                          }}
+                          className="mt-2"
+                        >
+                          Clear Filters
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ) : (
+                  filteredDonations.slice(0, 20).map((donation) => (
                   <tr key={donation.id} className="border-b">
                     <td className="p-2">
                       {format(new Date(donation.created_at), "MMM dd, yyyy")}
@@ -303,12 +450,87 @@ export default function DonationsPage() {
                       </span>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
+            {filteredDonations.length > 20 && (
+              <div className="text-center py-4 text-gray-600">
+                Showing 20 of {filteredDonations.length} donations. Use filters to narrow results.
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
+
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="rounded-xl">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Donation Trends</CardTitle>
+            <select
+              value={chartPeriod}
+              onChange={(e) => setChartPeriod(e.target.value as typeof chartPeriod)}
+              className="text-sm rounded-md border border-input bg-background px-3 py-1"
+            >
+              <option value="30">Last 30 Days</option>
+              <option value="60">Last 60 Days</option>
+              <option value="90">Last 90 Days</option>
+              <option value="6months">Last 6 Months</option>
+              <option value="1year">Last Year</option>
+            </select>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip 
+                  formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="amount"
+                  stroke="#0066cc"
+                  fill="#0066cc"
+                  fillOpacity={0.3}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-xl">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Donation Count</CardTitle>
+            <select
+              value={chartPeriod}
+              onChange={(e) => setChartPeriod(e.target.value as typeof chartPeriod)}
+              className="text-sm rounded-md border border-input bg-background px-3 py-1"
+            >
+              <option value="30">Last 30 Days</option>
+              <option value="60">Last 60 Days</option>
+              <option value="90">Last 90 Days</option>
+              <option value="6months">Last 6 Months</option>
+              <option value="1year">Last Year</option>
+            </select>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip 
+                  formatter={(value: number) => [value, 'Donations']}
+                />
+                <Bar dataKey="count" fill="#0066cc" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

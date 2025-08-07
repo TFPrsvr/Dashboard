@@ -588,7 +588,6 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 ```
 1. Organization ID: org_abc123xyz
 2. Website URL: https://yourwebsite.com
-3. Browser & Version: Chrome 91.0.4472.124
 4. Device: MacBook Pro / iPhone 12
 5. Problem Description: Detailed explanation
 6. Steps Already Tried: List troubleshooting attempts

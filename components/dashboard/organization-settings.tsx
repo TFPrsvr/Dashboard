@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useAuth } from "@clerk/nextjs";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
@@ -10,7 +9,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { Building, CreditCard, ExternalLink, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useStripeConnect } from "@/hooks/use-stripe-connect";
-import { Organization } from "@/types/organization.types";
 import { useToast } from "@/components/ui/use-toast";
 
 interface OrganizationSettingsProps {
@@ -18,11 +16,9 @@ interface OrganizationSettingsProps {
 }
 
 export function OrganizationSettings({ organizationId }: OrganizationSettingsProps) {
-  const { userId } = useAuth();
   const { toast } = useToast();
-  const { createConnectAccount, checkStatus, openDashboard, loading: stripeLoading } = useStripeConnect();
+  const { createConnectAccount, checkStatus, loading: stripeLoading } = useStripeConnect();
   
-  const [organization, setOrganization] = useState<Organization | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [stripeStatus, setStripeStatus] = useState<{
@@ -50,15 +46,8 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     termsOfServiceUrl: "",
   });
 
-  useEffect(() => {
-    fetchOrganization();
-    fetchStripeStatus();
-    fetchSubscription();
-  }, [organizationId]);
-
-  const fetchOrganization = async () => {
+  const fetchOrganization = useCallback(async () => {
     try {
-      // Using imported supabase client
       const { data, error } = await supabase
         .from("organizations")
         .select("*")
@@ -67,7 +56,6 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
 
       if (error) throw error;
 
-      setOrganization(data);
       setFormData({
         legalName: data.legal_name || data.name || "",
         displayName: data.display_name || data.name || "",
@@ -84,9 +72,9 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     } finally {
       setLoading(false);
     }
-  };
+  }, [organizationId, toast]);
 
-  const fetchStripeStatus = async () => {
+  const fetchStripeStatus = useCallback(async () => {
     try {
       const status = await checkStatus(organizationId);
       setStripeStatus({
@@ -103,9 +91,9 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
         requiresAction: false,
       });
     }
-  };
+  }, [organizationId, checkStatus]);
 
-  const fetchSubscription = async () => {
+  const fetchSubscription = useCallback(async () => {
     try {
       const response = await fetch(`/api/subscription/${organizationId}`);
       if (response.ok) {
@@ -115,7 +103,13 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     } catch (error) {
       console.error('Error fetching subscription:', error);
     }
-  };
+  }, [organizationId]);
+
+  useEffect(() => {
+    fetchOrganization();
+    fetchStripeStatus();
+    fetchSubscription();
+  }, [fetchOrganization, fetchStripeStatus, fetchSubscription]);
 
   const handleUpgrade = async (plan: 'professional' | 'enterprise') => {
     try {
@@ -153,7 +147,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
         await fetchSubscription();
         toast({
           title: 'Success',
-          description: 'Subscription will be canceled at the end of the billing period',
+          description: 'Subscription will be canceled at the end of the current period',
         });
       } else {
         throw new Error('Failed to cancel subscription');
@@ -171,7 +165,6 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
   const handleSaveProfile = async () => {
     setSaving(true);
     try {
-      // Using imported supabase client
       const { error } = await supabase
         .from("organizations")
         .update({
@@ -238,7 +231,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
             <Building className="w-4 h-4 mr-2" />
             Profile
           </TabsTrigger>
-          <TabsTrigger value="billing">
+          <TabsTrigger value="subscription">
             <DollarSign className="w-4 h-4 mr-2" />
             Billing
           </TabsTrigger>
@@ -321,7 +314,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
           </Card>
         </TabsContent>
 
-        <TabsContent value="billing">
+        <TabsContent value="subscription">
           <Card>
             <CardHeader>
               <CardTitle>Subscription & Billing</CardTitle>
@@ -453,7 +446,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
                       </Button>
                     )}
                     <Button 
-                      onClick={() => window.open('/api/billing/portal', '_blank')}
+                      onClick={() => toast({ title: 'Feature Disabled', description: 'Billing portal has been removed' })}
                       variant="outline"
                     >
                       Manage Billing

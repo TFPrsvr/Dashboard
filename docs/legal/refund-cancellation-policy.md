@@ -1,7 +1,6 @@
 # Refund and Cancellation Policy
 
 **Effective Date:** January 29, 2025  
-**Last Updated:** January 29, 2025
 
 ## Overview
 
@@ -435,9 +434,7 @@ This Policy may be updated from time to time to reflect changes in our services,
 ---
 
 **Document Information:**
-- **Version:** 1.0
 - **Effective Date:** January 29, 2025
-- **Last Updated:** January 29, 2025
 - **Review Schedule:** Annually or as needed
 - **Approved By:** Finance Department and Legal Counsel
 - **Distribution:** Public document available to all customers

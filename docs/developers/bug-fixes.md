@@ -26,7 +26,6 @@ const { user } = useUser();
 ```
 
 **Files Fixed**:
-- `app/api/billing/portal/route.ts`
 - `app/(dashboard)/dashboard/support/page.tsx`
 - All API routes using auth
 
@@ -39,11 +38,9 @@ const { user } = useUser();
 **Solution**: Updated API version to match installed Stripe package:
 ```typescript
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16', // Changed from '2024-06-20'
 });
 ```
 
-**Files Fixed**: `app/api/billing/portal/route.ts`
 
 ### 3. Team Member Invitation System Failure
 

@@ -28,13 +28,24 @@ export async function GET(req: Request) {
 
     if (userError) {
       console.log("API: User lookup error:", userError);
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      
+      // If user doesn't exist in database (first time login)
+      if (userError.code === 'PGRST116') {
+        return NextResponse.json({ error: "User account not set up. Please complete onboarding." }, { status: 404 });
+      }
+      
+      // If other database error
+      return NextResponse.json({ error: "Database error while verifying user" }, { status: 503 });
     }
 
-    // Temporarily bypass super admin check for testing
-    if (userData?.role !== "super_admin") {
-      console.log("API: User role check failed. Role:", userData?.role, "- bypassing for testing");
-      // return NextResponse.json({ error: "Forbidden - requires super admin" }, { status: 403 });
+    // Check super admin role (with fallback for missing role)
+    const userRole = userData?.role || 'editor';
+    if (userRole !== "super_admin") {
+      console.log("API: User role check failed. Role:", userRole);
+      return NextResponse.json({ 
+        error: "Forbidden - Super Admin access required",
+        currentRole: userRole 
+      }, { status: 403 });
     }
 
     // Fetch all organizations
@@ -47,14 +58,35 @@ export async function GET(req: Request) {
 
     if (error) {
       console.log("API: Organizations fetch error:", error);
-      throw error;
+      return NextResponse.json({ 
+        error: "Database error while fetching organizations",
+        details: error.message 
+      }, { status: 503 });
+    }
+
+    // If no organizations found
+    if (!organizations || organizations.length === 0) {
+      return NextResponse.json({ 
+        message: "No organizations found",
+        data: [] 
+      });
     }
 
     return NextResponse.json(organizations);
   } catch (error) {
     console.error("API: Unhandled error:", error);
+    
+    // If environment configuration error
+    if (error instanceof Error && error.message?.includes('environment')) {
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 503 }
+      );
+    }
+    
+    // If any other unexpected error
     return NextResponse.json(
-      { error: "Failed to fetch organizations", details: error instanceof Error ? error.message : String(error) },
+      { error: "Internal server error", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

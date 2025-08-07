@@ -192,7 +192,6 @@ psql -h localhost -p 54322 -U postgres -d postgres < backup_file.sql
 - `GET /api/subscription/[orgId]` - Get subscription status
 - `POST /api/subscription/upgrade` - Create checkout session
 - `POST /api/subscription/cancel` - Cancel subscription
-- `GET /api/billing/portal` - Access billing portal
 
 ### Support
 - `POST /api/support/notify` - Send support notifications
@@ -289,7 +288,6 @@ Email templates are defined in `/app/api/support/notify/route.ts`:
 
 - `general` - General questions
 - `technical` - Technical issues
-- `billing` - Billing questions
 - `bug_report` - Bug reports
 - `feature_request` - Feature requests
 

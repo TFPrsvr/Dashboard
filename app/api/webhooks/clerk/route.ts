@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = 'force-dynamic';
+
 const webhookSecret = process.env.CLERK_WEBHOOK_SECRET!;
 
 // Create Supabase client with service role key for admin operations

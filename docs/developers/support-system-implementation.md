@@ -71,7 +71,7 @@ interface SupportTicket {
   user_id: string;
   subject: string;
   description: string;
-  category: 'general' | 'technical' | 'billing' | 'bug_report' | 'feature_request';
+  category: 'general' | 'technical' | 'bug_report' | 'feature_request';
   priority: 'low' | 'medium' | 'high' | 'urgent';
   status: 'open' | 'in_progress' | 'waiting_response' | 'resolved' | 'closed';
   user_email?: string;
@@ -764,7 +764,7 @@ function sanitizeSupportTicketInput(input: any) {
   return {
     subject: input.subject?.trim().substring(0, 200),
     description: input.description?.trim().substring(0, 5000),
-    category: ['general', 'technical', 'billing', 'bug_report', 'feature_request']
+    category: ['general', 'technical', 'bug_report', 'feature_request']
       .includes(input.category) ? input.category : 'general',
     priority: ['low', 'medium', 'high', 'urgent']
       .includes(input.priority) ? input.priority : 'medium'
