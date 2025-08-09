@@ -1,0 +1,126 @@
+# PassItOn Widget Routing Configuration
+
+# Main admin configuration page
+passiton_widget.admin_config:
+  path: '/admin/config/services/passiton-widget'
+  defaults:
+    _form: 'Drupal\passiton_widget\Form\ConfigurationForm'
+    _title: 'PassItOn Widget Configuration'
+  requirements:
+    _permission: 'administer passiton widgets'
+
+# Widget management page
+passiton_widget.admin_widgets:
+  path: '/admin/config/services/passiton-widget/widgets'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\WidgetController::widgetList'
+    _title: 'Manage Widgets'
+  requirements:
+    _permission: 'administer passiton widgets'
+
+# Add new widget page
+passiton_widget.admin_widgets_add:
+  path: '/admin/config/services/passiton-widget/widgets/add'
+  defaults:
+    _form: 'Drupal\passiton_widget\Form\WidgetForm'
+    _title: 'Add Widget'
+  requirements:
+    _permission: 'create passiton widgets'
+
+# Edit widget page
+passiton_widget.admin_widgets_edit:
+  path: '/admin/config/services/passiton-widget/widgets/{widget_id}/edit'
+  defaults:
+    _form: 'Drupal\passiton_widget\Form\WidgetForm'
+    _title: 'Edit Widget'
+  requirements:
+    _permission: 'edit any passiton widgets'
+  options:
+    parameters:
+      widget_id:
+        type: string
+
+# Delete widget page
+passiton_widget.admin_widgets_delete:
+  path: '/admin/config/services/passiton-widget/widgets/{widget_id}/delete'
+  defaults:
+    _form: 'Drupal\passiton_widget\Form\WidgetDeleteForm'
+    _title: 'Delete Widget'
+  requirements:
+    _permission: 'delete any passiton widgets'
+  options:
+    parameters:
+      widget_id:
+        type: string
+
+# Analytics dashboard
+passiton_widget.admin_analytics:
+  path: '/admin/reports/passiton-widget'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\AnalyticsController::dashboard'
+    _title: 'PassItOn Analytics'
+  requirements:
+    _permission: 'view passiton analytics'
+
+# Detailed analytics page
+passiton_widget.admin_analytics_detailed:
+  path: '/admin/reports/passiton-widget/detailed'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\AnalyticsController::detailed'
+    _title: 'Detailed Analytics'
+  requirements:
+    _permission: 'view detailed passiton analytics'
+
+# API test endpoint
+passiton_widget.api_test:
+  path: '/admin/config/services/passiton-widget/test-connection'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\ApiController::testConnection'
+  requirements:
+    _permission: 'administer passiton widgets'
+  methods: [POST]
+
+# AJAX callback for widget preview
+passiton_widget.ajax_preview:
+  path: '/passiton-widget/ajax/preview'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\AjaxController::preview'
+  requirements:
+    _permission: 'create passiton widgets'
+  methods: [POST]
+
+# Public endpoint for analytics tracking
+passiton_widget.track:
+  path: '/passiton-widget/track'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\TrackingController::track'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+
+# Widget configuration export
+passiton_widget.export_config:
+  path: '/admin/config/services/passiton-widget/export'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\ExportController::exportConfig'
+    _title: 'Export Configuration'
+  requirements:
+    _permission: 'administer passiton widgets'
+
+# Widget configuration import
+passiton_widget.import_config:
+  path: '/admin/config/services/passiton-widget/import'
+  defaults:
+    _form: 'Drupal\passiton_widget\Form\ImportConfigForm'
+    _title: 'Import Configuration'
+  requirements:
+    _permission: 'administer passiton widgets'
+
+# Help page
+passiton_widget.help:
+  path: '/admin/help/passiton-widget'
+  defaults:
+    _controller: 'Drupal\passiton_widget\Controller\HelpController::content'
+    _title: 'PassItOn Widget Help'
+  requirements:
+    _permission: 'access administration pages'

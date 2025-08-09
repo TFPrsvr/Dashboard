@@ -1,0 +1,65 @@
+# PassItOn Widget Libraries
+
+# Main widget library
+widget:
+  version: 1.x
+  js:
+    https://cdn.passiton.com/widget/v2/passiton-widget.min.js:
+      type: external
+      attributes:
+        async: true
+        defer: true
+        crossorigin: anonymous
+    js/passiton-widget-drupal.js: {}
+  css:
+    theme:
+      css/passiton-widget.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+# Admin interface library
+admin:
+  version: 1.x
+  js:
+    js/passiton-admin.js: {}
+  css:
+    theme:
+      css/passiton-admin.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+
+# Analytics library
+analytics:
+  version: 1.x
+  js:
+    js/passiton-analytics.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - passiton_widget/widget
+
+# Block configuration library
+block_config:
+  version: 1.x
+  js:
+    js/passiton-block-config.js: {}
+  css:
+    theme:
+      css/passiton-block-config.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+# Field widget library
+field_widget:
+  version: 1.x
+  js:
+    js/passiton-field-widget.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - passiton_widget/widget

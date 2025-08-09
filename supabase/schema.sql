@@ -11,8 +11,6 @@ CREATE TABLE organizations (
   description TEXT,
   logo_url TEXT,
   stripe_customer_id TEXT,
-  subscription_status TEXT DEFAULT 'trial',
-  subscription_plan TEXT DEFAULT 'free',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );

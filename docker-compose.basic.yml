@@ -1,4 +1,5 @@
-# Basic Environment Override (Simple setup for testing)
+# Basic Environment Override
+# Simple production-like build without optimizations
 # Usage: docker-compose -f docker-compose.base.yml -f docker-compose.basic.yml up
 
 services:

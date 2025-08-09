@@ -224,7 +224,6 @@ export interface Database {
           email: string | null
           phone: string | null
           address: string | null
-          subscription_status: string
           stripe_customer_id: string | null
           stripe_account_id: string | null
           created_at: string
@@ -240,7 +239,6 @@ export interface Database {
           email?: string | null
           phone?: string | null
           address?: string | null
-          subscription_status?: string
           stripe_customer_id?: string | null
           stripe_account_id?: string | null
           created_at?: string
@@ -256,7 +254,6 @@ export interface Database {
           email?: string | null
           phone?: string | null
           address?: string | null
-          subscription_status?: string
           stripe_customer_id?: string | null
           stripe_account_id?: string | null
           created_at?: string

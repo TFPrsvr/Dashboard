@@ -1,0 +1,412 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for PassItOn Widget module.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_requirements().
+ */
+function passiton_widget_requirements($phase) {
+  $requirements = [];
+  
+  if ($phase == 'runtime') {
+    $config = \Drupal::config('passiton_widget.settings');
+    
+    // Check if API credentials are configured
+    $organization_id = $config->get('organization_id');
+    $api_key = $config->get('api_key');
+    
+    if (empty($organization_id) || empty($api_key)) {
+      $requirements['passiton_widget_config'] = [
+        'title' => t('PassItOn Widget Configuration'),
+        'description' => t('PassItOn Widget requires API credentials to be configured. Visit the <a href=":config_url">configuration page</a> to set up your organization ID and API key.', [
+          ':config_url' => \Drupal\Core\Url::fromRoute('passiton_widget.admin_config')->toString(),
+        ]),
+        'severity' => REQUIREMENT_WARNING,
+        'value' => t('Not configured'),
+      ];
+    }
+    else {
+      $requirements['passiton_widget_config'] = [
+        'title' => t('PassItOn Widget Configuration'),
+        'description' => t('PassItOn Widget is properly configured with organization ID: @org_id', [
+          '@org_id' => $organization_id,
+        ]),
+        'severity' => REQUIREMENT_OK,
+        'value' => t('Configured'),
+      ];
+    }
+    
+    // Check PHP version
+    if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+      $requirements['passiton_widget_php'] = [
+        'title' => t('PassItOn Widget PHP Version'),
+        'description' => t('PassItOn Widget requires PHP 8.0 or higher. Current version: @version', [
+          '@version' => PHP_VERSION,
+        ]),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => PHP_VERSION,
+      ];
+    }
+    
+    // Check external connectivity
+    if (function_exists('curl_init')) {
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, 'https://api.passiton.com/health');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+      curl_setopt($ch, CURLOPT_NOBODY, 1);
+      
+      $result = curl_exec($ch);
+      $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+      curl_close($ch);
+      
+      if ($http_code !== 200) {
+        $requirements['passiton_widget_connectivity'] = [
+          'title' => t('PassItOn API Connectivity'),
+          'description' => t('Unable to connect to PassItOn API. This may affect widget functionality.'),
+          'severity' => REQUIREMENT_WARNING,
+          'value' => t('Connection failed (HTTP @code)', ['@code' => $http_code]),
+        ];
+      }
+    }
+  }
+  
+  return $requirements;
+}
+
+/**
+ * Implements hook_install().
+ */
+function passiton_widget_install() {
+  // Set default configuration values
+  $config = \Drupal::configFactory()->getEditable('passiton_widget.settings');
+  $config->set('environment', 'production')
+    ->set('analytics_enabled', TRUE)
+    ->set('logging_enabled', FALSE)
+    ->set('load_global_assets', TRUE)
+    ->set('auto_insert_weight', 10)
+    ->save();
+  
+  // Create custom fields for nodes
+  _passiton_widget_create_fields();
+  
+  // Create directory for custom templates
+  $file_system = \Drupal::service('file_system');
+  $template_dir = 'public://passiton_widget_templates';
+  $file_system->prepareDirectory($template_dir, $file_system::CREATE_DIRECTORY);
+  
+  // Log successful installation
+  \Drupal::logger('passiton_widget')->info('PassItOn Widget module installed successfully.');
+  
+  // Display installation message
+  \Drupal::messenger()->addMessage(t('PassItOn Widget module installed successfully. Configure your API credentials at <a href=":config_url">Administration > Configuration > Web Services > PassItOn Widget</a>.', [
+    ':config_url' => \Drupal\Core\Url::fromRoute('passiton_widget.admin_config')->toString(),
+  ]));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function passiton_widget_uninstall() {
+  // Remove configuration
+  \Drupal::configFactory()->getEditable('passiton_widget.settings')->delete();
+  
+  // Remove custom fields
+  _passiton_widget_remove_fields();
+  
+  // Remove custom template directory
+  $file_system = \Drupal::service('file_system');
+  $template_dir = 'public://passiton_widget_templates';
+  if (is_dir($template_dir)) {
+    $file_system->deleteRecursive($template_dir);
+  }
+  
+  // Clear caches
+  drupal_flush_all_caches();
+  
+  \Drupal::logger('passiton_widget')->info('PassItOn Widget module uninstalled successfully.');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function passiton_widget_schema() {
+  $schema = [];
+  
+  // Analytics tracking table
+  $schema['passiton_widget_analytics'] = [
+    'description' => 'Stores analytics data for PassItOn widgets.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique analytics record ID.',
+      ],
+      'widget_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Widget identifier.',
+      ],
+      'organization_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Organization identifier.',
+      ],
+      'event_type' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'description' => 'Type of event (view, click, donation, etc.).',
+      ],
+      'node_id' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'description' => 'Associated node ID if applicable.',
+      ],
+      'user_id' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'description' => 'User ID if logged in.',
+      ],
+      'session_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'description' => 'Session identifier.',
+      ],
+      'ip_address' => [
+        'type' => 'varchar',
+        'length' => 45,
+        'description' => 'IP address of the user.',
+      ],
+      'user_agent' => [
+        'type' => 'text',
+        'description' => 'User agent string.',
+      ],
+      'referrer' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Referrer URL.',
+      ],
+      'metadata' => [
+        'type' => 'text',
+        'description' => 'Additional event metadata as JSON.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Unix timestamp when the event occurred.',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'widget_id' => ['widget_id'],
+      'organization_id' => ['organization_id'],
+      'event_type' => ['event_type'],
+      'node_id' => ['node_id'],
+      'created' => ['created'],
+    ],
+  ];
+  
+  // Widget configuration table
+  $schema['passiton_widget_configs'] = [
+    'description' => 'Stores individual widget configurations.',
+    'fields' => [
+      'config_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Configuration identifier.',
+      ],
+      'widget_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Widget identifier.',
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Human-readable name for the configuration.',
+      ],
+      'configuration' => [
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE,
+        'description' => 'Widget configuration as JSON.',
+      ],
+      'status' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Configuration status (1 = active, 0 = inactive).',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Unix timestamp when the configuration was created.',
+      ],
+      'updated' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Unix timestamp when the configuration was last updated.',
+      ],
+    ],
+    'primary key' => ['config_id'],
+    'indexes' => [
+      'widget_id' => ['widget_id'],
+      'status' => ['status'],
+    ],
+  ];
+  
+  return $schema;
+}
+
+/**
+ * Create custom fields for nodes.
+ */
+function _passiton_widget_create_fields() {
+  // Field for enabling widget on individual nodes
+  if (!FieldStorageConfig::loadByName('node', 'passiton_enable_widget')) {
+    FieldStorageConfig::create([
+      'field_name' => 'passiton_enable_widget',
+      'entity_type' => 'node',
+      'type' => 'boolean',
+    ])->save();
+  }
+  
+  // Field for widget placement
+  if (!FieldStorageConfig::loadByName('node', 'passiton_widget_placement')) {
+    FieldStorageConfig::create([
+      'field_name' => 'passiton_widget_placement',
+      'entity_type' => 'node',
+      'type' => 'list_string',
+      'settings' => [
+        'allowed_values' => [
+          'top' => 'Top of content',
+          'bottom' => 'Bottom of content',
+          'sidebar' => 'Sidebar',
+          'custom' => 'Custom position',
+        ],
+      ],
+    ])->save();
+  }
+  
+  // Field for custom widget configuration
+  if (!FieldStorageConfig::loadByName('node', 'passiton_widget_config')) {
+    FieldStorageConfig::create([
+      'field_name' => 'passiton_widget_config',
+      'entity_type' => 'node',
+      'type' => 'text_long',
+    ])->save();
+  }
+  
+  // Add fields to article content type by default
+  $node_types = ['article'];
+  foreach ($node_types as $type) {
+    if (!\Drupal::entityTypeManager()->getStorage('node_type')->load($type)) {
+      continue;
+    }
+    
+    // Enable widget field
+    if (!FieldConfig::loadByName('node', $type, 'passiton_enable_widget')) {
+      FieldConfig::create([
+        'field_name' => 'passiton_enable_widget',
+        'entity_type' => 'node',
+        'bundle' => $type,
+        'label' => 'Enable PassItOn Widget',
+        'description' => 'Check to enable the donation widget for this content.',
+        'required' => FALSE,
+        'default_value' => [['value' => 0]],
+      ])->save();
+    }
+    
+    // Widget placement field
+    if (!FieldConfig::loadByName('node', $type, 'passiton_widget_placement')) {
+      FieldConfig::create([
+        'field_name' => 'passiton_widget_placement',
+        'entity_type' => 'node',
+        'bundle' => $type,
+        'label' => 'Widget Placement',
+        'description' => 'Choose where to display the donation widget.',
+        'required' => FALSE,
+        'default_value' => [['value' => 'bottom']],
+      ])->save();
+    }
+    
+    // Widget configuration field
+    if (!FieldConfig::loadByName('node', $type, 'passiton_widget_config')) {
+      FieldConfig::create([
+        'field_name' => 'passiton_widget_config',
+        'entity_type' => 'node',
+        'bundle' => $type,
+        'label' => 'Custom Widget Configuration',
+        'description' => 'Advanced: Custom JSON configuration for this widget instance.',
+        'required' => FALSE,
+      ])->save();
+    }
+  }
+}
+
+/**
+ * Remove custom fields.
+ */
+function _passiton_widget_remove_fields() {
+  $fields = [
+    'passiton_enable_widget',
+    'passiton_widget_placement',
+    'passiton_widget_config',
+  ];
+  
+  foreach ($fields as $field_name) {
+    // Remove field instances
+    $field_configs = \Drupal::entityTypeManager()
+      ->getStorage('field_config')
+      ->loadByProperties(['field_name' => $field_name]);
+    
+    foreach ($field_configs as $field_config) {
+      $field_config->delete();
+    }
+    
+    // Remove field storage
+    if ($field_storage = FieldStorageConfig::loadByName('node', $field_name)) {
+      $field_storage->delete();
+    }
+  }
+}
+
+/**
+ * Update 8001: Add analytics tracking table.
+ */
+function passiton_widget_update_8001() {
+  $schema = passiton_widget_schema();
+  
+  if (!Database::getConnection()->schema()->tableExists('passiton_widget_analytics')) {
+    Database::getConnection()->schema()->createTable('passiton_widget_analytics', $schema['passiton_widget_analytics']);
+  }
+  
+  return t('Added analytics tracking table.');
+}
+
+/**
+ * Update 8002: Add widget configurations table.
+ */
+function passiton_widget_update_8002() {
+  $schema = passiton_widget_schema();
+  
+  if (!Database::getConnection()->schema()->tableExists('passiton_widget_configs')) {
+    Database::getConnection()->schema()->createTable('passiton_widget_configs', $schema['passiton_widget_configs']);
+  }
+  
+  return t('Added widget configurations table.');
+}

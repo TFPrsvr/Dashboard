@@ -1,12 +1,25 @@
-# Base Docker Compose Configuration
-# Contains shared configuration for all environments
-# Use with environment-specific override files
+# Default Docker Compose - Development Mode
+# This is the main docker-compose file for local development
+# For production, use: docker-compose -f docker-compose.base.yml -f docker-compose.prod.yml up
+
+version: '3.8'
 
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
+      target: development
+      args:
+        - NODE_ENV=development
+        - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+        - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+        - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+        - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+        - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+        - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
     ports:
       - "3000:3000"
     environment:
@@ -29,8 +42,18 @@ services:
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       
       # Application Settings
+      - NODE_ENV=development
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
       - NEXT_TELEMETRY_DISABLED=1
       
+    volumes:
+      # Enable hot reload with volume mounts
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+    stdin_open: true
+    tty: true
     networks:
       - passiton-network
 

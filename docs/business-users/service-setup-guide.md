@@ -423,13 +423,4 @@ The tables that will be created:
 
 ### Getting Help
 
-**Service-Specific Support:**
-- **Clerk**: [clerk.com/support](https://clerk.com/support)
-- **Stripe**: [stripe.com/support](https://stripe.com/support)  
-- **Supabase**: [supabase.com/support](https://supabase.com/support)
-
-**PassItOn Support:**
-- **Email**: support@passiton.com
-- **Live Chat**: Available in your admin dashboard
-
 **📞 Need Help?** Don't hesitate to reach out - we're here to help you succeed!

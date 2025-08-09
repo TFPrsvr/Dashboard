@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS support_tickets (
     user_id TEXT NOT NULL, -- Clerk user ID
     subject TEXT NOT NULL,
     description TEXT NOT NULL,
-    category TEXT NOT NULL CHECK (category IN ('technical', 'billing', 'general', 'bug_report', 'feature_request')),
+    category TEXT NOT NULL CHECK (category IN ('technical', 'general', 'bug_report', 'feature_request')),
     priority TEXT NOT NULL DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high', 'urgent')),
     status TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'in_progress', 'waiting_response', 'resolved', 'closed')),
     user_email TEXT NOT NULL,
