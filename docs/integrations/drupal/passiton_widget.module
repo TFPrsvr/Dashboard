@@ -1,0 +1,299 @@
+<?php
+
+/**
+ * @file
+ * PassItOn Donation Widget module for Drupal.
+ *
+ * Provides donation widget integration with advanced placement options,
+ * analytics tracking, and customization features for Drupal sites.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\Element;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function passiton_widget_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.passiton_widget':
+      $output = '<h2>' . t('About PassItOn Widget') . '</h2>';
+      $output .= '<p>' . t('The PassItOn Widget module integrates donation functionality into your Drupal site, allowing visitors to make donations to causes directly from your content pages.') . '</p>';
+      
+      $output .= '<h3>' . t('Key Features') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('Easy widget placement via blocks, fields, or shortcodes') . '</li>';
+      $output .= '<li>' . t('Customizable widget appearance and behavior') . '</li>';
+      $output .= '<li>' . t('Advanced analytics and reporting') . '</li>';
+      $output .= '<li>' . t('Multiple placement strategies and targeting') . '</li>';
+      $output .= '<li>' . t('Integration with Drupal user permissions') . '</li>';
+      $output .= '</ul>';
+      
+      $output .= '<h3>' . t('Getting Started') . '</h3>';
+      $output .= '<p>' . t('Configure your PassItOn API credentials at <a href=":config_url">Administration > Configuration > Web Services > PassItOn Widget</a>.', [
+        ':config_url' => Url::fromRoute('passiton_widget.admin_config')->toString(),
+      ]) . '</p>';
+      
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function passiton_widget_theme($existing, $type, $theme, $path) {
+  return [
+    'passiton_widget' => [
+      'variables' => [
+        'widget_id' => NULL,
+        'organization_id' => NULL,
+        'config' => [],
+        'attributes' => [],
+      ],
+      'template' => 'passiton-widget',
+    ],
+    'passiton_widget_block' => [
+      'variables' => [
+        'content' => NULL,
+        'widget_config' => [],
+      ],
+      'template' => 'passiton-widget-block',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function passiton_widget_page_attachments(array &$attachments) {
+  $config = \Drupal::config('passiton_widget.settings');
+  
+  if ($config->get('load_global_assets')) {
+    $attachments['#attached']['library'][] = 'passiton_widget/widget';
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function passiton_widget_node_view(array &$build, NodeInterface $node, $view_mode, $langcode) {
+  $config = \Drupal::config('passiton_widget.settings');
+  $node_types = $config->get('auto_insert_node_types') ?? [];
+  
+  // Auto-insert widget on specified node types
+  if (in_array($node->getType(), $node_types) && $view_mode === 'full') {
+    $widget_config = [
+      'organization_id' => $config->get('organization_id'),
+      'widget_id' => $config->get('default_widget_id'),
+      'placement' => 'auto_content',
+      'context' => [
+        'node_id' => $node->id(),
+        'node_type' => $node->getType(),
+        'node_title' => $node->getTitle(),
+      ],
+    ];
+    
+    $build['passiton_widget'] = [
+      '#theme' => 'passiton_widget',
+      '#widget_id' => $widget_config['widget_id'],
+      '#organization_id' => $widget_config['organization_id'],
+      '#config' => $widget_config,
+      '#weight' => $config->get('auto_insert_weight') ?? 10,
+      '#cache' => [
+        'contexts' => ['user.permissions', 'url.path'],
+        'tags' => ['config:passiton_widget.settings'],
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function passiton_widget_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add widget configuration to node edit forms
+  if (strpos($form_id, '_node_form') !== FALSE) {
+    $config = \Drupal::config('passiton_widget.settings');
+    $enabled_types = $config->get('widget_node_types') ?? [];
+    
+    if (isset($form['#entity']) && in_array($form['#entity']->getType(), $enabled_types)) {
+      $form['passiton_widget'] = [
+        '#type' => 'details',
+        '#title' => t('PassItOn Widget Settings'),
+        '#group' => 'advanced',
+        '#weight' => 100,
+        '#access' => \Drupal::currentUser()->hasPermission('create passiton widgets'),
+      ];
+      
+      $form['passiton_widget']['enable_widget'] = [
+        '#type' => 'checkbox',
+        '#title' => t('Enable donation widget for this content'),
+        '#default_value' => $form['#entity']->get('passiton_enable_widget')->value ?? FALSE,
+      ];
+      
+      $form['passiton_widget']['widget_placement'] = [
+        '#type' => 'select',
+        '#title' => t('Widget placement'),
+        '#options' => [
+          'top' => t('Top of content'),
+          'bottom' => t('Bottom of content'),
+          'sidebar' => t('Sidebar'),
+          'custom' => t('Custom position'),
+        ],
+        '#default_value' => $form['#entity']->get('passiton_widget_placement')->value ?? 'bottom',
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_widget"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function passiton_widget_token_info() {
+  $types['passiton'] = [
+    'name' => t('PassItOn'),
+    'description' => t('Tokens related to PassItOn donation widgets.'),
+  ];
+  
+  $tokens['passiton']['widget'] = [
+    'name' => t('Widget'),
+    'description' => t('Renders a PassItOn donation widget.'),
+    'dynamic' => TRUE,
+  ];
+  
+  $tokens['passiton']['analytics'] = [
+    'name' => t('Analytics'),
+    'description' => t('PassItOn analytics data.'),
+  ];
+  
+  return [
+    'types' => $types,
+    'tokens' => $tokens,
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function passiton_widget_tokens($type, $tokens, array $data, array $options, $bubbleable_metadata) {
+  $replacements = [];
+  
+  if ($type === 'passiton') {
+    foreach ($tokens as $name => $original) {
+      if (strpos($name, 'widget:') === 0) {
+        $widget_id = substr($name, 7);
+        $config = \Drupal::config('passiton_widget.settings');
+        
+        $widget_render = [
+          '#theme' => 'passiton_widget',
+          '#widget_id' => $widget_id,
+          '#organization_id' => $config->get('organization_id'),
+          '#config' => ['placement' => 'token'],
+        ];
+        
+        $replacements[$original] = \Drupal::service('renderer')->render($widget_render);
+      }
+    }
+  }
+  
+  return $replacements;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for passiton_widget theme.
+ */
+function passiton_widget_preprocess_passiton_widget(&$variables) {
+  $variables['#attached']['library'][] = 'passiton_widget/widget';
+  
+  // Add contextual data
+  $variables['data_attributes'] = [
+    'data-passiton-widget' => $variables['widget_id'],
+    'data-passiton-org' => $variables['organization_id'],
+    'data-passiton-placement' => $variables['config']['placement'] ?? 'default',
+  ];
+  
+  // Add custom CSS classes
+  $variables['css_classes'] = [
+    'passiton-widget',
+    'passiton-placement-' . ($variables['config']['placement'] ?? 'default'),
+  ];
+}
+
+/**
+ * Implements hook_library_info_build().
+ */
+function passiton_widget_library_info_build() {
+  $libraries = [];
+  $config = \Drupal::config('passiton_widget.settings');
+  
+  // Dynamic library based on configuration
+  if ($widget_url = $config->get('widget_script_url')) {
+    $libraries['widget_dynamic'] = [
+      'js' => [
+        $widget_url => [
+          'type' => 'external',
+          'attributes' => [
+            'async' => TRUE,
+            'defer' => TRUE,
+          ],
+        ],
+      ],
+    ];
+  }
+  
+  return $libraries;
+}
+
+/**
+ * Custom validation for widget configuration.
+ */
+function passiton_widget_validate_config($element, FormStateInterface $form_state) {
+  $value = $element['#value'];
+  
+  if (!empty($value) && !preg_match('/^[a-zA-Z0-9_-]+$/', $value)) {
+    $form_state->setError($element, t('Widget ID can only contain letters, numbers, hyphens, and underscores.'));
+  }
+}
+
+/**
+ * Helper function to get widget configuration.
+ */
+function passiton_widget_get_config($widget_id = NULL) {
+  $config = \Drupal::config('passiton_widget.settings');
+  
+  $base_config = [
+    'organization_id' => $config->get('organization_id'),
+    'api_key' => $config->get('api_key'),
+    'environment' => $config->get('environment') ?? 'production',
+    'analytics_enabled' => $config->get('analytics_enabled') ?? TRUE,
+  ];
+  
+  if ($widget_id) {
+    $widget_configs = $config->get('widgets') ?? [];
+    if (isset($widget_configs[$widget_id])) {
+      $base_config = array_merge($base_config, $widget_configs[$widget_id]);
+    }
+  }
+  
+  return $base_config;
+}
+
+/**
+ * Helper function to log widget events.
+ */
+function passiton_widget_log_event($event_type, $data = []) {
+  if (\Drupal::config('passiton_widget.settings')->get('logging_enabled')) {
+    \Drupal::logger('passiton_widget')->info('@event: @data', [
+      '@event' => $event_type,
+      '@data' => json_encode($data),
+    ]);
+  }
+}

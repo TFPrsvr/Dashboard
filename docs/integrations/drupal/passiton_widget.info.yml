@@ -1,0 +1,65 @@
+name: PassItOn Donation Widget
+type: module
+description: 'Integrates PassItOn donation widgets into Drupal sites with advanced placement options, analytics tracking, and customization features.'
+core_version_requirement: ^9 || ^10 || ^11
+package: Social Impact
+version: 1.0.0
+project: passiton_widget
+
+# Dependencies
+dependencies:
+  - drupal:block
+  - drupal:field
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:token
+
+# Configuration schema
+configure: passiton_widget.admin_config
+
+# Permissions
+permissions:
+  - administer passiton widgets
+  - create passiton widgets
+  - edit own passiton widgets
+  - view passiton analytics
+
+# Block types provided
+blocks:
+  - passiton_widget_block
+
+# Field types provided
+field_types:
+  - passiton_widget_field
+
+# Content entity types
+entity_types:
+  - passiton_widget_config
+
+# Libraries
+libraries:
+  - passiton_widget/widget
+  - passiton_widget/admin
+  - passiton_widget/analytics
+
+# Requirements
+php: '>=8.0'
+
+# Author information
+author: 'Banyan Labs'
+homepage: 'https://dashboard.passiton.com'
+support: 'https://dashboard.passiton.com/support'
+
+# License
+license: 'GPL-2.0+'
+
+# Tags for Drupal.org
+tags:
+  - donations
+  - fundraising
+  - nonprofit
+  - charity
+  - social impact
+  - widgets
+  - integration

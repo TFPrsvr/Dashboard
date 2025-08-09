@@ -1,0 +1,45 @@
+# PassItOn Widget Permissions
+
+administer passiton widgets:
+  title: 'Administer PassItOn widgets'
+  description: 'Configure global PassItOn widget settings, manage API credentials, and access advanced configuration options.'
+  restrict access: TRUE
+
+create passiton widgets:
+  title: 'Create PassItOn widgets'
+  description: 'Create new donation widgets and configure widget placement on content.'
+
+edit own passiton widgets:
+  title: 'Edit own PassItOn widgets'
+  description: 'Edit donation widgets created by the user.'
+
+edit any passiton widgets:
+  title: 'Edit any PassItOn widgets'
+  description: 'Edit any donation widget regardless of who created it.'
+  restrict access: TRUE
+
+delete own passiton widgets:
+  title: 'Delete own PassItOn widgets'
+  description: 'Delete donation widgets created by the user.'
+
+delete any passiton widgets:
+  title: 'Delete any PassItOn widgets'
+  description: 'Delete any donation widget regardless of who created it.'
+  restrict access: TRUE
+
+view passiton analytics:
+  title: 'View PassItOn analytics'
+  description: 'Access donation analytics and reporting data.'
+
+view detailed passiton analytics:
+  title: 'View detailed PassItOn analytics'
+  description: 'Access detailed analytics including user data and advanced reporting.'
+  restrict access: TRUE
+
+configure passiton widget placement:
+  title: 'Configure widget placement'
+  description: 'Configure automatic widget placement rules and targeting options.'
+
+manage passiton widget templates:
+  title: 'Manage widget templates'
+  description: 'Create and manage custom widget templates and styling.'

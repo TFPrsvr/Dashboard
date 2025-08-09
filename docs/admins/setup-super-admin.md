@@ -277,5 +277,5 @@ The super admin creation system integrates with:
 - **Route Protection**: `components/auth/user-role-guard.tsx`
 
 For detailed authentication system documentation, see:
-- `docs/developers/authentication-system-guide.md`
-- `docs/developers/environment-variables-setup.md`
+- `docs/future-developers/authentication-system-guide.md`
+- `docs/future-developers/environment-variables-setup.md`

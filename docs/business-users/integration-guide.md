@@ -53,7 +53,7 @@ Think of it like this:
 ### Quick Start Resources
 - **[Complete Onboarding Guide](./onboarding-guide.md)** - Step-by-step setup process
 - **[Platform Integration Guides](./platform-guides/)** - WordPress, Shopify, Wix, Squarespace
-- **[Troubleshooting Guide](./troubleshooting-guide.md)** - Visual problem-solving help
+- **[User Troubleshooting Guide](./user-troubleshooting-guide.md)** - Visual problem-solving help
 
 ### What You Need to Know
 
@@ -676,16 +676,9 @@ script.defer = true;
 
 ## Support and Resources
 
-### For Business Users
-- **Dashboard Help**: Look for the "?" icons in the dashboard
-- **Video Tutorials**: Available in the help section
-- **Email Support**: support@passiton.com
-- **Phone Support**: Available during business hours
-
 ### For Developers
 - **API Documentation**: `/docs` endpoint on dashboard
 - **GitHub Repository**: [Link to repos]
-- **Technical Support**: dev-support@passiton.com
 - **Community Forum**: [Link to forum]
 
 ### Additional Resources

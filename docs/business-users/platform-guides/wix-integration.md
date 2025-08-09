@@ -611,7 +611,4 @@ document.getElementById('donate-button').textContent = translations[siteLanguage
 - Update organization ID if you change accounts
 
 ---
-
-*Last updated: January 2025*
 *For Wix-specific issues: Contact Wix Support*
-*For widget functionality: support@passiton.com*

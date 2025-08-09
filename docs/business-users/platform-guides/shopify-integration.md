@@ -518,6 +518,4 @@ window.addEventListener('message', function(event) {
 
 ---
 
-*Last updated: January 2025*
-*For Shopify-specific support: support@passiton.com*
-*For Shopify platform issues: Contact Shopify Support*
+"For Shopify platform issues: Contact Shopify Support*

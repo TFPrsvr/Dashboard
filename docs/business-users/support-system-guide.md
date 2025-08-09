@@ -302,17 +302,8 @@ If our support team asks for console information:
 
 ### Support Channels:
 - **Primary**: Support ticket system (recommended)
-- **Email**: support@passiton.com (monitored less frequently)
+
 - **Emergency**: Use "Urgent" priority tickets for critical issues
 
-### Business Hours:
-- **Monday - Friday**: 9 AM - 6 PM EST
-- **Response Time**: Based on priority level
-- **Urgent Issues**: Monitored 24/7
-
----
 
 **Need immediate help?** Click the "New Ticket" button in your Support page to get started!
-
-**Last Updated**: January 30, 2025  
-**Version**: 1.0

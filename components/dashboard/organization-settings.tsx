@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
-import { Building, CreditCard, ExternalLink, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
+import { Building, CreditCard, ExternalLink, AlertCircle, CheckCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase/supabase-client";
 import { useStripeConnect } from "@/hooks/use-stripe-connect";
 import { useToast } from "@/components/ui/use-toast";
@@ -31,13 +31,6 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     onboardingComplete: false,
     requiresAction: false,
   });
-
-  const [subscription, setSubscription] = useState<{
-    plan: 'free' | 'professional' | 'enterprise';
-    status: 'active' | 'canceled' | 'past_due' | 'trialing';
-    currentPeriodEnd?: string;
-    cancelAtPeriodEnd?: boolean;
-  }>({ plan: 'free', status: 'active' });
 
   const [formData, setFormData] = useState({
     legalName: "",
@@ -93,74 +86,10 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     }
   }, [organizationId, checkStatus]);
 
-  const fetchSubscription = useCallback(async () => {
-    try {
-      const response = await fetch(`/api/subscription/${organizationId}`);
-      if (response.ok) {
-        const data = await response.json();
-        setSubscription(data);
-      }
-    } catch (error) {
-      console.error('Error fetching subscription:', error);
-    }
-  }, [organizationId]);
-
   useEffect(() => {
     fetchOrganization();
     fetchStripeStatus();
-    fetchSubscription();
-  }, [fetchOrganization, fetchStripeStatus, fetchSubscription]);
-
-  const handleUpgrade = async (plan: 'professional' | 'enterprise') => {
-    try {
-      const response = await fetch('/api/subscription/upgrade', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ organizationId, plan })
-      });
-      
-      if (response.ok) {
-        const { url } = await response.json();
-        window.location.href = url;
-      } else {
-        throw new Error('Failed to create checkout session');
-      }
-    } catch (error) {
-      console.error('Error upgrading subscription:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to upgrade subscription',
-        variant: 'destructive',
-      });
-    }
-  };
-
-  const handleCancelSubscription = async () => {
-    try {
-      const response = await fetch('/api/subscription/cancel', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ organizationId })
-      });
-      
-      if (response.ok) {
-        await fetchSubscription();
-        toast({
-          title: 'Success',
-          description: 'Subscription will be canceled at the end of the current period',
-        });
-      } else {
-        throw new Error('Failed to cancel subscription');
-      }
-    } catch (error) {
-      console.error('Error canceling subscription:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to cancel subscription',
-        variant: 'destructive',
-      });
-    }
-  };
+  }, [fetchOrganization, fetchStripeStatus]);
 
   const handleSaveProfile = async () => {
     setSaving(true);
@@ -222,7 +151,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Organization Settings</h1>
-        <p className="text-gray-600">Manage your organization profile and payment settings</p>
+        <p className="text-gray-600">Manage your organization profile and payment processing</p>
       </div>
 
       <Tabs defaultValue="profile" className="w-full">
@@ -231,13 +160,9 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
             <Building className="w-4 h-4 mr-2" />
             Profile
           </TabsTrigger>
-          <TabsTrigger value="subscription">
-            <DollarSign className="w-4 h-4 mr-2" />
-            Billing
-          </TabsTrigger>
           <TabsTrigger value="payments">
             <CreditCard className="w-4 h-4 mr-2" />
-            Payments
+            Payment Processing
           </TabsTrigger>
         </TabsList>
 
@@ -314,156 +239,20 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
           </Card>
         </TabsContent>
 
-        <TabsContent value="subscription">
-          <Card>
-            <CardHeader>
-              <CardTitle>Subscription & Billing</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Current Plan */}
-              <div className="border rounded-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold capitalize">{subscription.plan} Plan</h3>
-                    <p className="text-sm text-gray-600">
-                      Status: <span className="capitalize">{subscription.status}</span>
-                    </p>
-                    {subscription.currentPeriodEnd && (
-                      <p className="text-sm text-gray-600">
-                        {subscription.cancelAtPeriodEnd ? 'Ends' : 'Renews'} on{' '}
-                        {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
-                      </p>
-                    )}
-                  </div>
-                  {subscription.plan === 'free' && (
-                    <div className="text-right">
-                      <p className="text-2xl font-bold">$0</p>
-                      <p className="text-sm text-gray-600">per month</p>
-                    </div>
-                  )}
-                  {subscription.plan === 'professional' && (
-                    <div className="text-right">
-                      <p className="text-2xl font-bold">$39</p>
-                      <p className="text-sm text-gray-600">per month</p>
-                    </div>
-                  )}
-                  {subscription.plan === 'enterprise' && (
-                    <div className="text-right">
-                      <p className="text-2xl font-bold">$299+</p>
-                      <p className="text-sm text-gray-600">per month</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Plan Features */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                  {subscription.plan === 'free' && (
-                    <>
-                      <div>• 1 donation widget</div>
-                      <div>• Up to 50 donations/month</div>
-                      <div>• Basic customization</div>
-                    </>
-                  )}
-                  {subscription.plan === 'professional' && (
-                    <>
-                      <div>• 5 donation widgets</div>
-                      <div>• Up to 1,000 donations/month</div>
-                      <div>• Advanced customization</div>
-                      <div>• Remove PassItOn branding</div>
-                      <div>• Priority support</div>
-                      <div>• Team collaboration</div>
-                    </>
-                  )}
-                  {subscription.plan === 'enterprise' && (
-                    <>
-                      <div>• Unlimited widgets</div>
-                      <div>• Unlimited donations</div>
-                      <div>• White-label solution</div>
-                      <div>• Dedicated account manager</div>
-                      <div>• Custom integrations</div>
-                      <div>• SLA guarantee</div>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Upgrade Options */}
-              {subscription.plan === 'free' && (
-                <div className="space-y-4">
-                  <h4 className="font-semibold">Upgrade Your Plan</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="border rounded-lg p-4">
-                      <h5 className="font-semibold mb-2">Professional</h5>
-                      <p className="text-2xl font-bold mb-2">$39<span className="text-sm font-normal">/month</span></p>
-                      <ul className="text-sm space-y-1 mb-4">
-                        <li>• 5 donation widgets</li>
-                        <li>• Up to 1,000 donations/month</li>
-                        <li>• Advanced customization</li>
-                        <li>• Remove branding</li>
-                      </ul>
-                      <Button onClick={() => handleUpgrade('professional')} className="w-full">
-                        Upgrade to Professional
-                      </Button>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h5 className="font-semibold mb-2">Enterprise</h5>
-                      <p className="text-2xl font-bold mb-2">$299+<span className="text-sm font-normal">/month</span></p>
-                      <ul className="text-sm space-y-1 mb-4">
-                        <li>• Unlimited widgets</li>
-                        <li>• Unlimited donations</li>
-                        <li>• White-label solution</li>
-                        <li>• Dedicated support</li>
-                      </ul>
-                      <Button onClick={() => handleUpgrade('enterprise')} className="w-full">
-                        Contact Sales
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Manage Subscription */}
-              {subscription.plan !== 'free' && (
-                <div className="space-y-4">
-                  <h4 className="font-semibold">Manage Subscription</h4>
-                  <div className="flex gap-4">
-                    {!subscription.cancelAtPeriodEnd && (
-                      <Button 
-                        onClick={handleCancelSubscription}
-                        variant="outline"
-                      >
-                        Cancel Subscription
-                      </Button>
-                    )}
-                    {subscription.cancelAtPeriodEnd && (
-                      <Button 
-                        onClick={() => {
-                          // Reactivate subscription logic
-                        }}
-                        variant="outline"
-                      >
-                        Reactivate Subscription
-                      </Button>
-                    )}
-                    <Button 
-                      onClick={() => toast({ title: 'Feature Disabled', description: 'Billing portal has been removed' })}
-                      variant="outline"
-                    >
-                      Manage Billing
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
         <TabsContent value="payments">
           <Card>
             <CardHeader>
-              <CardTitle>Payment Processing</CardTitle>
+              <CardTitle>Payment Processing Setup</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="font-medium text-blue-900 mb-2">About Payment Processing</h3>
+                <p className="text-sm text-blue-800">
+                  Connect your Stripe account to receive donations directly from your supporters. 
+                  All donation payments are processed securely through Stripe and deposited into your connected account.
+                </p>
+              </div>
+
               {!stripeStatus.connected ? (
                 <div className="border rounded-lg p-6 text-center">
                   <CreditCard className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -497,7 +286,7 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
                       </p>
                       <p className="text-sm text-gray-600">
                         {stripeStatus.onboardingComplete
-                          ? "Your Stripe account is fully set up and ready to accept payments"
+                          ? "Your Stripe account is fully set up and ready to accept donations"
                           : "Complete your Stripe onboarding to start accepting donations"
                         }
                       </p>
@@ -534,8 +323,39 @@ export function OrganizationSettings({ organizationId }: OrganizationSettingsPro
                       Refresh Status
                     </Button>
                   </div>
+
+                  {stripeStatus.onboardingComplete && (
+                    <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <h4 className="font-medium text-green-900 mb-2">✓ Ready to Accept Donations</h4>
+                      <p className="text-sm text-green-800">
+                        Your payment processing is set up! Create donation widgets to start receiving contributions from your supporters.
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
+
+              <div className="mt-6 pt-4 border-t">
+                <h4 className="font-medium mb-3">Payment Information</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                  <div>
+                    <p className="font-medium text-gray-900">Processing</p>
+                    <p>Donations are processed securely through Stripe</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Payouts</p>
+                    <p>Funds are deposited directly to your connected bank account</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Fees</p>
+                    <p>Standard Stripe processing fees apply (2.9% + $0.30 per transaction)</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Tax Reporting</p>
+                    <p>Donation records are available for tax and reporting purposes</p>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

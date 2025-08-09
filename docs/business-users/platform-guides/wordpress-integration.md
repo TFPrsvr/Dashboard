@@ -424,7 +424,9 @@ Compatible with all major WordPress caching plugins:
 - WP Super Cache ✓
 - LiteSpeed Cache ✓
 
----
 
-*Last updated: January 2025*
-*For technical support: support@passiton.com*
+
+
+
+
+

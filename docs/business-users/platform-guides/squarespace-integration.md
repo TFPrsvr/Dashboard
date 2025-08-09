@@ -774,7 +774,4 @@ document.addEventListener('DOMContentLoaded', function() {
 - Create donation-focused landing pages
 
 ---
-
-*Last updated: January 2025*
 *For Squarespace platform issues: Contact Squarespace Support*
-*For widget functionality: support@passiton.com*
