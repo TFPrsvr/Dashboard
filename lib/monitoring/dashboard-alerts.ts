@@ -4,7 +4,7 @@
  * Monitors dashboard availability, performance, and access issues
  */
 
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/supabase-client';
 import { AlertService } from './alert-service';
 
 export interface DashboardAlert {

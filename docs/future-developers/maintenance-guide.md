@@ -1,10 +1,26 @@
-# PassItOn Platform Maintenance Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 PassItOn Platform Maintenance Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+<div style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">
 
 This guide provides comprehensive instructions for maintaining, updating, and troubleshooting the PassItOn donation platform. It's designed for developers who need to understand the system architecture and perform routine maintenance tasks.
 
-## Table of Contents
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📋 Table of Contents</span>
+
+<div style="margin-top: 1rem;">
 
 1. [System Architecture](#system-architecture)
 2. [Development Environment Setup](#development-environment-setup)
@@ -17,9 +33,21 @@ This guide provides comprehensive instructions for maintaining, updating, and tr
 9. [Deployment Procedures](#deployment-procedures)
 10. [Monitoring and Alerts](#monitoring-and-alerts)
 
-## System Architecture
+</div>
 
-### Core Components
+</div>
+
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🏢 System Architecture</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">⚙️ Core Components</span>
+
+<div style="margin-top: 1rem;">
 
 - **Frontend**: Next.js 14 with React 18, TypeScript, Tailwind CSS
 - **Backend**: Next.js API routes with serverless functions
@@ -29,7 +57,11 @@ This guide provides comprehensive instructions for maintaining, updating, and tr
 - **Email**: Resend for transactional emails
 - **File Storage**: Supabase Storage for assets
 
-### Key Directories
+<div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #059669;">📌 Key Directories</span>
+
+</div>
 
 ```
 app/
@@ -58,153 +90,305 @@ supabase/
 types/                   # TypeScript type definitions
 ```
 
-## Development Environment Setup
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Prerequisites
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Development Environment Setup</span>
+
+</div>
+
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Prerequisites</span>
+
+</div>
 
 - Node.js 18+ and npm/yarn
 - Git for version control
 - Supabase CLI for database management
 - Stripe CLI for webhook testing
 
-### Environment Variables
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Environment Variables</span>
+
+</div>
 
 Copy `.env.example` to `.env.local` and configure:
 
 ```bash
-# Database
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Database</span>
+
+</div>
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
-# Authentication
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Authentication</span>
+
+</div>
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
 WEBHOOK_SECRET=your_clerk_webhook_secret
 
-# Stripe
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Stripe</span>
+
+</div>
 STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 STRIPE_PROFESSIONAL_PRICE_ID=price_professional_monthly
 STRIPE_ENTERPRISE_PRICE_ID=price_enterprise_monthly
 
-# Email
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email</span>
+
+</div>
 RESEND_API_KEY=your_resend_api_key
 SUPPORT_EMAIL=support@yourdomain.com
 
-# Application
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Application</span>
+
+</div>
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
-### Local Development
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Local Development</span>
+
+</div>
 
 ```bash
-# Install dependencies
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Install dependencies</span>
+
+</div>
 npm install
 
-# Run database migrations
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Run database migrations</span>
+
+</div>
 npm run db:push
 
-# Generate TypeScript types from database
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Generate TypeScript types from database</span>
+
+</div>
 npm run db:generate
 
-# Start development server
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Start development server</span>
+
+</div>
 npm run dev
 
-# Run tests
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Run tests</span>
+
+</div>
 npm test
 
-# Run end-to-end tests
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Run end-to-end tests</span>
+
+</div>
 npm run test:e2e
 ```
 
-## Database Management
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Running Migrations
+<span style="font-size: 1.8rem; font-weight: 700;">🗄️ Database Management</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Running Migrations</span>
+
+</div>
 
 ```bash
-# Apply pending migrations
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Apply pending migrations</span>
+
+</div>
 supabase db push
 
-# Reset database to clean state
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Reset database to clean state</span>
+
+</div>
 supabase db reset
 
-# Generate new migration
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Generate new migration</span>
+
+</div>
 supabase migration new migration_name
 ```
 
-### Important Tables
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### organizations
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Important Tables</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 organizations</span>
+
+</div>
 - Core organization data
 - Subscription status tracking
 - Stripe integration fields
 
-#### subscriptions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 subscriptions</span>
+
+</div>
 - Billing and plan management
 - Stripe subscription IDs
 - Plan limits and features
 
-#### support_tickets
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 support_tickets</span>
+
+</div>
 - Customer support system
 - Ticket status and priorities
 - Admin response tracking
 
-#### users
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 users</span>
+
+</div>
 - User profiles and roles
 - Clerk integration
 - Organization memberships
 
-#### widgets
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 widgets</span>
+
+</div>
 - Donation widget configurations
 - Customization settings
 - Performance tracking
 
-#### donations
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 donations</span>
+
+</div>
 - Transaction records
 - Stripe payment intent IDs
 - Donor information
 
-### Database Backup
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🗄️ Database Backup</span>
+
+</div>
 
 ```bash
-# Create backup
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Create backup</span>
+
+</div>
 supabase db dump --file backup_$(date +%Y%m%d).sql
 
-# Restore from backup
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Restore from backup</span>
+
+</div>
 supabase db reset
 psql -h localhost -p 54322 -U postgres -d postgres < backup_file.sql
 ```
 
-## API Endpoints
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Authentication
+<span style="font-size: 1.8rem; font-weight: 700;">🔌 API Endpoints</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔐 Authentication</span>
+
+</div>
 - `GET /api/users/me` - Get current user profile
 - `POST /api/webhooks/clerk` - Handle Clerk user events
 
-### Organizations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Organizations</span>
+
+</div>
 - `GET /api/organizations` - List user organizations
 - `POST /api/organizations` - Create new organization
 - `GET /api/organizations/[orgId]` - Get organization details
 - `PUT /api/organizations/[orgId]` - Update organization
 
-### Subscriptions
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Subscriptions</span>
+
+</div>
 - `GET /api/subscription/[orgId]` - Get subscription status
 - `POST /api/subscription/upgrade` - Create checkout session
 - `POST /api/subscription/cancel` - Cancel subscription
 
-### Support
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support</span>
+
+</div>
 - `POST /api/support/notify` - Send support notifications
 - Support tickets managed through Supabase RLS
 
-### Webhooks
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Webhooks</span>
+
+</div>
 - `POST /api/webhooks/stripe` - Handle Stripe events
 - `POST /api/webhooks/clerk` - Handle Clerk events
 
-## Subscription Management
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Plan Tiers
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Subscription Management</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Plan Tiers</span>
+
+</div>
 
 **Free Plan**:
 - 1 donation widget
@@ -226,7 +410,11 @@ psql -h localhost -p 54322 -U postgres -d postgres < backup_file.sql
 - Dedicated support
 - Custom integrations
 
-### Plan Limit Enforcement
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Plan Limit Enforcement</span>
+
+</div>
 
 Use the `usePlanLimits` hook to enforce restrictions:
 
@@ -246,7 +434,11 @@ if (!canCreateWidget()) {
 }
 ```
 
-### Subscription Lifecycle
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Subscription Lifecycle</span>
+
+</div>
 
 1. **Upgrade Flow**:
    - User clicks upgrade button
@@ -267,9 +459,17 @@ if (!canCreateWidget()) {
    - Features may be limited
    - User notified to update payment method
 
-## Support System
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Ticket Workflow
+<span style="font-size: 1.8rem; font-weight: 700;">💬 Support System</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Ticket Workflow</span>
+
+</div>
 
 1. **Creation**: User submits ticket through dashboard
 2. **Notification**: Emails sent to support team and user
@@ -278,63 +478,115 @@ if (!canCreateWidget()) {
 5. **Resolution**: Ticket marked as resolved
 6. **Follow-up**: User can reopen if needed
 
-### Email Templates
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Email Templates</span>
+
+</div>
 
 Email templates are defined in `/app/api/support/notify/route.ts`:
 - New ticket notification (to support team)
 - Ticket confirmation (to user)
 - Response notification (to user)
 
-### Support Categories
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support Categories</span>
+
+</div>
 
 - `general` - General questions
 - `technical` - Technical issues
 - `bug_report` - Bug reports
 - `feature_request` - Feature requests
 
-### Priority Levels
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Priority Levels</span>
+
+</div>
 
 - `low` - Non-urgent issues
 - `medium` - Standard priority (default)
 - `high` - Important issues
 - `urgent` - Critical issues requiring immediate attention
 
-## Common Maintenance Tasks
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### User Management
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Common Maintenance Tasks</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 User Management</span>
+
+</div>
 
 ```bash
-# Create super admin user
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Create super admin user</span>
+
+</div>
 supabase sql --file scripts/create_super_admin.sql
 
-# Update user role
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Update user role</span>
+
+</div>
 UPDATE users SET role = 'admin' WHERE email = 'admin@example.com';
 
-# List all users with roles
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 List all users with roles</span>
+
+</div>
 SELECT u.email, u.role, u.created_at 
 FROM users u 
 ORDER BY u.created_at DESC;
 ```
 
-### Organization Management
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Organization Management</span>
+
+</div>
 
 ```bash
-# List organizations with subscription status
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 List organizations with subscription status</span>
+
+</div>
 SELECT o.name, s.plan, s.status, s.current_period_end
 FROM organizations o
 LEFT JOIN subscriptions s ON o.id = s.organization_id
 ORDER BY o.created_at DESC;
 
-# Update organization subscription manually
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Update organization subscription manually</span>
+
+</div>
 UPDATE subscriptions 
 SET plan = 'professional', status = 'active'
 WHERE organization_id = 'org_uuid';
 ```
 
-### Support Ticket Management
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support Ticket Management</span>
+
+</div>
 
 ```bash
-# List open tickets by priority
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 List open tickets by priority</span>
+
+</div>
 SELECT st.subject, st.priority, st.created_at, st.user_name
 FROM support_tickets st
 WHERE st.status = 'open'
@@ -348,10 +600,18 @@ ORDER BY
   st.created_at ASC;
 ```
 
-### Performance Monitoring
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Monitoring</span>
+
+</div>
 
 ```bash
-# Check donation volume by month
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check donation volume by month</span>
+
+</div>
 SELECT 
   DATE_TRUNC('month', created_at) as month,
   COUNT(*) as donation_count,
@@ -361,7 +621,11 @@ WHERE status = 'succeeded'
 GROUP BY month
 ORDER BY month DESC;
 
-# Monitor widget performance
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitor widget performance</span>
+
+</div>
 SELECT 
   w.name,
   COUNT(d.id) as donation_count,
@@ -373,46 +637,110 @@ GROUP BY w.id, w.name
 ORDER BY donation_count DESC;
 ```
 
-## Troubleshooting
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Issues
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting</span>
 
-#### Database Connection Errors
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ Database Connection Errors</span>
+
+</div>
 ```bash
-# Check Supabase status
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check Supabase status</span>
+
+</div>
 supabase status
 
-# Restart local instance
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Restart local instance</span>
+
+</div>
 supabase stop
 supabase start
 ```
 
-#### Stripe Webhook Issues
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Stripe Webhook Issues</span>
+
+</div>
 ```bash
-# Test webhook endpoint
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test webhook endpoint</span>
+
+</div>
 stripe listen --forward-to localhost:3000/api/webhooks/stripe
 
-# Check webhook logs in Stripe Dashboard
-# Verify webhook secret matches environment variable
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check webhook logs in Stripe Dashboard</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Verify webhook secret matches environment variable</span>
+
+</div>
 ```
 
-#### Authentication Problems
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔐 Authentication Problems</span>
+
+</div>
 ```bash
-# Check Clerk webhook configuration
-# Verify JWT verification in middleware
-# Check user role assignments in database
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Check Clerk webhook configuration</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Verify JWT verification in middleware</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Check user role assignments in database</span>
+
+</div>
 ```
 
-#### Email Delivery Issues
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Email Delivery Issues</span>
+
+</div>
 ```bash
-# Test Resend API key
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test Resend API key</span>
+
+</div>
 curl -X POST 'https://api.resend.com/emails' \
   -H 'Authorization: Bearer YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{"from": "test@yourdomain.com", "to": "test@example.com", "subject": "Test", "text": "Test"}'
 ```
 
-### Debugging Steps
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Debugging Steps</span>
+
+</div>
 
 1. **Check Environment Variables**: Ensure all required variables are set
 2. **Review Logs**: Check browser console and server logs
@@ -420,16 +748,28 @@ curl -X POST 'https://api.resend.com/emails' \
 4. **External Services**: Verify Stripe, Clerk, and Resend configurations
 5. **Network Issues**: Test API endpoints with curl or Postman
 
-### Error Monitoring
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Error Monitoring</span>
+
+</div>
 
 Implement error tracking with services like:
 - Sentry for error monitoring
 - LogRocket for session replay
 - DataDog for infrastructure monitoring
 
-## Deployment Procedures
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-deployment Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Deployment Procedures</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Pre-deployment Checklist</span>
+
+</div>
 
 - [ ] Run all tests (`npm test`, `npm run test:e2e`)
 - [ ] Update database migrations if needed
@@ -438,48 +778,116 @@ Implement error tracking with services like:
 - [ ] Test email delivery
 - [ ] Backup production database
 
-### Deployment Steps
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Deployment Steps</span>
+
+</div>
 
 ```bash
-# 1. Deploy to staging
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 1. Deploy to staging</span>
+
+</div>
 git push staging main
 
-# 2. Run migrations on staging
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 2. Run migrations on staging</span>
+
+</div>
 supabase db push --project-ref staging_project_id
 
-# 3. Test critical workflows
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 3. Test critical workflows</span>
+
+</div>
 npm run test:e2e:staging
 
-# 4. Deploy to production
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 4. Deploy to production</span>
+
+</div>
 git push production main
 
-# 5. Run migrations on production
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 5. Run migrations on production</span>
+
+</div>
 supabase db push --project-ref production_project_id
 
-# 6. Monitor for errors
-# Check error tracking dashboard
-# Verify webhook deliveries
-# Monitor performance metrics
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 6. Monitor for errors</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check error tracking dashboard</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Verify webhook deliveries</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitor performance metrics</span>
+
+</div>
 ```
 
-### Rollback Procedures
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Rollback Procedures</span>
+
+</div>
 
 ```bash
-# 1. Revert to previous git commit
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 1. Revert to previous git commit</span>
+
+</div>
 git revert HEAD
 git push production main
 
-# 2. Rollback database if needed
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ 2. Rollback database if needed</span>
+
+</div>
 supabase db reset --project-ref production_project_id
 psql -h production_host -d postgres < backup_file.sql
 
-# 3. Clear CDN cache if applicable
-# 4. Notify users of temporary issues
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 3. Clear CDN cache if applicable</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 4. Notify users of temporary issues</span>
+
+</div>
 ```
 
-## Monitoring and Alerts
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Key Metrics to Monitor
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Monitoring and Alerts</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Key Metrics to Monitor</span>
+
+</div>
 
 - **Application Performance**: Response times, error rates
 - **Database Performance**: Query performance, connection pool
@@ -487,7 +895,11 @@ psql -h production_host -d postgres < backup_file.sql
 - **Support System**: Response times, ticket volume
 - **User Activity**: Sign-ups, retention, feature usage
 
-### Recommended Alerts
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Recommended Alerts</span>
+
+</div>
 
 - High error rate (>1%)
 - Database connection failures
@@ -496,7 +908,11 @@ psql -h production_host -d postgres < backup_file.sql
 - Disk space usage (>80%)
 - Memory usage (>90%)
 
-### Health Check Endpoints
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Health Check Endpoints</span>
+
+</div>
 
 Create health check endpoints for monitoring:
 
@@ -529,9 +945,17 @@ export async function GET() {
 }
 ```
 
-## Security Considerations
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Regular Security Tasks
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Security Considerations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Regular Security Tasks</span>
+
+</div>
 
 - Update dependencies monthly
 - Review and rotate API keys quarterly
@@ -539,7 +963,11 @@ export async function GET() {
 - Monitor for suspicious activity
 - Keep security policies up to date
 
-### Security Best Practices
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Security Best Practices</span>
+
+</div>
 
 - Use Row Level Security (RLS) for all database tables
 - Validate all user inputs
@@ -548,20 +976,36 @@ export async function GET() {
 - Implement rate limiting on API endpoints
 - Regular security audits
 
-## Support and Resources
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Documentation Links
+<span style="font-size: 1.8rem; font-weight: 700;">💬 Support and Resources</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Documentation Links</span>
+
+</div>
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Supabase Documentation](https://supabase.com/docs)
 - [Stripe API Reference](https://stripe.com/docs/api)
 - [Clerk Documentation](https://clerk.com/docs)
 
-### Internal Resources
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Internal Resources</span>
+
+</div>
 - Technical documentation: `/docs/developers/`
 - API documentation: `/docs/developers/api-reference.md`
 - Deployment guides: `/docs/developers/deployment-guide.md`
 
-### Getting Help
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Getting Help</span>
+
+</div>
 - Technical issues: Create ticket in support system
 - Emergency issues: Contact on-call engineer
 - Architecture questions: Schedule team review

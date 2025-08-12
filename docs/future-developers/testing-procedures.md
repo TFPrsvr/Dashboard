@@ -1,35 +1,79 @@
-# PassItOn Testing Procedures
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 PassItOn Testing Procedures</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 Comprehensive testing procedures to ensure PassItOn platform reliability, security, and performance across all supported integrations.
 
-## Testing Environment Setup
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Local Development Environment
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Testing Environment Setup</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Local Development Environment</span>
+
+</div>
 ```bash
-# Install dependencies
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Install dependencies</span>
+
+</div>
 npm install
 
-# Set up test database
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Set up test database</span>
+
+</div>
 npm run test:setup
 
-# Configure environment variables
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Configure environment variables</span>
+
+</div>
 cp .env.example .env.test
 ```
 
-### Testing Tools Required
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Testing Tools Required</span>
+
+</div>
 - **Unit Testing**: Jest, React Testing Library
 - **Integration Testing**: Cypress, Playwright
 - **Performance Testing**: Lighthouse, WebPageTest
 - **Security Testing**: OWASP ZAP, Snyk
 - **Browser Testing**: BrowserStack, Sauce Labs
 
-## Test Categories
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### 1. Unit Testing
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Test Categories</span>
 
-#### Component Tests
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 1. Unit Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Component Tests</span>
+
+</div>
 ```javascript
 // Widget component test example
 import { render, screen } from '@testing-library/react';
@@ -58,7 +102,11 @@ describe('DonationWidget', () => {
 });
 ```
 
-#### API Tests
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 API Tests</span>
+
+</div>
 ```javascript
 // API endpoint tests
 describe('Donation API', () => {
@@ -89,9 +137,17 @@ describe('Donation API', () => {
 });
 ```
 
-### 2. Integration Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Platform Integration Tests
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 2. Integration Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Platform Integration Tests</span>
+
+</div>
 ```javascript
 // WordPress integration test
 describe('WordPress Integration', () => {
@@ -119,7 +175,11 @@ describe('Shopify Integration', () => {
 });
 ```
 
-#### Payment Processing Tests
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Payment Processing Tests</span>
+
+</div>
 ```javascript
 describe('Payment Processing', () => {
   test('successful credit card donation', () => {
@@ -158,9 +218,17 @@ describe('Payment Processing', () => {
 });
 ```
 
-### 3. Performance Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Load Time Tests
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 3. Performance Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Load Time Tests</span>
+
+</div>
 ```javascript
 // Performance benchmarks
 const performanceTests = {
@@ -193,21 +261,41 @@ describe('Performance Tests', () => {
 });
 ```
 
-#### Lighthouse Audits
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Lighthouse Audits</span>
+
+</div>
 ```bash
-# Automated Lighthouse testing
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Automated Lighthouse testing</span>
+
+</div>
 npm run test:lighthouse
 
-# Performance thresholds
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Performance thresholds</span>
+
+</div>
 Performance: >= 90
 Accessibility: >= 95
 Best Practices: >= 90
 SEO: >= 85
 ```
 
-### 4. Security Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Input Validation Tests
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 4. Security Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Input Validation Tests</span>
+
+</div>
 ```javascript
 describe('Security Tests', () => {
   test('prevents XSS attacks', async () => {
@@ -250,7 +338,11 @@ describe('Security Tests', () => {
 });
 ```
 
-#### Data Protection Tests
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Data Protection Tests</span>
+
+</div>
 ```javascript
 describe('Data Protection', () => {
   test('encrypts sensitive data', async () => {
@@ -277,9 +369,17 @@ describe('Data Protection', () => {
 });
 ```
 
-### 5. Browser Compatibility Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Cross-Browser Test Matrix
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 5. Browser Compatibility Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Cross-Browser Test Matrix</span>
+
+</div>
 ```javascript
 const browsers = [
   { name: 'Chrome', versions: ['latest', 'latest-1'] },
@@ -308,9 +408,17 @@ describe('Browser Compatibility', () => {
 });
 ```
 
-### 6. Accessibility Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### WCAG 2.1 Compliance Tests
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 6. Accessibility Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 WCAG 2.1 Compliance Tests</span>
+
+</div>
 ```javascript
 describe('Accessibility Tests', () => {
   test('meets WCAG 2.1 AA standards', () => {
@@ -349,9 +457,17 @@ describe('Accessibility Tests', () => {
 });
 ```
 
-## Test Data Management
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Test Data Setup
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Test Data Management</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">⚙️ Test Data Setup</span>
+
+</div>
 ```javascript
 // Test data factory
 const createTestDonation = (overrides = {}) => ({
@@ -372,20 +488,44 @@ const createTestWidget = (overrides = {}) => ({
 });
 ```
 
-### Database Seeding
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🗄️ Database Seeding</span>
+
+</div>
 ```bash
-# Seed test database
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Seed test database</span>
+
+</div>
 npm run test:seed
 
-# Reset test data
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Reset test data</span>
+
+</div>
 npm run test:reset
 ```
 
-## Automated Testing Pipeline
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### GitHub Actions Configuration
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Automated Testing Pipeline</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 GitHub Actions Configuration</span>
+
+</div>
 ```yaml
-# .github/workflows/test.yml
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 .github/workflows/test.yml</span>
+
+</div>
 name: Test Suite
 on: [push, pull_request]
 
@@ -423,59 +563,119 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 ```
 
-## Test Reporting
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Coverage Requirements
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Test Reporting</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Coverage Requirements</span>
+
+</div>
 - **Unit Tests**: >= 90% code coverage
 - **Integration Tests**: >= 80% feature coverage
 - **E2E Tests**: >= 95% user journey coverage
 
-### Reporting Tools
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Reporting Tools</span>
+
+</div>
 ```bash
-# Generate coverage report
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Generate coverage report</span>
+
+</div>
 npm run test:coverage
 
-# Generate HTML report
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Generate HTML report</span>
+
+</div>
 npm run test:report
 
-# Upload to codecov
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Upload to codecov</span>
+
+</div>
 npm run test:upload-coverage
 ```
 
-## Manual Testing Procedures
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-Release Testing Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Manual Testing Procedures</span>
 
-#### Core Functionality
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Pre-Release Testing Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Core Functionality</span>
+
+</div>
 - [ ] Widget displays correctly on all supported platforms
 - [ ] Payment processing works with all card types
 - [ ] Email receipts are sent and formatted correctly
 - [ ] Analytics data is captured accurately
 - [ ] Error handling displays appropriate messages
 
-#### Platform-Specific Testing
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Platform-Specific Testing</span>
+
+</div>
 - [ ] WordPress: Plugin installs and activates without errors
 - [ ] Shopify: App integrates with checkout flow
 - [ ] Chrome Extension: Popup and content scripts work
 - [ ] Custom HTML: Embed code works on various sites
 
-#### Edge Cases
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Edge Cases</span>
+
+</div>
 - [ ] Network connectivity issues handled gracefully
 - [ ] Large donation amounts processed correctly
 - [ ] International payment methods work
 - [ ] Mobile device compatibility verified
 
-### User Acceptance Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Test Scenarios
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 User Acceptance Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Test Scenarios</span>
+
+</div>
 1. **New User Onboarding**: First-time setup and widget creation
 2. **Donation Flow**: Complete donation from start to finish
 3. **Admin Dashboard**: Managing widgets and viewing analytics
 4. **Error Recovery**: Handling payment failures and retries
 
-## Continuous Monitoring
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Production Monitoring
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Continuous Monitoring</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Production Monitoring</span>
+
+</div>
 ```javascript
 // Error tracking setup
 Sentry.init({
@@ -497,15 +697,31 @@ const observer = new PerformanceObserver(list => {
 });
 ```
 
-### Health Checks
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Health Checks</span>
+
+</div>
 ```bash
-# API health check
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔌 API health check</span>
+
+</div>
 curl -f https://api.passiton.com/health || exit 1
 
-# Widget availability check
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Widget availability check</span>
+
+</div>
 curl -f https://widget.passiton.com/status || exit 1
 
-# Database connectivity check
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Database connectivity check</span>
+
+</div>
 npm run health:database
 ```
 

@@ -2,8 +2,6 @@ export interface Organization {
   id: string;
   name: string;
   email: string;
-  stripeCustomerId?: string | null;
-  subscriptionStatus: string;
   createdAt: string;
   updatedAt: string;
 }

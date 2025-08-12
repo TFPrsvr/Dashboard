@@ -37,7 +37,6 @@ interface UserWithOrg {
     id: string;
     name: string;
     display_name: string;
-    subscription_status: string;
   } | null;
 }
 
@@ -83,8 +82,7 @@ export default function AdminUsersPage() {
           organizations (
             id,
             name,
-            display_name,
-            subscription_status
+            display_name
           )
         `)
         .order("created_at", { ascending: false });
@@ -403,9 +401,6 @@ export default function AdminUsersPage() {
                           <span className="text-sm font-medium">
                             {user.organization.display_name || user.organization.name}
                           </span>
-                          <Badge variant="outline" className="text-xs">
-                            {user.organization.subscription_status}
-                          </Badge>
                         </div>
                       )}
                       
