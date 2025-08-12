@@ -31,7 +31,6 @@ interface OrganizationDetail {
   email: string;
   created_at: string;
   updated_at: string;
-  subscription_status: string;
   stripe_account_id: string | null;
   terms_of_service_url: string | null;
 }
@@ -478,15 +477,6 @@ export default function OrganizationDetailPage() {
                   </div>
                 )}
                 
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div>
-                    <p className="font-medium">Subscription Status</p>
-                    <p className="text-sm text-gray-600">Current subscription status</p>
-                  </div>
-                  <Badge variant={organization.subscription_status === 'active' ? 'default' : 'secondary'}>
-                    {organization.subscription_status}
-                  </Badge>
-                </div>
               </div>
             </CardContent>
           </Card>

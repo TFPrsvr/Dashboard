@@ -25,8 +25,7 @@ export async function GET() {
           legal_name,
           email,
           stripe_account_id,
-          stripe_onboarding_complete,
-          subscription_status
+          stripe_onboarding_complete
         )
       `)
       .eq("id", user.id)

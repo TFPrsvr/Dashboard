@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { detectUserRole, UserRoleInfo } from '@/lib/auth/role-detection';
-import { autoCreateSuperAdminIfAuthorized } from '@/lib/auth/super-admin-creation';
 
 export function useUserRole() {
   const { userId, isLoaded } = useAuth();
@@ -21,14 +20,7 @@ export function useUserRole() {
       }
 
       try {
-        // First, check if user should be auto-created as super admin
-        const superAdminResult = await autoCreateSuperAdminIfAuthorized();
-        
-        if (superAdminResult?.success) {
-          console.log('Auto super admin creation:', superAdminResult.message);
-        }
-
-        // Then detect the user's current role
+        // Detect the user's current role
         const roleInfo = await detectUserRole(userId);
         setUserRole(roleInfo);
         

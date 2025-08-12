@@ -41,10 +41,6 @@ export const ROLES: Record<UserRole, RoleDefinition> = {
       'system:logs:all',
       'system:maintenance',
       
-      // Financial Management
-      'payments:read:all',
-      'payments:refund:all',
-      'subscriptions:manage:all',
       
       // Support & Moderation
       'support:access:all',
@@ -79,7 +75,6 @@ export const ROLES: Record<UserRole, RoleDefinition> = {
       // Donation Management
       'donations:read:org',
       'donations:export:org',
-      'donations:refund:org',
       
       // Analytics & Reporting
       'analytics:read:org',

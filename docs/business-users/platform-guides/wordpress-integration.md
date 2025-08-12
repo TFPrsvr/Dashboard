@@ -1,10 +1,22 @@
-# WordPress Integration Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📖 WordPress Integration Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 This guide will help you integrate your PassItOn donation widget into your WordPress website. No coding experience required!
 
-## Table of Contents
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Table of Contents</span>
+
+</div>
 
 - [Quick Setup (5 minutes)](#quick-setup-5-minutes)
 - [Method 1: Header/Footer Code](#method-1-headerfooter-code-recommended)
@@ -16,14 +28,26 @@ This guide will help you integrate your PassItOn donation widget into your WordP
 
 ---
 
-## Quick Setup (5 minutes)
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### What You'll Need
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Quick Setup (5 minutes)</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 What You'll Need</span>
+
+</div>
 - Your PassItOn organization ID
 - WordPress admin access
 - 5 minutes of your time
 
-### Step-by-Step Process
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Step-by-Step Process</span>
+
+</div>
 
 1. **Get Your Organization ID**
    - Log into your PassItOn dashboard
@@ -42,18 +66,34 @@ This guide will help you integrate your PassItOn donation widget into your WordP
 
 ---
 
-## Method 1: Header/Footer Code (Recommended)
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Using Theme Editor
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 1: Header/Footer Code (Recommended)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Using Theme Editor</span>
+
+</div>
 
 ⚠️ **Important**: Always backup your website before editing theme files.
 
-#### Step 1: Access Theme Editor
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Access Theme Editor</span>
+
+</div>
 1. Login to WordPress admin
 2. Go to **Appearance → Theme Editor**
 3. Select **footer.php** from the file list
 
-#### Step 2: Add Your Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Your Code</span>
+
+</div>
 Add this code just before the `</body>` tag:
 
 ```html
@@ -70,15 +110,31 @@ Add this code just before the `</body>` tag:
 <script src="https://your-widget-domain.com/embed.js"></script>
 ```
 
-#### Step 3: Replace YOUR_ORG_ID_HERE
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Replace YOUR_ORG_ID_HERE</span>
+
+</div>
 Replace `YOUR_ORG_ID_HERE` with your actual organization ID from the dashboard.
 
-#### Step 4: Save Changes
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 4: Save Changes</span>
+
+</div>
 Click **Update File** to save your changes.
 
-### Using a Plugin (Safer Method)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Option A: Insert Headers and Footers Plugin
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Using a Plugin (Safer Method)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Option A: Insert Headers and Footers Plugin</span>
+
+</div>
 
 1. **Install Plugin**
    - Go to Plugins → Add New
@@ -90,7 +146,11 @@ Click **Update File** to save your changes.
    - Paste your embed code in the "Scripts in Footer" section
    - Save settings
 
-#### Option B: Code Snippets Plugin
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Option B: Code Snippets Plugin</span>
+
+</div>
 
 1. **Install Plugin**
    - Search for "Code Snippets" plugin
@@ -124,15 +184,31 @@ add_action('wp_footer', 'add_passiton_widget');
 
 ---
 
-## Method 2: Page/Post Content
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### For Specific Pages Only
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 2: Page/Post Content</span>
 
-#### Step 1: Edit Page/Post
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 For Specific Pages Only</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Edit Page/Post</span>
+
+</div>
 1. Go to the page where you want the donation form
 2. Switch to **Text/HTML editor** (not Visual)
 
-#### Step 2: Add Inline Widget
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Inline Widget</span>
+
+</div>
 Paste this code where you want the donation form to appear:
 
 ```html
@@ -153,12 +229,20 @@ Paste this code where you want the donation form to appear:
 <script src="https://your-widget-domain.com/embed.js"></script>
 ```
 
-#### Step 3: Customize Styling
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Customize Styling</span>
+
+</div>
 Add CSS to make it look better:
 
 ```html
 <style>
-#donation-widget-container {
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donation-widget-container {</span>
+
+</div>
   background: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
@@ -171,16 +255,32 @@ Add CSS to make it look better:
 
 ---
 
-## Method 3: Widget Area
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Using WordPress Widgets
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 3: Widget Area</span>
 
-#### Step 1: Create Custom HTML Widget
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Using WordPress Widgets</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Create Custom HTML Widget</span>
+
+</div>
 1. Go to **Appearance → Widgets**
 2. Add **Custom HTML** widget to your desired sidebar
 3. Add your embed code
 
-#### Step 2: Widget Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Widget Code</span>
+
+</div>
 ```html
 <div class="passiton-widget">
   <h3>Support Our Mission</h3>
@@ -202,9 +302,17 @@ Add CSS to make it look better:
 
 ---
 
-## Customization Options
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Available Settings
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Customization Options</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Available Settings</span>
+
+</div>
 
 ```javascript
 window.PassItOnConfig = {
@@ -227,13 +335,21 @@ window.PassItOnConfig = {
 };
 ```
 
-### Position Options
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Position Options</span>
+
+</div>
 - `bottom-right` (default)
 - `bottom-left`
 - `top-right`
 - `top-left`
 
-### Color Customization
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Color Customization</span>
+
+</div>
 Use any hex color code:
 - `#0891B2` (Teal - default)
 - `#DC2626` (Red)
@@ -242,43 +358,83 @@ Use any hex color code:
 
 ---
 
-## Testing Your Widget
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-Launch Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Your Widget</span>
 
-#### ✅ Visual Check
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Pre-Launch Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 ✅ Visual Check</span>
+
+</div>
 - [ ] Widget appears on your website
 - [ ] Colors match your brand
 - [ ] Button text is correct
 - [ ] Widget doesn't overlap content
 
-#### ✅ Functionality Test
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Functionality Test</span>
+
+</div>
 - [ ] Clicking button opens donation form
 - [ ] Form fields work properly
 - [ ] Test donation completes successfully
 - [ ] Thank you page displays
 
-#### ✅ Mobile Testing
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Mobile Testing</span>
+
+</div>
 - [ ] Widget works on mobile phones
 - [ ] Form is easy to use on small screens
 - [ ] No layout issues
 
-#### ✅ Browser Testing
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Browser Testing</span>
+
+</div>
 - [ ] Chrome ✓
 - [ ] Firefox ✓
 - [ ] Safari ✓
 - [ ] Edge ✓
 
-### Test Donation
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Test Donation</span>
+
+</div>
 **Always test with a real $1 donation** to ensure everything works properly.
 
 ---
 
-## Troubleshooting
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Issues
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting</span>
 
-#### "Widget not showing up"
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Widget not showing up"</span>
+
+</div>
 **Possible causes:**
 - Organization ID is incorrect
 - Code wasn't saved properly
@@ -290,7 +446,11 @@ Use any hex color code:
 3. Check browser console for errors (F12)
 4. Verify code is in the right location
 
-#### "Button appears but form doesn't open"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Button appears but form doesn't open"</span>
+
+</div>
 **Possible causes:**
 - JavaScript errors on your site
 - Conflicting plugins
@@ -302,7 +462,11 @@ Use any hex color code:
 3. Check browser console for JavaScript errors
 4. Contact support with error details
 
-#### "Donation form looks broken"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Donation form looks broken"</span>
+
+</div>
 **Possible causes:**
 - CSS conflicts with your theme
 - Mobile compatibility issues
@@ -314,7 +478,11 @@ Use any hex color code:
 3. Add custom CSS to fix layout issues
 4. Contact support for theme-specific help
 
-#### "Payments not working"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Payments not working"</span>
+
+</div>
 **Possible causes:**
 - Stripe account not properly connected
 - Test mode vs live mode confusion
@@ -326,15 +494,27 @@ Use any hex color code:
 3. Test with different payment methods
 4. Contact support for payment issues
 
-### Getting Help
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Self-Help Resources
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Getting Help</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Self-Help Resources</span>
+
+</div>
 1. Check browser console for errors (F12 → Console)
 2. Try in incognito/private browsing mode
 3. Test on different devices
 4. Check WordPress error logs
 
-#### Contact Support
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 Contact Support</span>
+
+</div>
 If you still need help:
 - **Email**: support@passiton.com
 - **Include**: Your organization ID, website URL, and description of the issue
@@ -342,11 +522,23 @@ If you still need help:
 
 ---
 
-## Advanced Integration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### For Developers
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Advanced Integration</span>
 
-#### Custom Styling
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 For Developers</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Custom Styling</span>
+
+</div>
 Add custom CSS to match your theme:
 
 ```css
@@ -362,7 +554,11 @@ Add custom CSS to match your theme:
 }
 ```
 
-#### Event Tracking
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Event Tracking</span>
+
+</div>
 Track donations with Google Analytics:
 
 ```javascript
@@ -384,7 +580,11 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-#### Multiple Widgets
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Multiple Widgets</span>
+
+</div>
 You can have different widgets on different pages:
 
 ```javascript
@@ -410,14 +610,26 @@ if (window.location.pathname.includes('/campaign')) {
 
 ---
 
-## Performance Optimization
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Loading Speed
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Performance Optimization</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Loading Speed</span>
+
+</div>
 - Widget loads asynchronously (won't slow down your site)
 - Minimal JavaScript footprint
 - CDN-delivered for fast global loading
 
-### Caching Compatibility
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Caching Compatibility</span>
+
+</div>
 Compatible with all major WordPress caching plugins:
 - WP Rocket ✓
 - W3 Total Cache ✓

@@ -21,7 +21,8 @@ export function DashboardHeader() {
       
       try {
         setLoading(true);
-        const { data } = await supabase
+        console.log("Clerk userId:", userId);
+        const { data, error } = await supabase
           .from("users")
           .select(`
             role,
@@ -32,6 +33,10 @@ export function DashboardHeader() {
           `)
           .eq("id", userId)
           .single();
+        
+        if (error) {
+          console.error("Supabase error:", error);
+        }
         
         if (data) {
           setRole(data.role);

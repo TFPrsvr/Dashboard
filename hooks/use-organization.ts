@@ -35,10 +35,11 @@ export function useOrganization() {
           
           // If user doesn't exist
           if (orgError.code === 'PGRST116') {
-            setNotFound(true);
+            if (mounted) setNotFound(true);
           } else {
-            setError(orgError.message || "Failed to load organization");
+            if (mounted) setError(orgError.message || "Failed to load organization");
           }
+          if (mounted) setLoading(false);
           return;
         }
 

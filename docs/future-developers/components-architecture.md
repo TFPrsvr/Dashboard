@@ -1,10 +1,22 @@
-# Components Architecture & File Structure
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Components Architecture & File Structure</span>
+
+</div>
 
 This document explains how the component system works, file relationships, and architectural patterns in the PassItOn Admin Dashboard.
 
-## Component Architecture Overview
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Directory Structure & Relationships
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Component Architecture Overview</span>
+
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Directory Structure & Relationships</span>
+
+</div>
 
 ```
 components/
@@ -17,9 +29,17 @@ components/
 **Data Flow:**
 `providers/` → `auth/` → `dashboard/` → `ui/`
 
-## Authentication Layer
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### AuthGuard (`auth/auth-guard.tsx`)
+<span style="font-size: 1.8rem; font-weight: 700;">🔐 Authentication Layer</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">🔐 AuthGuard (`auth/auth-guard.tsx`)</span>
+
+</div>
 
 **Purpose:** Route protection and role-based access control
 
@@ -42,9 +62,17 @@ components/
 </AuthGuard>
 ```
 
-## Provider Layer (State Management)
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### ClientProvider (`providers/client-provider.tsx`)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Provider Layer (State Management)</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 ClientProvider (`providers/client-provider.tsx`)</span>
+
+</div>
 
 **Purpose:** Client-side application context wrapper
 
@@ -58,7 +86,11 @@ components/
 - Provides auth context to all child components
 - Manages global UI state (toasts, loading states)
 
-### SupabaseProvider (`providers/supabase-provider.tsx`)
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 SupabaseProvider (`providers/supabase-provider.tsx`)</span>
+
+</div>
 
 **Purpose:** Database client context for all components
 
@@ -73,9 +105,17 @@ components/
 3. Manages real-time subscriptions
 4. Handles connection state
 
-## Dashboard Component Layer
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### DashboardHeader (`dashboard/dashboard-header.tsx`)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Dashboard Component Layer</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 DashboardHeader (`dashboard/dashboard-header.tsx`)</span>
+
+</div>
 
 **Purpose:** Main navigation and user context display
 
@@ -94,7 +134,11 @@ components/
 3. Renders navigation based on role permissions
 4. Communicates with sidebar for mobile menu state
 
-### Sidebar (`dashboard/sidebar.tsx`)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Sidebar (`dashboard/sidebar.tsx`)</span>
+
+</div>
 
 **Purpose:** Main navigation menu with role-based items
 
@@ -107,7 +151,11 @@ components/
 - **Super Admin**: Links to `app/(dashboard)/admin/*` pages
 - **Owner/Editor**: Links to `app/(dashboard)/dashboard/*` pages
 
-### WidgetCustomizer (`dashboard/widget-customizer.tsx`)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 WidgetCustomizer (`dashboard/widget-customizer.tsx`)</span>
+
+</div>
 
 **Purpose:** Widget configuration interface
 
@@ -123,7 +171,11 @@ components/
 3. Saves to database via `/api/widgets` endpoint
 4. Syncs with preview component for live updates
 
-### WidgetPreview (`dashboard/widget-preview.tsx`)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 WidgetPreview (`dashboard/widget-preview.tsx`)</span>
+
+</div>
 
 **Purpose:** Live widget rendering with current configuration
 
@@ -138,7 +190,11 @@ components/
 3. Simulates actual widget appearance
 4. Updates when configuration changes
 
-### OrganizationSettings (`dashboard/organization-settings.tsx`)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 OrganizationSettings (`dashboard/organization-settings.tsx`)</span>
+
+</div>
 
 **Purpose:** Organization management interface
 
@@ -154,9 +210,17 @@ components/
 3. Team member invitation system
 4. Subscription management
 
-## UI Component Layer
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Base Components (`ui/`)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 UI Component Layer</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Base Components (`ui/`)</span>
+
+</div>
 
 **Purpose:** Reusable UI primitives built on Radix UI
 
@@ -172,9 +236,17 @@ components/
 - `Toast.tsx` + `use-toast.tsx` - Global notification system
 - `Input.tsx`, `Select.tsx` - Form components in settings
 
-## Hook Integration Patterns
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### State Management Hooks
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Hook Integration Patterns</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 State Management Hooks</span>
+
+</div>
 
 **File Locations:** `hooks/`
 
@@ -190,9 +262,17 @@ components/
 3. State updates trigger re-renders across connected components
 4. API mutations update both local and server state
 
-## API Integration Architecture
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Component → API → Database Flow
+<span style="font-size: 1.8rem; font-weight: 700;">🔌 API Integration Architecture</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔌 Component → API → Database Flow</span>
+
+</div>
 
 **Pattern:**
 ```
@@ -208,9 +288,17 @@ Component → Hook → API Route → Supabase → Database
 4. Supabase client updates database
 5. Real-time updates reflect across all components
 
-## Authentication Flow Integration
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Component Security Architecture
+<span style="font-size: 1.8rem; font-weight: 700;">🔐 Authentication Flow Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Component Security Architecture</span>
+
+</div>
 
 **Flow:**
 ```
@@ -225,9 +313,17 @@ Page Request → Middleware → AuthGuard → Component → API
 - `lib/auth/permissions.ts` - Role validation
 - `app/api/*/route.ts` - API-level authorization
 
-## Multi-Tenant Architecture
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Organization Context Flow
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Multi-Tenant Architecture</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Organization Context Flow</span>
+
+</div>
 
 **Components → Organization Relationship:**
 1. `SupabaseProvider` establishes user session
@@ -241,9 +337,17 @@ Page Request → Middleware → AuthGuard → Component → API
 - Widgets belong to Organizations  
 - All data is organization-scoped via RLS policies
 
-## Development Patterns
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Adding New Components
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Development Patterns</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Adding New Components</span>
+
+</div>
 
 **Architecture Requirements:**
 1. **Location**: Choose appropriate layer (auth/dashboard/ui/providers)
@@ -252,7 +356,11 @@ Page Request → Middleware → AuthGuard → Component → API
 4. **Types**: Define in `types/` directory with proper relationships
 5. **API**: Create corresponding API routes if needed
 
-### Component Communication Patterns
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Component Communication Patterns</span>
+
+</div>
 
 **Parent-Child:** Props and callbacks
 **Sibling:** Shared hooks and context

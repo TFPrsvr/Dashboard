@@ -1,7 +1,6 @@
 "use client";
 
 import { supabase } from '@/lib/supabase/supabase-client';
-import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 
 export type UserRole = 'super_admin' | 'owner' | 'editor' | 'new_user';
 
@@ -51,7 +50,7 @@ export async function detectUserRole(clerkUserId: string): Promise<UserRoleInfo>
     const role = userData.role || 'editor';
     const isSuperAdmin = role === 'super_admin';
     const organizationId = userData.organization_id;
-    const organizationName = userData.organizations?.name || null;
+    const organizationName = userData.organizations ? (Array.isArray(userData.organizations) ? userData.organizations[0]?.name : (userData.organizations as any).name) : null;
     const hasOrganization = !!organizationId;
 
     return {
@@ -74,7 +73,7 @@ export async function detectUserRole(clerkUserId: string): Promise<UserRoleInfo>
 // Server-side role detection (for API routes)
 export async function detectUserRoleServer(clerkUserId: string): Promise<UserRoleInfo> {
   try {
-    const { data: userData, error } = await supabaseAdmin
+    const { data: userData, error } = await supabase
       .from('users')
       .select(`
         role,
@@ -106,7 +105,7 @@ export async function detectUserRoleServer(clerkUserId: string): Promise<UserRol
     const role = userData.role || 'editor';
     const isSuperAdmin = role === 'super_admin';
     const organizationId = userData.organization_id;
-    const organizationName = userData.organizations?.name || null;
+    const organizationName = userData.organizations ? (Array.isArray(userData.organizations) ? userData.organizations[0]?.name : (userData.organizations as any).name) : null;
     const hasOrganization = !!organizationId;
 
     return {

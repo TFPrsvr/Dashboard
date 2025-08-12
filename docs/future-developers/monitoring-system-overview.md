@@ -1,12 +1,24 @@
-# Monitoring & Alert System - Developer Overview
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📊 Monitoring & Alert System - Developer Overview</span>
+
+</div>
 
 The PassItOn Admin platform includes a comprehensive monitoring and alerting system designed to proactively identify and respond to system issues before they impact users.
 
-## Architecture
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Architecture</span>
+
+</div>
 
 The monitoring system is built around a modular architecture with the following components:
 
-### Core Components
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Core Components</span>
+
+</div>
 
 1. **AlertService** (`lib/monitoring/alert-service.ts`)
    - Central notification service
@@ -39,7 +51,11 @@ The monitoring system is built around a modular architecture with the following 
    - API error monitoring
    - Database connection health
 
-## Alert Severity Levels
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Alert Severity Levels</span>
+
+</div>
 
 The system uses four severity levels with different notification channels:
 
@@ -50,7 +66,11 @@ The system uses four severity levels with different notification channels:
 | **Medium** | Performance issues, minor errors | Slack |
 | **Low** | Informational alerts, low-impact issues | Email |
 
-## Data Flow
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Data Flow</span>
+
+</div>
 
 ```
 Application Events → Monitoring Services → AlertService → Notification Channels
@@ -63,35 +83,63 @@ Application Events → Monitoring Services → AlertService → Notification Cha
 3. **Notification**: AlertService routes notifications to appropriate channels
 4. **Storage**: Alerts are stored in Supabase for historical analysis and reporting
 
-## Key Features
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Intelligent Thresholds
+<span style="font-size: 1.8rem; font-weight: 700;">✨ Key Features</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Intelligent Thresholds</span>
+
+</div>
 - Dynamic baseline calculation for traffic patterns
 - Consecutive failure detection
 - Rate-based alerting to prevent spam
 - Time-window analysis for pattern recognition
 
-### Pattern Recognition
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Pattern Recognition</span>
+
+</div>
 - Payment failure clustering
 - Widget error correlation
 - Traffic anomaly detection
 - Geographic distribution analysis
 
-### Performance Monitoring
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Monitoring</span>
+
+</div>
 - Response time tracking
 - Database connection health
 - API endpoint availability
 - Widget loading performance
 
-### Security Monitoring
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Security Monitoring</span>
+
+</div>
 - Authentication failure tracking
 - Suspicious traffic pattern detection
 - Bot traffic identification
 - Geographic anomaly alerts
 
-## Integration Points
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Frontend Integration
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Integration Points</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Frontend Integration</span>
+
+</div>
 ```typescript
 import { monitoring } from '@/lib/monitoring';
 
@@ -104,7 +152,11 @@ monitoring.widget.monitorWidgetLoadError({
 });
 ```
 
-### API Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔌 API Integration</span>
+
+</div>
 ```typescript
 import { monitoring } from '@/lib/monitoring';
 
@@ -125,7 +177,11 @@ app.use(async (req, res, next) => {
 });
 ```
 
-### Payment Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Payment Integration</span>
+
+</div>
 ```typescript
 import { monitoring } from '@/lib/monitoring';
 
@@ -143,69 +199,125 @@ try {
 }
 ```
 
-## Database Schema
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🗄️ Database Schema</span>
+
+</div>
 
 The monitoring system requires the following database tables:
 
-### Alert Tables
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Alert Tables</span>
+
+</div>
 - `payment_alerts`: Payment-related alerts and failures
 - `widget_alerts`: Widget loading and performance issues
 - `traffic_alerts`: Traffic pattern anomalies
 - `dashboard_alerts`: System availability and performance
 - `system_alerts`: General system notifications
 
-### Metrics Tables
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Metrics Tables</span>
+
+</div>
 - `traffic_baselines`: Historical traffic patterns for comparison
 - `endpoint_metrics`: API endpoint performance data
 - `widget_analytics`: Widget usage and performance metrics
 - `dashboard_metrics`: Overall system health metrics
 
-### Configuration Tables
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Configuration Tables</span>
+
+</div>
 - `alert_configurations`: User-defined alert settings
 - `notification_preferences`: Channel preferences by organization/user
 
-## Environment Configuration
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Environment Configuration</span>
+
+</div>
 
 The monitoring system requires several environment variables:
 
 ```bash
-# Email notifications
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email notifications</span>
+
+</div>
 ALERT_EMAIL_RECIPIENTS=admin@passiton.com,ops@passiton.com
 
-# Slack integration
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Slack integration</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
 
-# SMS notifications (Twilio)
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 SMS notifications (Twilio)</span>
+
+</div>
 ALERT_SMS_RECIPIENTS=+1234567890,+0987654321
 TWILIO_ACCOUNT_SID=AC...
 TWILIO_AUTH_TOKEN=...
 TWILIO_PHONE_NUMBER=+1234567890
 
-# PagerDuty integration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 PagerDuty integration</span>
+
+</div>
 PAGERDUTY_INTEGRATION_KEY=...
 ```
 
-## Monitoring Best Practices
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Alert Fatigue Prevention
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Monitoring Best Practices</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Alert Fatigue Prevention</span>
+
+</div>
 - Use appropriate severity levels
 - Implement rate limiting for similar alerts
 - Group related alerts when possible
 - Regular review and tuning of thresholds
 
-### Performance Considerations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Considerations</span>
+
+</div>
 - Asynchronous alert processing
 - Batch database operations
 - Efficient baseline calculations
 - Cached metric lookups
 
-### Security Considerations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Security Considerations</span>
+
+</div>
 - Sanitize alert data before transmission
 - Secure API keys and webhook URLs
 - Rate limit alert endpoints
 - Monitor for alert system abuse
 
-## Getting Started
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Getting Started</span>
+
+</div>
 
 1. **Initialize the monitoring system**:
 ```typescript
@@ -224,21 +336,37 @@ await monitoring.initialize();
 await monitoring.testAlerts();
 ```
 
-## Maintenance
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Regular Tasks
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Maintenance</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Regular Tasks</span>
+
+</div>
 - Review alert thresholds monthly
 - Clean up old alert data (>90 days)
 - Update notification channel configurations
 - Monitor system performance impact
 
-### Troubleshooting
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔍 Troubleshooting</span>
+
+</div>
 - Check environment variable configuration
 - Verify database connectivity
 - Test notification channel endpoints
 - Review alert logs for patterns
 
-## Future Enhancements
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Future Enhancements</span>
+
+</div>
 
 - Machine learning-based anomaly detection
 - Custom dashboard for alert visualization

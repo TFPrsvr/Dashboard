@@ -1,14 +1,30 @@
-# Live Widget Testing Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Live Widget Testing Guide</span>
+
+</div>
 
 This guide helps business users test their donation widgets in real-world scenarios to ensure everything works perfectly for donors.
 
-## Overview
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 Live widget testing involves testing the actual donation flow that your supporters will experience when they visit your website. This is different from admin dashboard testing - it focuses on the donor experience.
 
-## Pre-Testing Checklist
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### ✅ **Required Setup Before Testing**
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Pre-Testing Checklist</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">⚙️ ✅ **Required Setup Before Testing**</span>
+
+</div>
 
 1. **Admin Dashboard Setup Complete**:
    - [ ] Organization created and configured
@@ -26,15 +42,27 @@ Live widget testing involves testing the actual donation flow that your supporte
    - [ ] Access to website where widget is embedded
    - [ ] Different devices/browsers available for testing
 
-## Test Mode vs Live Mode
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### 🧪 **Test Mode (Recommended for Testing)**
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Test Mode vs Live Mode</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🧪 🧪 **Test Mode (Recommended for Testing)**</span>
+
+</div>
 - **Purpose**: Safe testing without real money
 - **Stripe Keys**: Uses `pk_test_` and `sk_test_` keys
 - **Test Cards**: Use Stripe test credit card numbers
 - **No Real Charges**: All transactions are simulated
 
-### 🟢 **Live Mode (Production)**
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 🟢 **Live Mode (Production)**</span>
+
+</div>
 - **Purpose**: Real donations from real supporters  
 - **Stripe Keys**: Uses `pk_live_` and `sk_live_` keys
 - **Real Cards**: Actual credit cards charged
@@ -42,9 +70,17 @@ Live widget testing involves testing the actual donation flow that your supporte
 
 **⚠️ Important**: Always test in Test Mode first before going live!
 
-## Live Widget Testing Process
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Step 1: Visual Widget Testing
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Live Widget Testing Process</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Step 1: Visual Widget Testing</span>
+
+</div>
 
 **Test Appearance on Your Website**
 
@@ -66,7 +102,11 @@ Live widget testing involves testing the actual donation flow that your supporte
    - [ ] Test on mobile phone (iPhone, Android)
    - [ ] Check widget adapts to different screen sizes
 
-### Step 2: Donation Flow Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Step 2: Donation Flow Testing</span>
+
+</div>
 
 **Test the Complete Donor Experience**
 
@@ -107,7 +147,11 @@ Live widget testing involves testing the actual donation flow that your supporte
    - [ ] **Expired card**: Use past expiration date
    - [ ] **Invalid CVC**: Use wrong number of digits
 
-### Step 3: Cross-Browser Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Step 3: Cross-Browser Testing</span>
+
+</div>
 
 **Test on Different Browsers**
 
@@ -128,7 +172,11 @@ Live widget testing involves testing the actual donation flow that your supporte
    - Payment processing works
    - Success/error messages display correctly
 
-### Step 4: User Experience Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Step 4: User Experience Testing</span>
+
+</div>
 
 **Test Like a Real Donor**
 
@@ -150,9 +198,17 @@ Live widget testing involves testing the actual donation flow that your supporte
    - [ ] Test larger donations ($100+)
    - [ ] Test custom amount entry
 
-## Testing Results Verification
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Dashboard Verification
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Results Verification</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Dashboard Verification</span>
+
+</div>
 
 After completing test donations:
 
@@ -172,7 +228,11 @@ After completing test donations:
    - [ ] Data is accurate and complete
    - [ ] Export functionality works (if needed)
 
-### Stripe Dashboard Verification
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Stripe Dashboard Verification</span>
+
+</div>
 
 1. **Check Stripe Dashboard**:
    - [ ] Test payments appear in Stripe
@@ -180,9 +240,17 @@ After completing test donations:
    - [ ] Test mode indicator is visible (in test mode)
    - [ ] No real charges were processed
 
-## Common Issues and Solutions
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: Widget Not Appearing
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Common Issues and Solutions</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: Widget Not Appearing</span>
+
+</div>
 
 **Diagnosis Steps**:
 1. Check browser developer console for errors (F12 → Console)
@@ -196,7 +264,11 @@ After completing test donations:
 - Check widget code placement on website
 - Verify organization ID in embed code
 
-### Issue: Payment Processing Fails
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: Payment Processing Fails</span>
+
+</div>
 
 **Diagnosis Steps**:
 1. Verify Stripe connection in admin dashboard
@@ -210,7 +282,11 @@ After completing test donations:
 - Use verified test card numbers
 - Check Stripe account status and verification
 
-### Issue: Donations Not Appearing in Dashboard
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: Donations Not Appearing in Dashboard</span>
+
+</div>
 
 **Diagnosis Steps**:
 1. Wait 2-3 minutes (processing delay normal)
@@ -223,9 +299,17 @@ After completing test donations:
 - Check spam folder for notification emails
 - Contact support if donations missing after 30 minutes
 
-## Going Live Checklist
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Before Switching to Live Mode
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Going Live Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Before Switching to Live Mode</span>
+
+</div>
 
 1. **Complete Testing**:
    - [ ] All test scenarios passed successfully
@@ -245,7 +329,11 @@ After completing test donations:
    - [ ] Email notification settings configured for live mode
    - [ ] Team trained on live transaction monitoring
 
-### Switching to Live Mode
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Switching to Live Mode</span>
+
+</div>
 
 1. **In Admin Dashboard**:
    - Go to Settings → Payment Settings
@@ -264,9 +352,17 @@ After completing test donations:
    - Verify email notifications work correctly
    - Check that funds transfer to your account properly
 
-## Ongoing Live Monitoring
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Daily Monitoring (First Week Live)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Ongoing Live Monitoring</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Daily Monitoring (First Week Live)</span>
+
+</div>
 
 1. **Check Dashboard Daily**:
    - [ ] Review new donations
@@ -283,7 +379,11 @@ After completing test donations:
    - [ ] Check for any changes that might affect widget
    - [ ] Monitor website performance impact
 
-### Weekly Monitoring (Ongoing)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Weekly Monitoring (Ongoing)</span>
+
+</div>
 
 1. **Analytics Review**:
    - [ ] Review donation analytics and trends
@@ -300,9 +400,17 @@ After completing test donations:
    - [ ] Verify payouts are processing correctly
    - [ ] Check for any discrepancies
 
-## Support and Resources
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### When to Contact Support
+<span style="font-size: 1.8rem; font-weight: 700;">💬 Support and Resources</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 When to Contact Support</span>
+
+</div>
 
 **Immediate Support Needed**:
 - Donation processing completely broken
@@ -316,14 +424,22 @@ After completing test donations:
 - Assistance with advanced widget customization
 - Training for team members
 
-### Support Information
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support Information</span>
+
+</div>
 
 - **Email**: support@passiton.com
 - **Response Time**: 4-8 hours (business days)
 - **Live Chat**: Available in admin dashboard
 - **Emergency Support**: urgent@passiton.com (for critical issues)
 
-### What to Include in Support Requests
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 What to Include in Support Requests</span>
+
+</div>
 
 1. **Organization ID**: Found in dashboard settings
 2. **Website URL**: Where widget is embedded
@@ -332,7 +448,11 @@ After completing test donations:
 5. **Screenshots**: Of any error messages or issues
 6. **Browser/Device Info**: What you were using when problem occurred
 
-## Summary
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Summary</span>
+
+</div>
 
 Live widget testing ensures your donors have a smooth, professional experience when supporting your organization. Regular testing and monitoring help maintain trust and maximize donations.
 

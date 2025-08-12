@@ -1,12 +1,28 @@
-# Anonymous Donation Feature Specification
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Anonymous Donation Feature Specification</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 Allow donors to contribute anonymously while still collecting required payment information for legal and processing purposes.
 
-## Feature Requirements
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Donor Experience (Widget Project)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Feature Requirements</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Donor Experience (Widget Project)</span>
+
+</div>
 
 **Donation Form Enhancement:**
 - Add "Donate anonymously" checkbox on donation form
@@ -25,7 +41,11 @@ Allow donors to contribute anonymously while still collecting required payment i
 - Email still required for receipt and confirmation
 - All Stripe payment fields remain mandatory
 
-### Admin Dashboard Integration
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Admin Dashboard Integration</span>
+
+</div>
 
 **Recent Donors Display:**
 ```jsx
@@ -47,7 +67,11 @@ Allow donors to contribute anonymously while still collecting required payment i
 - Toggle to enable/disable anonymous donations
 - Analytics showing anonymous vs named donation ratios
 
-### Database Schema Update
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">🗄️ Database Schema Update</span>
+
+</div>
 
 **Add to donations table:**
 ```sql
@@ -58,7 +82,11 @@ ADD COLUMN is_anonymous BOOLEAN DEFAULT false;
 CREATE INDEX idx_donations_anonymous ON donations(is_anonymous, organization_id);
 ```
 
-### Implementation Flow
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Implementation Flow</span>
+
+</div>
 
 1. **Donor selects anonymous donation** (Widget)
 2. **Form validates all payment info** (Widget) 
@@ -67,9 +95,17 @@ CREATE INDEX idx_donations_anonymous ON donations(is_anonymous, organization_id)
 5. **Recent donors shows "Anonymous"** (Admin Dashboard)
 6. **Analytics track both types** (Admin Dashboard)
 
-## Technical Implementation
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Widget Project Changes
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Technical Implementation</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Widget Project Changes</span>
+
+</div>
 ```jsx
 // In donation form component
 const [isAnonymous, setIsAnonymous] = useState(false);
@@ -84,7 +120,11 @@ const donationData = {
 };
 ```
 
-### Admin Dashboard Changes
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Admin Dashboard Changes</span>
+
+</div>
 ```tsx
 // In recent donors component  
 interface Donation {
@@ -100,7 +140,11 @@ interface Donation {
 const displayName = donation.is_anonymous ? "Anonymous Donor" : donation.donor_name;
 ```
 
-### Privacy Considerations
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Privacy Considerations</span>
+
+</div>
 
 **What's Anonymous:**
 - Name not shown in recent donors list

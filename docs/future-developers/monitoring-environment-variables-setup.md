@@ -1,19 +1,39 @@
-# Monitoring Environment Variables Setup - Developer Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">⚙️ Monitoring Environment Variables Setup - Developer Guide</span>
+
+</div>
 
 This guide covers all environment variables required to configure the PassItOn monitoring and alert system.
 
-## Required Environment Variables
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Email Notifications
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Required Environment Variables</span>
+
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Email Notifications</span>
+
+</div>
 
 ```bash
-# SMTP Configuration for email alerts
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 SMTP Configuration for email alerts</span>
+
+</div>
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=alerts@yourdomain.com
 SMTP_PASSWORD=your_app_specific_password
 
-# Email Recipients (comma-separated)
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email Recipients (comma-separated)</span>
+
+</div>
 ALERT_EMAIL_RECIPIENTS=admin@company.com,dev-team@company.com,ops@company.com
 ```
 
@@ -28,13 +48,25 @@ ALERT_EMAIL_RECIPIENTS=admin@company.com,dev-team@company.com,ops@company.com
    - Yahoo: `smtp.mail.yahoo.com:587`
    - Custom SMTP: Contact your email provider for settings
 
-### Slack Integration
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Slack Integration</span>
+
+</div>
 
 ```bash
-# Slack Webhook URL for notifications
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Slack Webhook URL for notifications</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 
-# Optional: Custom Slack settings
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Optional: Custom Slack settings</span>
+
+</div>
 SLACK_CHANNEL=#alerts
 SLACK_USERNAME=PassItOn Monitoring
 SLACK_ICON_EMOJI=:warning:
@@ -60,15 +92,27 @@ SLACK_ICON_EMOJI=:warning:
    YOUR_SLACK_WEBHOOK_URL
    ```
 
-### SMS Notifications (Twilio)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 SMS Notifications (Twilio)</span>
+
+</div>
 
 ```bash
-# Twilio Account Configuration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Twilio Account Configuration</span>
+
+</div>
 TWILIO_ACCOUNT_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 TWILIO_AUTH_TOKEN=your_auth_token_here
 TWILIO_PHONE_NUMBER=+15551234567
 
-# SMS Recipients (comma-separated)
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 SMS Recipients (comma-separated)</span>
+
+</div>
 ALERT_SMS_RECIPIENTS=+15559876543,+15555555555
 ```
 
@@ -92,13 +136,25 @@ ALERT_SMS_RECIPIENTS=+15559876543,+15555555555
    -u YOUR_ACCOUNT_SID:YOUR_AUTH_TOKEN
    ```
 
-### PagerDuty Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 PagerDuty Integration</span>
+
+</div>
 
 ```bash
-# PagerDuty Integration Key
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 PagerDuty Integration Key</span>
+
+</div>
 PAGERDUTY_INTEGRATION_KEY=your_32_character_integration_key_here
 
-# Optional: Service configuration
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Optional: Service configuration</span>
+
+</div>
 PAGERDUTY_SERVICE_ID=PXXXXXXX
 PAGERDUTY_ESCALATION_POLICY=PXXXXXX
 ```
@@ -129,21 +185,37 @@ PAGERDUTY_ESCALATION_POLICY=PXXXXXX
    }'
    ```
 
-### General Monitoring Settings
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 General Monitoring Settings</span>
+
+</div>
 
 ```bash
-# Alert System Configuration
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Alert System Configuration</span>
+
+</div>
 ALERT_RATE_LIMIT=10                    # Max alerts per time window
 ALERT_RATE_WINDOW=300000               # Rate limit window (5 minutes)
 MAINTENANCE_MODE=false                 # Suppress non-critical alerts
 NODE_ENV=production                    # Environment mode
 
-# Database Configuration (Supabase)
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Database Configuration (Supabase)</span>
+
+</div>
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
-# Monitoring Thresholds (Optional - defaults in code)
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitoring Thresholds (Optional - defaults in code)</span>
+
+</div>
 PAYMENT_FAILURE_THRESHOLD=0.05         # 5% payment failure rate
 WIDGET_ERROR_THRESHOLD=0.1             # 10% widget error rate
 TRAFFIC_SPIKE_MULTIPLIER=3              # 3x normal traffic
@@ -151,81 +223,157 @@ RESPONSE_TIME_WARNING=2000              # 2 second warning threshold
 RESPONSE_TIME_CRITICAL=5000             # 5 second critical threshold
 ```
 
-## Environment-Specific Configuration
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Development Environment (.env.local)
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Environment-Specific Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Development Environment (.env.local)</span>
+
+</div>
 
 ```bash
-# Development settings
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Development settings</span>
+
+</div>
 NODE_ENV=development
 MAINTENANCE_MODE=false
 
-# Use development Slack channel
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Use development Slack channel</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/.../dev-alerts
 SLACK_CHANNEL=#dev-alerts
 
-# Limited email recipients for testing
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Limited email recipients for testing</span>
+
+</div>
 ALERT_EMAIL_RECIPIENTS=developer@company.com
 
-# Higher thresholds for development
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Higher thresholds for development</span>
+
+</div>
 PAYMENT_FAILURE_THRESHOLD=0.2
 WIDGET_ERROR_THRESHOLD=0.3
 RESPONSE_TIME_WARNING=5000
 RESPONSE_TIME_CRITICAL=10000
 
-# Test mode for external services
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test mode for external services</span>
+
+</div>
 TWILIO_TEST_MODE=true
 PAGERDUTY_TEST_MODE=true
 ```
 
-### Staging Environment (.env.staging)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Staging Environment (.env.staging)</span>
+
+</div>
 
 ```bash
-# Staging settings
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Staging settings</span>
+
+</div>
 NODE_ENV=staging
 MAINTENANCE_MODE=false
 
-# Staging-specific channels
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Staging-specific channels</span>
+
+</div>
 SLACK_CHANNEL=#staging-alerts
 ALERT_EMAIL_RECIPIENTS=qa@company.com,dev-lead@company.com
 
-# Moderate thresholds
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Moderate thresholds</span>
+
+</div>
 PAYMENT_FAILURE_THRESHOLD=0.1
 WIDGET_ERROR_THRESHOLD=0.15
 RESPONSE_TIME_WARNING=3000
 RESPONSE_TIME_CRITICAL=7000
 ```
 
-### Production Environment (.env.production)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Production Environment (.env.production)</span>
+
+</div>
 
 ```bash
-# Production settings
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production settings</span>
+
+</div>
 NODE_ENV=production
 MAINTENANCE_MODE=false
 
-# Production alert channels
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production alert channels</span>
+
+</div>
 SLACK_CHANNEL=#production-alerts
 ALERT_EMAIL_RECIPIENTS=ops@company.com,admin@company.com,oncall@company.com
 
-# SMS for critical production alerts
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 SMS for critical production alerts</span>
+
+</div>
 ALERT_SMS_RECIPIENTS=+15551234567,+15557654321
 
-# Sensitive production thresholds
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Sensitive production thresholds</span>
+
+</div>
 PAYMENT_FAILURE_THRESHOLD=0.05
 WIDGET_ERROR_THRESHOLD=0.1
 RESPONSE_TIME_WARNING=2000
 RESPONSE_TIME_CRITICAL=5000
 
-# Enable all notification channels
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Enable all notification channels</span>
+
+</div>
 ENABLE_EMAIL_ALERTS=true
 ENABLE_SLACK_ALERTS=true
 ENABLE_SMS_ALERTS=true
 ENABLE_PAGERDUTY_ALERTS=true
 ```
 
-## Platform-Specific Setup
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Vercel Deployment
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Platform-Specific Setup</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Vercel Deployment</span>
+
+</div>
 
 1. **Via Vercel Dashboard:**
    - Go to your project settings
@@ -244,7 +392,11 @@ ENABLE_PAGERDUTY_ALERTS=true
    vercel env pull .env.production
    ```
 
-### Netlify Deployment
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Netlify Deployment</span>
+
+</div>
 
 1. **Via Netlify Dashboard:**
    - Go to Site settings → Environment variables
@@ -257,28 +409,52 @@ ENABLE_PAGERDUTY_ALERTS=true
      ALERT_RATE_LIMIT = "10"
    ```
 
-### Docker Deployment
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Docker Deployment</span>
+
+</div>
 
 ```dockerfile
-# Dockerfile
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Dockerfile</span>
+
+</div>
 FROM node:18-alpine
 
-# Set environment variables
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Set environment variables</span>
+
+</div>
 ENV NODE_ENV=production
 ENV ALERT_RATE_LIMIT=10
 ENV ALERT_RATE_WINDOW=300000
 
-# Copy application
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Copy application</span>
+
+</div>
 COPY . .
 
-# Install dependencies
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Install dependencies</span>
+
+</div>
 RUN npm ci --only=production
 
 CMD ["npm", "start"]
 ```
 
 ```yaml
-# docker-compose.yml
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 docker-compose.yml</span>
+
+</div>
 version: '3.8'
 services:
   app:
@@ -293,44 +469,96 @@ services:
       - .env.production
 ```
 
-## Security Considerations
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Sensitive Information
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Security Considerations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Sensitive Information</span>
+
+</div>
 ```bash
-# Keep these secret and never commit to version control
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Keep these secret and never commit to version control</span>
+
+</div>
 SMTP_PASSWORD=
 TWILIO_AUTH_TOKEN=
 PAGERDUTY_INTEGRATION_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 
-# Webhook URLs contain secrets
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Webhook URLs contain secrets</span>
+
+</div>
 SLACK_WEBHOOK_URL=
 ```
 
-### Access Control
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Access Control</span>
+
+</div>
 ```bash
-# Restrict email recipients to authorized personnel
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Restrict email recipients to authorized personnel</span>
+
+</div>
 ALERT_EMAIL_RECIPIENTS=admin@company.com,security@company.com
 
-# Use role-based SMS alerts
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Use role-based SMS alerts</span>
+
+</div>
 ALERT_SMS_RECIPIENTS=+15551234567  # On-call engineer only
 ```
 
-### Environment Isolation
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Environment Isolation</span>
+
+</div>
 ```bash
-# Use different accounts/services for different environments
-# Production
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Use different accounts/services for different environments</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production</span>
+
+</div>
 TWILIO_ACCOUNT_SID=ACprod...
 SLACK_WEBHOOK_URL=https://hooks.slack.com/.../prod-alerts
 
-# Development  
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Development  </span>
+
+</div>
 TWILIO_ACCOUNT_SID=ACdev...
 SLACK_WEBHOOK_URL=https://hooks.slack.com/.../dev-alerts
 ```
 
-## Testing Configuration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Validate Environment Setup
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Testing Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">⚙️ Validate Environment Setup</span>
+
+</div>
 
 ```javascript
 // scripts/validate-monitoring-config.js
@@ -362,7 +590,11 @@ optionalVars.forEach(varName => {
 console.log('✅ Environment configuration validated');
 ```
 
-### Test Alert Delivery
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Test Alert Delivery</span>
+
+</div>
 
 ```javascript
 // scripts/test-alerts.js
@@ -382,34 +614,62 @@ async function testAllChannels() {
 testAllChannels();
 ```
 
-## Troubleshooting
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Issues
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Issues</span>
+
+</div>
 
 **Email not sending:**
 ```bash
-# Check SMTP settings
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check SMTP settings</span>
+
+</div>
 telnet smtp.gmail.com 587
 
-# Verify credentials
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Verify credentials</span>
+
+</div>
 curl -u "username:password" smtps://smtp.gmail.com:465
 ```
 
 **Slack webhook not working:**
 ```bash
-# Test webhook URL
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test webhook URL</span>
+
+</div>
 curl -X POST -H 'Content-type: application/json' \
 --data '{"text":"Test"}' $SLACK_WEBHOOK_URL
 ```
 
 **Twilio SMS failing:**
 ```bash
-# Check account status
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check account status</span>
+
+</div>
 curl -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN \
 https://api.twilio.com/2010-04-01/Accounts/$TWILIO_ACCOUNT_SID.json
 ```
 
-### Environment Variable Debugging
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Environment Variable Debugging</span>
+
+</div>
 
 ```javascript
 // Add to your monitoring initialization
@@ -422,7 +682,11 @@ console.log('Monitoring Config:', {
 });
 ```
 
-## Best Practices
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Best Practices</span>
+
+</div>
 
 1. **Use different configurations per environment**
 2. **Keep secrets in environment variables, not code**
@@ -432,15 +696,27 @@ console.log('Monitoring Config:', {
 6. **Monitor your monitoring system's health**
 7. **Set up backup notification methods**
 
-## Migration Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### From Manual Monitoring
+<span style="font-size: 1.8rem; font-weight: 700;">📖 Migration Guide</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 From Manual Monitoring</span>
+
+</div>
 1. Set up environment variables
 2. Deploy monitoring code
 3. Test alert delivery
 4. Gradually reduce manual checks
 
-### From Other Systems
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 From Other Systems</span>
+
+</div>
 1. Export existing alert configurations
 2. Map alerts to PassItOn monitoring types
 3. Set up equivalent thresholds

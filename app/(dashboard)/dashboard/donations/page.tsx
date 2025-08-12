@@ -174,7 +174,7 @@ export default function DonationsPage() {
     if (chartData.length === 0) {
       generateChartData([], chartPeriod);
     }
-  }, []);
+  }, [chartPeriod, chartData.length]);
 
   const exportDonations = () => {
     // Use filtered donations for export

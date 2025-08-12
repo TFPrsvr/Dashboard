@@ -1,12 +1,25 @@
-# PassItOn API Reference
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 PassItOn API Reference</span>
 
-The PassItOn platform provides RESTful APIs for managing organizations, subscriptions, support tickets, and donation widgets. All APIs use JSON for request and response bodies and require proper authentication.
+</div>
 
-## Authentication
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Clerk Authentication
+<span style="font-size: 1.8rem; font-weight: 700;">📖 Overview</span>
+
+The PassItOn platform provides RESTful APIs for managing organizations, support tickets, and donation widgets. All APIs use JSON for request and response bodies and require proper authentication.
+
+</div>
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🔐 Authentication</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🎯 Clerk Authentication</span>
+
 Most endpoints require authentication via Clerk. Include the session token in requests:
 
 ```javascript
@@ -22,16 +35,34 @@ fetch('/api/endpoint', {
 });
 ```
 
-### Webhook Authentication
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🎣 Webhook Authentication</span>
+
 Webhook endpoints use signature verification:
 - Stripe webhooks: Verify `stripe-signature` header
 - Clerk webhooks: Verify with `WEBHOOK_SECRET`
 
-## Core APIs
+</div>
 
-### User Management
+</div>
 
-#### GET /api/users/me
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🛠 Core APIs</span>
+
+</div>
+
+<div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #059669;">👥 User Management</span>
+
+<div style="margin-top: 1rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #0d9488;">🔍 GET /api/users/me</span>
+
 Get current user profile and organization memberships.
 
 **Response:**
@@ -51,13 +82,19 @@ Get current user profile and organization memberships.
 }
 ```
 
-#### PUT /api/users/[userId]/role
-Update user role (admin only).
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #0d9488;">✏️ PUT /api/users/[userId]/role</span>
+
+Update user role (Super Admin only).
 
 **Request:**
 ```json
 {
-  "role": "admin"
+  "role": "super_admin",
+  "reason": "Platform administrator"
 }
 ```
 
@@ -67,15 +104,25 @@ Update user role (admin only).
   "success": true,
   "user": {
     "id": "user_123",
-    "role": "admin"
+    "role": "super_admin",
+    "updated_at": "2025-01-29T00:00:00Z"
   }
 }
 ```
 
-### Organization Management
+</div>
 
-#### GET /api/organizations
-List organizations for current user.
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🏢 Organization Management</span>
+
+<div style="margin-top: 1rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #1e40af;">🔍 GET /api/organizations</span>
+
+List organizations (Admin: all organizations, User: own organization).
 
 **Response:**
 ```json
@@ -84,122 +131,83 @@ List organizations for current user.
     {
       "id": "org_123",
       "name": "My Organization",
-      "display_name": "My Org",
       "email": "contact@myorg.com",
+      "display_name": "My Organization",
       "created_at": "2025-01-29T00:00:00Z",
-      "role": "owner"
+      "stripe_account_id": "acct_123",
+      "stripe_onboarding_complete": true
     }
   ]
 }
 ```
 
-#### POST /api/organizations
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #1e40af;">➕ POST /api/organizations</span>
+
 Create new organization.
 
 **Request:**
 ```json
 {
-  "name": "New Organization",
-  "display_name": "New Org",
-  "email": "contact@neworg.com",
-  "description": "Organization description"
+  "name": "My Organization",
+  "email": "contact@myorg.com",
+  "display_name": "My Organization",
+  "legal_name": "My Organization LLC",
+  "terms_of_service_url": "https://myorg.com/terms"
 }
 ```
-
-**Response:**
-```json
-{
-  "id": "org_456",
-  "name": "New Organization",
-  "created_at": "2025-01-29T00:00:00Z"
-}
-```
-
-#### GET /api/organizations/[orgId]
-Get organization details.
 
 **Response:**
 ```json
 {
   "id": "org_123",
   "name": "My Organization",
-  "display_name": "My Org",
   "email": "contact@myorg.com",
-  "legal_name": "My Organization LLC",
-  "terms_of_service_url": "https://myorg.com/terms",
-  "stripe_account_id": "acct_123",
-  "created_at": "2025-01-29T00:00:00Z",
-  "updated_at": "2025-01-29T00:00:00Z"
+  "display_name": "My Organization",
+  "created_at": "2025-01-29T00:00:00Z"
 }
 ```
 
-#### PUT /api/organizations/[orgId]
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #1e40af;">🔍 GET /api/organizations/[orgId]</span>
+
+Get organization details.
+
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #1e40af;">✏️ PUT /api/organizations/[orgId]</span>
+
 Update organization details.
 
 **Request:**
 ```json
 {
-  "display_name": "Updated Org Name",
+  "display_name": "Updated Organization Name",
   "email": "newemail@myorg.com",
-  "legal_name": "My Organization LLC",
   "terms_of_service_url": "https://myorg.com/terms"
 }
 ```
 
-### Subscription Management
+</div>
 
-#### GET /api/subscription/[orgId]
-Get subscription details for organization.
+</div>
 
-**Response:**
-```json
-{
-  "plan": "professional",
-  "status": "active",
-  "currentPeriodEnd": "2025-02-29T00:00:00Z",
-  "cancelAtPeriodEnd": false
-}
-```
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### POST /api/subscription/upgrade
-Create Stripe checkout session for plan upgrade.
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">🎨 Widget Management</span>
 
-**Request:**
-```json
-{
-  "organizationId": "org_123",
-  "plan": "professional"
-}
-```
+<div style="margin-top: 1rem;">
 
-**Response:**
-```json
-{
-  "url": "https://checkout.stripe.com/session_123"
-}
-```
+<span style="font-size: 1.2rem; font-weight: 600; color: #6d28d9;">🔍 GET /api/widgets</span>
 
-#### POST /api/subscription/cancel
-Cancel subscription at period end.
-
-**Request:**
-```json
-{
-  "organizationId": "org_123"
-}
-```
-
-**Response:**
-```json
-{
-  "success": true
-}
-```
-
-
-### Widget Management
-
-#### GET /api/widgets
 List widgets for organization.
 
 **Response:**
@@ -222,108 +230,141 @@ List widgets for organization.
 }
 ```
 
-#### POST /api/widgets
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #6d28d9;">➕ POST /api/widgets</span>
+
 Create new widget.
 
 **Request:**
 ```json
 {
-  "name": "New Widget",
+  "name": "Main Donation Widget",
+  "slug": "main-widget",
+  "is_active": true,
   "customization": {
     "primary_color": "#3b82f6",
-    "button_text": "Support Us",
-    "show_goal": true,
-    "goal_amount": 10000
+    "button_text": "Donate Now"
   }
 }
 ```
 
-**Response:**
-```json
-{
-  "id": "widget_456",
-  "slug": "new-widget",
-  "embed_code": "<script src=\"https://app.passiton.com/widget/new-widget\"></script>"
-}
-```
+</div>
 
-#### GET /api/widgets/[widgetId]
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #6d28d9;">🔍 GET /api/widgets/[widgetId]</span>
+
 Get widget details.
 
-#### PUT /api/widgets/[widgetId]
-Update widget configuration.
+</div>
 
-#### DELETE /api/widgets/[widgetId]
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #6d28d9;">✏️ PUT /api/widgets/[widgetId]</span>
+
+Update widget.
+
+</div>
+
+<div style="margin-top: 2rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #6d28d9;">🗑 DELETE /api/widgets/[widgetId]</span>
+
 Delete widget.
 
-### Support System
+</div>
 
-#### POST /api/support/notify
-Send support ticket notifications (internal use).
+</div>
+
+<div style="background: rgba(245, 101, 101, 0.1); border-left: 4px solid #f56565; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #e53e3e;">🎧 Support System</span>
+
+<div style="margin-top: 1rem;">
+
+<span style="font-size: 1.2rem; font-weight: 600; color: #c53030;">📧 POST /api/support/notify</span>
+
+Send support notification email.
 
 **Request:**
 ```json
 {
-  "ticketId": "ticket_123",
-  "subject": "Technical Issue",
-  "description": "Detailed description",
+  "organizationId": "org_123",
+  "type": "technical_issue",
+  "message": "Widget not loading on website",
   "userEmail": "user@example.com",
-  "userName": "John Doe",
-  "category": "technical",
-  "priority": "medium"
+  "priority": "high"
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true
-}
-```
+</div>
 
-## Webhook Endpoints
+</div>
 
-### POST /api/webhooks/stripe
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🎣 Webhook Endpoints</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">💳 POST /api/webhooks/stripe</span>
+
 Handle Stripe webhook events.
 
 **Supported Events:**
 - `payment_intent.succeeded` - Donation completed
-- `customer.subscription.created` - New subscription
-- `customer.subscription.updated` - Subscription changed
-- `customer.subscription.deleted` - Subscription canceled
 - `checkout.session.completed` - Checkout completed
-- `invoice.payment_succeeded` - Payment succeeded
 
 **Headers Required:**
 - `stripe-signature`: Stripe webhook signature
 
-### POST /api/webhooks/clerk
-Handle Clerk webhook events.
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">👤 POST /api/webhooks/clerk</span>
+
+Handle Clerk user events.
 
 **Supported Events:**
-- `user.created` - New user registration
+- `user.created` - New user registered
 - `user.updated` - User profile updated
 - `user.deleted` - User account deleted
 
 **Headers Required:**
-- `svix-id`: Webhook ID
-- `svix-timestamp`: Webhook timestamp  
-- `svix-signature`: Webhook signature
+- `svix-id`, `svix-timestamp`, `svix-signature`: Clerk webhook headers
 
-## Error Handling
+</div>
 
-### Error Response Format
+</div>
+
+<div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">❌ Error Handling</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">📋 Error Response Format</span>
+
 ```json
 {
   "error": "Error message",
   "code": "ERROR_CODE",
   "details": {
-    "field": "Additional error details"
+    "field": "validation error details"
   }
 }
 ```
 
-### Common HTTP Status Codes
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">📊 Common HTTP Status Codes</span>
+
 - `200` - Success
 - `201` - Created
 - `400` - Bad Request
@@ -333,65 +374,70 @@ Handle Clerk webhook events.
 - `422` - Validation Error
 - `500` - Internal Server Error
 
-### Common Error Codes
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🚨 Common Error Codes</span>
+
 - `INVALID_REQUEST` - Request validation failed
 - `UNAUTHORIZED` - Authentication required
 - `FORBIDDEN` - Insufficient permissions
 - `NOT_FOUND` - Resource not found
-- `PLAN_LIMIT_EXCEEDED` - Subscription plan limit reached
-- `STRIPE_ERROR` - Payment processing error
-- `DATABASE_ERROR` - Database operation failed
+- `VALIDATION_ERROR` - Input validation failed
+- `RATE_LIMITED` - Too many requests
 
-## Rate Limiting
+</div>
 
-API endpoints are rate limited to prevent abuse:
-- **General APIs**: 100 requests per minute per user
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">⚡ Rate Limiting</span>
+
+API endpoints are rate limited to ensure fair usage:
+
+- **Authentication endpoints**: 5 requests per minute
+- **CRUD operations**: 100 requests per minute  
 - **Webhook endpoints**: 1000 requests per minute
-- **Widget embed**: No limit (cached)
+- **Public widget endpoints**: 10000 requests per minute
 
-Rate limit headers:
+Rate limit headers are included in responses:
 - `X-RateLimit-Limit`: Maximum requests allowed
-- `X-RateLimit-Remaining`: Remaining requests in window
-- `X-RateLimit-Reset`: When the rate limit resets
+- `X-RateLimit-Remaining`: Requests remaining in window
+- `X-RateLimit-Reset`: Time when limit resets (Unix timestamp)
 
-## Data Models
+</div>
 
-### Organization
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Data Models</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🏢 Organization</span>
+
 ```typescript
 interface Organization {
   id: string;
   name: string;
-  display_name?: string;
+  display_name: string;
   legal_name?: string;
   email: string;
-  description?: string;
-  website_url?: string;
-  terms_of_service_url?: string;
   stripe_account_id?: string;
-  stripe_customer_id?: string;
+  stripe_onboarding_complete: boolean;
+  terms_of_service_url?: string;
   created_at: string;
   updated_at: string;
 }
 ```
 
-### Subscription
-```typescript
-interface Subscription {
-  id: string;
-  organization_id: string;
-  stripe_customer_id?: string;
-  stripe_subscription_id?: string;
-  plan: 'free' | 'professional' | 'enterprise';
-  status: 'active' | 'canceled' | 'past_due' | 'trialing';
-  current_period_start?: string;
-  current_period_end?: string;
-  cancel_at_period_end: boolean;
-  created_at: string;
-  updated_at: string;
-}
-```
+</div>
 
-### Widget
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🎨 Widget</span>
+
 ```typescript
 interface Widget {
   id: string;
@@ -400,23 +446,25 @@ interface Widget {
   slug: string;
   is_active: boolean;
   customization: {
-    primary_color?: string;
-    button_text?: string;
-    show_goal?: boolean;
-    goal_amount?: number;
-    thank_you_message?: string;
+    primary_color: string;
+    button_text: string;
+    // ... other customization options
   };
   created_at: string;
   updated_at: string;
 }
 ```
 
-### Support Ticket
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🎧 Support Ticket</span>
+
 ```typescript
 interface SupportTicket {
   id: string;
-  organization_id?: string;
-  user_id: string;
+  organization_id: string;
   subject: string;
   description: string;
   category: 'technical' | 'general' | 'bug_report' | 'feature_request';
@@ -432,60 +480,40 @@ interface SupportTicket {
 }
 ```
 
-### Donation
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">💰 Donation</span>
+
 ```typescript
 interface Donation {
   id: string;
   organization_id: string;
   widget_id: string;
+  donor_name?: string;
+  donor_email?: string;
   amount: number;
   currency: string;
-  donor_email?: string;
-  donor_name?: string;
-  message?: string;
-  stripe_payment_intent_id: string;
   status: 'pending' | 'succeeded' | 'failed';
+  stripe_payment_intent_id: string;
+  message?: string;
   created_at: string;
   updated_at: string;
 }
 ```
 
-## Plan Limits and Features
+</div>
 
-### Free Plan
-- **Widgets**: 1
-- **Monthly Donations**: 50
-- **Team Members**: 1
-- **Features**: Basic customization, email support
+</div>
 
-### Professional Plan ($39/month)
-- **Widgets**: 5
-- **Monthly Donations**: 1,000
-- **Team Members**: 5
-- **Features**: Advanced customization, priority support, remove branding, API access
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Enterprise Plan ($299+/month)
-- **Widgets**: Unlimited
-- **Monthly Donations**: Unlimited
-- **Team Members**: Unlimited
-- **Features**: White-label, dedicated support, custom integrations, SLA
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Integration Examples</span>
 
-### Checking Plan Limits
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
 
-Use the plan limits in your application:
-
-```typescript
-// Check limits before allowing actions
-const limits = await getPlanLimits(organizationId);
-
-if (currentWidgets >= limits.widgets && limits.widgets !== -1) {
-  throw new Error('Widget limit exceeded');
-}
-```
-
-## Integration Examples
-
-### Creating a Donation Widget
+<span style="font-size: 1.4rem; font-weight: 600;">🎨 Creating a Donation Widget</span>
 
 ```javascript
 // 1. Create widget via API
@@ -496,13 +524,12 @@ const response = await fetch('/api/widgets', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    name: 'Homepage Widget',
+    name: 'Main Donation Widget',
+    slug: 'main-widget',
+    is_active: true,
     customization: {
       primary_color: '#3b82f6',
-      button_text: 'Donate Now',
-      show_goal: true,
-      goal_amount: 5000,
-      thank_you_message: 'Thank you for your support!'
+      button_text: 'Donate Now'
     }
   })
 });
@@ -513,10 +540,14 @@ const widget = await response.json();
 const embedCode = `<script src="https://app.passiton.com/widget/${widget.slug}"></script>`;
 ```
 
-### Processing Subscription Changes
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">💳 Processing Donation Webhooks</span>
 
 ```javascript
-// Handle subscription webhook
+// Handle donation webhook
 export async function POST(request) {
   const event = await stripe.webhooks.constructEvent(
     await request.text(),
@@ -524,57 +555,84 @@ export async function POST(request) {
     process.env.STRIPE_WEBHOOK_SECRET
   );
 
-  if (event.type === 'customer.subscription.updated') {
-    const subscription = event.data.object;
+  if (event.type === 'payment_intent.succeeded') {
+    const paymentIntent = event.data.object;
     
-    // Update database
-    await supabase
-      .from('subscriptions')
-      .update({
-        status: subscription.status,
-        current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
-        cancel_at_period_end: subscription.cancel_at_period_end
-      })
-      .eq('stripe_subscription_id', subscription.id);
+    // Handle successful donation
+    console.log('Payment succeeded:', paymentIntent.id);
   }
 
   return Response.json({ received: true });
 }
 ```
 
-## Testing
+</div>
 
-### API Testing with curl
+</div>
+
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">📡 API Testing with curl</span>
 
 ```bash
-# Get user organizations
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Get user organizations</span>
+
+</div>
 curl -X GET "http://localhost:3000/api/organizations" \
   -H "Authorization: Bearer $CLERK_TOKEN" \
   -H "Content-Type: application/json"
 
-# Create support ticket
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">💬 Create support ticket</span>
+
+</div>
 curl -X POST "http://localhost:3000/api/support/tickets" \
   -H "Authorization: Bearer $CLERK_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "subject": "Test Issue",
-    "description": "This is a test ticket",
+    "subject": "Widget not loading",
+    "description": "The donation widget is not appearing on our website",
     "category": "technical",
-    "priority": "medium"
+    "priority": "high"
   }'
 ```
 
-### Webhook Testing
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🎣 Webhook Testing</span>
 
 ```bash
-# Test Stripe webhook locally
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test Stripe webhook locally</span>
+
+</div>
 stripe listen --forward-to localhost:3000/api/webhooks/stripe
 
-# Trigger test events
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Trigger test events</span>
+
+</div>
 stripe trigger payment_intent.succeeded
-stripe trigger customer.subscription.created
+stripe trigger checkout.session.completed
 ```
+
+</div>
+
+</div>
 
 ---
 
-*This API reference is automatically updated with each release. For the latest version, check the developer documentation at `/docs/future-developers/`.*
+<div style="text-align: center; color: #64748b; font-style: italic; margin-top: 3rem;">
+This API reference is automatically updated with each release. For the latest version, check the developer documentation at `/docs/future-developers/`.
+</div>

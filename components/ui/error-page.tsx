@@ -44,7 +44,7 @@ export function ErrorPage({ title, message, actions }: ErrorPageProps) {
             <button
               key={index}
               onClick={action.onClick || (() => {
-                if (action.href) {
+                if ('href' in action && action.href) {
                   router.push(action.href);
                 }
               })}

@@ -166,8 +166,12 @@ export default function NotificationSettingsPage() {
       }
     }
 
-    if (!orgLoading && organization) {
-      loadPreferences();
+    if (!orgLoading) {
+      if (organization) {
+        loadPreferences();
+      } else {
+        setLoading(false);
+      }
     }
   }, [organization, orgLoading]);
 
@@ -241,6 +245,18 @@ export default function NotificationSettingsPage() {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+      </div>
+    );
+  }
+
+  if (!organization) {
+    return (
+      <div className="flex flex-col items-center justify-center h-96 space-y-4">
+        <Bell className="w-16 h-16 text-gray-400" />
+        <h2 className="text-2xl font-bold text-gray-900">No Organization Found</h2>
+        <p className="text-gray-600 text-center max-w-md">
+          You need to be part of an organization to manage notification settings.
+        </p>
       </div>
     );
   }

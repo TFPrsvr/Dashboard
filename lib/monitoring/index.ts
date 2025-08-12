@@ -24,6 +24,13 @@ export type { TrafficAlert, TrafficMetrics } from './traffic-alerts';
 export { DashboardAlertMonitor, dashboardAlertMonitor } from './dashboard-alerts';
 export type { DashboardAlert, DashboardHealth } from './dashboard-alerts';
 
+// Import instances after class declarations
+import { paymentAlertMonitor } from './payment-alerts';
+import { widgetAlertMonitor } from './widget-alerts';
+import { trafficAlertMonitor } from './traffic-alerts';
+import { dashboardAlertMonitor } from './dashboard-alerts';
+import { alertService } from './alert-service';
+
 // Consolidated monitoring class
 export class MonitoringSystem {
   payment = paymentAlertMonitor;

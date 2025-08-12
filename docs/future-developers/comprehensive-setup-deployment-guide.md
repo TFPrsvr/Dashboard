@@ -1,10 +1,26 @@
-# Comprehensive Setup & Deployment Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 Comprehensive Setup & Deployment Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+<div style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">
 
 This comprehensive guide covers everything needed to set up, configure, and deploy the PassItOn Admin Dashboard, from local development to production deployment using Docker, Vercel, or other platforms.
 
-## Table of Contents
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📋 Table of Contents</span>
+
+<div style="margin-top: 1rem;">
 
 - [Quick Start](#quick-start)
 - [Prerequisites](#prerequisites)
@@ -15,23 +31,51 @@ This comprehensive guide covers everything needed to set up, configure, and depl
 - [Production Deployment](#production-deployment)
 - [Troubleshooting](#troubleshooting)
 
+</div>
+
+</div>
+
 ---
 
-## Quick Start
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">⚡ Quick Start</span>
+
+</div>
 
 ```bash
-# Clone the repository
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Clone the repository</span>
+
+</div>
 git clone <repository-url>
 cd PassItOn-Admin
 
-# Install dependencies
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Install dependencies</span>
+
+</div>
 npm install
 
-# Copy environment template
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Copy environment template</span>
+
+</div>
 cp .env.example .env.local
 
-# Set up environment variables (see Environment Configuration section)
-# Start development server
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Set up environment variables (see Environment Configuration section)</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Start development server</span>
+
+</div>
 npm run dev
 ```
 
@@ -39,29 +83,53 @@ Visit `http://localhost:3000` to access the application.
 
 ---
 
-## Prerequisites
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Required Software
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Prerequisites</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Required Software</span>
+
+</div>
 - **Node.js** (v18.17.0 or higher)
 - **npm** (v9.6.7 or higher)
 - **Git** (latest version)
 - **Docker** (optional, for containerized deployment)
 
-### Required Services
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Required Services</span>
+
+</div>
 - **Supabase** account (database & authentication)
 - **Clerk** account (authentication management)
 - **Stripe** account (payment processing)
 
 ---
 
-## Environment Configuration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Complete Environment Variables
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Environment Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Complete Environment Variables</span>
+
+</div>
 
 Copy this configuration to your `.env.local` file:
 
 ```env
-# Clerk Authentication
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Clerk Authentication</span>
+
+</div>
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_publishable_key_here
 CLERK_SECRET_KEY=sk_test_your_clerk_secret_key_here
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
@@ -71,54 +139,110 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/dashboard
 NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/onboarding
 
-# Supabase Database
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Supabase Database</span>
+
+</div>
 SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key_here
 
-# Stripe Configuration
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Stripe Configuration</span>
+
+</div>
 STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 
-# Application Configuration
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Application Configuration</span>
+
+</div>
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-# Super Admin Creation Options (Choose ONE method)
-# Method 1: Environment variable with authorized emails (most secure)
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Super Admin Creation Options (Choose ONE method)</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Method 1: Environment variable with authorized emails (most secure)</span>
+
+</div>
 SUPER_ADMIN_EMAILS=your-email@company.com
 
-# Method 2: First user becomes super admin (if no super admins exist)
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Method 2: First user becomes super admin (if no super admins exist)</span>
+
+</div>
 ENABLE_FIRST_USER_SUPER_ADMIN=false
 
-# Method 3: Secret key for emergency super admin creation
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Method 3: Secret key for emergency super admin creation</span>
+
+</div>
 SUPER_ADMIN_SECRET=your_super_secret_key_here
 ENABLE_SECRET_URL_CREATION=false
 
-# Email Service (Optional)
-# RESEND_API_KEY=re_your_api_key_here
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-# Monitoring & Alerts (Production)
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email Service (Optional)</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔌 RESEND_API_KEY=re_your_api_key_here</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitoring & Alerts (Production)</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ALERT_EMAIL_RECIPIENTS=alerts@yourcompany.com
 ```
 
-### Service Configuration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### 1. Clerk Setup
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Service Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">⚙️ 1. Clerk Setup</span>
+
+</div>
 1. Visit [clerk.com](https://clerk.com) and create account
 2. Create new application named "PassItOn Admin"
 3. Copy publishable key and secret key
 4. Configure redirect URLs in Clerk dashboard
 
-#### 2. Supabase Setup
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">⚙️ 2. Supabase Setup</span>
+
+</div>
 1. Visit [supabase.com](https://supabase.com) and create account
 2. Create new project
 3. Copy project URL and API keys
 4. Set up database schema (see Database Setup section)
 
-#### 3. Stripe Setup
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">⚙️ 3. Stripe Setup</span>
+
+</div>
 1. Visit [stripe.com](https://stripe.com) and create account
 2. Get test/live API keys
 3. Set up webhook endpoints
@@ -126,9 +250,17 @@ ALERT_EMAIL_RECIPIENTS=alerts@yourcompany.com
 
 ---
 
-## Database Setup
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Required Tables
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Database Setup</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Required Tables</span>
+
+</div>
 
 Run these SQL commands in your Supabase SQL editor:
 
@@ -193,7 +325,11 @@ CREATE TABLE IF NOT EXISTS donations (
 );
 ```
 
-### Indexes for Performance
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Indexes for Performance</span>
+
+</div>
 
 ```sql
 -- Add performance indexes
@@ -206,7 +342,11 @@ CREATE INDEX IF NOT EXISTS idx_donations_organization_id ON donations(organizati
 CREATE INDEX IF NOT EXISTS idx_donations_created_at ON donations(created_at);
 ```
 
-### Row Level Security (Production)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Row Level Security (Production)</span>
+
+</div>
 
 ```sql
 -- Enable RLS on sensitive tables
@@ -230,42 +370,90 @@ CREATE POLICY "Admins can view all data" ON users
 
 ---
 
-## Local Development
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Development Server
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Local Development</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Development Server</span>
+
+</div>
 
 ```bash
-# Install dependencies
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Install dependencies</span>
+
+</div>
 npm install
 
-# Start development server with hot reload
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Start development server with hot reload</span>
+
+</div>
 npm run dev
 
-# Run in development mode with debugging
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Run in development mode with debugging</span>
+
+</div>
 npm run dev:debug
 ```
 
-### Development Tools
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Development Tools</span>
+
+</div>
 
 ```bash
-# Linting
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Linting</span>
+
+</div>
 npm run lint
 
-# Type checking
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Type checking</span>
+
+</div>
 npm run type-check
 
-# Database migrations (if using Prisma)
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Database migrations (if using Prisma)</span>
+
+</div>
 npm run db:migrate
 
-# Reset database (development only)
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Reset database (development only)</span>
+
+</div>
 npm run db:reset
 ```
 
 ---
 
-## Docker Deployment
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Multi-Stage Docker Architecture
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Docker Deployment</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Multi-Stage Docker Architecture</span>
+
+</div>
 
 The project uses a single `Dockerfile` with multiple build targets:
 
@@ -273,10 +461,18 @@ The project uses a single `Dockerfile` with multiple build targets:
 2. **Basic Target**: Simple production deployment
 3. **Production Target**: Optimized production deployment
 
-### Docker Compose Configuration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Docker Compose Configuration</span>
+
+</div>
 
 ```yaml
-# docker-compose.yml (Development)
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 docker-compose.yml (Development)</span>
+
+</div>
 version: '3.8'
 services:
   app:
@@ -293,7 +489,11 @@ services:
     env_file:
       - .env.local
 
-# docker-compose.prod.yml (Production)
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 docker-compose.prod.yml (Production)</span>
+
+</div>
 version: '3.8'
 services:
   app:
@@ -308,38 +508,74 @@ services:
       - .env.production
 ```
 
-### Docker Commands
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Docker Commands</span>
+
+</div>
 
 ```bash
-# Development
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Development</span>
+
+</div>
 docker-compose up -d
 
-# Production build
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production build</span>
+
+</div>
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
-# Build specific target
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Build specific target</span>
+
+</div>
 docker build --target production -t passiton-admin:prod .
 
-# Run production container
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Run production container</span>
+
+</div>
 docker run -p 3000:3000 --env-file .env.production passiton-admin:prod
 ```
 
-### Docker Environment Files
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Docker Environment Files</span>
+
+</div>
 
 Create `.env.production` for production deployment:
 
 ```env
-# Production Environment Variables
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production Environment Variables</span>
+
+</div>
 NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 
-# Use production keys
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Use production keys</span>
+
+</div>
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_your_live_key
 CLERK_SECRET_KEY=sk_live_your_live_key
 STRIPE_SECRET_KEY=sk_live_your_live_key
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_your_live_key
 
-# Production database
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Production database</span>
+
+</div>
 NEXT_PUBLIC_SUPABASE_URL=https://your-prod-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
@@ -347,11 +583,23 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
 
 ---
 
-## Production Deployment
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Platform-Specific Deployment
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Production Deployment</span>
 
-#### Vercel Deployment
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Platform-Specific Deployment</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🚀 Vercel Deployment</span>
+
+</div>
 
 1. **Automatic Deployment**:
    ```bash
@@ -385,10 +633,18 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
    }
    ```
 
-#### Netlify Deployment
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🚀 Netlify Deployment</span>
+
+</div>
 
 ```toml
-# netlify.toml
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 netlify.toml</span>
+
+</div>
 [build]
   command = "npm run build"
   publish = ".next"
@@ -402,15 +658,27 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
   NODE_VERSION = "18"
 ```
 
-#### Railway Deployment
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🚀 Railway Deployment</span>
+
+</div>
 
 1. Connect GitHub repository
 2. Set environment variables
 3. Deploy automatically on push
 
-### Production Checklist
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Pre-Deployment
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Production Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🚀 Pre-Deployment</span>
+
+</div>
 - [ ] Update all environment variables to production values
 - [ ] Configure production database with RLS
 - [ ] Set up production Stripe webhooks
@@ -420,7 +688,11 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
 - [ ] Run security audit
 - [ ] Performance optimization review
 
-#### Post-Deployment
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🚀 Post-Deployment</span>
+
+</div>
 - [ ] Verify all API endpoints work
 - [ ] Test payment processing end-to-end
 - [ ] Confirm authentication flows
@@ -430,34 +702,66 @@ SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
 - [ ] Perform load testing
 - [ ] Update documentation
 
-### Production Environment Variables
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Production Environment Variables</span>
+
+</div>
 
 ```env
-# Production-specific variables
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Production-specific variables</span>
+
+</div>
 NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://your-production-domain.com
 
-# Monitoring and Error Tracking
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitoring and Error Tracking</span>
+
+</div>
 SENTRY_DSN=https://your-sentry-dsn
 DATADOG_API_KEY=your-datadog-key
 NEW_RELIC_LICENSE_KEY=your-newrelic-key
 
-# Email Service
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email Service</span>
+
+</div>
 RESEND_API_KEY=re_your_production_api_key
 SUPPORT_EMAIL=support@yourcompany.com
 
-# Alerts and Notifications
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Alerts and Notifications</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/PRODUCTION/WEBHOOK
 ALERT_EMAIL_RECIPIENTS=alerts@yourcompany.com,team@yourcompany.com
 
-# Security
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔒 Security</span>
+
+</div>
 NEXTAUTH_SECRET=your-super-secret-nextauth-secret
 ENCRYPTION_KEY=your-encryption-key-for-sensitive-data
 ```
 
-### Performance Optimization
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Next.js Configuration
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Optimization</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔧 Next.js Configuration</span>
+
+</div>
 
 ```javascript
 // next.config.js
@@ -508,7 +812,11 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-#### Database Optimization
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ Database Optimization</span>
+
+</div>
 
 ```sql
 -- Connection pooling configuration
@@ -525,33 +833,73 @@ LIMIT 50;
 
 ---
 
-## Troubleshooting
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Issues
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting</span>
 
-#### Build Errors
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Build Errors</span>
+
+</div>
 ```bash
-# Clear Next.js cache
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Clear Next.js cache</span>
+
+</div>
 rm -rf .next
 
-# Clear node modules and reinstall
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📦 Clear node modules and reinstall</span>
+
+</div>
 rm -rf node_modules
 npm install
 
-# Type checking
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Type checking</span>
+
+</div>
 npm run type-check
 ```
 
-#### Environment Variable Issues
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Environment Variable Issues</span>
+
+</div>
 ```bash
-# Check if variables are loaded
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check if variables are loaded</span>
+
+</div>
 echo $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
-# Verify .env.local exists and has correct format
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Verify .env.local exists and has correct format</span>
+
+</div>
 cat .env.local | head -5
 ```
 
-#### Database Connection Issues
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ Database Connection Issues</span>
+
+</div>
 ```sql
 -- Test database connection
 SELECT current_database(), current_user, now();
@@ -561,41 +909,77 @@ SELECT table_name FROM information_schema.tables
 WHERE table_schema = 'public';
 ```
 
-#### Docker Issues
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Docker Issues</span>
+
+</div>
 ```bash
-# Check Docker logs
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check Docker logs</span>
+
+</div>
 docker-compose logs app
 
-# Rebuild without cache
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Rebuild without cache</span>
+
+</div>
 docker-compose build --no-cache
 
-# Remove all containers and rebuild
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Remove all containers and rebuild</span>
+
+</div>
 docker-compose down
 docker system prune -a
 docker-compose up --build
 ```
 
-### Performance Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Slow Database Queries
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ Slow Database Queries</span>
+
+</div>
 1. Add appropriate indexes
 2. Use connection pooling
 3. Implement query pagination
 4. Monitor query performance
 
-#### High Memory Usage
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📝 High Memory Usage</span>
+
+</div>
 1. Optimize React components
 2. Implement proper cleanup in useEffect
 3. Use React.memo for expensive components
 4. Monitor memory leaks
 
-#### Slow Page Loading
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Slow Page Loading</span>
+
+</div>
 1. Implement code splitting
 2. Optimize images
 3. Use CDN for static assets
 4. Enable compression
 
-### Support Resources
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support Resources</span>
+
+</div>
 
 - **Development Team**: Internal support for technical issues
 - **Clerk Documentation**: https://clerk.com/docs

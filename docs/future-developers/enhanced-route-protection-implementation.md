@@ -1,8 +1,16 @@
-# Enhanced Route Protection Implementation Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📖 Enhanced Route Protection Implementation Guide</span>
+
+</div>
 
 This guide explains how to implement the enhanced route protection system with intelligent redirects and user-friendly notifications for unauthorized access attempts.
 
-## Overview
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 The enhanced route protection system provides:
 - **Intelligent redirects** from admin routes to equivalent organization routes
@@ -10,9 +18,17 @@ The enhanced route protection system provides:
 - **Role-based messaging** showing current vs required permissions  
 - **Seamless user experience** with helpful suggestions
 
-## Implementation Steps
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Step 1: Replace Existing AuthGuard
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Implementation Steps</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">🔐 Step 1: Replace Existing AuthGuard</span>
+
+</div>
 
 **Current Issue**: Basic AuthGuard only redirects to generic dashboard without explanation.
 
@@ -35,19 +51,35 @@ export default function AdminUsersPage() {
 }
 ```
 
-### Step 2: Update Middleware (Optional but Recommended)
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Step 2: Update Middleware (Optional but Recommended)</span>
+
+</div>
 
 **Replace current middleware.ts with enhanced version:**
 
 ```bash
-# Backup current middleware
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Backup current middleware</span>
+
+</div>
 mv middleware.ts middleware.ts.backup
 
-# Rename enhanced middleware
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Rename enhanced middleware</span>
+
+</div>
 mv enhanced-middleware.ts middleware.ts
 ```
 
-### Step 3: Add AccessDeniedHandler to Layout
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Step 3: Add AccessDeniedHandler to Layout</span>
+
+</div>
 
 **Add to your main layout component:**
 
@@ -72,7 +104,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-### Step 4: Update Admin Route Components
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Step 4: Update Admin Route Components</span>
+
+</div>
 
 **Replace existing admin route protection:**
 
@@ -100,7 +136,11 @@ export default function AdminOrganizationsPage() {
 }
 ```
 
-### Step 5: Add Role-Based UI Components (Optional)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Step 5: Add Role-Based UI Components (Optional)</span>
+
+</div>
 
 **Use the useUserPermissions hook for conditional rendering:**
 
@@ -137,9 +177,17 @@ function NavigationSidebar() {
 }
 ```
 
-## Route Mapping Configuration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Current Route Mappings
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Route Mapping Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Current Route Mappings</span>
+
+</div>
 
 The system automatically redirects users from admin routes to equivalent organization routes:
 
@@ -154,7 +202,11 @@ const ROUTE_MAPPINGS = {
 };
 ```
 
-### Adding New Route Mappings
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Adding New Route Mappings</span>
+
+</div>
 
 **To add new admin routes with intelligent redirects:**
 
@@ -170,9 +222,17 @@ const ROUTE_MAPPINGS = {
 };
 ```
 
-## User Experience Flow
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Scenario: Editor Tries to Access Admin Users
+<span style="font-size: 1.8rem; font-weight: 700;">📌 User Experience Flow</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Scenario: Editor Tries to Access Admin Users</span>
+
+</div>
 
 1. **User Action**: Editor types `/admin/users` in browser
 2. **Auth Check**: EnhancedAuthGuard detects insufficient permissions
@@ -181,7 +241,11 @@ const ROUTE_MAPPINGS = {
 5. **URL Cleanup**: Removes error parameters from URL
 6. **User Result**: User sees their team management page with helpful context
 
-### Scenario: Owner Tries to Access Admin Dashboard
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Scenario: Owner Tries to Access Admin Dashboard</span>
+
+</div>
 
 1. **User Action**: Owner navigates to `/admin`
 2. **Auth Check**: Detects Owner role < Super Admin requirement
@@ -189,9 +253,17 @@ const ROUTE_MAPPINGS = {
 4. **Redirect**: Redirects to `/dashboard` (their organization dashboard)
 5. **Helpful Context**: User understands why and where they ended up
 
-## Customization Options
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Customize Notification Messages
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Customization Options</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Customize Notification Messages</span>
+
+</div>
 
 **Update notification text in enhanced-auth-guard.tsx:**
 
@@ -213,7 +285,11 @@ const showAccessDeniedNotification = (attemptedAction: string, userRole: string)
 };
 ```
 
-### Customize Redirect Delays
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Customize Redirect Delays</span>
+
+</div>
 
 **Adjust timing for better UX:**
 
@@ -224,7 +300,11 @@ setTimeout(() => {
 }, 2000); // Increase delay to 2 seconds for slower readers
 ```
 
-### Add Role-Specific Help Links
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Add Role-Specific Help Links</span>
+
+</div>
 
 **Provide contextual help based on user role:**
 
@@ -240,32 +320,68 @@ const getHelpLink = (userRole: string, attemptedAction: string) => {
 };
 ```
 
-## Testing the Implementation
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Test Cases
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing the Implementation</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Test Cases</span>
+
+</div>
 
 **1. Editor Accessing Admin Routes**
 ```bash
-# Test as Editor user
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test as Editor user</span>
+
+</div>
 curl -H "Authorization: Bearer editor-token" http://localhost:3000/admin/users
-# Expected: Redirect to /dashboard/team with notification
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Expected: Redirect to /dashboard/team with notification</span>
+
+</div>
 ```
 
 **2. Owner Accessing Super Admin Features**
 ```bash  
-# Test as Owner user
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test as Owner user</span>
+
+</div>
 curl -H "Authorization: Bearer owner-token" http://localhost:3000/admin/organizations
-# Expected: Redirect to /dashboard with notification
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Expected: Redirect to /dashboard with notification</span>
+
+</div>
 ```
 
 **3. Super Admin Accessing All Routes**
 ```bash
-# Test as Super Admin
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test as Super Admin</span>
+
+</div>
 curl -H "Authorization: Bearer super-admin-token" http://localhost:3000/admin/users
-# Expected: Access granted, page loads normally
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Expected: Access granted, page loads normally</span>
+
+</div>
 ```
 
-### Manual Testing Checklist
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Manual Testing Checklist</span>
+
+</div>
 
 **Test each role with different routes:**
 - [ ] Editor tries to access `/admin/users` → redirects to `/dashboard/team`
@@ -278,7 +394,11 @@ curl -H "Authorization: Bearer super-admin-token" http://localhost:3000/admin/us
 - [ ] Notifications disappear after appropriate time
 - [ ] URL parameters are cleaned up after redirect
 
-### Automated Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Automated Testing</span>
+
+</div>
 
 **Add to your test suite:**
 
@@ -317,9 +437,17 @@ describe('Enhanced Route Protection', () => {
 });
 ```
 
-## Troubleshooting
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Issues
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Issues</span>
+
+</div>
 
 **1. Notifications Not Showing**
 - Check that Toaster component is included in layout
@@ -341,7 +469,11 @@ describe('Enhanced Route Protection', () => {
 - Check that role hierarchy is correctly implemented
 - Verify middleware and component guards don't conflict
 
-### Debug Mode
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Debug Mode</span>
+
+</div>
 
 **Enable debug logging:**
 
@@ -358,19 +490,35 @@ useEffect(() => {
 }, [userId, pathname, requiredRole, userRole, hasOrganization]);
 ```
 
-## Migration from Old System
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Step-by-Step Migration
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Migration from Old System</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Step-by-Step Migration</span>
+
+</div>
 
 **1. Audit Current Routes**
 ```bash
-# Find all current AuthGuard usage
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Find all current AuthGuard usage</span>
+
+</div>
 grep -r "AuthGuard" app/ components/
 ```
 
 **2. Update Imports**
 ```bash
-# Replace imports across codebase
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Replace imports across codebase</span>
+
+</div>
 find . -name "*.tsx" -exec sed -i 's/AuthGuard/EnhancedAuthGuard/g' {} \;
 find . -name "*.tsx" -exec sed -i 's/auth-guard/enhanced-auth-guard/g' {} \;
 ```
@@ -387,7 +535,11 @@ find . -name "*.tsx" -exec sed -i 's/auth-guard/enhanced-auth-guard/g' {} \;
 
 **5. Clean Up**
 ```bash
-# Remove old auth guard if everything works
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Remove old auth guard if everything works</span>
+
+</div>
 rm components/auth/auth-guard.tsx
 ```
 

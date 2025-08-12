@@ -38,7 +38,6 @@ global.testConfig = {
     name: 'Test Organization',
     display_name: 'Test Org Display',
     email: 'contact@testorg.com',
-    subscription_status: 'active'
   },
 
   // Test widget data

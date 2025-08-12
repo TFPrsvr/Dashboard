@@ -1,18 +1,42 @@
-# PassItOn Chrome Extension
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📌 PassItOn Chrome Extension</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 The PassItOn Chrome Extension allows users to quickly add donation widgets to any website they manage, preview how widgets will look on different sites, and manage their PassItOn account directly from the browser.
 
-## Chrome Web Store Listing
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Extension Name
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Chrome Web Store Listing</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Extension Name</span>
+
+</div>
 PassItOn Donation Helper
 
-### Short Description
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Short Description</span>
+
+</div>
 Easily add donation widgets to any website and track your fundraising impact with PassItOn.
 
-### Detailed Description
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Detailed Description</span>
+
+</div>
 
 **Transform any website into a fundraising platform with one click!**
 
@@ -72,19 +96,31 @@ The PassItOn Donation Helper makes it incredibly easy to add professional donati
 - Custom HTML websites
 - Any website where you can add HTML/JavaScript
 
-### Screenshots Needed
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Screenshots Needed</span>
+
+</div>
 1. **Extension popup interface** - Main control panel
 2. **Widget placement tool** - Visual guide for placing widgets
 3. **Customization panel** - Real-time widget customization
 4. **Analytics dashboard** - Performance metrics and insights
 5. **Multi-site management** - Managing widgets across multiple sites
 
-### Categories
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Categories</span>
+
+</div>
 - Productivity
 - Social & Communication
 - Developer Tools
 
-### Permissions Explanation
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Permissions Explanation</span>
+
+</div>
 
 **Read and change all your data on the websites you visit**
 - Required to inject donation widgets into websites
@@ -101,9 +137,17 @@ The PassItOn Donation Helper makes it incredibly easy to add professional donati
 - Enables offline access to previously configured widgets
 - No personal data is shared with third parties
 
-## Technical Implementation
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Files Structure
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Technical Implementation</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Files Structure</span>
+
+</div>
 ```
 chrome-extension/
 ├── manifest.json           # Extension configuration
@@ -126,9 +170,17 @@ chrome-extension/
     └── styles.css
 ```
 
-### Core Functionality
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Widget Placement Tool
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Core Functionality</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Widget Placement Tool</span>
+
+</div>
 ```javascript
 // content.js - Visual widget placement
 class WidgetPlacer {
@@ -161,7 +213,11 @@ class WidgetPlacer {
 }
 ```
 
-#### Background Service Worker
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Background Service Worker</span>
+
+</div>
 ```javascript
 // background.js - Handle extension lifecycle
 chrome.runtime.onInstalled.addListener((details) => {
@@ -192,7 +248,11 @@ chrome.commands.onCommand.addListener((command) => {
 });
 ```
 
-#### Popup Interface
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Popup Interface</span>
+
+</div>
 ```html
 <!-- popup.html -->
 <!DOCTYPE html>
@@ -227,59 +287,107 @@ chrome.commands.onCommand.addListener((command) => {
 </html>
 ```
 
-### Privacy and Security
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Data Collection
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🔒 Privacy and Security</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Data Collection</span>
+
+</div>
 - **Account Information**: User's PassItOn account details for authentication
 - **Widget Configuration**: Settings and preferences for created widgets
 - **Usage Analytics**: Anonymous usage data to improve the extension
 - **Website URLs**: Only for sites where widgets are actively placed
 
-#### Data Storage
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Data Storage</span>
+
+</div>
 - All sensitive data stored using Chrome's secure storage API
 - Authentication tokens encrypted and stored locally
 - No personal data transmitted to third parties
 - Widget configurations cached locally for offline access
 
-#### Security Measures
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Security Measures</span>
+
+</div>
 - Content Security Policy prevents code injection
 - All API communications use HTTPS
 - Authentication tokens have limited scope and expiration
 - Regular security updates and vulnerability patching
 
-## Publishing Requirements
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Chrome Web Store Requirements
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Publishing Requirements</span>
 
-#### Developer Account
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Chrome Web Store Requirements</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Developer Account</span>
+
+</div>
 - [ ] Verified Chrome Web Store developer account
 - [ ] One-time $5 developer registration fee paid
 - [ ] Developer account verified with Google
 
-#### Technical Requirements
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Technical Requirements</span>
+
+</div>
 - [ ] Manifest v3 compliance
 - [ ] All required permissions justified
 - [ ] Content Security Policy implemented
 - [ ] No malicious or deceptive behavior
 - [ ] Proper error handling and user feedback
 
-#### Asset Requirements
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Asset Requirements</span>
+
+</div>
 - [ ] 128x128px icon (for Chrome Web Store)
 - [ ] 16x16px, 32x32px, 48x48px icons (for extension)
 - [ ] Screenshots (1280x800 or 640x400)
 - [ ] Promotional tile (440x280) - optional
 - [ ] Promotional images for featured listings
 
-#### Policy Compliance
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Policy Compliance</span>
+
+</div>
 - [ ] Privacy policy linked and accessible
 - [ ] User data handling clearly explained
 - [ ] No prohibited content or functionality
 - [ ] Accessibility guidelines followed
 - [ ] International compliance (GDPR, etc.)
 
-### Submission Checklist
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Pre-Submission Testing
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Submission Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Pre-Submission Testing</span>
+
+</div>
 - [ ] Test installation and removal process
 - [ ] Verify all features work across different websites
 - [ ] Test on multiple Chrome versions
@@ -287,42 +395,70 @@ chrome.commands.onCommand.addListener((command) => {
 - [ ] Ensure no console errors or warnings
 - [ ] Test with different screen sizes and resolutions
 
-#### Documentation
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Documentation</span>
+
+</div>
 - [ ] Comprehensive README with setup instructions
 - [ ] Privacy policy explaining data collection
 - [ ] Terms of service for extension usage
 - [ ] User guide with screenshots and examples
 - [ ] Developer documentation for customization
 
-#### Quality Assurance
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Quality Assurance</span>
+
+</div>
 - [ ] Code review completed
 - [ ] Security audit performed
 - [ ] Performance testing completed
 - [ ] User experience testing conducted
 - [ ] Accessibility compliance verified
 
-## Post-Launch Strategy
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### User Onboarding
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Post-Launch Strategy</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 User Onboarding</span>
+
+</div>
 1. **Welcome Screen**: Introduce key features and benefits
 2. **Account Connection**: Streamlined PassItOn account linking
 3. **First Widget**: Guided tutorial for adding first widget
 4. **Best Practices**: Tips for optimal widget placement
 
-### Feature Roadmap
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Feature Roadmap</span>
+
+</div>
 - **Version 1.1**: Widget templates and themes
 - **Version 1.2**: Advanced analytics and A/B testing
 - **Version 1.3**: Team collaboration features
 - **Version 2.0**: AI-powered optimization suggestions
 
-### Support and Maintenance
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Support and Maintenance</span>
+
+</div>
 - Regular updates for Chrome API changes
 - Bug fixes and security patches
 - User feedback integration
 - Performance optimization
 - New feature development based on user requests
 
-### Marketing and Growth
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Marketing and Growth</span>
+
+</div>
 - Integration with PassItOn dashboard promotions
 - Chrome Web Store optimization
 - User reviews and ratings management
