@@ -286,6 +286,24 @@ export default function TeamPage() {
     );
   }
 
+  // Handle case where user is not set up
+  if (!organization) {
+    return (
+      <div className="text-center py-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Organization Setup Required</h2>
+        <p className="text-gray-600 mb-4">
+          You need to complete your organization setup to access team management.
+        </p>
+        <button 
+          onClick={() => window.location.href = '/onboarding'}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Complete Setup
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div>
