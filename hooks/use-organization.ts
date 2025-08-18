@@ -8,7 +8,7 @@ import { Database } from "@/types/database.types";
 type Organization = Database["public"]["Tables"]["organizations"]["Row"];
 
 export function useOrganization() {
-  const { userId } = useAuth();
+  const { userId, isLoaded } = useAuth();
   const [organization, setOrganization] = useState<Organization | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,12 +18,23 @@ export function useOrganization() {
     let mounted = true;
 
     async function fetchOrganization() {
+      // Wait for Clerk to be loaded
+      if (!isLoaded) {
+        return;
+      }
+
+      // If no user, stop loading
       if (!userId) {
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+          setNotFound(true);
+        }
         return;
       }
 
       try {
+        console.log("Fetching organization for user:", userId);
+        
         const { data: org, error: orgError } = await supabase
           .from("users")
           .select("organizations(*)")
@@ -33,8 +44,9 @@ export function useOrganization() {
         if (orgError) {
           console.error("Error fetching organization:", orgError);
           
-          // If user doesn't exist
+          // If user doesn't exist in our database
           if (orgError.code === 'PGRST116') {
+
             if (mounted) setNotFound(true);
           } else {
             if (mounted) setError(orgError.message || "Failed to load organization");
@@ -44,10 +56,13 @@ export function useOrganization() {
         }
 
         if (mounted) {
+
           if (org?.organizations) {
+            console.log("Organization found:", org.organizations);
             setOrganization(org.organizations as unknown as Organization);
           } else {
             // User exists but no organization
+            console.log("User exists but no organization linked");
             setNotFound(true);
           }
         }
@@ -68,7 +83,7 @@ export function useOrganization() {
     return () => {
       mounted = false;
     };
-  }, [userId]);
+  }, [userId, isLoaded]);
 
   return { organization, loading, error, notFound };
 }

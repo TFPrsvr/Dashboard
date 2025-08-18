@@ -299,6 +299,7 @@ export default function TeamPage() {
     );
   }
 
+
   if (!organization) {
     return (
       <div className="flex flex-col items-center justify-center h-96 space-y-4">
@@ -307,7 +308,7 @@ export default function TeamPage() {
         <p className="text-gray-600 text-center max-w-md">
           You need to be part of an organization to access team management.
         </p>
-      </div>
+     </div>
     );
   }
 
