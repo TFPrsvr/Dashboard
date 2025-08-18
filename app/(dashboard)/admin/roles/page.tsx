@@ -156,7 +156,7 @@ export default function RoleManagementPage() {
         fetchUsers();
         setEditingUser(null);
         setRoleReason('');
-        setNewRole('editor');
+        setNewRole('editor' as UserRole);
       } else {
         alert(`Error: ${data.error}`);
       }

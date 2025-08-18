@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useOrganization } from "@/hooks/use-organization";
+import { useUserRole } from "@/hooks/use-user-role";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -25,6 +26,7 @@ interface TeamMember {
 
 export default function TeamPage() {
   const { organization, loading: orgLoading } = useOrganization();
+  const { isSuperAdmin, loading: roleLoading } = useUserRole();
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState("");
@@ -46,7 +48,7 @@ export default function TeamPage() {
         const { data, error } = await supabase
           .from("users")
           .select("*")
-          .eq("organization_id", organization.id)
+          .eq("organization_id", organization?.id)
           .order("created_at", { ascending: false });
 
         if (error) throw error;
@@ -64,10 +66,12 @@ export default function TeamPage() {
       }
     }
 
-    if (!orgLoading && organization) {
+    if (!orgLoading && !roleLoading && organization) {
       fetchTeamMembers();
+    } else if (!orgLoading && !roleLoading) {
+      setLoading(false);
     }
-  }, [organization, orgLoading, toast]);
+  }, [organization, orgLoading, roleLoading, toast]);
 
   const handleInvite = async () => {
     if (!inviteEmail || !organization) return;
@@ -82,8 +86,8 @@ export default function TeamPage() {
         body: JSON.stringify({
           email: inviteEmail,
           role: inviteRole,
-          organizationId: organization.id,
-          organizationName: (organization as any).display_name || organization.name,
+          organizationId: organization?.id,
+          organizationName: (organization as any)?.display_name || organization?.name,
         }),
       });
 
@@ -93,7 +97,6 @@ export default function TeamPage() {
         throw new Error(result.error || "Failed to send invitation");
       }
 
-      // Enhanced success message based on API response
       const isResend = result.action === "updated_existing";
       toast({
         title: isResend ? "Invitation Resent" : "Invitation Sent",
@@ -110,7 +113,7 @@ export default function TeamPage() {
         const { data, error: fetchError } = await supabase
           .from("users")
           .select("*")
-          .eq("organization_id", organization.id)
+          .eq("organization_id", organization?.id)
           .order("created_at", { ascending: false });
 
         if (!fetchError && data) {
@@ -119,7 +122,7 @@ export default function TeamPage() {
         } else {
           console.error("Failed to refresh team data:", fetchError);
         }
-      }, 1000); // Wait 1 second for database consistency
+      }, 1000);
     } catch (error) {
       console.error("Error inviting member:", error);
       toast({
@@ -161,7 +164,6 @@ export default function TeamPage() {
         description: `A new invitation has been sent to ${email}`,
       });
 
-      // Refresh members list
       const { data, error: fetchError } = await supabase
         .from("users")
         .select("*")
@@ -202,7 +204,6 @@ export default function TeamPage() {
         description: `${memberEmail} has been removed from the team.`,
       });
 
-      // Refresh members list
       const { data, error: fetchError } = await supabase
         .from("users")
         .select("*")
@@ -226,12 +227,12 @@ export default function TeamPage() {
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
-      case "admin":
-        return "bg-purple-100 text-purple-800";
-      case "user":
+      case "owner":
         return "bg-blue-100 text-blue-800";
+      case "editor":
+        return "bg-green-100 text-green-800";
       case "super_admin":
-        return "bg-red-100 text-red-800";
+        return "bg-purple-100 text-purple-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -239,7 +240,7 @@ export default function TeamPage() {
 
   const getRoleIcon = (role: string) => {
     switch (role) {
-      case "admin":
+      case "owner":
         return <Shield className="w-4 h-4" />;
       case "super_admin":
         return <Shield className="w-4 h-4" />;
@@ -249,14 +250,12 @@ export default function TeamPage() {
   };
 
   const getStatusBadgeColor = (member: TeamMember) => {
-    // Use database status field for accurate status detection
     switch (member.status) {
       case "pending":
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
       case "accepted":
         return "bg-green-100 text-green-800 border-green-200";
       default:
-        // Legacy users without status field - check if they have invited_ prefix
         const isInvited = member.id.startsWith("invited_");
         return isInvited 
           ? "bg-yellow-100 text-yellow-800 border-yellow-200"
@@ -265,20 +264,34 @@ export default function TeamPage() {
   };
 
   const getStatusIcon = (member: TeamMember) => {
-    // Use database status field for accurate icon selection
     switch (member.status) {
       case "pending":
         return <Mail className="w-3 h-3" />;
       case "accepted":
         return <User className="w-3 h-3" />;
       default:
-        // Legacy users without status field - check if they have invited_ prefix
         const isInvited = member.id.startsWith("invited_");
         return isInvited ? <Mail className="w-3 h-3" /> : <User className="w-3 h-3" />;
     }
   };
 
-  if (loading || orgLoading) {
+  // Filter members based on search and filter criteria
+  const filteredMembers = members.filter((member) => {
+    const matchesSearch = searchTerm === "" || 
+      member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (member.first_name?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (member.last_name?.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesStatus = statusFilter === "all" ||
+      (statusFilter === "pending" && (member.status === "pending" || member.id.startsWith("invited_"))) ||
+      (statusFilter === "active" && (member.status === "accepted" || (!member.status && !member.id.startsWith("invited_"))));
+    
+    const matchesRole = roleFilter === "all" || member.role === roleFilter;
+    
+    return matchesSearch && matchesStatus && matchesRole;
+  });
+
+  if (loading || orgLoading || roleLoading) {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
@@ -286,26 +299,37 @@ export default function TeamPage() {
     );
   }
 
-  // Handle case where user is not set up
+
   if (!organization) {
     return (
-      <div className="text-center py-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">Organization Setup Required</h2>
-        <p className="text-gray-600 mb-4">
-          You need to complete your organization setup to access team management.
+      <div className="flex flex-col items-center justify-center h-96 space-y-4">
+        <Users className="w-16 h-16 text-gray-400" />
+        <h2 className="text-2xl font-bold text-gray-900">No Organization Found</h2>
+        <p className="text-gray-600 text-center max-w-md">
+          You need to be part of an organization to access team management.
         </p>
-        <button 
-          onClick={() => window.location.href = '/onboarding'}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-        >
-          Complete Setup
-        </button>
-      </div>
+     </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      {/* Super Admin Banner */}
+      {isSuperAdmin && (
+        <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5 text-purple-600" />
+              <span className="font-semibold text-purple-900">Super Admin</span>
+              <span className="text-purple-700 text-sm">- Viewing customer experience</span>
+            </div>
+            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+              <User className="w-4 h-4 text-purple-600" />
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div>
         <div className="flex items-center justify-between">
           <div>
@@ -430,20 +454,21 @@ export default function TeamPage() {
           </div>
         </CardContent>
       </Card>
+
       {/* Team Members List */}
       <Card>
         <CardHeader>
-          <CardTitle>Team Members ({members.length})</CardTitle>
+          <CardTitle>Team Members ({filteredMembers.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {members.length === 0 ? (
+            {filteredMembers.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
                 <User className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                <p>No team members yet. Invite someone to get started!</p>
+                <p>No team members found. {members.length === 0 ? "Invite someone to get started!" : "Try adjusting your filters."}</p>
               </div>
             ) : (
-              members.map((member) => (
+              filteredMembers.map((member) => (
                 <div
                   key={member.id}
                   className="flex items-center justify-between p-4 border rounded-lg"

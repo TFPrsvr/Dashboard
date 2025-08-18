@@ -1,10 +1,22 @@
-# Visual Troubleshooting Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🔍 Visual Troubleshooting Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 This guide provides step-by-step solutions to common issues with visual explanations. Most problems can be resolved quickly using these troubleshooting steps.
 
-## Table of Contents
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Table of Contents</span>
+
+</div>
 
 - [Quick Diagnostic Steps](#quick-diagnostic-steps)
 - [Widget Not Showing Issues](#widget-not-showing-issues)
@@ -18,9 +30,17 @@ This guide provides step-by-step solutions to common issues with visual explanat
 
 ---
 
-## Quick Diagnostic Steps
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Step 1: Check Browser Console (F12)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Quick Diagnostic Steps</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Step 1: Check Browser Console (F12)</span>
+
+</div>
 
 **For Everyone (Non-Technical)**
 1. **Right-click** on your webpage where the widget should appear
@@ -41,9 +61,17 @@ This guide provides step-by-step solutions to common issues with visual explanat
 - `Script error` = JavaScript conflict
 - `Network error` = Internet connectivity issue
 
-### Step 2: Basic Checks
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Widget Visibility Checklist
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Step 2: Basic Checks</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Widget Visibility Checklist</span>
+
+</div>
 ```
 □ Organization ID is correct in embed code
 □ Widget code is placed in the right location
@@ -52,7 +80,11 @@ This guide provides step-by-step solutions to common issues with visual explanat
 □ Adblocker is not blocking the widget
 ```
 
-#### Quick Test Process
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Quick Test Process</span>
+
+</div>
 1. **Open incognito/private browser window**
 2. **Visit your website**
 3. **Look for the widget**
@@ -60,11 +92,23 @@ This guide provides step-by-step solutions to common issues with visual explanat
 
 ---
 
-## Widget Not Showing Issues
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "No Donate Button Visible"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Widget Not Showing Issues</span>
 
-#### Visual Diagnostic Process
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "No Donate Button Visible"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Visual Diagnostic Process</span>
+
+</div>
 
 **Step 1: Check Page Source**
 ```html
@@ -99,7 +143,11 @@ document.querySelector('.passiton-widget-button').style.display = 'block';
 If button appears, you have a CSS conflict.
 ```
 
-#### Common Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Common Solutions</span>
+
+</div>
 
 **Solution 1: Fix Organization ID**
 ```html
@@ -129,9 +177,17 @@ organizationId: 'org_abc123xyz', // Your actual ID from dashboard
 }
 ```
 
-### Issue: "Widget Shows But Looks Wrong"
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Visual Problems & Solutions
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Widget Shows But Looks Wrong"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Visual Problems & Solutions</span>
+
+</div>
 
 **Problem: Wrong Colors**
 ```javascript
@@ -162,11 +218,23 @@ window.PassItOnConfig = {
 
 ---
 
-## Payment Processing Problems
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Donation Form Opens But Won't Accept Payment"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Payment Processing Problems</span>
 
-#### Diagnostic Steps
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Donation Form Opens But Won't Accept Payment"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Diagnostic Steps</span>
+
+</div>
 
 **Step 1: Check Stripe Connection**
 ```
@@ -199,7 +267,11 @@ For testing, use these Stripe test numbers:
 🔒 Any 3-digit CVC (like 123)
 ```
 
-#### Common Payment Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Common Payment Solutions</span>
+
+</div>
 
 **Solution 1: Reconnect Stripe**
 ```
@@ -226,9 +298,17 @@ Common Stripe setup issues:
 □ Identity documents needed
 ```
 
-### Issue: "Payment Succeeds But Doesn't Show in Dashboard"
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Diagnostic Process
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Payment Succeeds But Doesn't Show in Dashboard"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Diagnostic Process</span>
+
+</div>
 
 **Step 1: Check Webhook Status**
 ```
@@ -255,11 +335,23 @@ In Stripe Dashboard:
 
 ---
 
-## Mobile Display Issues
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Widget Doesn't Work on Mobile"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Mobile Display Issues</span>
 
-#### Mobile-Specific Diagnostic
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Widget Doesn't Work on Mobile"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Mobile-Specific Diagnostic</span>
+
+</div>
 
 **Step 1: Test on Actual Devices**
 ```
@@ -292,7 +384,11 @@ Test on real devices, not just browser resize:
 }
 ```
 
-#### Common Mobile Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Common Mobile Solutions</span>
+
+</div>
 
 **Solution 1: Fix Viewport Settings**
 ```html
@@ -319,11 +415,23 @@ Mobile form issues:
 
 ---
 
-## Dashboard Access Problems
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Can't Log Into Dashboard"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Dashboard Access Problems</span>
 
-#### Step-by-Step Resolution
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Can't Log Into Dashboard"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step-by-Step Resolution</span>
+
+</div>
 
 **Step 1: Check Login Credentials**
 ```
@@ -351,9 +459,17 @@ Possible account issues:
 □ Subscription expired (renew subscription)
 ```
 
-### Issue: "Dashboard Loads But Missing Features"
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Permission-Based Issues
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">✨ Issue: "Dashboard Loads But Missing Features"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Permission-Based Issues</span>
+
+</div>
 
 **User Role Permissions:**
 ```
@@ -372,11 +488,23 @@ If features are missing, check your role in Settings → Team
 
 ---
 
-## Email Notification Issues
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Not Receiving Donation Notifications"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Email Notification Issues</span>
 
-#### Email Diagnostic Process
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Not Receiving Donation Notifications"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Email Diagnostic Process</span>
+
+</div>
 
 **Step 1: Check Email Settings**
 ```
@@ -404,7 +532,11 @@ Add these to your safe senders list.
 4. Wait up to 10 minutes for delivery
 ```
 
-#### Email Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Email Solutions</span>
+
+</div>
 
 **Solution 1: Whitelist Email Addresses**
 ```
@@ -432,11 +564,23 @@ Common email provider issues:
 
 ---
 
-## Performance Problems
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Website Loads Slowly After Adding Widget"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Performance Problems</span>
 
-#### Performance Diagnostic
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Website Loads Slowly After Adding Widget"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Performance Diagnostic</span>
+
+</div>
 
 **Step 1: Measure Loading Impact**
 ```
@@ -468,7 +612,11 @@ Normal loading time: < 500ms
 <script async src="https://widget.passiton.com/embed.js"></script>
 ```
 
-#### Performance Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Performance Solutions</span>
+
+</div>
 
 **Solution 1: Optimize Script Loading**
 ```html
@@ -500,11 +648,23 @@ if (window.location.pathname === '/donate') {
 
 ---
 
-## Browser Compatibility Issues
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Issue: "Widget Works in Some Browsers But Not Others"
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Browser Compatibility Issues</span>
 
-#### Browser-Specific Testing
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Issue: "Widget Works in Some Browsers But Not Others"</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 Browser-Specific Testing</span>
+
+</div>
 
 **Testing Matrix:**
 ```
@@ -522,7 +682,11 @@ Mobile Browsers:
 ⚠️ UC Browser          - Limited testing
 ```
 
-#### Browser-Specific Solutions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Browser-Specific Solutions</span>
+
+</div>
 
 **Internet Explorer Issues:**
 ```javascript
@@ -555,9 +719,17 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 
 ---
 
-## When to Contact Support
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Self-Service First
+<span style="font-size: 1.8rem; font-weight: 700;">💬 When to Contact Support</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Self-Service First</span>
+
+</div>
 
 **Try These Steps Before Contacting Support:**
 1. ✅ Check this troubleshooting guide
@@ -566,23 +738,43 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 4. ✅ Check browser console for errors
 5. ✅ Verify all settings in dashboard
 
-### Contact Support When:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Immediate Support Needed
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Contact Support When:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 Immediate Support Needed</span>
+
+</div>
 - **Payment processing completely broken**
 - **Security concerns or suspicious activity**
 - **Dashboard completely inaccessible**
 - **Data loss or corruption**
 
-#### Regular Support Request
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 Regular Support Request</span>
+
+</div>
 - **Widget not displaying after following all troubleshooting steps**
 - **Email notifications not working after verification**
 - **Complex integration questions**
 - **Feature requests or customization needs**
 
-### How to Contact Support
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Information to Include
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 How to Contact Support</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Information to Include</span>
+
+</div>
 
 **Essential Details:**
 ```
@@ -599,7 +791,11 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 - Dashboard problems
 - Email notification issues
 
-#### Support Channels
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 Support Channels</span>
+
+</div>
 
 **Email Support**: support@passiton.com
 - **Response Time**: 4-8 hours (business days)
@@ -614,11 +810,23 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 
 ---
 
-## Advanced Troubleshooting
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Developer Tools Usage
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Advanced Troubleshooting</span>
 
-#### For Non-Technical Users
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📝 Developer Tools Usage</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 For Non-Technical Users</span>
+
+</div>
 
 **Basic Console Check:**
 1. **Right-click** on your webpage
@@ -634,7 +842,11 @@ if (window.navigator.userAgent.indexOf('MSIE') !== -1 ||
 4. **Look for failed requests (red entries)**
 5. **Check if PassItOn scripts are loading**
 
-#### For Technical Users
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 For Technical Users</span>
+
+</div>
 
 **Performance Analysis:**
 ```javascript
@@ -655,9 +867,17 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-### Custom Integration Debugging
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Iframe Communication Issues
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Custom Integration Debugging</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Iframe Communication Issues</span>
+
+</div>
 ```javascript
 // Check if iframe can communicate with parent
 window.addEventListener('message', function(event) {
@@ -668,7 +888,11 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-#### Configuration Validation
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔧 Configuration Validation</span>
+
+</div>
 ```javascript
 // Validate configuration object
 function validateConfig(config) {
@@ -689,11 +913,23 @@ validateConfig(window.PassItOnConfig);
 
 ---
 
-## Prevention Tips
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Best Practices to Avoid Issues
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Prevention Tips</span>
 
-#### Regular Maintenance
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Best Practices to Avoid Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Regular Maintenance</span>
+
+</div>
 ```
 Monthly Checklist:
 □ Test donation flow end-to-end
@@ -703,7 +939,11 @@ Monthly Checklist:
 □ Update team member access if needed
 ```
 
-#### Monitoring Setup
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">⚙️ Monitoring Setup</span>
+
+</div>
 ```
 Set up alerts for:
 □ Failed payment notifications
@@ -712,7 +952,11 @@ Set up alerts for:
 □ Dashboard access issues
 ```
 
-#### Documentation
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Documentation</span>
+
+</div>
 ```
 Keep records of:
 □ Website changes that might affect widget

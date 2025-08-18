@@ -22,7 +22,6 @@ export async function POST() {
           id: testOrgId,
           name: "Test Organization",
           email: "test@example.com",
-          subscription_status: "trial"
         })
         .select()
         .single();

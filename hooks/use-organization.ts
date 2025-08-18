@@ -46,17 +46,17 @@ export function useOrganization() {
           
           // If user doesn't exist in our database
           if (orgError.code === 'PGRST116') {
-            console.log("User not found in database, setting notFound to true");
-            if (mounted) {
-              setNotFound(true);
-            }
+
+            if (mounted) setNotFound(true);
           } else {
-            console.log("Database error:", orgError.message);
-            if (mounted) {
-              setError(orgError.message || "Failed to load organization");
-            }
+            if (mounted) setError(orgError.message || "Failed to load organization");
           }
-        } else if (mounted) {
+          if (mounted) setLoading(false);
+          return;
+        }
+
+        if (mounted) {
+
           if (org?.organizations) {
             console.log("Organization found:", org.organizations);
             setOrganization(org.organizations as unknown as Organization);

@@ -4,7 +4,7 @@
  * Monitors for unusual traffic patterns that may indicate issues or attacks
  */
 
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/supabase-client';
 import { AlertService } from './alert-service';
 
 export interface TrafficAlert {
