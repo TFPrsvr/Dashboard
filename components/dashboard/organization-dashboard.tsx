@@ -20,8 +20,7 @@ export function OrganizationDashboard() {
         title="Organization Not Found"
         message="The organization you're looking for doesn't exist or you don't have access to it."
         actions={[
-          { label: "Go to Dashboard", onClick: () => router.push("/dashboard") },
-          { label: "Contact Support", href: "mailto:support@passiton.com" }
+          { label: "Go to Dashboard", onClick: () => router.push("/dashboard") }
         ]}
       />
     );

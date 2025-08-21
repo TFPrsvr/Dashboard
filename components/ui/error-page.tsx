@@ -59,14 +59,6 @@ export function ErrorPage({ title, message, actions }: ErrorPageProps) {
           ))}
         </div>
 
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <p className="text-xs text-gray-500">
-            Need help? Contact support at{" "}
-            <a href="mailto:support@passiton.com" className="text-blue-600 hover:underline">
-              support@passiton.com
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );
