@@ -36,11 +36,19 @@ export async function GET(req: Request) {
     }
 
     // Get organization's Stripe account ID
-    const { data: organization } = await supabase
+    const { data: organization, error: orgError } = await supabase
       .from("organizations")
       .select("stripe_account_id, stripe_onboarding_complete")
       .eq("id", organizationId)
       .single();
+
+    if (orgError) {
+      console.error("Error fetching organization:", orgError);
+      return NextResponse.json(
+        { error: "Failed to fetch organization" },
+        { status: 500 }
+      );
+    }
 
     if (!organization || !organization.stripe_account_id) {
       return NextResponse.json(
@@ -50,17 +58,31 @@ export async function GET(req: Request) {
     }
 
     // Check onboarding status with Stripe
-    const status = await checkAccountOnboardingStatus(organization.stripe_account_id);
+    let status;
+    try {
+      status = await checkAccountOnboardingStatus(organization.stripe_account_id);
+    } catch (stripeError) {
+      console.error("Error checking Stripe account status:", stripeError);
+      return NextResponse.json(
+        { error: "Failed to check Stripe account status" },
+        { status: 500 }
+      );
+    }
 
     // Update local database if onboarding status changed
-    if (status.onboardingComplete !== organization.stripe_onboarding_complete) {
-      await supabase
+    const currentStatus = organization.stripe_onboarding_complete ?? false;
+    if (status.onboardingComplete !== currentStatus) {
+      const { error: updateError } = await supabase
         .from("organizations")
         .update({
           stripe_onboarding_complete: status.onboardingComplete,
           updated_at: new Date().toISOString(),
         })
         .eq("id", organizationId);
+      
+      if (updateError) {
+        console.error("Error updating organization status:", updateError);
+      }
     }
 
     return NextResponse.json({
