@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabase } from '@/lib/supabase/supabase-client';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { ticketId: string } }
+  { params }: { params: Promise<{ ticketId: string }> }
 ) {
   try {
     const { userId } = await auth();
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    const resolvedParams = await params;
 
     const body = await request.json();
     const { response } = body;
@@ -20,7 +22,7 @@ export async function POST(
     }
 
     // Update the ticket with customer response and change status to in_progress
-    const { data: ticket, error } = await supabase
+    const { data: ticket, error } = await supabaseAdmin
       .from('support_tickets')
       .update({
         customer_response: response,
@@ -28,7 +30,7 @@ export async function POST(
         status: 'in_progress',
         updated_at: new Date().toISOString()
       })
-      .eq('id', params.ticketId)
+      .eq('id', resolvedParams.ticketId)
       .eq('user_id', userId) // Ensure user can only respond to their own tickets
       .select()
       .single();
@@ -43,7 +45,7 @@ export async function POST(
     }
 
     // TODO: Send notification email to admin about customer response
-    console.log('Customer response received for ticket:', params.ticketId);
+    console.log('Customer response received for ticket:', resolvedParams.ticketId);
 
     return NextResponse.json({ success: true, ticket });
 

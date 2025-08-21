@@ -98,16 +98,40 @@ export default function OnboardingPage() {
 
       if (orgError) throw orgError;
 
-      // Create user record (using Clerk user ID)
-      const { error: userError } = await supabase
+      // Create or update user record (using Clerk user ID)
+      // Check if user already exists
+      const { data: existingUser } = await supabase
         .from("users")
-        .upsert({
-          id: userId,
-          email: formData.email,
-          role: "admin",
-          organization_id: organization.id,
-          created_at: new Date().toISOString(),
-        });
+        .select("*")
+        .eq("id", userId)
+        .single();
+
+      let userError = null;
+      
+      if (existingUser) {
+        // User exists, just update organization_id (keep existing role)
+        const { error } = await supabase
+          .from("users")
+          .update({
+            email: formData.email,
+            organization_id: organization.id,
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", userId);
+        userError = error;
+      } else {
+        // New user, create with admin role
+        const { error } = await supabase
+          .from("users")
+          .insert({
+            id: userId,
+            email: formData.email,
+            role: "admin",
+            organization_id: organization.id,
+            created_at: new Date().toISOString(),
+          });
+        userError = error;
+      }
 
       if (userError) throw userError;
 

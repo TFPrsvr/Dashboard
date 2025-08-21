@@ -35,7 +35,9 @@ export default function AdminOrganizationsPage() {
       }
       
       const data = await response.json();
-      setOrganizations(data || []);
+      // Handle both response formats: direct array or object with data property
+      const organizationsArray = Array.isArray(data) ? data : (data.data || []);
+      setOrganizations(organizationsArray);
       setError(null);
     } catch (error) {
       console.error("Error fetching organizations:", error);

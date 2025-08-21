@@ -1,6 +1,9 @@
 /* Font imports */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Nunito:wght@400;600;700&family=Raleway:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&family=Fira+Sans:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=Crimson+Text:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Cabin:wght@400;500;600;700&family=Dosis:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&family=PT+Sans:wght@400;700&family=Karla:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;700&family=Josefin+Sans:wght@400;500;600;700&family=Abril+Fatface:wght@400&family=Pacifico:wght@400&family=Comfortaa:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&family=Bitter:wght@400;500;600;700&family=Exo+2:wght@400;500;600;700&family=Titillium+Web:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Zilla+Slab:wght@400;500;600;700&family=Arvo:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Indie+Flower:wght@400&family=Shadows+Into+Light:wght@400&display=swap');
 
+/* Clerk theme import */
+@import "@clerk/themes/shadcn.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,7 +25,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 212 100% 40%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -34,8 +37,13 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 212 100% 40%;
+    --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
   }
 
   .dark {
@@ -58,5 +66,19 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
