@@ -1,12 +1,28 @@
-# Drupal PassItOn Module - Developer Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📖 Drupal PassItOn Module - Developer Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 Technical documentation for developing and customizing the PassItOn Drupal module. This guide covers module architecture, API integration, custom development, and advanced configuration for Drupal developers.
 
-## Module Architecture
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### File Structure
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Module Architecture</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 File Structure</span>
+
+</div>
 ```
 passiton_widget/
 ├── config/
@@ -61,9 +77,17 @@ passiton_widget/
 └── passiton_widget.routing.yml   # Route definitions
 ```
 
-## Core Classes and Services
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Configuration Form (ConfigurationForm.php)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Core Classes and Services</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🔧 Configuration Form (ConfigurationForm.php)</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\passiton_widget\Form;
@@ -168,7 +192,11 @@ class ConfigurationForm extends ConfigFormBase {
 }
 ```
 
-### API Service (ApiService.php)
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🔌 API Service (ApiService.php)</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\passiton_widget\Service;
@@ -267,7 +295,11 @@ class ApiService {
 }
 ```
 
-### Widget Block Plugin (PassItOnWidgetBlock.php)
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Widget Block Plugin (PassItOnWidgetBlock.php)</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\passiton_widget\Plugin\Block;
@@ -362,9 +394,17 @@ class PassItOnWidgetBlock extends BlockBase implements BlockPluginInterface, Con
 }
 ```
 
-## Advanced Development
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Custom Field Type
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Advanced Development</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Custom Field Type</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\passiton_widget\Plugin\Field\FieldType;
@@ -433,7 +473,11 @@ class PassItOnWidgetItem extends FieldItemBase {
 }
 ```
 
-### Analytics Service
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Analytics Service</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\passiton_widget\Service;
@@ -552,9 +596,17 @@ class AnalyticsService {
 }
 ```
 
-## JavaScript Integration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Main Widget JavaScript (passiton-widget-drupal.js)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 JavaScript Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Main Widget JavaScript (passiton-widget-drupal.js)</span>
+
+</div>
 ```javascript
 (function ($, Drupal, once, drupalSettings) {
   'use strict';
@@ -678,9 +730,17 @@ class AnalyticsService {
 })(jQuery, Drupal, once, drupalSettings);
 ```
 
-## Testing
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Unit Tests Example
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Unit Tests Example</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\Tests\passiton_widget\Unit\Service;
@@ -747,7 +807,11 @@ class ApiServiceTest extends UnitTestCase {
 }
 ```
 
-### Functional Tests Example
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Functional Tests Example</span>
+
+</div>
 ```php
 <?php
 namespace Drupal\Tests\passiton_widget\Functional;
@@ -818,9 +882,17 @@ class ConfigurationTest extends BrowserTestBase {
 }
 ```
 
-## Performance Optimization
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Caching Strategy
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Performance Optimization</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Caching Strategy</span>
+
+</div>
 ```php
 // In your service or controller
 public function getCachedWidgetConfig($widget_id) {
@@ -840,9 +912,17 @@ public function getCachedWidgetConfig($widget_id) {
 }
 ```
 
-### Asset Optimization
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Asset Optimization</span>
+
+</div>
 ```yaml
-# passiton_widget.libraries.yml
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 passiton_widget.libraries.yml</span>
+
+</div>
 widget_optimized:
   version: 1.x
   js:
@@ -867,9 +947,17 @@ widget_optimized:
     - core/once
 ```
 
-## Security Best Practices
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Input Validation
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Security Best Practices</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Input Validation</span>
+
+</div>
 ```php
 public function validateWidgetId($widget_id) {
   // Validate widget ID format
@@ -885,7 +973,11 @@ public function validateWidgetId($widget_id) {
 }
 ```
 
-### API Security
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 API Security</span>
+
+</div>
 ```php
 protected function sanitizeApiData($data) {
   $allowed_keys = ['widget_id', 'organization_id', 'placement', 'config'];
@@ -903,16 +995,28 @@ protected function sanitizeApiData($data) {
 
 ---
 
-## Deployment Checklist
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-deployment
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Deployment Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Pre-deployment</span>
+
+</div>
 - [ ] Run all automated tests: `./vendor/bin/phpunit`
 - [ ] Check coding standards: `./vendor/bin/phpcs --standard=Drupal`
 - [ ] Validate configuration schema
 - [ ] Test API connectivity with production credentials
 - [ ] Review security permissions
 
-### Production Deployment
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Production Deployment</span>
+
+</div>
 - [ ] Enable module on production site
 - [ ] Configure API credentials
 - [ ] Test widget rendering on key pages
@@ -920,7 +1024,11 @@ protected function sanitizeApiData($data) {
 - [ ] Monitor error logs for 24 hours
 - [ ] Set up performance monitoring
 
-### Post-deployment
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🚀 Post-deployment</span>
+
+</div>
 - [ ] Configure automated backups of analytics data
 - [ ] Set up monitoring alerts for API failures
 - [ ] Schedule regular security updates

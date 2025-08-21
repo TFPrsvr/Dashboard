@@ -33,7 +33,6 @@ interface WidgetWithOrg {
     name: string;
     display_name: string;
     email: string;
-    subscription_status: string;
   };
   donation_count: number;
   total_raised: number;
@@ -81,8 +80,7 @@ export default function AdminWidgetsPage() {
             id,
             name,
             display_name,
-            email,
-            subscription_status
+            email
           )
         `)
         .order("created_at", { ascending: false });
@@ -119,8 +117,7 @@ export default function AdminWidgetsPage() {
               id: widget.organizations.id,
               name: widget.organizations.name,
               display_name: widget.organizations.display_name,
-              email: widget.organizations.email,
-              subscription_status: widget.organizations.subscription_status
+              email: widget.organizations.email
             },
             donation_count: donationCount,
             total_raised: totalRaised,
@@ -372,9 +369,6 @@ export default function AdminWidgetsPage() {
                         <span className="text-sm font-medium">
                           {widget.organization.display_name || widget.organization.name}
                         </span>
-                        <Badge variant="outline" className="text-xs">
-                          {widget.organization.subscription_status}
-                        </Badge>
                       </div>
                       
                       {/* Stats Row */}

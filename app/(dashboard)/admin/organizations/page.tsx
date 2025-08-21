@@ -12,7 +12,6 @@ interface Organization {
   name: string;
   email: string;
   created_at: string;
-  subscription_status: string;
 }
 
 export default function AdminOrganizationsPage() {
@@ -127,9 +126,6 @@ export default function AdminOrganizationsPage() {
                     Joined {new Date(org.created_at).toLocaleDateString()}
                   </p>
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-xs bg-gray-100 px-2 py-1 rounded">
-                      {org.subscription_status || 'free'}
-                    </span>
                     <Button
                       size="sm"
                       variant="ghost"

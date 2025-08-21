@@ -1,49 +1,93 @@
-# Monitoring Alert Configuration - Developer Setup Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">⚙️ Monitoring Alert Configuration - Developer Setup Guide</span>
+
+</div>
 
 This guide covers how to configure, customize, and manage the monitoring and alerting system for the PassItOn Admin platform.
 
-## Overview
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 The alert system is designed to be flexible and configurable, allowing administrators to customize thresholds, notification channels, and alert behavior based on their specific needs.
 
-## Configuration Files
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Environment Variables
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Configuration Files</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Environment Variables</span>
+
+</div>
 
 Create or update your `.env.local` file with the following monitoring configuration:
 
 ```bash
-# Email Notifications
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Email Notifications</span>
+
+</div>
 ALERT_EMAIL_RECIPIENTS=admin@passiton.com,ops@passiton.com,dev@passiton.com
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=alerts@passiton.com
 SMTP_PASSWORD=your-app-password
 
-# Slack Integration
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Slack Integration</span>
+
+</div>
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 SLACK_CHANNEL=#alerts
 SLACK_USERNAME=PassItOn Alerts
 
-# SMS Notifications (Twilio)
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 SMS Notifications (Twilio)</span>
+
+</div>
 TWILIO_ACCOUNT_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 TWILIO_AUTH_TOKEN=your_auth_token_here
 TWILIO_PHONE_NUMBER=+15551234567
 ALERT_SMS_RECIPIENTS=+15559876543,+15555555555
 
-# PagerDuty Integration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 PagerDuty Integration</span>
+
+</div>
 PAGERDUTY_INTEGRATION_KEY=your_integration_key_here
 PAGERDUTY_SERVICE_ID=PXXXXXXX
 
-# General Settings
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 General Settings</span>
+
+</div>
 ALERT_RATE_LIMIT=10
 ALERT_RATE_WINDOW=300000
 NODE_ENV=production
 ```
 
-## Alert Threshold Configuration
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Payment Alert Thresholds
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Alert Threshold Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Payment Alert Thresholds</span>
+
+</div>
 
 Configure payment monitoring thresholds by modifying `lib/monitoring/payment-alerts.ts`:
 
@@ -56,7 +100,11 @@ private thresholds = {
 };
 ```
 
-### Widget Alert Thresholds
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Widget Alert Thresholds</span>
+
+</div>
 
 Configure widget monitoring thresholds in `lib/monitoring/widget-alerts.ts`:
 
@@ -70,7 +118,11 @@ private thresholds = {
 };
 ```
 
-### Traffic Alert Thresholds
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Traffic Alert Thresholds</span>
+
+</div>
 
 Configure traffic monitoring thresholds in `lib/monitoring/traffic-alerts.ts`:
 
@@ -92,7 +144,11 @@ private thresholds = {
 };
 ```
 
-### Dashboard Alert Thresholds
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Dashboard Alert Thresholds</span>
+
+</div>
 
 Configure dashboard monitoring thresholds in `lib/monitoring/dashboard-alerts.ts`:
 
@@ -111,9 +167,17 @@ private thresholds = {
 };
 ```
 
-## Notification Channel Setup
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Slack Configuration
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Notification Channel Setup</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Slack Configuration</span>
+
+</div>
 
 1. **Create Slack App**:
    - Go to https://api.slack.com/apps
@@ -139,7 +203,11 @@ private thresholds = {
    });
    ```
 
-### Email Configuration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Email Configuration</span>
+
+</div>
 
 1. **SMTP Setup** (Gmail example):
    ```bash
@@ -165,7 +233,11 @@ private thresholds = {
    });
    ```
 
-### SMS Configuration (Twilio)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 SMS Configuration (Twilio)</span>
+
+</div>
 
 1. **Twilio Account Setup**:
    - Create account at https://www.twilio.com
@@ -191,7 +263,11 @@ private thresholds = {
    });
    ```
 
-### PagerDuty Configuration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 PagerDuty Configuration</span>
+
+</div>
 
 1. **PagerDuty Integration**:
    - Create service in PagerDuty
@@ -214,9 +290,17 @@ private thresholds = {
    });
    ```
 
-## Custom Alert Rules
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Creating Custom Alert Types
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Custom Alert Rules</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Creating Custom Alert Types</span>
+
+</div>
 
 1. **Define Alert Interface**:
    ```typescript
@@ -258,7 +342,11 @@ private thresholds = {
    }
    ```
 
-### Alert Suppression Rules
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Alert Suppression Rules</span>
+
+</div>
 
 1. **Rate Limiting**:
    ```typescript
@@ -290,9 +378,17 @@ private thresholds = {
    }
    ```
 
-## Database Configuration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Required Tables
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Database Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Required Tables</span>
+
+</div>
 
 Create the following tables in your Supabase database:
 
@@ -372,7 +468,11 @@ CREATE TABLE endpoint_metrics (
 );
 ```
 
-### Indexes for Performance
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Indexes for Performance</span>
+
+</div>
 
 ```sql
 -- Alert queries by organization and time
@@ -391,9 +491,17 @@ CREATE INDEX idx_dashboard_alerts_type ON dashboard_alerts(type, created_at DESC
 CREATE INDEX idx_endpoint_metrics_endpoint_time ON endpoint_metrics(endpoint, timestamp DESC);
 ```
 
-## Testing Configuration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Running Alert Tests
+<span style="font-size: 1.8rem; font-weight: 700;">🔧 Testing Configuration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Running Alert Tests</span>
+
+</div>
 
 1. **Unit Tests**:
    ```bash
@@ -421,9 +529,17 @@ CREATE INDEX idx_endpoint_metrics_endpoint_time ON endpoint_metrics(endpoint, ti
    });
    ```
 
-## Monitoring Dashboard
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Health Check Endpoint
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Monitoring Dashboard</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Health Check Endpoint</span>
+
+</div>
 
 Create a health check endpoint to monitor the monitoring system:
 
@@ -441,7 +557,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 ```
 
-### Metrics Endpoint
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Metrics Endpoint</span>
+
+</div>
 
 ```typescript
 // pages/api/monitoring/metrics.ts
@@ -453,30 +573,50 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 ```
 
-## Troubleshooting Common Issues
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Alerts Not Being Sent
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting Common Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Alerts Not Being Sent</span>
+
+</div>
 
 1. Check environment variables are set correctly
 2. Verify network connectivity to notification services
 3. Check service credentials and permissions
 4. Review rate limiting settings
 
-### Too Many Alerts
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Too Many Alerts</span>
+
+</div>
 
 1. Adjust threshold values
 2. Implement alert suppression rules
 3. Review severity assignments
 4. Add maintenance mode capabilities
 
-### Performance Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Performance Issues</span>
+
+</div>
 
 1. Optimize database queries with proper indexes
 2. Implement alert batching
 3. Use background job processing
 4. Monitor resource usage of alert system
 
-## Best Practices
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Best Practices</span>
+
+</div>
 
 1. **Start with Conservative Thresholds**: Begin with higher thresholds and adjust down based on false positive rates
 

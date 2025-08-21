@@ -1,23 +1,46 @@
-# Authentication System Implementation Guide
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Authentication System Implementation Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📖 Overview</span>
 
 This guide covers the authentication system implementation using Clerk for user management and Supabase for data storage. It includes recent fixes, best practices, and troubleshooting information.
 
-## Authentication Architecture
+</div>
 
-### Technology Stack:
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🏗 Authentication Architecture</span>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">⚡ Technology Stack:</span>
 - **Clerk**: User authentication and management
 - **Supabase**: Database and user data storage  
 - **Next.js 13+**: App Router with server/client components
 - **TypeScript**: Type safety for auth flows
 
-### Authentication Flow:
+</div>
+
+<div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+
+<span style="font-size: 1.4rem; font-weight: 600;">🔄 Authentication Flow:</span>
 ```
 User Login → Clerk Authentication → Next.js Middleware → Supabase User Lookup → Role Authorization
 ```
 
-### User Data Storage:
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">🗄 User Data Storage</span>
+
 ```sql
 -- users table structure
 CREATE TABLE users (
@@ -33,11 +56,23 @@ CREATE TABLE users (
 );
 ```
 
-## Clerk Integration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Environment Variables:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Clerk Integration</span>
+
+</div>
+
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Environment Variables:</span>
+
+</div>
 ```bash
-# Required Clerk variables
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Required Clerk variables</span>
+
+</div>
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 CLERK_SECRET_KEY=sk_test_...
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
@@ -46,9 +81,17 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 ```
 
-### Client-Side Authentication:
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **For React Components**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">🔐 Client-Side Authentication:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **For React Components**:</span>
+
+</div>
 ```typescript
 // Use separate hooks for different data
 import { useAuth, useUser } from '@clerk/nextjs';
@@ -63,7 +106,11 @@ export default function MyComponent() {
 }
 ```
 
-#### **Common Mistakes to Avoid**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Common Mistakes to Avoid**:</span>
+
+</div>
 ```typescript
 // ❌ WRONG - useAuth() doesn't return user object
 const { userId, user } = useAuth();
@@ -73,9 +120,17 @@ const { userId } = useAuth();
 const { user } = useUser();
 ```
 
-### Server-Side Authentication:
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **For API Routes**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">🔐 Server-Side Authentication:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **For API Routes**:</span>
+
+</div>
 ```typescript
 import { auth } from '@clerk/nextjs/server';
 
@@ -90,7 +145,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-#### **Import Path Important**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Import Path Important**:</span>
+
+</div>
 ```typescript
 // ✅ CORRECT - For API routes
 import { auth } from '@clerk/nextjs/server';
@@ -99,23 +158,43 @@ import { auth } from '@clerk/nextjs/server';
 import { auth } from '@clerk/nextjs';
 ```
 
-## Role-Based Authorization
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Role System:
+<span style="font-size: 1.8rem; font-weight: 700;">🔐 Role-Based Authorization</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Role System:</span>
+
+</div>
 The platform uses a three-tier role system:
 
 ```typescript
 type UserRole = 'super_admin' | 'owner' | 'editor';
 ```
 
-#### **Role Permissions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Role Permissions**:</span>
+
+</div>
 - **super_admin**: Full platform access, all admin features
 - **owner**: Organization management, user management
 - **editor**: Basic dashboard access, content editing functionality
 
-### Role Checking Implementation:
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Database Role Lookup**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Role Checking Implementation:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ **Database Role Lookup**:</span>
+
+</div>
 ```typescript
 async function getUserRole(userId: string): Promise<UserRole | null> {
   const { data: user, error } = await supabase
@@ -132,7 +211,11 @@ async function getUserRole(userId: string): Promise<UserRole | null> {
 }
 ```
 
-#### **API Route Authorization**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **API Route Authorization**:</span>
+
+</div>
 ```typescript
 export async function GET(request: NextRequest) {
   const { userId } = await auth();
@@ -150,7 +233,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-#### **Client-Side Role Display**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Client-Side Role Display**:</span>
+
+</div>
 ```typescript
 // components/dashboard/sidebar.tsx
 export function Sidebar() {
@@ -188,14 +275,26 @@ export function Sidebar() {
 }
 ```
 
-## Team Management System
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Invitation Flow:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Team Management System</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Invitation Flow:</span>
+
+</div>
 ```
 Admin Invites User → Email Sent → User Clicks Link → Clerk Registration → Database Record Created
 ```
 
-### Database Schema for Invitations:
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🗄️ Database Schema for Invitations:</span>
+
+</div>
 ```sql
 -- Invitation tracking in users table
 INSERT INTO users (
@@ -209,12 +308,24 @@ INSERT INTO users (
 );
 ```
 
-## Super Admin Creation System
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Overview
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Super Admin Creation System</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📊 Overview</span>
+
+</div>
 The platform provides three secure methods for creating super admin accounts. Choose the method that best fits your security requirements and deployment scenario.
 
-### Method 1: Environment Variable (Recommended)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Method 1: Environment Variable (Recommended)</span>
+
+</div>
 
 **Best for**: Production environments, team-based development
 
@@ -245,7 +356,11 @@ export async function autoCreateSuperAdminIfAuthorized(): Promise<SuperAdminCrea
 3. Have authorized team members sign in - they'll automatically become super admins
 4. Verify in Supabase that their role is set to `super_admin`
 
-### Method 2: First User Super Admin
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Method 2: First User Super Admin</span>
+
+</div>
 
 **Best for**: Initial setup, single-admin scenarios
 
@@ -272,7 +387,11 @@ if (ENABLE_FIRST_USER_SUPER_ADMIN) {
 3. Sign up/sign in as the first user - you'll become super admin
 4. Disable this setting after initial setup for security
 
-### Method 3: Secret Key Emergency Access
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Method 3: Secret Key Emergency Access</span>
+
+</div>
 
 **Best for**: Emergency situations, backup access
 
@@ -292,7 +411,11 @@ ENABLE_SECRET_URL_CREATION=true
 4. Sign in with the target email to complete super admin creation
 5. Disable this feature after use for security
 
-### Security Considerations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Security Considerations</span>
+
+</div>
 
 **Environment Variable Method (Most Secure):**
 - ✅ No user interface exposure
@@ -312,7 +435,11 @@ ENABLE_SECRET_URL_CREATION=true
 - ✅ Works when other methods fail
 - ✅ Provides audit trail
 
-### Troubleshooting Super Admin Creation
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔍 Troubleshooting Super Admin Creation</span>
+
+</div>
 
 **Common Issues:**
 
@@ -344,7 +471,11 @@ FROM users
 WHERE email = 'your-email@banyanlabs.io';
 ```
 
-### Role System Updates:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Role System Updates:</span>
+
+</div>
 **Important**: The role system was updated in January 2025:
 
 ```sql
@@ -354,7 +485,11 @@ WHERE email = 'your-email@banyanlabs.io';
 'super_admin' -- Platform administrator
 ```
 
-### Team Invitation API:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔌 Team Invitation API:</span>
+
+</div>
 ```typescript
 // app/api/team/invite/route.ts
 export async function POST(request: NextRequest) {
@@ -384,11 +519,23 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-## Database Integration
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Supabase Configuration:
+<span style="font-size: 1.8rem; font-weight: 700;">🗄️ Database Integration</span>
 
-#### **Row Level Security (RLS)**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Supabase Configuration:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 **Row Level Security (RLS)**:</span>
+
+</div>
 For most tables, we use application-level authorization instead of RLS due to Clerk integration complexity.
 
 ```sql
@@ -400,7 +547,11 @@ ALTER TABLE users DISABLE ROW LEVEL SECURITY;
 ALTER TABLE organizations ENABLE ROW LEVEL SECURITY;
 ```
 
-#### **User Data Synchronization**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **User Data Synchronization**:</span>
+
+</div>
 ```typescript
 // Sync Clerk user data to Supabase
 async function syncUserToSupabase(clerkUser: User) {
@@ -420,9 +571,17 @@ async function syncUserToSupabase(clerkUser: User) {
 }
 ```
 
-### Common Database Queries:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Get User with Organization**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🗄️ Common Database Queries:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Get User with Organization**:</span>
+
+</div>
 ```typescript
 const { data: userWithOrg } = await supabase
   .from('users')
@@ -431,14 +590,17 @@ const { data: userWithOrg } = await supabase
     organizations (
       id,
       name,
-      subscription_status
     )
   `)
   .eq('id', userId)
   .single();
 ```
 
-#### **Get Organization Members**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Get Organization Members**:</span>
+
+</div>
 ```typescript
 const { data: members } = await supabase
   .from('users')
@@ -447,18 +609,34 @@ const { data: members } = await supabase
   .order('created_at', { ascending: false });
 ```
 
-## Error Handling
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Common Authentication Errors:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Error Handling</span>
 
-#### **1. Import Path Errors**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔐 Common Authentication Errors:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **1. Import Path Errors**:</span>
+
+</div>
 ```typescript
 // Error: Module '"@clerk/nextjs"' has no exported member 'auth'
 // Solution: Use correct import path
 import { auth } from '@clerk/nextjs/server'; // For API routes
 ```
 
-#### **2. User Property Not Found**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **2. User Property Not Found**:</span>
+
+</div>
 ```typescript
 // Error: Property 'user' does not exist on type 'UseAuthReturn'
 // Solution: Use separate hooks
@@ -466,16 +644,28 @@ const { userId } = useAuth();
 const { user } = useUser(); // Separate hook for user data
 ```
 
-#### **3. Database Column Mismatch**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ **3. Database Column Mismatch**:</span>
+
+</div>
 ```typescript
 // Error: Column 'user_id' doesn't exist
 // Solution: Use correct column name
 .eq('id', userId) // Correct column name
 ```
 
-### Error Response Patterns:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **API Error Responses**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Error Response Patterns:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **API Error Responses**:</span>
+
+</div>
 ```typescript
 // Unauthorized (no auth token)
 return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -490,9 +680,17 @@ return NextResponse.json({ error: 'User not found' }, { status: 404 });
 return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
 ```
 
-## Security Best Practices
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### API Route Security:
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Security Best Practices</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 API Route Security:</span>
+
+</div>
 ```typescript
 export async function POST(request: NextRequest) {
   try {
@@ -532,7 +730,11 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-### Client-Side Security:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔒 Client-Side Security:</span>
+
+</div>
 ```typescript
 // Never expose sensitive operations to client
 // ❌ WRONG
@@ -550,9 +752,17 @@ const deleteUser = async (userId: string) => {
 };
 ```
 
-## Testing Authentication
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Manual Testing Checklist:
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Authentication</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Manual Testing Checklist:</span>
+
+</div>
 - [ ] **User registration** creates Supabase record
 - [ ] **Role assignment** works correctly
 - [ ] **Team invitations** send and process properly
@@ -560,7 +770,11 @@ const deleteUser = async (userId: string) => {
 - [ ] **API authentication** blocks unauthorized access
 - [ ] **User data sync** between Clerk and Supabase
 
-### Automated Testing:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Automated Testing:</span>
+
+</div>
 ```typescript
 // Example API route test
 describe('POST /api/team/invite', () => {
@@ -584,38 +798,74 @@ describe('POST /api/team/invite', () => {
 });
 ```
 
-## Troubleshooting Guide
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Development Issues:
+<span style="font-size: 1.8rem; font-weight: 700;">🔍 Troubleshooting Guide</span>
 
-#### **Clerk Webhook Not Working**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Development Issues:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Clerk Webhook Not Working**:</span>
+
+</div>
 1. Check webhook URL in Clerk dashboard
 2. Verify endpoint signature validation
 3. Check network connectivity from Clerk to your app
 
-#### **User Not Found in Database**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ **User Not Found in Database**:</span>
+
+</div>
 1. Check if Clerk user sync is working
 2. Verify database connection
 3. Check for typos in user ID
 
-#### **Role Permissions Not Working**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Role Permissions Not Working**:</span>
+
+</div>
 1. Verify user role in database matches expected value
 2. Check role checking logic in API routes
 3. Ensure role migration was applied correctly
 
-### Production Issues:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Authentication Failing**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Production Issues:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔐 **Authentication Failing**:</span>
+
+</div>
 1. Check environment variables are set correctly
 2. Verify Clerk domain configuration
 3. Check SSL certificate validity
 
-#### **Database Connection Issues**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🗄️ **Database Connection Issues**:</span>
+
+</div>
 1. Verify Supabase connection string
 2. Check API key permissions
 3. Monitor connection pool usage
 
-### Debug Logging:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Debug Logging:</span>
+
+</div>
 ```typescript
 // Add debug logging for auth issues
 console.log('Auth Debug:', {
@@ -626,9 +876,17 @@ console.log('Auth Debug:', {
 });
 ```
 
-## Migration Guide
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Updating from Old Role System:
+<span style="font-size: 1.8rem; font-weight: 700;">📖 Migration Guide</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Updating from Old Role System:</span>
+
+</div>
 If you're migrating from the old role system:
 
 ```sql
@@ -641,7 +899,11 @@ UPDATE users SET role = 'admin' WHERE role = 'owner';
 -- Update database constraints
 ```
 
-### Clerk Version Updates:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Clerk Version Updates:</span>
+
+</div>
 When updating Clerk versions:
 
 1. **Check breaking changes** in Clerk documentation

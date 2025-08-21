@@ -1,10 +1,26 @@
-# Security & Compliance Documentation
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🔒 Security & Compliance Documentation</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+<div style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">
 
 PassItOn is built with enterprise-grade security and compliance standards. This document outlines our security measures, compliance certifications, and best practices for customers handling sensitive data.
 
-## Table of Contents
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📋 Table of Contents</span>
+
+<div style="margin-top: 1rem;">
 
 - [Security Infrastructure](#security-infrastructure)
 - [Data Protection & Privacy](#data-protection--privacy)
@@ -17,43 +33,79 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - [Incident Response](#incident-response)
 - [Audit & Monitoring](#audit--monitoring)
 
+</div>
+
+</div>
+
 ---
 
-## Security Infrastructure
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Platform Security
+<span style="font-size: 1.8rem; font-weight: 700;">🏢 Security Infrastructure</span>
 
-#### Application Security
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">🛡️ Platform Security</span>
+
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.3rem; font-weight: 600; color: #7c3aed;">🔐 Application Security</span>
+
+<div style="margin-top: 1rem;">
 - **HTTPS Everywhere**: All communications encrypted with TLS 1.3
 - **Content Security Policy**: Prevents XSS and injection attacks
 - **Input Validation**: All user inputs sanitized and validated
 - **Authentication**: Multi-factor authentication required for admin access
 - **Session Management**: Secure session handling with automatic timeout
 
-#### Infrastructure Security
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Infrastructure Security</span>
+
+</div>
 - **Cloud Provider**: Hosted on AWS with SOC 2 Type II compliance
 - **Network Security**: VPC with private subnets and security groups
 - **DDoS Protection**: AWS Shield Advanced for traffic filtering
 - **Load Balancing**: Distributed architecture with health monitoring
 - **Backup & Recovery**: Automated daily backups with 30-day retention
 
-#### Database Security
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Database Security</span>
+
+</div>
 - **Encryption at Rest**: AES-256 encryption for all stored data
 - **Encryption in Transit**: TLS encryption for all database connections
 - **Access Controls**: Role-based access with principle of least privilege
 - **Audit Logging**: All database access logged and monitored
 - **Regular Updates**: Automated security patches and updates
 
-### Code Security
+<div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Development Practices
+<span style="font-size: 1.5rem; font-weight: 600; color: #059669;">🔒 Code Security</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Development Practices</span>
+
+</div>
 - **Secure SDLC**: Security integrated throughout development lifecycle
 - **Code Reviews**: All code reviewed by security-trained developers
 - **Static Analysis**: Automated security scanning of all code
 - **Dependency Scanning**: Regular audits of third-party dependencies
 - **Penetration Testing**: Quarterly third-party security assessments
 
-#### Vulnerability Management
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Vulnerability Management</span>
+
+</div>
 - **Regular Scanning**: Weekly automated vulnerability assessments
 - **Patch Management**: Critical patches applied within 24 hours
 - **Bug Bounty Program**: Reward program for responsible disclosure
@@ -61,11 +113,23 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## Data Protection & Privacy
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Data Collection & Storage
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Data Protection & Privacy</span>
 
-#### Personal Data Collected
+</div>
+
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Data Collection & Storage</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Personal Data Collected</span>
+
+</div>
 **Donor Information:**
 - Email address
 - Full name
@@ -79,23 +143,39 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Banking information (stored encrypted)
 - User account information
 
-#### Data Storage Practices
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Data Storage Practices</span>
+
+</div>
 - **Geographic Location**: Data stored in AWS US regions by default
 - **Data Residency**: EU customers can request EU-only data storage
 - **Retention Periods**: Customer data retained per legal requirements
 - **Secure Deletion**: Cryptographic erasure when data is deleted
 - **Backup Security**: Encrypted backups with secure key management
 
-### Data Processing
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Lawful Basis for Processing
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Data Processing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Lawful Basis for Processing</span>
+
+</div>
 **GDPR Article 6 Lawful Bases:**
 - **Consent**: Explicit consent for marketing communications
 - **Contract**: Processing necessary for service delivery
 - **Legal Obligation**: Tax reporting and anti-money laundering compliance
 - **Legitimate Interest**: Fraud prevention and service improvement
 
-#### Data Minimization
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Data Minimization</span>
+
+</div>
 - **Purpose Limitation**: Data used only for stated purposes
 - **Storage Limitation**: Data retained only as long as necessary
 - **Data Quality**: Regular validation and correction of data
@@ -103,48 +183,92 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## Compliance Certifications
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Current Certifications
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Compliance Certifications</span>
 
-#### ISO 27001 (Information Security Management)
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Current Certifications</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 ISO 27001 (Information Security Management)</span>
+
+</div>
 - **Certification Date**: Valid through December 2025
 - **Scope**: All PassItOn systems and processes
 - **Auditor**: Third-party certified auditor
 - **Next Audit**: Annual surveillance audit scheduled Q2 2025
 
-#### SOC 2 Type II (Security, Availability, Confidentiality)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 SOC 2 Type II (Security, Availability, Confidentiality)</span>
+
+</div>
 - **Report Period**: Annual report covering 12-month period
 - **Controls**: Security, availability, and confidentiality criteria
 - **Auditor**: Independent CPA firm
 - **Public Report**: Available to customers under NDA
 
-#### GDPR Compliance
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 GDPR Compliance</span>
+
+</div>
 - **DPO**: Dedicated Data Protection Officer appointed
 - **Legal Basis**: Clear lawful basis for all data processing
 - **Rights Management**: Automated systems for data subject rights
 - **Cross-Border**: Standard Contractual Clauses for international transfers
 
-### Industry Standards
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Payment Card Industry (PCI DSS)
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Industry Standards</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Payment Card Industry (PCI DSS)</span>
+
+</div>
 - **Compliance Level**: Service Provider Level 1
 - **Validation**: Annual on-site assessment by QSA
 - **Scope**: Payment processing components
 - **Certificate**: Valid through Q4 2025
 
-#### NIST Cybersecurity Framework
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 NIST Cybersecurity Framework</span>
+
+</div>
 - **Implementation**: All five framework functions implemented
 - **Maturity Level**: Adaptive (Level 4)
 - **Assessment**: Annual self-assessment with third-party validation
 
 ---
 
-## GDPR Compliance
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Data Subject Rights
+<span style="font-size: 1.8rem; font-weight: 700;">📌 GDPR Compliance</span>
 
-#### Right to Information (Articles 13-14)
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Data Subject Rights</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Information (Articles 13-14)</span>
+
+</div>
 **Privacy Notice Requirements:**
 - Clear explanation of data processing purposes
 - Legal basis for processing
@@ -158,7 +282,11 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Regular updates when processing changes
 - Available in multiple languages
 
-#### Right of Access (Article 15)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right of Access (Article 15)</span>
+
+</div>
 **Data Subject Access Requests:**
 - Automated system for handling requests
 - Response within 30 days (extendable to 60 days)
@@ -172,46 +300,82 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Storage periods
 - Source of data (if not directly collected)
 
-#### Right to Rectification (Article 16)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Rectification (Article 16)</span>
+
+</div>
 - Online account management for direct corrections
 - Support team assistance for complex corrections
 - Notification to third parties when required
 - Audit trail of all corrections made
 
-#### Right to Erasure (Article 17)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Erasure (Article 17)</span>
+
+</div>
 - Automated deletion workflows
 - Verification of legal requirements before deletion
 - Secure deletion with cryptographic verification
 - Notification to data processors and controllers
 
-#### Right to Data Portability (Article 20)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Data Portability (Article 20)</span>
+
+</div>
 - Machine-readable export formats (JSON, CSV)
 - Secure transfer mechanisms
 - Direct transfer to other controllers when possible
 - No charge for standard portability requests
 
-### Cross-Border Data Transfers
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Adequacy Decisions
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Cross-Border Data Transfers</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Adequacy Decisions</span>
+
+</div>
 - **UK**: Data freely transferred under UK GDPR adequacy decision
 - **Switzerland**: Covered under Swiss-US Privacy Framework
 - **Other Countries**: Standard Contractual Clauses implemented
 
-#### Standard Contractual Clauses (SCCs)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Standard Contractual Clauses (SCCs)</span>
+
+</div>
 - **EU SCCs**: Implemented for all EU personal data transfers
 - **Supplementary Measures**: Additional safeguards based on risk assessment
 - **Transfer Impact Assessment**: Regular evaluation of transfer risks
 - **Documentation**: Records of all international transfers maintained
 
-### Breach Notification
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Breach Detection
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Breach Notification</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Breach Detection</span>
+
+</div>
 - **Automated Monitoring**: Real-time security monitoring and alerting
 - **Incident Classification**: Automated risk assessment for breaches
 - **Response Team**: Dedicated incident response team available 24/7
 - **External Partners**: Relationships with forensic and legal experts
 
-#### Notification Timelines
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Notification Timelines</span>
+
+</div>
 - **Internal Awareness**: Security team notified within 1 hour
 - **Risk Assessment**: Initial assessment completed within 4 hours
 - **Supervisory Authority**: Notification within 72 hours if required
@@ -219,11 +383,23 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## CCPA Compliance
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Consumer Rights
+<span style="font-size: 1.8rem; font-weight: 700;">📌 CCPA Compliance</span>
 
-#### Right to Know (Sections 1798.110 and 1798.115)
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Consumer Rights</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Know (Sections 1798.110 and 1798.115)</span>
+
+</div>
 **Information We Provide:**
 - Categories of personal information collected
 - Specific pieces of personal information
@@ -237,26 +413,46 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Response within 45 days (extendable to 90 days)
 - No charge for up to two requests per year
 
-#### Right to Delete (Section 1798.105)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Delete (Section 1798.105)</span>
+
+</div>
 - Secure deletion of personal information
 - Verification of legal retention requirements
 - Notification to service providers
 - Exceptions clearly communicated to consumers
 
-#### Right to Opt-Out (Section 1798.120)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Opt-Out (Section 1798.120)</span>
+
+</div>
 - **Sale of Personal Information**: We do not sell personal information
 - **Sharing for Cross-Context Behavioral Advertising**: Opt-out mechanisms provided
 - **Clear Disclosure**: Prominent links on website and in privacy policy
 
-#### Right to Non-Discrimination (Section 1798.125)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Right to Non-Discrimination (Section 1798.125)</span>
+
+</div>
 - No denial of goods or services for exercising rights
 - No different prices or rates
 - No different quality of goods or services
 - Financial incentives clearly disclosed and voluntary
 
-### Service Provider Obligations
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Contractual Requirements
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Service Provider Obligations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Contractual Requirements</span>
+
+</div>
 - **Purpose Limitation**: Service providers limited to specified purposes
 - **No Sale Prohibition**: Contractual prohibition on selling personal information
 - **Assistance**: Service providers must assist with consumer rights requests
@@ -264,11 +460,23 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## SOC 2 Type II
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Trust Service Criteria
+<span style="font-size: 1.8rem; font-weight: 700;">📌 SOC 2 Type II</span>
 
-#### Security (Common Criteria)
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Trust Service Criteria</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Security (Common Criteria)</span>
+
+</div>
 **Access Controls:**
 - Multi-factor authentication for all administrative access
 - Role-based access controls with regular review
@@ -287,7 +495,11 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Backup and recovery procedures tested monthly
 - Capacity management and performance monitoring
 
-#### Availability
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Availability</span>
+
+</div>
 **System Availability:**
 - 99.9% uptime SLA with financial penalties
 - Redundant systems across multiple availability zones
@@ -300,7 +512,11 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - CDN for global content delivery
 - Load testing and capacity planning
 
-#### Confidentiality
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Confidentiality</span>
+
+</div>
 **Data Classification:**
 - Automated data classification and labeling
 - Encryption requirements based on classification
@@ -313,16 +529,28 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Secure data disposal procedures
 - Confidentiality agreements with all personnel
 
-### Audit Results
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Most Recent Audit (2024)
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Audit Results</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Most Recent Audit (2024)</span>
+
+</div>
 - **Audit Period**: January 1, 2024 - December 31, 2024
 - **Auditor**: [Major Accounting Firm]
 - **Opinion**: Unqualified opinion on all trust service criteria
 - **Exceptions**: No exceptions noted
 - **Management Letter**: No significant deficiencies identified
 
-#### Continuous Monitoring
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Continuous Monitoring</span>
+
+</div>
 - **Internal Audits**: Quarterly internal SOC 2 assessments
 - **Control Testing**: Monthly testing of key controls
 - **Remediation**: Any deficiencies addressed within 30 days
@@ -330,11 +558,23 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## PCI DSS Compliance
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Compliance Scope
+<span style="font-size: 1.8rem; font-weight: 700;">📌 PCI DSS Compliance</span>
 
-#### In-Scope Systems
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Compliance Scope</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 In-Scope Systems</span>
+
+</div>
 **Payment Processing:**
 - Payment form collection (handled by Stripe Elements)
 - API endpoints receiving payment data
@@ -346,33 +586,57 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - All payment processing handled by PCI DSS Level 1 service provider (Stripe)
 - PassItOn receives only tokenized payment references
 
-#### Service Provider Level 1
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Service Provider Level 1</span>
+
+</div>
 - **Annual Assessment**: On-site assessment by Qualified Security Assessor (QSA)
 - **Quarterly Scanning**: External vulnerability scanning by Approved Scanning Vendor (ASV)
 - **Attestation of Compliance**: Annual AOC filed with card brands
 - **Compliance Validation**: Available to customers upon request
 
-### PCI DSS Requirements Compliance
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Requirement 1: Firewall Configuration
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 PCI DSS Requirements Compliance</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔧 Requirement 1: Firewall Configuration</span>
+
+</div>
 - Network firewalls configured with default-deny policies
 - Regular firewall rule reviews and optimization
 - Network segmentation isolating payment systems
 - Intrusion detection and prevention systems
 
-#### Requirement 2: Vendor-Supplied Defaults
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Requirement 2: Vendor-Supplied Defaults</span>
+
+</div>
 - All default passwords changed before deployment
 - System hardening based on industry standards
 - Unnecessary services and accounts disabled
 - Configuration standards documented and maintained
 
-#### Requirement 3: Cardholder Data Protection
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Requirement 3: Cardholder Data Protection</span>
+
+</div>
 - **No Storage**: Cardholder data is never stored
 - **Tokenization**: Payment references tokenized by Stripe
 - **Transmission Security**: TLS 1.3 for all data transmission
 - **Encryption Standards**: AES-256 encryption where applicable
 
-#### Requirement 4: Encryption of Transmission
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Requirement 4: Encryption of Transmission</span>
+
+</div>
 - Strong cryptography for all cardholder data transmission
 - Certificate management with regular renewal
 - Secure key exchange protocols
@@ -380,11 +644,23 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 
 ---
 
-## Customer Security Responsibilities
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Shared Responsibility Model
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Customer Security Responsibilities</span>
 
-#### PassItOn Responsibilities
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Shared Responsibility Model</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 PassItOn Responsibilities</span>
+
+</div>
 **Platform Security:**
 - Application security and vulnerability management
 - Infrastructure security and monitoring
@@ -392,7 +668,11 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Compliance certifications and audits
 - Incident response and breach notification
 
-#### Customer Responsibilities
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Customer Responsibilities</span>
+
+</div>
 **Account Security:**
 - Strong passwords and multi-factor authentication
 - Regular access review and user management
@@ -400,9 +680,17 @@ PassItOn is built with enterprise-grade security and compliance standards. This 
 - Monitoring for unauthorized access
 - Reporting security incidents
 
-### Implementation Best Practices
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Account Management
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Implementation Best Practices</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Account Management</span>
+
+</div>
 ```
 Security Checklist:
 □ Enable two-factor authentication for all users
@@ -412,7 +700,11 @@ Security Checklist:
 □ Monitor login activity and unusual access patterns
 ```
 
-#### Integration Security
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Integration Security</span>
+
+</div>
 ```
 Development Best Practices:
 □ Implement Content Security Policy (CSP)
@@ -422,7 +714,11 @@ Development Best Practices:
 □ Monitor for unauthorized changes to integration code
 ```
 
-#### Data Handling
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Data Handling</span>
+
+</div>
 ```
 Privacy Protection:
 □ Implement privacy notices on donation pages
@@ -434,11 +730,23 @@ Privacy Protection:
 
 ---
 
-## Incident Response
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Incident Classification
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Incident Response</span>
 
-#### Severity Levels
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Incident Classification</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Severity Levels</span>
+
+</div>
 **Critical (P0):**
 - Complete service outage
 - Active security breach with data access
@@ -463,9 +771,17 @@ Privacy Protection:
 - Documentation updates
 - Scheduled maintenance notifications
 
-### Response Procedures
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Critical Incident Response (P0)
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Response Procedures</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Critical Incident Response (P0)</span>
+
+</div>
 **Timeline: 0-15 minutes**
 - Automated alerting triggers incident response
 - On-call engineer begins initial assessment
@@ -484,7 +800,11 @@ Privacy Protection:
 - Post-incident review scheduled
 - Customer update with details
 
-#### Security Incident Response
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Security Incident Response</span>
+
+</div>
 **Detection and Analysis:**
 - 24/7 security monitoring and alerting
 - Automated threat detection and response
@@ -503,9 +823,17 @@ Privacy Protection:
 - Post-incident review and improvements
 - Customer and stakeholder communication
 
-### Communication Plan
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Customer Notification
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Communication Plan</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Customer Notification</span>
+
+</div>
 **Incident Status Page:**
 - Real-time updates on service status
 - Estimated resolution times
@@ -518,7 +846,11 @@ Privacy Protection:
 - Phone calls for critical business impacts
 - Post-incident summary reports
 
-#### Regulatory Notification
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Regulatory Notification</span>
+
+</div>
 **Data Breach Notification:**
 - Legal team assessment within 1 hour
 - Regulatory notification within 72 hours (GDPR)
@@ -527,11 +859,23 @@ Privacy Protection:
 
 ---
 
-## Audit & Monitoring
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Continuous Monitoring
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Audit & Monitoring</span>
 
-#### Security Monitoring
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Continuous Monitoring</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔒 Security Monitoring</span>
+
+</div>
 **24/7 SOC (Security Operations Center):**
 - Real-time threat detection and response
 - Behavioral analysis and anomaly detection
@@ -545,7 +889,11 @@ Privacy Protection:
 - User behavior analytics
 - Infrastructure health monitoring
 
-#### Compliance Monitoring
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Compliance Monitoring</span>
+
+</div>
 **Automated Compliance Checks:**
 - Daily configuration compliance scans
 - Access control reviews and certifications
@@ -558,9 +906,17 @@ Privacy Protection:
 - Annual third-party audits
 - Continuous improvement programs
 
-### Audit Program
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Internal Audit
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Audit Program</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Internal Audit</span>
+
+</div>
 **Risk-Based Approach:**
 - Annual risk assessment and audit planning
 - Quarterly focused audit reviews
@@ -573,7 +929,11 @@ Privacy Protection:
 - Financial and operational controls
 - Vendor and third-party management
 
-#### External Audit
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 External Audit</span>
+
+</div>
 **Third-Party Assessments:**
 - Annual SOC 2 Type II audits
 - PCI DSS compliance assessments
@@ -586,9 +946,17 @@ Privacy Protection:
 - Remediation of examination findings
 - Ongoing regulatory relationship management
 
-### Reporting and Documentation
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Compliance Reporting
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Reporting and Documentation</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Compliance Reporting</span>
+
+</div>
 **Regular Reports:**
 - Monthly compliance dashboard
 - Quarterly board reporting
@@ -603,7 +971,11 @@ Privacy Protection:
 
 ---
 
-## Conclusion
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Conclusion</span>
+
+</div>
 
 PassItOn is committed to maintaining the highest standards of security and compliance. Our comprehensive security program, regular audits, and continuous monitoring ensure that customer data is protected and regulatory requirements are met.
 

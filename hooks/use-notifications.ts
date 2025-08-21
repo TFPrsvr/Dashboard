@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useAuth } from "@clerk/nextjs";
 import type { 
   Notification, 
@@ -14,6 +14,13 @@ export function useNotifications(options: UseNotificationsOptions = {}): UseNoti
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Memoize options to prevent infinite re-renders
+  const memoizedOptions = useMemo(() => ({
+    limit: options.limit,
+    unreadOnly: options.unreadOnly,
+    types: options.types ? [...options.types] : undefined
+  }), [options.limit, options.unreadOnly, options.types?.join(',')]);
+
   const fetchNotifications = useCallback(async () => {
     if (!userId) return;
 
@@ -22,9 +29,9 @@ export function useNotifications(options: UseNotificationsOptions = {}): UseNoti
       setError(null);
 
       const params = new URLSearchParams();
-      if (options.limit) params.append("limit", options.limit.toString());
-      if (options.unreadOnly) params.append("unread", "true");
-      if (options.types?.length) params.append("types", options.types.join(","));
+      if (memoizedOptions.limit) params.append("limit", memoizedOptions.limit.toString());
+      if (memoizedOptions.unreadOnly) params.append("unread", "true");
+      if (memoizedOptions.types?.length) params.append("types", memoizedOptions.types.join(","));
 
       const response = await fetch(`/api/notifications?${params}`);
       const data = await response.json();
@@ -43,7 +50,7 @@ export function useNotifications(options: UseNotificationsOptions = {}): UseNoti
     } finally {
       setLoading(false);
     }
-  }, [userId, options.limit, options.unreadOnly, options.types]);
+  }, [userId, memoizedOptions]);
 
   const markAsRead = useCallback(async (notificationId: string) => {
     try {

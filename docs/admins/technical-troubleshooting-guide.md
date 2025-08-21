@@ -1,50 +1,145 @@
-# Technical Troubleshooting Guide
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-This comprehensive troubleshooting guide helps administrators and technical users diagnose and resolve issues with the PassItOn platform, covering support system problems, authentication issues, team management, monitoring systems, and general platform functionality.
+<span style="font-size: 2.5rem; font-weight: 800;">🔍 🔧 <span style="font-size: 2.5rem; font-weight: 800;">Technical Troubleshooting Guide</span></span>
 
-## Table of Contents
+</div>
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-- [Support System Issues](#support-system-issues)
-- [Authentication Issues](#authentication-issues)
-- [Team Management Issues](#team-management-issues)
-- [Monitoring and Alert System Issues](#monitoring-and-alert-system-issues)
-- [Platform General Issues](#platform-general-issues)
-- [Performance Issues](#performance-issues)
-- [Emergency Procedures](#emergency-procedures)
-- [Preventive Measures](#preventive-measures)
-- [Getting Help](#getting-help)
+<span style="font-size: 1.8rem; font-weight: 700;">📖 <span style="font-size: 1.5rem; opacity: 0.9;">🔍 Administrator & Technical User Guide</span></span>
+
+</div>
+
+</div>
+
+<div style="background: #f8fafc; border-left: 5px solid #667eea; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 <span style="color: #4c1d95; font-size: 1.8rem; font-weight: 700;">📊 Overview</span></span>
+
+</div>
+
+<p style="font-size: 1.1rem; line-height: 1.7; color: #374151;">This comprehensive troubleshooting guide helps administrators and technical users diagnose and resolve issues with the PassItOn platform, covering support system problems, authentication issues, team management, monitoring systems, and general platform functionality.</p>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 <span style="font-size: 2rem; font-weight: 800;">📝 Table of Contents</span></span>
+
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+
+<div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px;">
+<ul style="list-style: none; padding: 0; margin: 0; font-size: 1.1rem;">
+<li style="margin: 0.5rem 0;"><strong>📞 [Support System Issues](#support-system-issues)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>🔐 [Authentication Issues](#authentication-issues)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>👥 [Team Management Issues](#team-management-issues)</strong></li>
+</ul>
+</div>
+
+<div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px;">
+<ul style="list-style: none; padding: 0; margin: 0; font-size: 1.1rem;">
+<li style="margin: 0.5rem 0;"><strong>🚨 [Monitoring and Alert System Issues](#monitoring-and-alert-system-issues)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>🏭 [Platform General Issues](#platform-general-issues)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>⚡ [Performance Issues](#performance-issues)</strong></li>
+</ul>
+</div>
+
+<div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px;">
+<ul style="list-style: none; padding: 0; margin: 0; font-size: 1.1rem;">
+<li style="margin: 0.5rem 0;"><strong>🆘 [Emergency Procedures](#emergency-procedures)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>🔒 [Preventive Measures](#preventive-measures)</strong></li>
+<li style="margin: 0.5rem 0;"><strong>🆘 [Getting Help](#getting-help)</strong></li>
+</ul>
+</div>
+
+</div>
+
+</div>
 
 ---
 
-## Support System Issues
+<div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: "Failed to get support tickets" Error
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-#### **Symptoms**:
-- Error message in browser console: `GET /api/support 403 (Forbidden)`
-- Support page shows "Failed to load support tickets"
-- Admin support management shows "Forbidden - Admin access required"
+<span style="font-size: 1.8rem; font-weight: 700;">💬 <span style="font-size: 2rem; font-weight: 800;">📞 Support System Issues</span></span>
 
-#### **Diagnosis Steps**:
-1. **Check User Role in Database**:
-   ```sql
-   SELECT id, email, role FROM users WHERE email = 'your-admin-email@company.com';
-   ```
-   
-2. **Verify Admin Role Assignment**:
-   - Role should be `admin` or `super_admin`
-   - If role is incorrect, update it:
-   ```sql
-   UPDATE users SET role = 'admin' WHERE id = 'your-user-id';
-   ```
+</div>
 
-3. **Check Browser Network Tab**:
-   - Look for 403 Forbidden responses
-   - Verify API endpoints are being called correctly
+</div>
 
-#### **Solutions**:
+<div style="background: #fef2f2; border: 2px solid #dc2626; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 <span style="color: #dc2626; font-size: 1.8rem; font-weight: 700;">⚠️ Problem: "Failed to get support tickets" Error</span></span>
+
+</div>
+
+<div style="background: #fee2e2; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+<h4 style="color: #7f1d1d; margin: 0 0 1rem 0; font-size: 1.3rem;">🔴 Symptoms:</h4>
+<ul style="color: #374151; font-size: 1.1rem; line-height: 1.7;">
+<li><strong>💻 Error message in browser console:</strong> <code style="background: #374151; color: #e5e7eb; padding: 0.2rem 0.4rem; border-radius: 4px;">GET /api/support 403 (Forbidden)</code></li>
+<li><strong>📊 Support page shows:</strong> "Failed to load support tickets"</li>
+<li><strong>🛡️ Admin support management shows:</strong> "Forbidden - Admin access required"</li>
+</ul>
+</div>
+
+<div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+<h4 style="color: #1e40af; margin: 0 0 1rem 0; font-size: 1.3rem;">🔍 Diagnosis Steps:</h4>
+
+<div style="counter-reset: diag-counter; margin: 1rem 0;">
+
+<div style="counter-increment: diag-counter; background: #dbeafe; border-left: 6px solid #2563eb; padding: 1.5rem; margin: 1rem 0; border-radius: 8px; position: relative;">
+<div style="position: absolute; top: -10px; left: -10px; background: #2563eb; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+
+<h5 style="color: #1d4ed8; font-size: 1.2rem; margin-top: 0;">📊 Check User Role in Database:</h5>
+<div style="background: #374151; color: #e5e7eb; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem; margin: 0.5rem 0;">
+SELECT id, email, role FROM users WHERE email = 'your-admin-email@company.com';
+</div>
+</div>
+
+<div style="counter-increment: diag-counter; background: #ecfdf5; border-left: 6px solid #10b981; padding: 1.5rem; margin: 1rem 0; border-radius: 8px; position: relative;">
+<div style="position: absolute; top: -10px; left: -10px; background: #10b981; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+
+<h5 style="color: #059669; font-size: 1.2rem; margin-top: 0;">✅ Verify Admin Role Assignment:</h5>
+<ul style="color: #374151; font-size: 1rem; line-height: 1.6;">
+<li>Role should be <code style="background: #065f46; color: #ecfdf5; padding: 0.2rem 0.4rem; border-radius: 4px;">admin</code> or <code style="background: #065f46; color: #ecfdf5; padding: 0.2rem 0.4rem; border-radius: 4px;">super_admin</code></li>
+<li>If role is incorrect, update it:</li>
+</ul>
+<div style="background: #374151; color: #e5e7eb; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem; margin: 0.5rem 0;">
+UPDATE users SET role = 'admin' WHERE id = 'your-user-id';
+</div>
+</div>
+
+<div style="counter-increment: diag-counter; background: #fef3c7; border-left: 6px solid #f59e0b; padding: 1.5rem; margin: 1rem 0; border-radius: 8px; position: relative;">
+<div style="position: absolute; top: -10px; left: -10px; background: #f59e0b; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+
+<h5 style="color: #d97706; font-size: 1.2rem; margin-top: 0;">🌐 Check Browser Network Tab:</h5>
+<ul style="color: #374151; font-size: 1rem; line-height: 1.6;">
+<li>Look for 403 Forbidden responses</li>
+<li>Verify API endpoints are being called correctly</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Update User Role**
 ```sql
@@ -64,14 +159,26 @@ WHERE email = 'your-email@company.com';
 - Clear browser cookies for the domain
 - Try in incognito/private browsing mode
 
-### Problem: Support Tickets Not Creating
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Symptoms**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Problem: Support Tickets Not Creating</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - "Create Ticket" button doesn't work
 - Error: "new row violates row-level security policy"
 - Network error 500 when submitting ticket
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check Database Table Exists**:
    ```sql
    SELECT table_name FROM information_schema.tables 
@@ -89,7 +196,11 @@ WHERE email = 'your-email@company.com';
    - Look for JavaScript errors
    - Check network requests for 500 errors
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Create Support Tickets Table**
 ```sql
@@ -128,16 +239,32 @@ CREATE INDEX IF NOT EXISTS idx_support_tickets_created_at ON support_tickets(cre
 
 ---
 
-## Authentication Issues
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: "Module has no exported member 'auth'" Error
+<span style="font-size: 1.8rem; font-weight: 700;">🔐 Authentication Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔐 Problem: "Module has no exported member 'auth'" Error</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - TypeScript compilation error
 - Import errors in API routes
 - Authentication not working in API endpoints
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check Clerk Version**:
    ```bash
    npm list @clerk/nextjs
@@ -149,7 +276,11 @@ CREATE INDEX IF NOT EXISTS idx_support_tickets_created_at ON support_tickets(cre
    import { auth } from '@clerk/nextjs';
    ```
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Update Import Paths**
 ```typescript
@@ -175,14 +306,26 @@ const { userId } = useAuth();
 const { user } = useUser();
 ```
 
-### Problem: Stripe API Version Mismatch
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Symptoms**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔌 Problem: Stripe API Version Mismatch</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - TypeScript error about Stripe API version
 - Billing portal not working
 - Payment processing errors
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Update Stripe API Version**
 ```typescript
@@ -200,16 +343,32 @@ npm update stripe  # If needed
 
 ---
 
-## Team Management Issues
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: "Role constraint violation" on Team Invitations
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Team Management Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: "Role constraint violation" on Team Invitations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - 500 error when inviting team members
 - Database constraint error in logs
 - Team invitation form not working
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check Current Role System**:
    ```sql
    SELECT constraint_name, check_clause 
@@ -221,7 +380,11 @@ npm update stripe  # If needed
    - Check dropdown options in team invitation form
    - Ensure they match database constraints
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Update UI Role Values**
 ```typescript
@@ -251,20 +414,40 @@ const [inviteRole, setInviteRole] = useState("user"); // Not "editor"
 
 ---
 
-## Monitoring and Alert System Issues
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: Alerts Not Being Received
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Monitoring and Alert System Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: Alerts Not Being Received</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - No alerts are being sent despite system issues
 - Alerts are sent but not reaching intended recipients
 - Partial alert delivery (some channels work, others don't)
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 
 **Check System Status:**
 ```bash
-# Check if monitoring service is running
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check if monitoring service is running</span>
+
+</div>
 curl https://your-domain.com/api/monitoring/health
 ```
 
@@ -283,7 +466,11 @@ curl https://your-domain.com/api/monitoring/health
 await fetch('/api/monitoring/test-alerts', { method: 'POST' });
 ```
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Missing Environment Variables:**
 1. Add missing variables to your deployment platform
@@ -300,14 +487,26 @@ await fetch('/api/monitoring/test-alerts', { method: 'POST' });
 2. Verify email addresses in recipient list
 3. Check spam/junk folders
 
-### Problem: Too Many Alerts (Alert Fatigue)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Symptoms**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: Too Many Alerts (Alert Fatigue)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - Constant stream of alerts
 - Same alerts repeating frequently
 - Team ignoring alerts due to volume
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Adjust Thresholds:**
 ```typescript
@@ -342,16 +541,32 @@ private shouldSendAlert(alertKey: string): boolean {
 
 ---
 
-## Platform General Issues
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: Pages Not Loading or 404 Errors
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Platform General Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: Pages Not Loading or 404 Errors</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - Support page shows 404
 - Admin pages not accessible
 - Navigation links broken
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check File Structure**:
    ```bash
    # Verify page files exist
@@ -371,7 +586,11 @@ private shouldSendAlert(alertKey: string): boolean {
    ];
    ```
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Create Missing Pages**
 - Ensure `page.tsx` files exist in correct directories
@@ -388,14 +607,26 @@ private shouldSendAlert(alertKey: string): boolean {
 }
 ```
 
-### Problem: Database Connection Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Symptoms**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🗄️ Problem: Database Connection Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - "Failed to connect to database" errors
 - Supabase client not working
 - API endpoints returning 500 errors
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check Environment Variables**:
    ```bash
    echo $NEXT_PUBLIC_SUPABASE_URL
@@ -408,11 +639,19 @@ private shouldSendAlert(alertKey: string): boolean {
    SELECT current_database(), current_user, now();
    ```
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Verify Environment Variables**
 ```bash
-# In .env.local
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 In .env.local</span>
+
+</div>
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
@@ -431,16 +670,32 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 ---
 
-## Performance Issues
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: Slow Page Loading
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Performance Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: Slow Page Loading</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - Support pages take long to load
 - Database queries timing out
 - Poor user experience
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Check Database Query Performance**:
    ```sql
    EXPLAIN ANALYZE SELECT * FROM support_tickets 
@@ -453,7 +708,11 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
    - Look for slow API calls
    - Identify bottlenecks
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Add Database Indexes**
 ```sql
@@ -492,11 +751,23 @@ const { data } = await supabase
 
 ---
 
-## Emergency Procedures
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Critical System Down
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Emergency Procedures</span>
 
-#### **Immediate Actions**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Critical System Down</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Immediate Actions**:</span>
+
+</div>
 1. **Check System Status**:
    - Verify application is running
    - Check database connectivity
@@ -512,7 +783,11 @@ const { data } = await supabase
    - Copy error logs
    - Document affected features
 
-#### **Recovery Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Recovery Steps**:</span>
+
+</div>
 1. **Database Issues**:
    ```sql
    -- Check database health
@@ -542,7 +817,11 @@ const { data } = await supabase
    curl -f https://api.clerk.dev/v1/users
    ```
 
-### Alert System Failure
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Alert System Failure</span>
+
+</div>
 
 1. **Immediate Actions:**
    - Switch to manual monitoring
@@ -563,11 +842,23 @@ const { data } = await supabase
 
 ---
 
-## Preventive Measures
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Regular Maintenance Tasks
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Preventive Measures</span>
 
-#### **Weekly**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Regular Maintenance Tasks</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Weekly**:</span>
+
+</div>
 - [ ] Check error logs for patterns
 - [ ] Verify backup systems are working
 - [ ] Monitor system performance metrics
@@ -575,7 +866,11 @@ const { data } = await supabase
 - [ ] Review alert volume and patterns
 - [ ] Test all notification channels
 
-#### **Monthly**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Monthly**:</span>
+
+</div>
 - [ ] Update dependencies and security patches
 - [ ] Review and optimize database queries
 - [ ] Test disaster recovery procedures
@@ -583,16 +878,28 @@ const { data } = await supabase
 - [ ] Analyze alert trends and patterns
 - [ ] Update notification channel configurations
 
-#### **Quarterly**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Quarterly**:</span>
+
+</div>
 - [ ] Full system security audit
 - [ ] Performance benchmarking
 - [ ] Capacity planning review
 - [ ] User access audit
 - [ ] Conduct alert system disaster recovery test
 
-### Monitoring Setup
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Recommended Monitoring**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">⚙️ Monitoring Setup</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Recommended Monitoring**:</span>
+
+</div>
 ```typescript
 // Add to application
 console.log('System Health Check:', {
@@ -608,7 +915,11 @@ console.log('System Health Check:', {
 });
 ```
 
-#### **Alert Thresholds**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Alert Thresholds**:</span>
+
+</div>
 - **Response Time**: > 5 seconds
 - **Error Rate**: > 5% of requests
 - **Database Connections**: > 80% of pool
@@ -616,22 +927,42 @@ console.log('System Health Check:', {
 
 ---
 
-## Widget Issues
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Problem: Widget Close Button Missing After Payment
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Widget Issues</span>
 
-#### **Symptoms**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Problem: Widget Close Button Missing After Payment</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Symptoms**:</span>
+
+</div>
 - Donors cannot close widget after successful payment processing
 - No close button visible after payment completion
 - Donors feel trapped in widget interface
 - Poor user experience and potential donor loss
 
-#### **Impact**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Impact**:</span>
+
+</div>
 - Directly impacts donor experience and completion rates
 - May cause donors to abandon future donations
 - Reflects poorly on organization's professionalism
 
-#### **Diagnosis Steps**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Diagnosis Steps**:</span>
+
+</div>
 1. **Test Widget Payment Flow**:
    - Complete test donation using Stripe test card: `4242 4242 4242 4242`
    - Verify close button appears after payment success/failure
@@ -645,7 +976,11 @@ console.log('System Health Check:', {
    // Verify each state has appropriate close functionality
    ```
 
-#### **Solutions**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Solutions**:</span>
+
+</div>
 
 **Solution 1: Add Close Button to Success/Error States**
 ```jsx
@@ -716,7 +1051,11 @@ function WidgetModal({ children, onClose, isOpen }) {
 }
 ```
 
-#### **Testing Checklist**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 **Testing Checklist**:</span>
+
+</div>
 - [ ] Close button appears after successful payment
 - [ ] Close button appears after payment failure  
 - [ ] ESC key closes widget
@@ -725,47 +1064,118 @@ function WidgetModal({ children, onClose, isOpen }) {
 - [ ] Widget properly resets state when closed
 - [ ] Works on mobile devices and all browsers
 
-#### **Priority**: HIGH - Directly impacts donor experience
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Priority**: HIGH - Directly impacts donor experience</span>
+
+</div>
 
 ---
 
-## Getting Help
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Internal Resources:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Getting Help</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Internal Resources:</span>
+
+</div>
 - **Development Team**: For technical issues and code problems
 - **Database Admin**: For Supabase and SQL-related issues
 - **DevOps Team**: For deployment and infrastructure problems
 
-### External Resources:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 External Resources:</span>
+
+</div>
 - **Clerk Support**: https://clerk.com/support
 - **Supabase Support**: https://supabase.com/support
 - **Stripe Support**: https://support.stripe.com
 
-### Documentation:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Documentation:</span>
+
+</div>
 - **Clerk Docs**: https://clerk.com/docs
 - **Supabase Docs**: https://supabase.com/docs
 - **Next.js Docs**: https://nextjs.org/docs
 
-### Useful Commands:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Useful Commands:</span>
+
+</div>
 ```bash
-# Check recent alerts
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check recent alerts</span>
+
+</div>
 curl https://your-domain.com/api/monitoring/alerts?limit=10
 
-# Test specific alert type
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test specific alert type</span>
+
+</div>
 curl -X POST https://your-domain.com/api/monitoring/test -d '{"type":"payment"}'
 
-# Get system metrics
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Get system metrics</span>
+
+</div>
 curl https://your-domain.com/api/monitoring/metrics
 
-# Check database health
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Check database health</span>
+
+</div>
 curl https://your-domain.com/api/health/database
 ```
 
 ---
 
-**Last Updated**: January 30, 2025  
-**Version**: 2.0  
-**Next Review**: February 28, 2025
+<div style="background: #f1f5f9; border: 2px dashed #64748b; padding: 1.5rem; border-radius: 10px; margin: 2rem 0; text-align: center;">
 
-**For urgent issues**: Contact development team immediately  
-**For non-urgent issues**: Create internal ticket or email dev team
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 <span style="color: #475569; font-size: 1.4rem; font-weight: 700;">📝 Document Information</span></span>
+
+</div>
+
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #64748b;"><strong>📅 Last Updated:</strong> <span style="background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px;">Document date removed</span></p>
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #64748b;"><strong>🔖 Version:</strong> <span style="background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px;">2.0</span></p>
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #64748b;"><strong>🔍 Next Review:</strong> <span style="background: #e2e8f0; padding: 0.2rem 0.5rem; border-radius: 4px;">Document date removed</span></p>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 <span style="font-size: 1.8rem; font-weight: 700;">🆘 Emergency Contact Information</span></span>
+
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+
+<div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px;">
+<strong style="font-size: 1.2rem;">⚠️ For urgent issues:</strong><br>
+<em style="font-size: 1rem;">Contact development team immediately</em>
+</div>
+
+<div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px;">
+<strong style="font-size: 1.2rem;">📝 For non-urgent issues:</strong><br>
+<em style="font-size: 1rem;">Create internal ticket or email dev team</em>
+</div>
+
+</div>
+
+</div>
