@@ -4,12 +4,14 @@ import { createClient } from "@/lib/supabase/supabase-server";
 
 export async function GET(
   req: Request,
-  { params }: { params: { widgetId: string } }
+  { params }: { params: Promise<{ widgetId: string }> }
 ) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const resolvedParams = await params;
 
   const supabase = await createClient();
 
@@ -17,7 +19,7 @@ export async function GET(
     const { data: widget, error } = await supabase
       .from("widgets")
       .select("*, widget_themes(*), causes(*)")
-      .eq("id", params.widgetId)
+      .eq("id", resolvedParams.widgetId)
       .single();
 
     if (error) throw error;
@@ -54,7 +56,7 @@ export async function PUT(
     const { data: widget } = await supabase
       .from("widgets")
       .select("organization_id")
-      .eq("id", params.widgetId)
+      .eq("id", resolvedParams.widgetId)
       .single();
 
     if (!widget) {
@@ -75,7 +77,7 @@ export async function PUT(
         ...body,
         updated_at: new Date().toISOString(),
       })
-      .eq("id", params.widgetId)
+      .eq("id", resolvedParams.widgetId)
       .select()
       .single();
 
@@ -112,7 +114,7 @@ export async function DELETE(
     const { data: widget } = await supabase
       .from("widgets")
       .select("organization_id")
-      .eq("id", params.widgetId)
+      .eq("id", resolvedParams.widgetId)
       .single();
 
     if (!widget) {
@@ -130,7 +132,7 @@ export async function DELETE(
     const { error } = await supabase
       .from("widgets")
       .delete()
-      .eq("id", params.widgetId);
+      .eq("id", resolvedParams.widgetId);
 
     if (error) throw error;
 
