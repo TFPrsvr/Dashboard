@@ -3,11 +3,51 @@
 import { useOrganization } from "@/hooks/use-organization";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Palette, Heart, TrendingUp } from "lucide-react";
+import { ArrowRight, Palette, Heart, TrendingUp, Check } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
   const { organization, loading } = useOrganization();
+  const [widget, setWidget] = useState(null);
+  const [causes, setCauses] = useState([]);
+  const [loadingWidget, setLoadingWidget] = useState(true);
+
+  // Fetch widget data to determine completion status
+  useEffect(() => {
+    async function fetchWidget() {
+      if (!organization?.id) return;
+      
+      try {
+        setLoadingWidget(true);
+        const response = await fetch(`/api/widgets?organizationId=${organization.id}`);
+        if (response.ok) {
+          const widgets = await response.json();
+          if (widgets.length > 0) {
+            setWidget(widgets[0]);
+            
+            // Fetch causes for this widget
+            const causesResponse = await fetch(`/api/causes?widgetId=${widgets[0].id}`);
+            if (causesResponse.ok) {
+              const causesData = await causesResponse.json();
+              setCauses(causesData || []);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching widget:", error);
+      } finally {
+        setLoadingWidget(false);
+      }
+    }
+
+    fetchWidget();
+  }, [organization?.id]);
+
+  // Determine step completion status
+  const isStep1Complete = widget && (widget.config?.theme || widget.config?.settings);
+  const isStep2Complete = causes.length > 0;
+  const isStep3Complete = widget?.is_active;
 
   if (loading) {
     return (
@@ -76,39 +116,90 @@ export default function DashboardPage() {
           <CardTitle>Getting Started</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          {/* Step 1: Customize Widget */}
+          <div className={`flex items-center justify-between p-4 rounded-lg ${
+            isStep1Complete ? 'bg-green-50 border border-green-200' : 'bg-gray-50'
+          }`}>
             <div>
-              <h3 className="font-semibold">1. Customize Your Widget</h3>
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold">1. Customize Your Widget</h3>
+                {isStep1Complete && <Check className="w-4 h-4 text-green-600" />}
+              </div>
               <p className="text-sm text-gray-600">
-                Design your donation widget to match your brand
+                {isStep1Complete 
+                  ? "Widget customized successfully" 
+                  : "Design your donation widget to match your brand"
+                }
               </p>
             </div>
             <Link href="/dashboard/widget/customize">
-              <Button>
-                Get Started
+              <Button variant={isStep1Complete ? "outline" : "default"}>
+                {isStep1Complete ? "Edit Widget" : "Get Started"}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg opacity-50">
+          {/* Step 2: Add Causes */}
+          <div className={`flex items-center justify-between p-4 rounded-lg ${
+            isStep2Complete ? 'bg-green-50 border border-green-200' : 
+            isStep1Complete ? 'bg-gray-50' : 'bg-gray-50 opacity-50'
+          }`}>
             <div>
-              <h3 className="font-semibold">2. Add Causes</h3>
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold">2. Add Causes</h3>
+                {isStep2Complete && <Check className="w-4 h-4 text-green-600" />}
+              </div>
               <p className="text-sm text-gray-600">
-                Create causes for donors to support
+                {isStep2Complete 
+                  ? `${causes.length} cause${causes.length !== 1 ? 's' : ''} added`
+                  : isStep1Complete 
+                    ? "Create causes for donors to support"
+                    : "Complete step 1 first"
+                }
               </p>
             </div>
-            <Button disabled>Complete Step 1</Button>
+            {isStep1Complete ? (
+              <Link href="/dashboard/widget/customize">
+                <Button variant={isStep2Complete ? "outline" : "default"}>
+                  {isStep2Complete ? "Manage Causes" : "Add Causes"}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            ) : (
+              <Button disabled>Complete Step 1</Button>
+            )}
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg opacity-50">
+          {/* Step 3: Embed Widget */}
+          <div className={`flex items-center justify-between p-4 rounded-lg ${
+            isStep3Complete ? 'bg-green-50 border border-green-200' : 
+            isStep2Complete ? 'bg-gray-50' : 'bg-gray-50 opacity-50'
+          }`}>
             <div>
-              <h3 className="font-semibold">3. Embed Widget</h3>
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold">3. Embed Widget</h3>
+                {isStep3Complete && <Check className="w-4 h-4 text-green-600" />}
+              </div>
               <p className="text-sm text-gray-600">
-                Add the widget to your website
+                {isStep3Complete 
+                  ? "Widget is live and accepting donations"
+                  : isStep2Complete 
+                    ? "Add the widget to your website"
+                    : "Complete step 2 first"
+                }
               </p>
             </div>
-            <Button disabled>Complete Step 2</Button>
+            {isStep2Complete ? (
+              <Link href="/dashboard/widget/customize">
+                <Button variant={isStep3Complete ? "outline" : "default"}>
+                  {isStep3Complete ? "View Widget" : "Embed Widget"}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            ) : (
+              <Button disabled>Complete Step 2</Button>
+            )}
           </div>
         </CardContent>
       </Card>
