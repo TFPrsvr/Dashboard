@@ -5,7 +5,7 @@ import { useAuth } from '@clerk/nextjs';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/Alert';
 import { Shield, AlertTriangle } from 'lucide-react';
 
 export default function CreateSuperAdminPage() {
