@@ -1,10 +1,22 @@
-# Cross-Project Testing Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Cross-Project Testing Guide</span>
+
+</div>
 
 This guide covers testing the complete PassItOn system when both the Admin Dashboard and Donor Widget projects are deployed together.
 
-## Project Architecture Overview
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Two-Project System
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Project Architecture Overview</span>
+
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Two-Project System</span>
+
+</div>
 
 **PassItOn Admin Dashboard** (this project):
 - Organization management
@@ -21,7 +33,11 @@ This guide covers testing the complete PassItOn system when both the Admin Dashb
 - Real-time donation submission
 - Widget customization rendering
 
-### Integration Points
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Integration Points</span>
+
+</div>
 
 The two projects communicate through:
 
@@ -41,9 +57,17 @@ The two projects communicate through:
    - Donation submissions update Admin database
    - Real-time synchronization between projects
 
-## Testing Requirements
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Why Cross-Project Testing Matters
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Requirements</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">🧪 Why Cross-Project Testing Matters</span>
+
+</div>
 
 **Single Project Testing Limitations**:
 - Widget configuration in Admin might not render correctly in actual widget
@@ -57,42 +81,86 @@ The two projects communicate through:
 - Tests real-world embedding scenarios
 - Validates payment processing in actual donor context
 
-## Development Environment Testing
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Local Development Setup
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Development Environment Testing</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">⚙️ Local Development Setup</span>
+
+</div>
 
 **Option 1: Both Projects Local**
 ```bash
-# Terminal 1: Admin Dashboard
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Terminal 1: Admin Dashboard</span>
+
+</div>
 cd PassItOn-Admin
 npm run dev  # Runs on localhost:3000
 
-# Terminal 2: Donor Widget  
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Terminal 2: Donor Widget  </span>
+
+</div>
 cd PassItOn-Widget
 npm run dev  # Runs on localhost:3001
 ```
 
 **Option 2: Admin Local, Widget Deployed**
 ```bash
-# Admin Dashboard local
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Admin Dashboard local</span>
+
+</div>
 cd PassItOn-Admin
 npm run dev  # localhost:3000
 
-# Widget uses deployed version
-# Update widget config to point to production widget URL
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 Widget uses deployed version</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Update widget config to point to production widget URL</span>
+
+</div>
 ```
 
 **Option 3: Admin Deployed, Widget Local**
 ```bash
-# Widget local for testing
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Widget local for testing</span>
+
+</div>
 cd PassItOn-Widget
 npm run dev  # localhost:3001
 
-# Admin uses deployed version
-# Test widget changes against production admin
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 Admin uses deployed version</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Test widget changes against production admin</span>
+
+</div>
 ```
 
-### Environment Configuration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Environment Configuration</span>
+
+</div>
 
 **Shared Environment Variables**:
 Both projects must share:
@@ -106,7 +174,11 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
 
-# Widget project endpoint for testing
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🧪 Widget project endpoint for testing</span>
+
+</div>
 NEXT_PUBLIC_WIDGET_URL=http://localhost:3001  # or deployed URL
 ```
 
@@ -116,13 +188,25 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
 
-# Admin dashboard endpoint for API calls
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔌 Admin dashboard endpoint for API calls</span>
+
+</div>
 NEXT_PUBLIC_ADMIN_URL=http://localhost:3000  # or deployed URL
 ```
 
-## Cross-Project Test Scenarios
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### 1. Widget Configuration Flow
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Cross-Project Test Scenarios</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 1. Widget Configuration Flow</span>
+
+</div>
 
 **Test: Admin Changes Reflect in Live Widget**
 
@@ -177,7 +261,11 @@ NEXT_PUBLIC_ADMIN_URL=http://localhost:3000  # or deployed URL
 
 **Expected Result**: Changes in Admin Dashboard immediately reflect in embedded widget
 
-### 2. End-to-End Donation Flow
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 2. End-to-End Donation Flow</span>
+
+</div>
 
 **Test: Complete Donation Process Across Projects**
 
@@ -218,7 +306,11 @@ NEXT_PUBLIC_ADMIN_URL=http://localhost:3000  # or deployed URL
 
 **Expected Result**: Donation flows seamlessly from widget to admin dashboard to Stripe
 
-### 3. Real-time Synchronization Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 3. Real-time Synchronization Testing</span>
+
+</div>
 
 **Test: Live Updates Between Projects**
 
@@ -246,7 +338,11 @@ NEXT_PUBLIC_ADMIN_URL=http://localhost:3000  # or deployed URL
 
 **Expected Result**: Admin dashboard reflects widget donations in real-time
 
-### 4. Authentication Context Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 4. Authentication Context Testing</span>
+
+</div>
 
 **Test: User Authentication Across Projects**
 
@@ -277,13 +373,25 @@ NEXT_PUBLIC_ADMIN_URL=http://localhost:3000  # or deployed URL
 
 **Expected Result**: Widget respects admin authentication and organization context
 
-## Production Deployment Testing
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Staging Environment Testing
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Production Deployment Testing</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Staging Environment Testing</span>
+
+</div>
 
 **Setup**:
 ```bash
-# Both projects deployed to staging
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 Both projects deployed to staging</span>
+
+</div>
 Admin Dashboard: https://admin-staging.passiton.com
 Donor Widget: https://widget-staging.passiton.com
 ```
@@ -304,11 +412,19 @@ Donor Widget: https://widget-staging.passiton.com
    - [ ] Test with multiple organizations
    - [ ] Verify data isolation between organizations
 
-### Live Production Testing
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Live Production Testing</span>
+
+</div>
 
 **Pre-Go-Live Checklist**:
 ```bash
-# Both projects deployed to production
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🚀 Both projects deployed to production</span>
+
+</div>
 Admin Dashboard: https://admin.passiton.com  
 Donor Widget: https://widget.passiton.com
 ```
@@ -332,9 +448,17 @@ Donor Widget: https://widget.passiton.com
    - [ ] Database queries perform well under load
    - [ ] API endpoints respond quickly
 
-## Testing Tools and Scripts
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Automated Testing Scripts
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Tools and Scripts</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Automated Testing Scripts</span>
+
+</div>
 
 **Cross-Project Integration Test Script**:
 ```javascript
@@ -381,7 +505,11 @@ test('Widget configuration synchronization', async ({ page, context }) => {
 });
 ```
 
-### Manual Testing Checklist
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Manual Testing Checklist</span>
+
+</div>
 
 **Daily Cross-Project Testing** (Development):
 - [ ] Create new widget in admin, verify it embeds correctly
@@ -401,21 +529,49 @@ test('Widget configuration synchronization', async ({ page, context }) => {
 - [ ] Performance monitoring and optimization
 - [ ] User feedback incorporation
 
-## Common Cross-Project Issues
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Configuration Sync Issues
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Common Cross-Project Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔧 Configuration Sync Issues</span>
+
+</div>
 
 **Problem**: Changes in Admin don't appear in Widget
 **Diagnosis**:
 ```bash
-# Check API connectivity
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔌 Check API connectivity</span>
+
+</div>
 curl -X GET http://localhost:3000/api/widgets/widget-id
 
-# Check database state
-# In Supabase dashboard, verify widget configuration updated
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-# Check widget caching
-# Clear browser cache, check widget fetches fresh config
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Check database state</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 In Supabase dashboard, verify widget configuration updated</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check widget caching</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Clear browser cache, check widget fetches fresh config</span>
+
+</div>
 ```
 
 **Solutions**:
@@ -424,16 +580,36 @@ curl -X GET http://localhost:3000/api/widgets/widget-id
 - Ensure database transactions complete successfully
 - Validate CORS settings allow cross-project communication
 
-### Payment Processing Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Payment Processing Issues</span>
+
+</div>
 
 **Problem**: Payments succeed in widget but don't appear in admin
 **Diagnosis**:
 ```bash
-# Check webhook delivery in Stripe dashboard
-# Verify webhook endpoints are configured for both projects
-# Check database for partial transaction records
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-# Monitor webhook logs
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check webhook delivery in Stripe dashboard</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔧 Verify webhook endpoints are configured for both projects</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🗄️ Check database for partial transaction records</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Monitor webhook logs</span>
+
+</div>
 tail -f admin-dashboard.log | grep webhook
 ```
 
@@ -443,14 +619,30 @@ tail -f admin-dashboard.log | grep webhook
 - Ensure database write permissions are correct
 - Validate payment processing flow end-to-end
 
-### Authentication Context Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔐 Authentication Context Issues</span>
+
+</div>
 
 **Problem**: Widget doesn't respect organization context
 **Diagnosis**:
 ```bash
-# Check organization ID in widget embed code
-# Verify API returns correct organization data
-# Check authentication token passing between projects
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Check organization ID in widget embed code</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔌 Verify API returns correct organization data</span>
+
+</div>
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">🔐 Check authentication token passing between projects</span>
+
+</div>
 ```
 
 **Solutions**:
@@ -458,9 +650,17 @@ tail -f admin-dashboard.log | grep webhook
 - Validate API authentication middleware
 - Check cross-domain authentication token handling
 
-## Best Practices
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Development Workflow
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Best Practices</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Development Workflow</span>
+
+</div>
 
 1. **Feature Development**:
    - Develop admin dashboard features first
@@ -481,7 +681,11 @@ tail -f admin-dashboard.log | grep webhook
    - Deploy to production in coordinated manner
    - Monitor both projects post-deployment
 
-### Monitoring and Maintenance
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Monitoring and Maintenance</span>
+
+</div>
 
 1. **Health Checks**:
    - Monitor API endpoints on both projects

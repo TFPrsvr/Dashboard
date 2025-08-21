@@ -1,26 +1,54 @@
-# Support System Implementation Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📖 Support System Implementation Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 This document provides comprehensive technical details for the PassItOn support ticket system, including database schema, API endpoints, user interfaces, and integration patterns.
 
-## Architecture Overview
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### System Components:
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Architecture Overview</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 System Components:</span>
+
+</div>
 ```
 Frontend (React/Next.js) ↔ API Routes ↔ Database (Supabase) ↔ External Notifications
 ```
 
-### Technology Stack:
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Technology Stack:</span>
+
+</div>
 - **Frontend**: React, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes  
 - **Database**: Supabase (PostgreSQL)
 - **Authentication**: Clerk
 - **Notifications**: Console, Slack webhooks, Email (ready)
 
-## Database Schema
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Support Tickets Table:
+<span style="font-size: 1.8rem; font-weight: 700;">🗄️ Database Schema</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">💬 Support Tickets Table:</span>
+
+</div>
 ```sql
 CREATE TABLE IF NOT EXISTS support_tickets (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -41,7 +69,11 @@ CREATE TABLE IF NOT EXISTS support_tickets (
 );
 ```
 
-### Constraints and Indexes:
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Constraints and Indexes:</span>
+
+</div>
 ```sql
 -- Performance indexes
 CREATE INDEX IF NOT EXISTS idx_support_tickets_user_id ON support_tickets(user_id);
@@ -64,7 +96,11 @@ CREATE TRIGGER update_support_tickets_updated_at
   EXECUTE FUNCTION update_support_tickets_updated_at();
 ```
 
-### Data Model:
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Data Model:</span>
+
+</div>
 ```typescript
 interface SupportTicket {
   id: string;
@@ -85,11 +121,23 @@ interface SupportTicket {
 }
 ```
 
-## API Endpoints
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Customer Support Endpoints:
+<span style="font-size: 1.8rem; font-weight: 700;">🔌 API Endpoints</span>
 
-#### **GET /api/support**
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Customer Support Endpoints:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **GET /api/support**</span>
+
+</div>
 ```typescript
 // Get user's support tickets
 export async function GET(request: NextRequest) {
@@ -104,7 +152,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-#### **POST /api/support**
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **POST /api/support**</span>
+
+</div>
 ```typescript
 // Create new support ticket
 export async function POST(request: NextRequest) {
@@ -130,7 +182,11 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-#### **POST /api/support/[ticketId]/respond**
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **POST /api/support/[ticketId]/respond**</span>
+
+</div>
 ```typescript
 // Customer response to admin reply
 export async function POST(
@@ -157,9 +213,17 @@ export async function POST(
 }
 ```
 
-### Admin Support Endpoints:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **GET /api/admin/support**
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Admin Support Endpoints:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **GET /api/admin/support**</span>
+
+</div>
 ```typescript
 // Get all support tickets (admin only)
 export async function GET(request: NextRequest) {
@@ -185,7 +249,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
-#### **PATCH /api/admin/support/[ticketId]**
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **PATCH /api/admin/support/[ticketId]**</span>
+
+</div>
 ```typescript
 // Update support ticket (admin only)
 export async function PATCH(
@@ -228,9 +296,17 @@ export async function PATCH(
 }
 ```
 
-### Notification Endpoint:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **POST /api/support/notify**
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Notification Endpoint:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔌 **POST /api/support/notify**</span>
+
+</div>
 ```typescript
 export async function POST(request: NextRequest) {
   const { ticketId, subject, description, userEmail, userName, category, priority } = await request.json();
@@ -299,11 +375,23 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-## Frontend Implementation
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Customer Support Page:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Frontend Implementation</span>
 
-#### **Component Structure**:
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Customer Support Page:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Component Structure**:</span>
+
+</div>
 ```typescript
 // app/(dashboard)/dashboard/support/page.tsx
 export default function SupportPage() {
@@ -348,7 +436,11 @@ export default function SupportPage() {
 }
 ```
 
-#### **Key UI Components**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Key UI Components**:</span>
+
+</div>
 ```typescript
 // Ticket creation form
 <form onSubmit={handleSubmit}>
@@ -403,9 +495,17 @@ export default function SupportPage() {
 )}
 ```
 
-### Admin Support Management:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### **Component Structure**:
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Admin Support Management:</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 **Component Structure**:</span>
+
+</div>
 ```typescript
 // app/(dashboard)/admin/support/page.tsx
 export default function AdminSupportPage() {
@@ -443,7 +543,11 @@ export default function AdminSupportPage() {
 }
 ```
 
-#### **Admin UI Features**:
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">✨ **Admin UI Features**:</span>
+
+</div>
 ```typescript
 // Ticket management interface
 {tickets.map((ticket) => (
@@ -526,9 +630,17 @@ export default function AdminSupportPage() {
 )}
 ```
 
-## Navigation Integration
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Sidebar Navigation:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Navigation Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Sidebar Navigation:</span>
+
+</div>
 ```typescript
 // components/dashboard/sidebar.tsx
 const navItems = [
@@ -567,9 +679,17 @@ const adminItems = [
 )}
 ```
 
-## External Notifications
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Slack Integration:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 External Notifications</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Slack Integration:</span>
+
+</div>
 ```typescript
 // Environment variable required: SLACK_WEBHOOK_URL
 const slackMessage = {
@@ -609,7 +729,11 @@ await fetch(process.env.SLACK_WEBHOOK_URL, {
 });
 ```
 
-### Email Integration (Ready for Implementation):
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Email Integration (Ready for Implementation):</span>
+
+</div>
 ```typescript
 // Email service integration structure
 interface EmailNotification {
@@ -627,16 +751,28 @@ async function sendEmail(notification: EmailNotification) {
 }
 ```
 
-## Status Flow Management
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Ticket Lifecycle:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Status Flow Management</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Ticket Lifecycle:</span>
+
+</div>
 ```
 [open] → [in_progress] → [waiting_response] → [in_progress] → [resolved] → [closed]
                      ↑                      ↓
               Admin responds          Customer responds
 ```
 
-### Status Rules:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Status Rules:</span>
+
+</div>
 ```typescript
 const statusTransitions = {
   'open': ['in_progress', 'closed'],
@@ -651,9 +787,17 @@ function canTransitionTo(currentStatus: string, newStatus: string): boolean {
 }
 ```
 
-## Error Handling
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### API Error Responses:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Error Handling</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔌 API Error Responses:</span>
+
+</div>
 ```typescript
 // Standardized error response format
 interface ErrorResponse {
@@ -681,7 +825,11 @@ export function handleDatabaseError(error: any): NextResponse {
 }
 ```
 
-### Frontend Error Handling:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Frontend Error Handling:</span>
+
+</div>
 ```typescript
 // Error boundary for support components
 export function SupportErrorBoundary({ children }: { children: React.ReactNode }) {
@@ -722,9 +870,17 @@ async function apiCall(url: string, options: RequestInit) {
 }
 ```
 
-## Security Considerations
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Authentication & Authorization:
+<span style="font-size: 1.8rem; font-weight: 700;">🔒 Security Considerations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🔐 Authentication & Authorization:</span>
+
+</div>
 ```typescript
 // API route security pattern
 export async function POST(request: NextRequest) {
@@ -758,7 +914,11 @@ export async function POST(request: NextRequest) {
 }
 ```
 
-### Data Sanitization:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Data Sanitization:</span>
+
+</div>
 ```typescript
 function sanitizeSupportTicketInput(input: any) {
   return {
@@ -772,9 +932,17 @@ function sanitizeSupportTicketInput(input: any) {
 }
 ```
 
-## Performance Optimizations
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Database Query Optimization:
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Performance Optimizations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🗄️ Database Query Optimization:</span>
+
+</div>
 ```sql
 -- Efficient queries with proper indexing
 EXPLAIN ANALYZE SELECT * FROM support_tickets 
@@ -788,7 +956,11 @@ FROM pg_stat_user_indexes
 WHERE tablename = 'support_tickets';
 ```
 
-### Frontend Optimization:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Frontend Optimization:</span>
+
+</div>
 ```typescript
 // Pagination for large ticket lists
 const [tickets, setTickets] = useState<SupportTicket[]>([]);
@@ -820,9 +992,17 @@ const TicketCard = memo(({ ticket }: { ticket: SupportTicket }) => {
 });
 ```
 
-## Testing Strategy
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Unit Tests:
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing Strategy</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Unit Tests:</span>
+
+</div>
 ```typescript
 // API endpoint tests
 describe('POST /api/support', () => {
@@ -867,7 +1047,11 @@ describe('SupportPage', () => {
 });
 ```
 
-### Integration Tests:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Integration Tests:</span>
+
+</div>
 ```typescript
 describe('Support System Integration', () => {
   it('completes full ticket lifecycle', async () => {
@@ -895,23 +1079,43 @@ describe('Support System Integration', () => {
 });
 ```
 
-## Deployment Considerations
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Environment Variables:
+<span style="font-size: 1.8rem; font-weight: 700;">🚀 Deployment Considerations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Environment Variables:</span>
+
+</div>
 ```bash
-# Required for support system
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">💬 Required for support system</span>
+
+</div>
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
 CLERK_SECRET_KEY=sk_test_...
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
-# Optional for enhanced notifications
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 Optional for enhanced notifications</span>
+
+</div>
 SUPPORT_EMAIL=support@yourcompany.com
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
 NEXT_PUBLIC_APP_URL=https://yourapp.com
 ```
 
-### Database Setup:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">⚙️ Database Setup:</span>
+
+</div>
 ```sql
 -- Run in production Supabase
 -- 1. Create table and indexes (see schema section)
@@ -921,7 +1125,11 @@ ALTER TABLE support_tickets DISABLE ROW LEVEL SECURITY;
 -- 4. Test with sample data
 ```
 
-### Monitoring:
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Monitoring:</span>
+
+</div>
 ```typescript
 // Add monitoring for support system
 console.log('Support System Metrics:', {

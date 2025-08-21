@@ -4,7 +4,7 @@
  * Monitors widget loading errors and performance issues
  */
 
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/supabase-client';
 import { AlertService } from './alert-service';
 
 export interface WidgetAlert {

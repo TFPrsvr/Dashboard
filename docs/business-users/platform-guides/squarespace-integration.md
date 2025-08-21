@@ -1,10 +1,26 @@
-# Squarespace Integration Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">🌐 Squarespace Integration Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+<div style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">
 
 Add your PassItOn donation widget to your Squarespace website using built-in code injection and content blocks. Perfect for nonprofits, businesses, and creators using Squarespace.
 
-## Table of Contents
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📋 Table of Contents</span>
+
+<div style="margin-top: 1rem;">
 
 - [Quick Setup (7 minutes)](#quick-setup-7-minutes)
 - [Method 1: Site-Wide Integration](#method-1-site-wide-integration-recommended)
@@ -15,16 +31,32 @@ Add your PassItOn donation widget to your Squarespace website using built-in cod
 - [Customization Options](#customization-options)
 - [Testing & Troubleshooting](#testing--troubleshooting)
 
+</div>
+
+</div>
+
 ---
 
-## Quick Setup (7 minutes)
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### What You'll Need
+<span style="font-size: 1.8rem; font-weight: 700;">⚡ Quick Setup (7 minutes)</span>
+
+</div>
+
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📦 What You'll Need</span>
+
+<div style="margin-top: 1rem;">
 - Your PassItOn organization ID
 - Squarespace site with Business plan or higher (required for code injection)
 - Admin access to your Squarespace site
 
-### Step-by-Step Process
+<div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #059669;">📌 Step-by-Step Process</span>
+
+</div>
 
 1. **Get Your Organization ID**
    - Log into PassItOn dashboard
@@ -42,16 +74,32 @@ Add your PassItOn donation widget to your Squarespace website using built-in cod
 
 ---
 
-## Method 1: Site-Wide Integration (Recommended)
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Adding to All Pages
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 1: Site-Wide Integration (Recommended)</span>
 
-#### Step 1: Access Code Injection
+</div>
+
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Adding to All Pages</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Access Code Injection</span>
+
+</div>
 1. From your Squarespace dashboard, go to **Settings**
 2. Click **Advanced**
 3. Select **Code Injection**
 
-#### Step 2: Add Footer Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Footer Code</span>
+
+</div>
 In the **Footer** section, paste this code:
 
 ```html
@@ -81,7 +129,11 @@ In the **Footer** section, paste this code:
 </style>
 ```
 
-#### Step 3: Customize Colors
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Customize Colors</span>
+
+</div>
 Match your Squarespace theme colors:
 
 ```javascript
@@ -89,12 +141,24 @@ Match your Squarespace theme colors:
 color: '#YOUR_ACCENT_COLOR', // Replace with your brand color
 ```
 
-#### Step 4: Save Settings
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 4: Save Settings</span>
+
+</div>
 Click **Save** to apply changes site-wide.
 
-### Hiding on Specific Pages
+<div style="background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Add CSS Class to Exclude Pages
+<span style="font-size: 1.5rem; font-weight: 600; color: #0891b2;">📌 Hiding on Specific Pages</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Add CSS Class to Exclude Pages</span>
+
+</div>
 1. Go to the page you want to exclude
 2. In Page Settings, go to **Advanced**
 3. Add this to **Page Header Code Injection**:
@@ -109,18 +173,38 @@ Click **Save** to apply changes site-wide.
 
 ---
 
-## Method 2: Page-Specific Integration
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Adding to Individual Pages
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 2: Page-Specific Integration</span>
 
-#### Using Code Block
+</div>
 
-##### Step 1: Add Code Block
+<div style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid #8b5cf6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #7c3aed;">📌 Adding to Individual Pages</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Using Code Block</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Add Code Block</span>
+
+</div>
 1. Edit the page where you want the donation widget
 2. Click **"+"** to add a block
 3. Choose **"Code"** from the block menu
 
-##### Step 2: Add Widget Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Widget Code</span>
+
+</div>
 Paste this code in the code block:
 
 ```html
@@ -200,14 +284,26 @@ window.PassItOnConfig = {
 </style>
 ```
 
-#### Using Markdown Block (Alternative)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
 
-##### Step 1: Add Markdown Block
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Using Markdown Block (Alternative)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Add Markdown Block</span>
+
+</div>
 1. Add a **Markdown** block to your page
 2. Use this format:
 
 ```markdown
-## Support Our Mission
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">💬 Support Our Mission</span>
+
+</div>
 
 Your donation makes a real impact in our community.
 
@@ -224,9 +320,17 @@ window.PassItOnConfig = {
 <script src="https://your-widget-domain.com/embed.js"></script>
 ```
 
-### Page Header Integration
+<div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### For Campaign-Specific Pages
+<span style="font-size: 1.5rem; font-weight: 600; color: #d97706;">📌 Page Header Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 For Campaign-Specific Pages</span>
+
+</div>
 1. Go to Page Settings → Advanced
 2. Add to **Page Header Code Injection**:
 
@@ -319,15 +423,31 @@ function openDonationWidget() {
 
 ---
 
-## Method 3: Blog Post Integration
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Adding to Individual Blog Posts
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 3: Blog Post Integration</span>
 
-#### Step 1: Edit Blog Post
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Adding to Individual Blog Posts</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Edit Blog Post</span>
+
+</div>
 1. Go to your blog post in edit mode
 2. Position cursor where you want the donation widget
 
-#### Step 2: Add Code Block
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Code Block</span>
+
+</div>
 1. Click **"+"** to add content
 2. Choose **Code** block
 3. Add this code:
@@ -377,7 +497,11 @@ window.PassItOnConfig = {
   line-height: 1.6;
 }
 
-#blog-donation-widget {
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 blog-donation-widget {</span>
+
+</div>
   background: white;
   padding: 20px;
   border-radius: 6px;
@@ -386,9 +510,17 @@ window.PassItOnConfig = {
 </style>
 ```
 
-### Newsletter Signup + Donation Combo
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Combining Email Capture with Donations
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Newsletter Signup + Donation Combo</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Combining Email Capture with Donations</span>
+
+</div>
 ```html
 <div class="newsletter-donation-combo">
   <h3>Stay Connected & Support Us</h3>
@@ -439,49 +571,101 @@ window.PassItOnConfig = {
 
 ---
 
-## Squarespace 7.1 vs 7.0 Differences
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Squarespace 7.1 (Current)
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Squarespace 7.1 vs 7.0 Differences</span>
 
-#### Code Injection Location
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Squarespace 7.1 (Current)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Code Injection Location</span>
+
+</div>
 - **Settings → Advanced → Code Injection**
 - Header and Footer options available
 - Page-specific code injection in page settings
 
-#### Block Types
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Block Types</span>
+
+</div>
 - **Code Block**: For custom HTML/CSS/JS
 - **Markdown Block**: For simple markdown + code
 - **Embed Block**: For iframe content
 
-### Squarespace 7.0 (Legacy)
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Code Injection Location
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Squarespace 7.0 (Legacy)</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Code Injection Location</span>
+
+</div>
 - **Settings → Advanced → Code Injection**
 - Same functionality as 7.1
 
-#### Block Types
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Block Types</span>
+
+</div>
 - **Code Block**: Available but interface slightly different
 - **Embed Block**: May have different sizing options
 
-### Template-Specific Considerations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Family Templates (7.1)
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Template-Specific Considerations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Family Templates (7.1)</span>
+
+</div>
 - Better responsive handling
 - Improved mobile optimization
 - More flexible block positioning
 
-#### Classic Templates (7.0)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Classic Templates (7.0)</span>
+
+</div>
 - May require additional CSS for responsive design
 - Different block spacing
 - Manual mobile optimization needed
 
 ---
 
-## Mobile Optimization
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Responsive Design
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Mobile Optimization</span>
 
-#### Mobile-First CSS
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Responsive Design</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Mobile-First CSS</span>
+
+</div>
 ```css
 /* Mobile-first approach */
 .donation-widget-container {
@@ -507,7 +691,11 @@ window.PassItOnConfig = {
 }
 ```
 
-#### Touch-Friendly Buttons
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Touch-Friendly Buttons</span>
+
+</div>
 ```css
 .passiton-widget-button {
   min-height: 44px; /* Apple's recommended touch target size */
@@ -517,9 +705,17 @@ window.PassItOnConfig = {
 }
 ```
 
-### Mobile-Specific Features
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Swipe-to-Donate (Advanced)
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">✨ Mobile-Specific Features</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Swipe-to-Donate (Advanced)</span>
+
+</div>
 ```javascript
 // Add swipe gesture for mobile donation
 let startX, startY;
@@ -550,11 +746,23 @@ document.addEventListener('touchend', function(e) {
 
 ---
 
-## Customization Options
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Theme Integration
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Customization Options</span>
 
-#### Matching Squarespace Fonts
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Theme Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Matching Squarespace Fonts</span>
+
+</div>
 ```css
 .passiton-widget-button {
   font-family: inherit !important; /* Uses Squarespace theme font */
@@ -566,7 +774,11 @@ document.addEventListener('touchend', function(e) {
 }
 ```
 
-#### Using Squarespace Colors
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Using Squarespace Colors</span>
+
+</div>
 ```javascript
 // Extract colors from Squarespace CSS
 const computedStyle = getComputedStyle(document.body);
@@ -579,9 +791,17 @@ window.PassItOnConfig = {
 };
 ```
 
-### Advanced Styling
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Glassmorphism Effect
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Advanced Styling</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Glassmorphism Effect</span>
+
+</div>
 ```css
 .donation-widget-container {
   background: rgba(255, 255, 255, 0.25);
@@ -591,7 +811,11 @@ window.PassItOnConfig = {
 }
 ```
 
-#### Neumorphism Style
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Neumorphism Style</span>
+
+</div>
 ```css
 .passiton-widget-button {
   background: #e0e5ec;
@@ -612,32 +836,60 @@ window.PassItOnConfig = {
 
 ---
 
-## Testing & Troubleshooting
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-Launch Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing & Troubleshooting</span>
 
-#### ✅ Functionality Tests
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Pre-Launch Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Functionality Tests</span>
+
+</div>
 - [ ] Widget loads on all template pages
 - [ ] Mobile responsiveness works
 - [ ] Payment processing completes
 - [ ] Confirmation emails sent
 - [ ] Analytics tracking active
 
-#### ✅ Design Integration
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 ✅ Design Integration</span>
+
+</div>
 - [ ] Colors match Squarespace theme
 - [ ] Fonts consistent with site
 - [ ] Layout doesn't break on different screen sizes
 - [ ] No conflicts with existing CSS
 
-#### ✅ Performance Tests
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Performance Tests</span>
+
+</div>
 - [ ] Site loading speed not affected
 - [ ] Widget loads asynchronously
 - [ ] No JavaScript errors in console
 - [ ] Works with Squarespace caching
 
-### Common Squarespace Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### "Code injection not working"
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Squarespace Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Code injection not working"</span>
+
+</div>
 **Possible causes:**
 - Not on Business plan or higher
 - Code syntax errors
@@ -649,7 +901,11 @@ window.PassItOnConfig = {
 3. Test in different browsers
 4. Check browser console for errors
 
-#### "Widget conflicts with template"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Widget conflicts with template"</span>
+
+</div>
 **Possible causes:**
 - CSS specificity issues
 - Template-specific JavaScript conflicts
@@ -661,7 +917,11 @@ window.PassItOnConfig = {
 3. Test with different Squarespace templates
 4. Add template-specific CSS overrides
 
-#### "Mobile layout broken"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Mobile layout broken"</span>
+
+</div>
 **Possible causes:**
 - Missing responsive CSS
 - Fixed positioning not supported
@@ -673,37 +933,73 @@ window.PassItOnConfig = {
 3. Use relative positioning when needed
 4. Check Squarespace mobile settings
 
-### Squarespace-Specific Limitations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Plan Requirements
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Squarespace-Specific Limitations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Plan Requirements</span>
+
+</div>
 - **Code Injection**: Requires Business plan or higher
 - **Custom CSS**: Available on all paid plans
 - **Third-party scripts**: Business plan or higher
 
-#### Template Restrictions
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Template Restrictions</span>
+
+</div>
 - Some templates may have CSS limitations
 - Mobile editing may be restricted
 - Certain blocks may not support custom code
 
-### Getting Help
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Squarespace Support
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Getting Help</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 Squarespace Support</span>
+
+</div>
 - **Template issues**: Contact Squarespace support
 - **Plan limitations**: Check Squarespace documentation
 - **Code injection**: Squarespace help center
 
-#### PassItOn Support
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">💬 PassItOn Support</span>
+
+</div>
 - **Widget functionality**: support@passiton.com
 - **Integration issues**: Provide template name and Squarespace version
 - **Customization help**: Include current code and desired outcome
 
 ---
 
-## Advanced Features
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Analytics Integration
+<span style="font-size: 1.8rem; font-weight: 700;">✨ Advanced Features</span>
 
-#### Squarespace Analytics
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Analytics Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Squarespace Analytics</span>
+
+</div>
 ```javascript
 // Track donations in Squarespace Analytics
 window.addEventListener('message', function(event) {
@@ -719,9 +1015,17 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-### E-commerce Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Commerce + Donations
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 E-commerce Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Commerce + Donations</span>
+
+</div>
 ```javascript
 // Add donation option to Squarespace Commerce checkout
 document.addEventListener('DOMContentLoaded', function() {
@@ -751,9 +1055,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ---
 
-## Going Live
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Launch Preparation
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Going Live</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Launch Preparation</span>
+
+</div>
 
 1. **Test thoroughly** on Squarespace preview
 2. **Check mobile** on actual devices
@@ -761,14 +1073,26 @@ document.addEventListener('DOMContentLoaded', function() {
 4. **Monitor performance** for any site slowdown
 5. **Update team** on donation management
 
-### Marketing Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Squarespace Email Campaigns
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Marketing Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Squarespace Email Campaigns</span>
+
+</div>
 - Include donation links in newsletters
 - Create donation-focused email templates
 - Track donation conversions from emails
 
-#### Social Media Integration
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Social Media Integration</span>
+
+</div>
 - Share donation milestones
 - Include donation links in social posts
 - Create donation-focused landing pages

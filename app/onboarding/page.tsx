@@ -92,7 +92,6 @@ export default function OnboardingPage() {
           display_name: formData.displayName,
           email: formData.email,
           terms_of_service_url: formData.termsOfServiceUrl || null,
-          subscription_status: "trial",
         })
         .select()
         .single();

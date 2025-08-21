@@ -174,7 +174,7 @@ export default function DonationsPage() {
     if (chartData.length === 0) {
       generateChartData([], chartPeriod);
     }
-  }, []);
+  }, [chartPeriod, chartData.length]);
 
   const exportDonations = () => {
     // Use filtered donations for export
@@ -228,6 +228,24 @@ export default function DonationsPage() {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+      </div>
+    );
+  }
+
+  // Handle case where user is not set up
+  if (!organization) {
+    return (
+      <div className="text-center py-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Organization Setup Required</h2>
+        <p className="text-gray-600 mb-4">
+          You need to complete your organization setup to access donations.
+        </p>
+        <button 
+          onClick={() => window.location.href = '/onboarding'}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Complete Setup
+        </button>
       </div>
     );
   }

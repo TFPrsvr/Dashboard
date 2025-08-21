@@ -4,7 +4,7 @@
  * Monitors payment processing and sends alerts for various failure scenarios
  */
 
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/supabase-client';
 import { AlertService } from './alert-service';
 
 export interface PaymentAlert {

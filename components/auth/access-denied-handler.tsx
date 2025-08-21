@@ -70,7 +70,6 @@ export function AccessDeniedHandler() {
     toast({
       title: "Understanding Access Levels",
       description: helpContent,
-      duration: 8000,
     });
   };
 
@@ -229,7 +228,6 @@ export function useRoutePermissions() {
       title: "Access Denied",
       description: `This feature requires ${requiredRole} access. You currently have ${userRole} access.`,
       variant: "destructive",
-      duration: 5000
     });
 
     // Redirect after a brief delay

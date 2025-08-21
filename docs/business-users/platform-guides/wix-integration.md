@@ -1,10 +1,22 @@
-# Wix Integration Guide
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
 
-## Overview
+<span style="font-size: 2.5rem; font-weight: 800;">📖 Wix Integration Guide</span>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📊 Overview</span>
+
+</div>
 
 Add your PassItOn donation widget to your Wix website using Wix's built-in tools. No coding experience required - perfect for small businesses and nonprofits using Wix.
 
-## Table of Contents
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
+
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Table of Contents</span>
+
+</div>
 
 - [Quick Setup (5 minutes)](#quick-setup-5-minutes)
 - [Method 1: HTML Embed Code](#method-1-html-embed-code-recommended)
@@ -16,14 +28,26 @@ Add your PassItOn donation widget to your Wix website using Wix's built-in tools
 
 ---
 
-## Quick Setup (5 minutes)
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### What You'll Need
+<span style="font-size: 1.8rem; font-weight: 700;">⚙️ Quick Setup (5 minutes)</span>
+
+</div>
+
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 What You'll Need</span>
+
+</div>
 - Your PassItOn organization ID
 - Wix website with edit access
 - 5 minutes of your time
 
-### Step-by-Step Process
+<div style="background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #b91c1c;">📌 Step-by-Step Process</span>
+
+</div>
 
 1. **Get Your Organization ID**
    - Log into your PassItOn dashboard
@@ -45,17 +69,33 @@ Add your PassItOn donation widget to your Wix website using Wix's built-in tools
 
 ---
 
-## Method 1: HTML Embed Code (Recommended)
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Adding Floating Donation Button
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 1: HTML Embed Code (Recommended)</span>
 
-#### Step 1: Add HTML Embed Element
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Adding Floating Donation Button</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Add HTML Embed Element</span>
+
+</div>
 1. In Wix Editor, click the **"+" button** (Add Elements)
 2. Navigate to **"Embed" → "HTML Embed"**
 3. Drag the HTML Embed element to your page
 4. Position it where you want the donation button to appear
 
-#### Step 2: Add Your Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add Your Code</span>
+
+</div>
 Click on the HTML element and select **"Enter Code"**. Paste this code:
 
 ```html
@@ -122,23 +162,43 @@ document.getElementById('donate-button').addEventListener('click', function() {
 </script>
 ```
 
-#### Step 3: Replace Organization ID
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Replace Organization ID</span>
+
+</div>
 Replace `YOUR_ORG_ID_HERE` with your actual organization ID.
 
-#### Step 4: Adjust Styling
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 4: Adjust Styling</span>
+
+</div>
 Customize the button colors and text to match your brand:
 
 ```css
 background: #YOUR_BRAND_COLOR;
 ```
 
-#### Step 5: Save and Publish
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 5: Save and Publish</span>
+
+</div>
 1. Click **"Update"** to save the HTML element
 2. Click **"Publish"** to make changes live
 
-### Adding Inline Donation Form
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### For Specific Pages
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Adding Inline Donation Form</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 For Specific Pages</span>
+
+</div>
 1. **Add HTML Embed** where you want the donation form
 2. Use this code for an embedded form:
 
@@ -186,21 +246,41 @@ container.appendChild(iframe);
 
 ---
 
-## Method 2: Custom Element
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Using Wix's Custom Element Feature
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 2: Custom Element</span>
 
-#### Step 1: Add Custom Element
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Using Wix's Custom Element Feature</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Add Custom Element</span>
+
+</div>
 1. Click **"+" (Add Elements)**
 2. Go to **"Embed" → "Custom Element"**
 3. Drag it to your desired location
 
-#### Step 2: Configure Element
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🔧 Step 2: Configure Element</span>
+
+</div>
 1. Click the custom element
 2. Choose **"Choose Source" → "Website URL"**
 3. Enter your widget URL: `https://your-widget-domain.com/embed`
 
-#### Step 3: Add Parameters
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Add Parameters</span>
+
+</div>
 In the URL parameters section, add:
 ```
 org=YOUR_ORG_ID_HERE
@@ -208,24 +288,48 @@ amount=25
 color=0891B2
 ```
 
-#### Step 4: Adjust Size
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 4: Adjust Size</span>
+
+</div>
 - Set width: 100% (responsive)
 - Set height: 500px (or auto if supported)
 
 ---
 
-## Method 3: Wix Velo (Advanced)
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### For Developers Using Wix Velo
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Method 3: Wix Velo (Advanced)</span>
 
-#### Step 1: Enable Wix Velo
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 For Developers Using Wix Velo</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 1: Enable Wix Velo</span>
+
+</div>
 1. In Wix Editor, click **"Dev Mode"**
 2. Enable **Wix Velo** if not already enabled
 
-#### Step 2: Add HTML Element
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 2: Add HTML Element</span>
+
+</div>
 Add an HTML element with ID `donationWidget`
 
-#### Step 3: Add Velo Code
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 3: Add Velo Code</span>
+
+</div>
 In your page code, add:
 
 ```javascript
@@ -322,18 +426,34 @@ function showErrorMessage() {
 }
 ```
 
-#### Step 4: Add Lightbox (Optional)
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Step 4: Add Lightbox (Optional)</span>
+
+</div>
 1. Add a **Lightbox** element for the donation form
 2. Add an **iframe** inside the lightbox with ID `lightboxIframe`
 3. Style the lightbox appropriately
 
 ---
 
-## Mobile Optimization
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Responsive Design
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Mobile Optimization</span>
 
-#### Mobile-Friendly Button
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Responsive Design</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Mobile-Friendly Button</span>
+
+</div>
 ```html
 <style>
 @media (max-width: 768px) {
@@ -357,12 +477,20 @@ function showErrorMessage() {
 </style>
 ```
 
-#### Touch-Friendly Interface
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Touch-Friendly Interface</span>
+
+</div>
 - Buttons minimum 44px height for touch targets
 - Adequate spacing between elements
 - Clear, readable fonts on mobile devices
 
-### Mobile Testing Checklist
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">🧪 Mobile Testing Checklist</span>
+
+</div>
 - [ ] Button is easily tappable on mobile
 - [ ] Donation form opens properly
 - [ ] Form fields work with mobile keyboards
@@ -371,11 +499,23 @@ function showErrorMessage() {
 
 ---
 
-## Customization Options
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Brand Colors
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Customization Options</span>
 
-#### Matching Your Wix Theme
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Brand Colors</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Matching Your Wix Theme</span>
+
+</div>
 1. In Wix Editor, go to **Design → Colors**
 2. Note your brand colors
 3. Update widget CSS:
@@ -385,11 +525,23 @@ background: #YOUR_PRIMARY_COLOR;
 border: 2px solid #YOUR_SECONDARY_COLOR;
 ```
 
-### Button Styles
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Modern Flat Design
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Button Styles</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Modern Flat Design</span>
+
+</div>
 ```css
-#donate-button {
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donate-button {</span>
+
+</div>
   background: linear-gradient(135deg, #0891B2, #0F766E);
   border: none;
   padding: 15px 30px;
@@ -400,9 +552,17 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
 }
 ```
 
-#### Rounded Pill Style
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Rounded Pill Style</span>
+
+</div>
 ```css
-#donate-button {
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donate-button {</span>
+
+</div>
   background: #0891B2;
   border: none;
   padding: 12px 25px;
@@ -411,21 +571,41 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
 }
 ```
 
-### Animation Effects
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Hover Animations
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Animation Effects</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Hover Animations</span>
+
+</div>
 ```css
-#donate-button {
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donate-button {</span>
+
+</div>
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#donate-button:hover {
+<div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donate-button:hover {</span>
+
+</div>
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 25px rgba(8, 145, 178, 0.4);
 }
 ```
 
-#### Pulse Effect
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Pulse Effect</span>
+
+</div>
 ```css
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.7); }
@@ -433,39 +613,71 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
   100% { box-shadow: 0 0 0 0 rgba(8, 145, 178, 0); }
 }
 
-#donate-button {
+<div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+
+<span style="font-size: 2.5rem; font-weight: 800;">📌 donate-button {</span>
+
+</div>
   animation: pulse 2s infinite;
 }
 ```
 
 ---
 
-## Testing & Troubleshooting
+<div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-Launch Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">🧪 Testing & Troubleshooting</span>
 
-#### ✅ Visual Check
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Pre-Launch Checklist</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 ✅ Visual Check</span>
+
+</div>
 - [ ] Widget appears correctly on desktop
 - [ ] Mobile layout looks good
 - [ ] Colors match your brand
 - [ ] Button text is clear and compelling
 
-#### ✅ Functionality Test
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Functionality Test</span>
+
+</div>
 - [ ] Button opens donation form
 - [ ] Form fields work properly
 - [ ] Payment processing completes
 - [ ] Confirmation message displays
 
-#### ✅ Browser Testing
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">🧪 ✅ Browser Testing</span>
+
+</div>
 - [ ] Chrome ✓
 - [ ] Firefox ✓
 - [ ] Safari ✓
 - [ ] Mobile Safari ✓
 - [ ] Chrome Mobile ✓
 
-### Common Wix Issues
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### "Widget not displaying"
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Common Wix Issues</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Widget not displaying"</span>
+
+</div>
 **Possible causes:**
 - HTML element not configured properly
 - Organization ID incorrect
@@ -477,7 +689,11 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
 3. Review code for typos
 4. Check browser console for errors
 
-#### "Mobile layout broken"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Mobile layout broken"</span>
+
+</div>
 **Possible causes:**
 - Missing mobile CSS
 - Fixed positioning issues
@@ -489,7 +705,11 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
 3. Use Wix's mobile editor
 4. Adjust iframe dimensions
 
-#### "Button conflicts with Wix theme"
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 "Button conflicts with Wix theme"</span>
+
+</div>
 **Possible causes:**
 - CSS specificity issues
 - Theme style overrides
@@ -501,25 +721,49 @@ border: 2px solid #YOUR_SECONDARY_COLOR;
 3. Test with different Wix themes
 4. Use inline styles for critical properties
 
-### Wix-Specific Limitations
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Known Issues
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Wix-Specific Limitations</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Known Issues</span>
+
+</div>
 - **Fixed positioning**: May not work on all devices
 - **iframe restrictions**: Some limitations on iframe content
 - **Mobile editing**: Separate mobile layout needed
 
-#### Workarounds
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Workarounds</span>
+
+</div>
 - Use relative positioning when needed
 - Test thoroughly on mobile devices
 - Consider Wix App Market alternatives (when available)
 
 ---
 
-## Advanced Features
+<div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Analytics Integration
+<span style="font-size: 1.8rem; font-weight: 700;">✨ Advanced Features</span>
 
-#### Wix Analytics
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Analytics Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Wix Analytics</span>
+
+</div>
 ```javascript
 // Track donations in Wix Analytics
 window.addEventListener('message', function(event) {
@@ -535,7 +779,11 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-#### Google Analytics Integration
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Google Analytics Integration</span>
+
+</div>
 ```javascript
 // Track donations with Google Analytics
 window.addEventListener('message', function(event) {
@@ -549,9 +797,17 @@ window.addEventListener('message', function(event) {
 });
 ```
 
-### Multi-Language Support
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Wix Multilingual Sites
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 Multi-Language Support</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Wix Multilingual Sites</span>
+
+</div>
 ```javascript
 // Detect Wix site language
 const siteLanguage = window.location.pathname.split('/')[1] || 'en';
@@ -568,9 +824,17 @@ document.getElementById('donate-button').textContent = translations[siteLanguage
 
 ---
 
-## Going Live
+<div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Pre-Launch Checklist
+<span style="font-size: 1.8rem; font-weight: 700;">📌 Going Live</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Pre-Launch Checklist</span>
+
+</div>
 
 1. **Test on all devices** (desktop, tablet, mobile)
 2. **Verify payment processing** with small test donations
@@ -578,33 +842,61 @@ document.getElementById('donate-button').textContent = translations[siteLanguage
 4. **Monitor site performance** (widget shouldn't slow down site)
 5. **Train team** on donation management
 
-### Marketing Integration
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
 
-#### Wix Marketing Tools
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Marketing Integration</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 Wix Marketing Tools</span>
+
+</div>
 - Add donation call-to-action in Wix email campaigns
 - Include widget link in social media posts
 - Feature donation milestones on your site
 
-#### SEO Optimization
+<div style="background: rgba(59, 130, 246, 0.05); border-left: 2px solid #3b82f6; padding: 1rem; margin: 1.5rem 0; border-radius: 6px;">
+
+<span style="font-size: 1.2rem; font-weight: 500; color: #1d4ed8;">📌 SEO Optimization</span>
+
+</div>
 - Add donation-related keywords to page content
 - Create donation-focused landing pages
 - Include donation impact in meta descriptions
 
 ---
 
-## Support Resources
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1.5rem; border-radius: 12px; margin: 2rem 0;">
 
-### Wix-Specific Help
+<span style="font-size: 1.8rem; font-weight: 700;">💬 Support Resources</span>
+
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Wix-Specific Help</span>
+
+</div>
 - **Wix Support**: For platform-related issues
 - **Wix Forum**: Community help and discussions
 - **Wix Code Documentation**: For Velo development
 
-### PassItOn Support
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">💬 PassItOn Support</span>
+
+</div>
 - **Email**: support@passiton.com
 - **Documentation**: Complete setup guides
 - **Technical Support**: Widget functionality help
 
-### Best Practices
+<div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 8px;">
+
+<span style="font-size: 1.5rem; font-weight: 600; color: #1d4ed8;">📌 Best Practices</span>
+
+</div>
 - Always test changes in Wix preview mode first
 - Keep widget code simple and lightweight
 - Monitor donation performance regularly
