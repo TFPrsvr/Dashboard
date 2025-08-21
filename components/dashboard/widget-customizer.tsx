@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { WidgetPreview } from "./widget-preview";
 import { CauseManager } from "./cause-manager";
 import { WidgetConfig } from "@/types/widget.types";
-import { Save, Eye, RotateCcw } from "lucide-react";
+import { Save, Eye, RotateCcw, Check, ArrowLeft } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 const FONT_OPTIONS = [
@@ -86,6 +86,7 @@ interface WidgetCustomizerProps {
   widgetId?: string;
   organizationName?: string;
   onSave: (config: WidgetConfig) => Promise<void>;
+  onDone?: () => void;
 }
 
 export function WidgetCustomizer({
@@ -93,6 +94,7 @@ export function WidgetCustomizer({
   widgetId,
   organizationName,
   onSave,
+  onDone,
 }: WidgetCustomizerProps) {
   const { toast } = useToast();
   const getDefaultConfig = (): WidgetConfig => ({
@@ -545,6 +547,12 @@ export function WidgetCustomizer({
         </Card>
 
         <div className="flex gap-3">
+          {onDone && (
+            <Button variant="outline" onClick={onDone}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Dashboard
+            </Button>
+          )}
           <Button
             onClick={() => {
               if (confirm("Are you sure you want to reset all customizations to default? This action cannot be undone.")) {
@@ -565,6 +573,19 @@ export function WidgetCustomizer({
             <Save className="w-4 h-4 mr-2" />
             {saving ? "Saving..." : "Save Changes"}
           </Button>
+          {onDone && (
+            <Button 
+              onClick={async () => {
+                await handleSave();
+                onDone();
+              }} 
+              disabled={saving}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              <Check className="w-4 h-4 mr-2" />
+              Done
+            </Button>
+          )}
         </div>
       </div>
 

@@ -20,7 +20,7 @@ export default function DashboardPage() {
       
       try {
         setLoadingWidget(true);
-        const response = await fetch(`/api/widgets?organizationId=${organization.id}`);
+        const response = await fetch(`/api/widgets`);
         if (response.ok) {
           const widgets = await response.json();
           if (widgets.length > 0) {

@@ -269,6 +269,7 @@ export default function CustomizeWidgetPage() {
           widgetId={widget.id}
           organizationName={organization?.name}
           onSave={handleSave}
+          onDone={() => router.push('/dashboard')}
         />
       ) : (
         <div className="text-center py-8">
