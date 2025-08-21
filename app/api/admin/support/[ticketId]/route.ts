@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabase } from '@/lib/supabase/supabase-client';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { ticketId: string } }
+  { params }: { params: Promise<{ ticketId: string }> }
 ) {
   try {
     const { userId } = await auth();
@@ -12,8 +12,10 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const resolvedParams = await params;
+
     // Check if user is admin/super_admin
-    const { data: user, error: userError } = await supabase
+    const { data: user, error: userError } = await supabaseAdmin
       .from('users')
       .select('role')
       .eq('id', userId)
@@ -33,6 +35,7 @@ export async function PATCH(
     if (admin_response) {
       updateData.admin_response = admin_response;
       updateData.admin_id = userId;
+      updateData.admin_responded_at = new Date().toISOString();
     }
 
     if (status) {
@@ -40,10 +43,10 @@ export async function PATCH(
     }
 
     // Update support ticket
-    const { data: ticket, error } = await supabase
+    const { data: ticket, error } = await supabaseAdmin
       .from('support_tickets')
       .update(updateData)
-      .eq('id', params.ticketId)
+      .eq('id', resolvedParams.ticketId)
       .select()
       .single();
 

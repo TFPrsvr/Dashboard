@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabase } from '@/lib/supabase/supabase-client';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get support tickets for the user
-    const { data: tickets, error } = await supabase
+    const { data: tickets, error } = await supabaseAdmin
       .from('support_tickets')
       .select('*')
       .eq('user_id', userId)
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create support ticket
-    const { data: ticket, error } = await supabase
+    const { data: ticket, error } = await supabaseAdmin
       .from('support_tickets')
       .insert({
         user_id: userId,

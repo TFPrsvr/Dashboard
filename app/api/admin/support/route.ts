@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { supabase } from '@/lib/supabase/supabase-client';
+import { supabaseAdmin } from '@/lib/supabase/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 
     // Check if user is admin/super_admin
     console.log('Checking admin access for userId:', userId);
-    const { data: user, error: userError } = await supabase
+    const { data: user, error: userError } = await supabaseAdmin
       .from('users')
       .select('role')
       .eq('id', userId)
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all support tickets
-    const { data: tickets, error } = await supabase
+    const { data: tickets, error } = await supabaseAdmin
       .from('support_tickets')
       .select('*')
       .order('created_at', { ascending: false });

@@ -1,6 +1,6 @@
 // Role definitions and permissions for the PassItOn platform
 
-export type UserRole = 'super_admin' | 'admin' | 'user';
+export type UserRole = 'super_admin' | 'admin' | 'editor' | 'user';
 
 export interface RoleDefinition {
   name: string;
@@ -93,6 +93,38 @@ export const ROLES: Record<UserRole, RoleDefinition> = {
       // Notifications
       'notifications:read:org',
       'notifications:send:org'
+    ]
+  },
+  
+  editor: {
+    name: 'Editor',
+    description: 'Content editor with permissions to create and modify widgets within their organization',
+    scope: 'organization',
+    permissions: [
+      // Organization Access
+      'organizations:read:own',
+      
+      // Widget Management (Organization Only)
+      'widgets:read:org',
+      'widgets:create:org',
+      'widgets:update:org',
+      'widgets:delete:org',
+      'widgets:publish:org',
+      'widgets:customize:org',
+      
+      // Dashboard Viewing
+      'dashboard:read:org',
+      'analytics:read:basic:org',
+      
+      // Donation Viewing
+      'donations:read:org',
+      
+      // Profile Management
+      'profile:read:own',
+      'profile:update:own',
+      
+      // Notifications
+      'notifications:read:own'
     ]
   },
   

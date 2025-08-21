@@ -1,29 +1,9 @@
-import { SignIn } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+import { SignIn } from '@clerk/nextjs'
 
-export default async function SignInPage() {
-  const { userId } = await auth();
-
-  if (userId) {
-    redirect("/dashboard");
-  }
-
+export default function SignInPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <SignIn
-        appearance={{
-          elements: {
-            rootBox: "mx-auto",
-            card: "shadow-xl",
-            socialButtonsBlockButton: "w-full",
-            socialButtonsBlockButtonText: "font-medium",
-          },
-        }}
-        redirectUrl="/dashboard"
-        afterSignInUrl="/dashboard"
-      />
+    <div className="bg-muted flex w-full flex-1 items-center justify-center p-6 md:p-10">
+      <SignIn />
     </div>
-  );
+  )
 }
