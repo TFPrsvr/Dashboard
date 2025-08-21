@@ -5,7 +5,7 @@ import { NotificationService } from "@/lib/notifications/service";
 // PATCH /api/notifications/[id] - Mark notification as read
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await currentUser();
@@ -13,11 +13,12 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const resolvedParams = await params;
     const body = await request.json();
     const { action } = body;
 
     if (action === "mark_read") {
-      const result = await NotificationService.markAsRead(params.id, user.id);
+      const result = await NotificationService.markAsRead(resolvedParams.id, user.id);
       return NextResponse.json(result);
     }
 

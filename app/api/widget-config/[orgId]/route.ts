@@ -43,9 +43,10 @@ export async function OPTIONS() {
 
 export async function GET(
   req: Request,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
-  console.log("Widget config API called for orgId:", params.orgId);
+  const resolvedParams = await params;
+  console.log("Widget config API called for orgId:", resolvedParams.orgId);
   
   // Add CORS headers for widget embed requests
   const headers = {
@@ -61,7 +62,7 @@ export async function GET(
     const { data: organization, error: orgError } = await supabase
       .from("organizations")
       .select("id, name, stripe_customer_id")
-      .eq("id", params.orgId)
+      .eq("id", resolvedParams.orgId)
       .single();
 
     if (orgError || !organization) {
@@ -81,7 +82,7 @@ export async function GET(
         config,
         organization_id
       `)
-      .eq("organization_id", params.orgId)
+      .eq("organization_id", resolvedParams.orgId)
       .limit(1)
       .single();
 
@@ -115,7 +116,7 @@ export async function GET(
       id: widgets?.id || 'default',
       name: widgets?.name || 'Default Widget',
       slug: widgets?.slug || 'default',
-      organizationId: params.orgId,
+      organizationId: resolvedParams.orgId,
       organizationName: organization.name,
       stripeCustomerId: organization.stripe_customer_id,
       config: {
