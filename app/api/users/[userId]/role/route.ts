@@ -6,7 +6,7 @@ import { UserRole, RolePermissions } from '@/types/roles.types';
 // GET /api/users/[userId]/role - Get user's current role
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const { userId: currentUserId } = await auth();
@@ -15,7 +15,8 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const targetUserId = params.userId;
+    const resolvedParams = await params;
+    const targetUserId = resolvedParams.userId;
 
     // Get current user's permissions
     const { data: currentUser } = await supabaseAdmin
@@ -61,7 +62,7 @@ export async function GET(
 // PUT /api/users/[userId]/role - Update user's role
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const { userId: currentUserId } = await auth();
@@ -70,8 +71,9 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const resolvedParams = await params;
     const { role: newRole, reason } = await request.json();
-    const targetUserId = params.userId;
+    const targetUserId = resolvedParams.userId;
 
     // Validate new role
     if (!['super_admin', 'admin', 'user'].includes(newRole)) {
@@ -180,7 +182,7 @@ export async function PUT(
 // GET /api/users/[userId]/role/history - Get role assignment history
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const { userId: currentUserId } = await auth();
@@ -189,7 +191,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const targetUserId = params.userId;
+    const resolvedParams = await params;
+    const targetUserId = resolvedParams.userId;
 
     // Get current user's permissions
     const { data: currentUser } = await supabaseAdmin

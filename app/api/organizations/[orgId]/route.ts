@@ -5,12 +5,13 @@ import { supabaseAdmin } from "@/lib/supabase/supabase-server";
 // GET /api/org/:orgId
 export async function GET(
   _req: Request,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
+  const resolvedParams = await params;
   const { data: org, error } = await supabaseAdmin
     .from("organizations")
     .select("*")
-    .eq("id", params.orgId)
+    .eq("id", resolvedParams.orgId)
     .single();
 
   if (error)
