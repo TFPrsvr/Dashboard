@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/Button";
 import { ArrowRight, Palette, Heart, TrendingUp, Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Widget, Cause } from "@/types/widget.types";
 
 export default function DashboardPage() {
   const { organization, loading } = useOrganization();
-  const [widget, setWidget] = useState(null);
-  const [causes, setCauses] = useState([]);
+  const [widget, setWidget] = useState<Widget | null>(null);
+  const [causes, setCauses] = useState<Cause[]>([]);
   const [loadingWidget, setLoadingWidget] = useState(true);
 
   // Fetch widget data to determine completion status

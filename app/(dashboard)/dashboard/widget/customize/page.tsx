@@ -161,7 +161,7 @@ export default function CustomizeWidgetPage() {
             widget_id: widget.id,
             name: String(cause.name || '').trim(),
             description: cause.description ? String(cause.description).trim() : null,
-            is_active: cause.isActive !== undefined ? Boolean(cause.isActive) : true,
+            is_active: cause.is_active !== undefined ? Boolean(cause.is_active) : true,
           };
         });
 

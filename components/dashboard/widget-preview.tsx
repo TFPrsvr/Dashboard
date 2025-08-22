@@ -9,7 +9,7 @@ interface WidgetPreviewProps {
 
 export function WidgetPreview({ config, mode }: WidgetPreviewProps) {
   const { theme, causes, settings } = config;
-  const activeCauses = causes.filter((c) => c.isActive);
+  const activeCauses = causes.filter((c) => c.is_active);
   const [showColorGuide, setShowColorGuide] = useState(false);
   const [selectedFrequency, setSelectedFrequency] = useState<"one-time" | "monthly">(settings.defaultFrequency);
 

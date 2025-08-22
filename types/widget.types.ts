@@ -27,20 +27,22 @@ export interface WidgetConfig {
 
 export interface Cause {
   id: string;
+  widget_id: string;
   name: string;
   description?: string;
-  goalAmount?: number;
-  raisedAmount: number;
-  isActive: boolean;
+  goal_amount?: number;
+  raised_amount: number;
+  is_active: boolean;
+  created_at: string;
 }
 
 export interface Widget {
   id: string;
-  organizationId: string;
+  organization_id: string;
   name: string;
   slug: string;
   config: WidgetConfig;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }

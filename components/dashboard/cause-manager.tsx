@@ -26,13 +26,15 @@ export function CauseManager({ causes, onChange }: CauseManagerProps) {
     if (newCause.name) {
       const cause: Cause = {
         id: Date.now().toString(),
+        widget_id: '',
         name: newCause.name,
         description: newCause.description || undefined,
-        goalAmount: newCause.goalAmount
+        goal_amount: newCause.goalAmount
           ? Number(newCause.goalAmount)
           : undefined,
-        raisedAmount: 0,
-        isActive: true,
+        raised_amount: 0,
+        is_active: true,
+        created_at: new Date().toISOString(),
       };
       onChange([...causes, cause]);
       setNewCause({ name: "", description: "", goalAmount: "" });
@@ -73,10 +75,10 @@ export function CauseManager({ causes, onChange }: CauseManagerProps) {
                   />
                   <Input
                     type="number"
-                    value={cause.goalAmount || ""}
+                    value={cause.goal_amount || ""}
                     onChange={(e) =>
                       handleUpdate(cause.id, {
-                        goalAmount: Number(e.target.value) || undefined,
+                        goal_amount: Number(e.target.value) || undefined,
                       })
                     }
                     placeholder="Goal amount (optional)"
@@ -90,9 +92,9 @@ export function CauseManager({ causes, onChange }: CauseManagerProps) {
                       {cause.description}
                     </p>
                   )}
-                  {cause.goalAmount && (
+                  {cause.goal_amount && (
                     <p className="text-sm text-gray-500 mt-1">
-                      Goal: ${cause.goalAmount.toLocaleString()}
+                      Goal: ${cause.goal_amount.toLocaleString()}
                     </p>
                   )}
                 </div>
@@ -100,9 +102,9 @@ export function CauseManager({ causes, onChange }: CauseManagerProps) {
             </div>
             <div className="flex items-center gap-2 ml-4">
               <Switch
-                checked={cause.isActive}
+                checked={cause.is_active}
                 onCheckedChange={(checked) =>
-                  handleUpdate(cause.id, { isActive: checked })
+                  handleUpdate(cause.id, { is_active: checked })
                 }
               />
               {editingId === cause.id ? (
